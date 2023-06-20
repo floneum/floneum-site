@@ -188,8 +188,8 @@ fn Docs(cx: Scope) -> Element {
 #[rustfmt::skip]
 enum Route {
     #[layout(HeaderFooter)]
-        #[route("/")]
+        #[route("/floneum-site/")]
         Home {},
-        #[route("/docs")]
+        #[route("/floneum-site/docs")]
         Docs {},
 }
