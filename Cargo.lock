@@ -314,7 +314,7 @@ dependencies = [
 [[package]]
 name = "dioxus"
 version = "0.3.2"
-source = "git+https://github.com/demonthos/dioxus?branch=router-typesafe#33f0e30369bc5f77d00be915287506df8677216c"
+source = "git+https://github.com/demonthos/dioxus?branch=router-typesafe#bc063c58b74740a98b4fba3fb747e156af7ed385"
 dependencies = [
  "dioxus-core",
  "dioxus-core-macro",
@@ -327,7 +327,7 @@ dependencies = [
 [[package]]
 name = "dioxus-core"
 version = "0.3.3"
-source = "git+https://github.com/demonthos/dioxus?branch=router-typesafe#33f0e30369bc5f77d00be915287506df8677216c"
+source = "git+https://github.com/demonthos/dioxus?branch=router-typesafe#bc063c58b74740a98b4fba3fb747e156af7ed385"
 dependencies = [
  "bumpalo",
  "bumpslab",
@@ -345,7 +345,7 @@ dependencies = [
 [[package]]
 name = "dioxus-core-macro"
 version = "0.3.0"
-source = "git+https://github.com/demonthos/dioxus?branch=router-typesafe#33f0e30369bc5f77d00be915287506df8677216c"
+source = "git+https://github.com/demonthos/dioxus?branch=router-typesafe#bc063c58b74740a98b4fba3fb747e156af7ed385"
 dependencies = [
  "dioxus-rsx",
  "proc-macro2",
@@ -356,7 +356,7 @@ dependencies = [
 [[package]]
 name = "dioxus-hooks"
 version = "0.3.1"
-source = "git+https://github.com/demonthos/dioxus?branch=router-typesafe#33f0e30369bc5f77d00be915287506df8677216c"
+source = "git+https://github.com/demonthos/dioxus?branch=router-typesafe#bc063c58b74740a98b4fba3fb747e156af7ed385"
 dependencies = [
  "dioxus-core",
  "futures-channel",
@@ -366,7 +366,7 @@ dependencies = [
 [[package]]
 name = "dioxus-hot-reload"
 version = "0.1.1"
-source = "git+https://github.com/demonthos/dioxus?branch=router-typesafe#33f0e30369bc5f77d00be915287506df8677216c"
+source = "git+https://github.com/demonthos/dioxus?branch=router-typesafe#bc063c58b74740a98b4fba3fb747e156af7ed385"
 dependencies = [
  "chrono",
  "dioxus-core",
@@ -384,7 +384,7 @@ dependencies = [
 [[package]]
 name = "dioxus-html"
 version = "0.3.1"
-source = "git+https://github.com/demonthos/dioxus?branch=router-typesafe#33f0e30369bc5f77d00be915287506df8677216c"
+source = "git+https://github.com/demonthos/dioxus?branch=router-typesafe#bc063c58b74740a98b4fba3fb747e156af7ed385"
 dependencies = [
  "async-trait",
  "dioxus-core",
@@ -402,7 +402,7 @@ dependencies = [
 [[package]]
 name = "dioxus-interpreter-js"
 version = "0.3.2"
-source = "git+https://github.com/demonthos/dioxus?branch=router-typesafe#33f0e30369bc5f77d00be915287506df8677216c"
+source = "git+https://github.com/demonthos/dioxus?branch=router-typesafe#bc063c58b74740a98b4fba3fb747e156af7ed385"
 dependencies = [
  "js-sys",
  "sledgehammer_bindgen",
@@ -414,7 +414,7 @@ dependencies = [
 [[package]]
 name = "dioxus-router"
 version = "0.3.0"
-source = "git+https://github.com/demonthos/dioxus?branch=router-typesafe#33f0e30369bc5f77d00be915287506df8677216c"
+source = "git+https://github.com/demonthos/dioxus?branch=router-typesafe#bc063c58b74740a98b4fba3fb747e156af7ed385"
 dependencies = [
  "anyhow",
  "dioxus",
@@ -432,7 +432,7 @@ dependencies = [
 [[package]]
 name = "dioxus-router-macro"
 version = "0.3.0"
-source = "git+https://github.com/demonthos/dioxus?branch=router-typesafe#33f0e30369bc5f77d00be915287506df8677216c"
+source = "git+https://github.com/demonthos/dioxus?branch=router-typesafe#bc063c58b74740a98b4fba3fb747e156af7ed385"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -443,7 +443,7 @@ dependencies = [
 [[package]]
 name = "dioxus-rsx"
 version = "0.0.3"
-source = "git+https://github.com/demonthos/dioxus?branch=router-typesafe#33f0e30369bc5f77d00be915287506df8677216c"
+source = "git+https://github.com/demonthos/dioxus?branch=router-typesafe#bc063c58b74740a98b4fba3fb747e156af7ed385"
 dependencies = [
  "dioxus-core",
  "internment",
@@ -457,7 +457,7 @@ dependencies = [
 [[package]]
 name = "dioxus-web"
 version = "0.3.2"
-source = "git+https://github.com/demonthos/dioxus?branch=router-typesafe#33f0e30369bc5f77d00be915287506df8677216c"
+source = "git+https://github.com/demonthos/dioxus?branch=router-typesafe#bc063c58b74740a98b4fba3fb747e156af7ed385"
 dependencies = [
  "anyhow",
  "async-trait",

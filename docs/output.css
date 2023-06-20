@@ -554,6 +554,30 @@ video {
   display: grid;
 }
 
+.h-full {
+  height: 100%;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.w-1\/2 {
+  width: 50%;
+}
+
+.max-w-lg {
+  max-width: 32rem;
+}
+
+.max-w-4xl {
+  max-width: 56rem;
+}
+
+.max-w-2xl {
+  max-width: 42rem;
+}
+
 @keyframes fade-in-left {
   0% {
     opacity: 0;
@@ -650,12 +674,32 @@ video {
   animation: fade-in-right 1s ease-in-out;
 }
 
-.grid-cols-2 {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+@keyframes shine {
+  0% {
+    background-image: linear-gradient(90deg,#215d6e,#39b48e);
+    background-size: 1100% 100%;
+    background-position: 0% 0%;
+  }
+
+  50% {
+    background-image: linear-gradient(90deg,#215d6e,#39b48e);
+    background-size: 1100% 100%;
+    background-position: 100% 0%;
+  }
+
+  100% {
+    background-image: linear-gradient(90deg,#215d6e,#39b48e);
+    background-size: 1100% 100%;
+    background-position: 0% 0%;
+  }
 }
 
-.grid-rows-2 {
-  grid-template-rows: repeat(2, minmax(0, 1fr));
+.animate-shine {
+  animation: shine 10s ease-in-out infinite;
+}
+
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .flex-row {
@@ -670,8 +714,16 @@ video {
   align-items: center;
 }
 
+.justify-center {
+  justify-content: center;
+}
+
 .justify-between {
   justify-content: space-between;
+}
+
+.justify-evenly {
+  justify-content: space-evenly;
 }
 
 .justify-items-center {
@@ -680,10 +732,6 @@ video {
 
 .gap-4 {
   gap: 1rem;
-}
-
-.justify-self-end {
-  justify-self: end;
 }
 
 .border-b-2 {
@@ -695,14 +743,38 @@ video {
   border-color: rgb(55 65 81 / var(--tw-border-opacity));
 }
 
-.text-2xl {
-  font-size: 1.5rem;
-  line-height: 2rem;
+.bg-gray-700 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
+}
+
+.bg-clip-text {
+  -webkit-background-clip: text;
+          background-clip: text;
+}
+
+.px-80 {
+  padding-left: 20rem;
+  padding-right: 20rem;
+}
+
+.py-5 {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+
+.text-center {
+  text-align: center;
 }
 
 .text-4xl {
   font-size: 2.25rem;
   line-height: 2.5rem;
+}
+
+.text-9xl {
+  font-size: 8rem;
+  line-height: 1;
 }
 
 .text-xl {
@@ -712,6 +784,10 @@ video {
 
 .font-bold {
   font-weight: 700;
+}
+
+.text-transparent {
+  color: transparent;
 }
 
 @media (prefers-color-scheme: dark) {

@@ -159,7 +159,7 @@ let m,p,ls,d,t,op,i,e,z,metaflags;
         selected: true,
         truespeed: true,
       };
-    let s,lsp,sp,sl; let c = new TextDecoder();let u8buf,u8bufp;const evt = [];
+    let s,lsp,sp,sl; let c = new TextDecoder();const evt = [];
                     let evt_tmp1, evt_tmp2;
                     function get_evt() {
                         evt_tmp2 = u8buf[u8bufp++];
@@ -195,8 +195,8 @@ let m,p,ls,d,t,op,i,e,z,metaflags;
                         else{
                             return ns_cache[ns_cache_tmp2&4294967167];
                         }
-                    }let u32buf,u32bufp;
-            let event_name,bubbles,ns,len,id,value,field,ptr;
+                    }let u8buf,u8bufp;let u32buf,u32bufp;
+            let event_name,ptr,id,ns,field,bubbles,value,len;
             export function create(r){
                 d=r;
             }
