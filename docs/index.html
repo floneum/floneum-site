@@ -5,14 +5,14 @@
   <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta charset="UTF-8" />
-  <link rel="stylesheet" href="/output.css" />
+  <link rel="stylesheet" href="./output.css" />
 </head>
 <body style="overflow-x:hidden" class="w-full h-full">
     <div id="main" class="w-full h-full">
     </div>
     <script type="module">
-    import init from "/./assets/dioxus/Floneum.js";
-    init("/./assets/dioxus/Floneum_bg.wasm").then(wasm => {
+    import init from "./assets/dioxus/Floneum.js";
+    init("./assets/dioxus/Floneum_bg.wasm").then(wasm => {
       if (wasm.__wbindgen_start == undefined) {
         wasm.main();
       }
