@@ -61,7 +61,7 @@ fn HeaderFooter(cx: Scope) -> Element {
 
 fn GithubLink(cx: Scope) -> Element {
     render! {
-        a { margin: "10px", right: "10px", href: "https://github.com/floneum/floneum", img { src: "./GitHub-Mark-Light-32px.png", width: "32px", height: "32px" } }
+        a { margin: "10px", right: "10px", href: "https://github.com/floneum/floneum", img { src: "./assets/GitHub-Mark-Light-32px.png", width: "32px", height: "32px" } }
     }
 }
 
@@ -112,7 +112,7 @@ fn Home(cx: Scope) -> Element {
                     class: "animate-fade-in-right m-4",
                     img {
                         class: "max-w-2xl",
-                        src: "./demo-img.png",
+                        src: "./assets/demo-img.png",
                     }
                 }
             }
@@ -122,7 +122,7 @@ fn Home(cx: Scope) -> Element {
                     class: "animate-fade-in-left-slow m-4",
                     img {
                         class: "max-w-2xl",
-                        src: "./plugins.png",
+                        src: "./assets/plugins.png",
                     }
                 }
                 div {
@@ -153,16 +153,16 @@ fn Home(cx: Scope) -> Element {
                     div {
                         class: "grid grid-cols-2 gap-4 justify-items-center items-center max-w-2xl",
                         img {
-                            src: "./rust_logo.svg",
+                            src: "./assets/rust_logo.svg",
                         }
                         img {
-                            src: "./c_logo.png",
+                            src: "./assets/c_logo.png",
                         }
                         img {
-                            src: "./java_logo.png",
+                            src: "./assets/java_logo.png",
                         }
                         img {
-                            src: "./go_logo.png",
+                            src: "./assets/go_logo.png",
                         }
                     }
                 }
