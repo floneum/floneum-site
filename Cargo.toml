@@ -9,3 +9,9 @@ edition = "2021"
 dioxus = { git = "https://github.com/demonthos/dioxus", branch = "router-typesafe" }
 dioxus-web = { git = "https://github.com/demonthos/dioxus", branch = "router-typesafe" }
 dioxus-router = { git = "https://github.com/demonthos/dioxus", branch = "router-typesafe", features = ["web"] }
+
+[profile.release]
+lto = true
+codegen-units = 1
+opt-level = 'z'
+strip = "debuginfo"
