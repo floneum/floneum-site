@@ -10,52 +10,6 @@ use serde::{Deserialize, Serialize};
 mod learn;
 mod search;
 
-fn main() {
-    #[cfg(feature = "web")]
-    wasm_logger::init(wasm_logger::Config::new(log::Level::Info));
-    #[cfg(feature = "ssr")]
-    {
-        use dioxus_fullstack::prelude::*;
-        tokio::runtime::Runtime::new()
-            .unwrap()
-            .block_on(async move {
-                pre_cache_static_routes_with_props(
-                    &ServeConfigBuilder::new_with_router(
-                        dioxus_fullstack::router::FullstackRouterConfig::<Route>::default(),
-                    )
-                    .assets_path("docs")
-                    .incremental(IncrementalRendererConfig::default().static_dir("."))
-                    .build(),
-                )
-                .await
-                .unwrap();
-            });
-        simple_logger::SimpleLogger::new()
-            .with_level(log::LevelFilter::Warn)
-            .init()
-            .unwrap();
-    }
-
-    dioxus_fullstack::launch_router!(@([127, 0, 0, 1], 8080), Route, {
-        serve_cfg: {
-            dioxus_fullstack::prelude::ServeConfigBuilder::new_with_router(
-            dioxus_fullstack::router::FullstackRouterConfig::<Route>::default(),
-            )
-            .assets_path("docs")
-            .incremental(IncrementalRendererConfig::default())
-        },
-    });
-}
-
-fn app(cx: Scope) -> Element {
-    render! {
-        div {
-            class: "flex flex-col justify-between w-full h-full",
-            Router {}
-        }
-    }
-}
-
 #[inline_props]
 fn HeaderFooter(cx: Scope) -> Element {
     use_shared_state_provider(cx, || SearchActive(false));
@@ -63,19 +17,15 @@ fn HeaderFooter(cx: Scope) -> Element {
     render! {
         SearchModal {}
         div {
-            class: "flex flex-row justify-between items-center border-b-2 border-gray-700",
-            p {
-                class: "text-4xl font-bold m-2 ml-12",
+            class: "z-30 flex flex-row justify-between items-center border-b-2 border-gray-700 w-full",
+            Link {
+                class: "text-xl font-bold m-2 mr-12",
+                target: Route::Home {},
                 "Floneum"
             }
             Search {}
             div {
                 class: "flex flex-row items-center",
-                Link {
-                    class: "text-xl font-bold m-2 mr-12",
-                    target: Route::Home {},
-                    "Home"
-                }
                 Link {
                     class: "text-xl font-bold m-2 mr-12",
                     target: Route::Docs {
@@ -235,4 +185,43 @@ mod docs {
     use dioxus::prelude::*;
 
     use_mdbook::mdbook_router! {"doc_src"}
+}
+
+
+fn main() {
+    #[cfg(feature = "web")]
+    wasm_logger::init(wasm_logger::Config::new(log::Level::Info));
+    #[cfg(feature = "ssr")]
+    {
+        use dioxus_fullstack::prelude::*;
+        tokio::runtime::Runtime::new()
+            .unwrap()
+            .block_on(async move {
+                pre_cache_static_routes_with_props(
+                    &ServeConfigBuilder::new_with_router(
+                        dioxus_fullstack::router::FullstackRouterConfig::<Route>::default(),
+                    )
+                    .assets_path("docs")
+                    .incremental(IncrementalRendererConfig::default().static_dir("."))
+                    .build(),
+                )
+                .await
+                .unwrap();
+            });
+        simple_logger::SimpleLogger::new()
+            .with_level(log::LevelFilter::Warn)
+            .init()
+            .unwrap();
+    }
+
+    dioxus_fullstack::launch_router!(@([127, 0, 0, 1], 8080), Route, {
+        serve_cfg: {
+            dioxus_fullstack::prelude::ServeConfigBuilder::new_with_router(
+                dioxus_fullstack::router::FullstackRouterConfig::<Route>::default(),
+            )
+            .assets_path("docs")
+            .incremental(IncrementalRendererConfig::default())
+        },
+    });
+    log::info!("started");
 }

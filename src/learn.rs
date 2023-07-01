@@ -1,8 +1,6 @@
 use crate::docs::LAZY_BOOK;
 
 use crate::*;
-use dioxus::prelude::*;
-use mdbook_shared::Page;
 use mdbook_shared::SummaryItem;
 
 #[inline_props]
@@ -26,7 +24,7 @@ fn LeftNav(cx: Scope) -> Element {
     ];
 
     render! {
-        nav { class: "z-20 text-base hidden md:block fixed top-0 pt-36 pb-16 pl-3.5 md:-ml-3.5 w-[calc(100%-1rem)] md:w-60 h-full max-h-screen md:text-[13px] text-navy content-start overflow-y-auto leading-5",
+        nav { class: "z-20 text-base hidden md:block fixed top-0 mt-36 mb-16 pl-3.5 md:-ml-3.5 w-[calc(100%-1rem)] md:w-60 h-full max-h-screen md:text-[13px] text-navy content-start overflow-y-auto leading-5",
             for chapter in chapters.into_iter().flatten().filter(|chapter| chapter.maybe_link().is_some()) {
                 SidebarSection { chapter: chapter }
             }
@@ -149,38 +147,10 @@ fn Content(cx: Scope) -> Element {
     }
 }
 
-fn BreadCrumbs(cx: Scope) -> Element {
-    // parse out the route after the version and language
-    let route = use_route(cx)?;
-
-    render! {
-        h2 { class: "font-semibold pb-4",
-            for segment in route.to_string().split("/").skip(3).filter(|f| !f.is_empty()) {
-                rsx! {
-                    if segment != "index" {
-                        rsx! {
-                            Link { target: Route::Home {}, class: "text-blue-600", "{segment}" }
-                            " / "
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
 fn use_book(cx: &ScopeState) -> BookRoute {
     let route = use_route(cx).unwrap();
     match route {
         Route::Docs { child } => child,
         _ => unreachable!(),
     }
-}
-
-fn default_page() -> &'static Page<BookRoute> {
-    let id = LAZY_BOOK
-        .page_id_mapping
-        .get(&BookRoute::default())
-        .unwrap();
-    LAZY_BOOK.pages.get(id.0).unwrap()
 }

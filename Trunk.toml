@@ -1,12 +1,13 @@
 [build]
 # The index HTML file to drive the bundling process.
-target = "index.html"
+target = "trunk.html"
 # The output dir for all final assets.
 dist = "docs"
 # The public URL from which assets are to be served.
 public_url = "/"
 # Whether to include hash values in the output file names.
 filehash = false
+features = "web"
 
 [watch]
 # Paths to watch. The `build.target`'s parent folder is watched by default.
