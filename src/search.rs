@@ -24,7 +24,7 @@ pub fn SearchModal(cx: Scope) -> Element {
                 div {
                     height: "100vh",
                     width: "100vw",
-                    class: "fixed top-0 left-0 z-50 hidden md:block bg-gray-500 bg-opacity-80 overflow-y-hidden",
+                    class: "fixed top-0 left-0 z-50 hidden md:block bg-gray-500 bg-opacity-20 overflow-y-hidden",
                     onclick: move |_| {
                         *show_modal.write() = SearchActive(false)
                     },

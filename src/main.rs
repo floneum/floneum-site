@@ -13,44 +13,49 @@ mod search;
 #[inline_props]
 fn HeaderFooter(cx: Scope) -> Element {
     use_shared_state_provider(cx, || SearchActive(false));
+    let should_blur = use_shared_state::<SearchActive>(cx).unwrap();
+    let content_class = if should_blur.read().0 { "blur-md" } else { "" };
 
     render! {
         SearchModal {}
         div {
-            class: "z-30 flex flex-row justify-between items-center border-b-2 border-gray-700 w-full",
-            Link {
-                class: "text-xl font-bold m-2 mr-12",
-                target: Route::Home {},
-                "Floneum"
-            }
-            Search {}
+            class: "{content_class}",
             div {
-                class: "flex flex-row items-center",
+                class: "z-30 flex flex-row justify-between items-center border-b-2 border-gray-700 w-full",
                 Link {
                     class: "text-xl font-bold m-2 mr-12",
-                    target: Route::Docs {
-                        child: BookRoute::Index {}
-                    },
-                    "Documentation"
+                    target: Route::Home {},
+                    "Floneum"
                 }
-                GithubLink{}
-                DiscordLink{}
+                Search {}
+                div {
+                    class: "flex flex-row items-center",
+                    Link {
+                        class: "text-xl font-bold m-2 mr-12",
+                        target: Route::Docs {
+                            child: BookRoute::Index {}
+                        },
+                        "Documentation"
+                    }
+                    GithubLink{}
+                    DiscordLink{}
+                }
             }
-        }
-        Outlet {}
-        div {
-            class: "bg-gray-700 px-80 py-5 flex flex-row items-center justify-evenly",
+            Outlet {}
             div {
-                class: "flex flex-col items-center",
-                "Community"
-
-                DiscordLink {}
-            }
-            div {
-                class: "flex flex-col items-center",
-                "About"
-
-                GithubLink {}
+                class: "bg-gray-700 px-80 py-5 flex flex-row items-center justify-evenly",
+                div {
+                    class: "flex flex-col items-center",
+                    "Community"
+    
+                    DiscordLink {}
+                }
+                div {
+                    class: "flex flex-col items-center",
+                    "About"
+    
+                    GithubLink {}
+                }
             }
         }
     }
