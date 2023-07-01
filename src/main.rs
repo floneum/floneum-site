@@ -8,10 +8,11 @@ use learn::{Learn, LearnProps};
 use serde::{Deserialize, Serialize};
 
 mod learn;
+mod search;
 
 fn main() {
     #[cfg(feature = "web")]
-    wasm_logger::init(wasm_logger::Config::new(log::Level::Debug));
+    wasm_logger::init(wasm_logger::Config::new(log::Level::Info));
     #[cfg(feature = "ssr")]
     {
         use dioxus_fullstack::prelude::*;
@@ -23,7 +24,7 @@ fn main() {
                         dioxus_fullstack::router::FullstackRouterConfig::<Route>::default(),
                     )
                     .assets_path("docs")
-                    .incremental(IncrementalRendererConfig::default())
+                    .incremental(IncrementalRendererConfig::default().static_dir("."))
                     .build(),
                 )
                 .await
@@ -57,13 +58,17 @@ fn app(cx: Scope) -> Element {
 
 #[inline_props]
 fn HeaderFooter(cx: Scope) -> Element {
+    use_shared_state_provider(cx, || SearchActive(false));
+
     render! {
+        SearchModal {}
         div {
             class: "flex flex-row justify-between items-center border-b-2 border-gray-700",
             p {
                 class: "text-4xl font-bold m-2 ml-12",
                 "Floneum"
             }
+            Search {}
             div {
                 class: "flex flex-row items-center",
                 Link {
@@ -224,7 +229,7 @@ enum Route {
             Docs { child: BookRoute },
 }
 
-use crate::docs::BookRoute;
+use crate::{docs::BookRoute, search::{SearchActive, SearchModal, Search}};
 
 mod docs {
     use dioxus::prelude::*;

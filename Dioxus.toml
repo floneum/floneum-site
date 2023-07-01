@@ -23,7 +23,7 @@ title = "dioxus | ⛺"
 reload_html = true
 
 # which files or dirs will be watcher monitoring
-watch_path = ["src", "docs/output.css"]
+watch_path = ["src", "/output.css"]
 
 index_on_404 = true
 
@@ -31,7 +31,7 @@ index_on_404 = true
 [web.resource]
 
 # CSS style file
-style = ["./output.css"]
+style = ["/output.css"]
 
 # Javascript code file
 script = []
@@ -41,7 +41,7 @@ script = []
 # serve: [dev-server] only
 
 # CSS style file
-style = ["./output.css"]
+style = ["/output.css"]
 
 # Javascript code file
 script = []
