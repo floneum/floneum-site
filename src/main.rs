@@ -202,7 +202,7 @@ fn main() {
                         dioxus_fullstack::router::FullstackRouterConfig::<Route>::default(),
                     )
                     .assets_path("docs")
-                    .incremental(IncrementalRendererConfig::default().static_dir("."))
+                    .incremental(IncrementalRendererConfig::default().static_dir("docs"))
                     .build(),
                 )
                 .await
