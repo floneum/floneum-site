@@ -1,9 +1,49 @@
+// Build with:
+// dioxus build --release --features web
+// cargo run --features ssr --release
 #![allow(non_snake_case)]
 use dioxus::prelude::*;
 use dioxus_router::prelude::*;
+use learn::{Learn, LearnProps};
+use serde::{Deserialize, Serialize};
+
+mod learn;
 
 fn main() {
-    dioxus_web::launch(app);
+    #[cfg(feature = "web")]
+    wasm_logger::init(wasm_logger::Config::new(log::Level::Debug));
+    #[cfg(feature = "ssr")]
+    {
+        use dioxus_fullstack::prelude::*;
+        tokio::runtime::Runtime::new()
+            .unwrap()
+            .block_on(async move {
+                pre_cache_static_routes_with_props(
+                    &ServeConfigBuilder::new_with_router(
+                        dioxus_fullstack::router::FullstackRouterConfig::<Route>::default(),
+                    )
+                    .assets_path("docs")
+                    .incremental(IncrementalRendererConfig::default())
+                    .build(),
+                )
+                .await
+                .unwrap();
+            });
+        simple_logger::SimpleLogger::new()
+            .with_level(log::LevelFilter::Warn)
+            .init()
+            .unwrap();
+    }
+
+    dioxus_fullstack::launch_router!(@([127, 0, 0, 1], 8080), Route, {
+        serve_cfg: {
+            dioxus_fullstack::prelude::ServeConfigBuilder::new_with_router(
+            dioxus_fullstack::router::FullstackRouterConfig::<Route>::default(),
+            )
+            .assets_path("docs")
+            .incremental(IncrementalRendererConfig::default())
+        },
+    });
 }
 
 fn app(cx: Scope) -> Element {
@@ -33,7 +73,9 @@ fn HeaderFooter(cx: Scope) -> Element {
                 }
                 Link {
                     class: "text-xl font-bold m-2 mr-12",
-                    target: Route::Docs {},
+                    target: Route::Docs {
+                        child: BookRoute::Index {}
+                    },
                     "Documentation"
                 }
                 GithubLink{}
@@ -61,7 +103,7 @@ fn HeaderFooter(cx: Scope) -> Element {
 
 fn GithubLink(cx: Scope) -> Element {
     render! {
-        a { margin: "10px", right: "10px", href: "https://github.com/floneum/floneum", img { src: "./assets/GitHub-Mark-Light-32px.png", width: "32px", height: "32px" } }
+        a { margin: "10px", right: "10px", href: "https://github.com/floneum/floneum", img { src: "/assets/GitHub-Mark-Light-32px.png", width: "32px", height: "32px" } }
     }
 }
 
@@ -171,25 +213,21 @@ fn Home(cx: Scope) -> Element {
     }
 }
 
-#[inline_props]
-fn Docs(cx: Scope) -> Element {
-    render! {
-        div {
-            class: "flex flex-col align-center justify-center w-full h-full text-center",
-            h1 {
-                class: "text-4xl font-bold mb-2",
-                "Documentation coming soon"
-            }
-        }
-    }
-}
-
-#[derive(Routable, Clone)]
+#[derive(Routable, Clone, Serialize, Deserialize)]
 #[rustfmt::skip]
 enum Route {
     #[layout(HeaderFooter)]
         #[route("/")]
         Home {},
-        #[route("/docs")]
-        Docs {},
+        #[layout(Learn)]
+            #[child("/docs")]
+            Docs { child: BookRoute },
+}
+
+use crate::docs::BookRoute;
+
+mod docs {
+    use dioxus::prelude::*;
+
+    use_mdbook::mdbook_router! {"doc_src"}
 }

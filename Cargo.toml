@@ -2,16 +2,35 @@
 name = "floneum-site"
 version = "0.1.0"
 edition = "2021"
+authors = ["Evan Almloff"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-dioxus = { git = "https://github.com/demonthos/dioxus", branch = "router-typesafe" }
-dioxus-web = { git = "https://github.com/demonthos/dioxus", branch = "router-typesafe" }
-dioxus-router = { git = "https://github.com/demonthos/dioxus", branch = "router-typesafe", features = ["web"] }
+dioxus-router = { path = "../dioxus/packages/router" }
+dioxus = { path = "../dioxus/packages/dioxus" }
+dioxus-web = { path = "../dioxus/packages/web", features = ["hydrate"], optional = true }
+dioxus-ssr = { path = "../dioxus/packages/ssr", optional = true }
+dioxus-fullstack = { path = "../dioxus/packages/fullstack", features = ["router"] }
+mdbook-shared = { path = "../include_mdbook/mdbook-shared" }
+use-mdbook = { path = "../include_mdbook/use-mdbook" }
+tokio = { version = "1.29.0", features = ["full"], optional = true }
+axum = { version = "0.6.12", optional = true }
+simple_logger = "4.2.0"
+log = "0.4.17"
+wasm-logger = "0.2.0"
+serde = { version = "1.0.164", features = ["derive"] }
+
+[dev-dependencies]
+floneum_rust = { git = "https://github.com/floneum/floneum" }
 
 [profile.release]
 lto = true
 codegen-units = 1
 opt-level = 'z'
 strip = "debuginfo"
+
+[features]
+default = []
+web = ["dioxus-web", "dioxus-router/web"]
+ssr = ["dioxus-ssr", "dioxus-router/ssr", "tokio", "dioxus-fullstack/axum", "axum"]
