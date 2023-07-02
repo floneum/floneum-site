@@ -568,6 +568,10 @@ video {
   left: 0px;
 }
 
+.left-4 {
+  left: 1rem;
+}
+
 .top-0 {
   top: 0px;
 }
@@ -576,12 +580,12 @@ video {
   z-index: 20;
 }
 
-.z-50 {
-  z-index: 50;
-}
-
 .z-30 {
   z-index: 30;
+}
+
+.z-50 {
+  z-index: 50;
 }
 
 .m-1 {
@@ -628,6 +632,10 @@ video {
   margin-left: -0.875rem;
 }
 
+.mb-16 {
+  margin-bottom: 4rem;
+}
+
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -644,6 +652,10 @@ video {
   margin-left: 1.5rem;
 }
 
+.ml-8 {
+  margin-left: 2rem;
+}
+
 .mr-12 {
   margin-right: 3rem;
 }
@@ -652,24 +664,12 @@ video {
   margin-top: 3rem;
 }
 
-.mt-4 {
-  margin-top: 1rem;
-}
-
-.mb-16 {
-  margin-bottom: 4rem;
-}
-
 .mt-36 {
   margin-top: 9rem;
 }
 
-.ml-3 {
-  margin-left: 0.75rem;
-}
-
-.ml-3\.5 {
-  margin-left: 0.875rem;
+.mt-4 {
+  margin-top: 1rem;
 }
 
 .flex {
@@ -684,6 +684,10 @@ video {
   display: none;
 }
 
+.h-6 {
+  height: 1.5rem;
+}
+
 .h-full {
   height: 100%;
 }
@@ -694,6 +698,14 @@ video {
 
 .max-h-screen {
   max-height: 100vh;
+}
+
+.w-2\/3 {
+  width: 66.666667%;
+}
+
+.w-6 {
+  width: 1.5rem;
 }
 
 .w-60 {
@@ -970,17 +982,13 @@ video {
   background-color: transparent;
 }
 
-.bg-opacity-80 {
-  --tw-bg-opacity: 0.8;
+.bg-opacity-20 {
+  --tw-bg-opacity: 0.2;
 }
 
 .bg-clip-text {
   -webkit-background-clip: text;
           background-clip: text;
-}
-
-.p-1 {
-  padding: 0.25rem;
 }
 
 .p-2 {
@@ -1060,10 +1068,6 @@ video {
   padding-top: 3rem;
 }
 
-.pt-36 {
-  padding-top: 9rem;
-}
-
 .text-left {
   text-align: left;
 }
@@ -1095,11 +1099,6 @@ video {
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
-}
-
-.text-xs {
-  font-size: 0.75rem;
-  line-height: 1rem;
 }
 
 .font-bold {
@@ -1148,9 +1147,18 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.underline {
+  text-decoration-line: underline;
+}
+
 .outline-none {
   outline: 2px solid transparent;
   outline-offset: 2px;
+}
+
+.blur-md {
+  --tw-blur: blur(12px);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
 .filter {
@@ -1209,14 +1217,6 @@ video {
 }
 
 @media (min-width: 768px) {
-  .md\:-ml-3 {
-    margin-left: -0.75rem;
-  }
-
-  .md\:-ml-3\.5 {
-    margin-left: -0.875rem;
-  }
-
   .md\:block {
     display: block;
   }

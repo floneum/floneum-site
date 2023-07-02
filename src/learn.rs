@@ -24,7 +24,7 @@ fn LeftNav(cx: Scope) -> Element {
     ];
 
     render! {
-        nav { class: "z-20 text-base hidden md:block fixed top-0 mt-36 mb-16 pl-8 md:-ml-3.5 w-[calc(100%-1rem)] md:w-60 h-full max-h-screen md:text-[13px] text-navy content-start overflow-y-auto leading-5",
+        nav { class: "z-20 text-base hidden md:block fixed top-0 left-4 mt-36 mb-16 ml-8 w-[calc(100%-1rem)] md:w-60 h-full max-h-screen md:text-[13px] text-navy content-start overflow-y-auto leading-5",
             for chapter in chapters.into_iter().flatten().filter(|chapter| chapter.maybe_link().is_some()) {
                 SidebarSection { chapter: chapter }
             }
