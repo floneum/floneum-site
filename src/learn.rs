@@ -133,7 +133,7 @@ fn Content(cx: Scope) -> Element {
     render! {
         section { class: "text-gray-200 body-font overflow-hidden dark:bg-ideblack mx-auto container pt-12 pb-12 max-w-screen-md",
             div { class: "-my-8",
-                div { class: "flex w-full mb-20 flex-wrap list-none",
+                div { class: "flex w-full mb-20 flex-wrap list-none rounded-md",
                     style {
                         ".markdown-body ul {{ list-style: disc; }}"
                         ".markdown-body li {{ display: list-item; }}"
@@ -149,6 +149,7 @@ fn Content(cx: Scope) -> Element {
                         ".markdown-body ul {{ padding-left: 1.5rem; }}"
                         ".markdown-body ol {{ padding-left: 1.5rem; }}"
                         ".markdown-body li {{ padding-top: 0.25rem; padding-bottom: 0.25rem; }}"
+                        ".markdown-body pre {{ border-radius: 0.375rem; padding: 0.5rem; }}"
                     }
                     article { class: "markdown-body pt-1",
                         Outlet {}
