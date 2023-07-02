@@ -177,6 +177,26 @@ fn Home(cx: Scope) -> Element {
                 }
             }
         }
+
+        div {
+            class: "flex flex-row items-center justify-evenly w-full",
+
+            Link {
+                class: "text-5xl font-bold p-4 m-12 rounded-md bg-orange-900 text-center w-1/3",
+                target: Route::Docs {
+                    child: BookRoute::UserIndex {}
+                },
+                "User Documentation"
+            }
+
+            Link {
+                class: "text-5xl font-bold p-4 m-12 rounded-md bg-blue-900 text-center w-1/3",
+                target: Route::Docs {
+                    child: BookRoute::DeveloperIndex {}
+                },
+                "Developer Documentation"
+            }
+        }
     }
 }
 
@@ -198,7 +218,6 @@ mod docs {
 
     use_mdbook::mdbook_router! {"doc_src"}
 }
-
 
 fn main() {
     #[cfg(feature = "web")]
