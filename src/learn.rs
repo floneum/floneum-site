@@ -24,7 +24,7 @@ fn LeftNav(cx: Scope) -> Element {
     ];
 
     render! {
-        nav { class: "z-20 text-base hidden md:block fixed top-0 left-4 mt-36 mb-16 ml-8 w-[calc(100%-1rem)] md:w-60 h-full max-h-screen md:text-[13px] text-navy content-start overflow-y-auto leading-5",
+        nav { class: "z-20 text-base hidden md:block fixed top-0 left-4 mt-36 mb-16 ml-8 w-[calc(100%-1rem)] md:w-60 h-full max-h-screen md:text-[13px] text-navy content-start overflow-y-auto leading-5 flex-wrap",
             for chapter in chapters.into_iter().flatten().filter(|chapter| chapter.maybe_link().is_some()) {
                 SidebarSection { chapter: chapter }
             }
@@ -149,7 +149,9 @@ fn Content(cx: Scope) -> Element {
                         ".markdown-body ul {{ padding-left: 1.5rem; }}"
                         ".markdown-body ol {{ padding-left: 1.5rem; }}"
                         ".markdown-body li {{ padding-top: 0.25rem; padding-bottom: 0.25rem; }}"
-                        ".markdown-body pre {{ border-radius: 0.375rem; padding: 0.5rem; }}"
+                        ".markdown-body code {{ border-radius: 0.1rem; word-wrap: normal; background-color:#2b303b;"
+                        ".markdown-body pre {{ border-radius: 0.375rem; padding: 0.5rem; word-wrap: normal; }}"
+                        ".markdown-body span {{ word-wrap: normal; white-space: normal; }}"
                     }
                     article { class: "markdown-body pt-1",
                         Outlet {}
