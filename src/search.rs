@@ -92,7 +92,10 @@ fn SearchResult(cx: Scope, result: mdbook_shared::search_index::SearchResult) ->
     let show_modal = use_shared_state::<SearchActive>(cx).unwrap();
     let title = &result.title;
     let page = crate::docs::LAZY_BOOK.get_page(result.id);
-    let top_excerpt_segments = &result.excerpts.first().unwrap().text;
+    let top_excerpt_segments = &match result.excerpts.first() {
+        Some(excerpt) => &*excerpt.text,
+        None => &[],
+    };
 
     render! {
         li { class: "w-full mt-4 p-2 rounded hover:bg-gray-600 dark:hover:bg-ideblack transition-colors duration-200 ease-in-out",

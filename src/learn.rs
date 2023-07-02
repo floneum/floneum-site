@@ -24,7 +24,7 @@ fn LeftNav(cx: Scope) -> Element {
     ];
 
     render! {
-        nav { class: "z-20 text-base hidden md:block fixed top-0 mt-36 mb-16 pl-3.5 md:-ml-3.5 w-[calc(100%-1rem)] md:w-60 h-full max-h-screen md:text-[13px] text-navy content-start overflow-y-auto leading-5",
+        nav { class: "z-20 text-base hidden md:block fixed top-0 mt-36 mb-16 pl-8 md:-ml-3.5 w-[calc(100%-1rem)] md:w-60 h-full max-h-screen md:text-[13px] text-navy content-start overflow-y-auto leading-5",
             for chapter in chapters.into_iter().flatten().filter(|chapter| chapter.maybe_link().is_some()) {
                 SidebarSection { chapter: chapter }
             }
@@ -137,6 +137,12 @@ fn Content(cx: Scope) -> Element {
                     style {
                         ".markdown-body ul {{ list-style: disc; }}"
                         ".markdown-body li {{ display: list-item; }}"
+                        ".markdown-body h1 {{ font-size: 2.25rem; padding-top: 0.5rem; padding-bottom: 0.5rem; }}"
+                        ".markdown-body h2 {{ font-size: 1.5rem; padding-top: 0.5rem; padding-bottom: 0.5rem; }}"
+                        ".markdown-body h3 {{ font-size: 1.25rem; padding-top: 0.5rem; padding-bottom: 0.5rem; }}"
+                        ".markdown-body h4 {{ font-size: 1rem; padding-top: 0.5rem; padding-bottom: 0.5rem; }}"
+                        ".markdown-body h5 {{ font-size: 0.875rem; padding-top: 0.5rem; padding-bottom: 0.5rem; }}"
+                        ".markdown-body h6 {{ font-size: 0.875rem; padding-top: 0.5rem; padding-bottom: 0.5rem; }}"
                     }
                     article { class: "markdown-body pt-1",
                         Outlet {}

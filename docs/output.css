@@ -1104,6 +1104,10 @@ video {
   padding-left: 0.25rem;
 }
 
+.pl-8 {
+  padding-left: 2rem;
+}
+
 .text-left {
   text-align: left;
 }
@@ -1140,6 +1144,21 @@ video {
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
 }
 
 .font-bold {

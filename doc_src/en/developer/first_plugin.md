@@ -1,6 +1,6 @@
 # Your First plugin
 
-Plugins can be created in any language that supports [WASM](https://webassembly.org). This example will use [rust](https://www.rust-lang.org/).
+This example will use [rust](https://www.rust-lang.org/) to build an addition plugin for Floneum.
 
 First, edit your cargo.toml to add the rust_adapter dependancy and change the crate type to a dynamicly linked (C-like) library
 ```toml
