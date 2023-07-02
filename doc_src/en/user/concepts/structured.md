@@ -1,3 +1,3 @@
 # Structured Generation
 
-By default, models can generate any text, but sometimes you want to limit the output of the model. Structured generation allows you to limit what the model can generate. For example, you could limit the model to generate a number between 1 and 5 or a list of strings.
+Structured generation is a way to control what a language model can generate. While models have the ability to generate any text, structured generation lets you set specific boundaries on the output. For instance, you can restrict the model to generate only numbers between 1 and 5, or create a list of specific strings. This helps ensure that the generated content aligns with your desired constraints or requirements.
