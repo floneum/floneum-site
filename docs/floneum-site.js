@@ -1108,19 +1108,19 @@ imports.wbg.__wbg_scrollTo_3fa406312438ebdf = function(arg0, arg1, arg2) {
     getObject(arg0).scrollTo(arg1, arg2);
 };
 imports.wbg.__wbindgen_closure_wrapper220 = function(arg0, arg1, arg2) {
-    const ret = makeMutClosure(arg0, arg1, 106, __wbg_adapter_24);
+    const ret = makeMutClosure(arg0, arg1, 104, __wbg_adapter_24);
     return addHeapObject(ret);
 };
 imports.wbg.__wbindgen_closure_wrapper341 = function(arg0, arg1, arg2) {
-    const ret = makeClosure(arg0, arg1, 106, __wbg_adapter_27);
+    const ret = makeClosure(arg0, arg1, 104, __wbg_adapter_27);
     return addHeapObject(ret);
 };
-imports.wbg.__wbindgen_closure_wrapper1188 = function(arg0, arg1, arg2) {
-    const ret = makeMutClosure(arg0, arg1, 106, __wbg_adapter_30);
+imports.wbg.__wbindgen_closure_wrapper1184 = function(arg0, arg1, arg2) {
+    const ret = makeMutClosure(arg0, arg1, 104, __wbg_adapter_30);
     return addHeapObject(ret);
 };
-imports.wbg.__wbindgen_closure_wrapper2432 = function(arg0, arg1, arg2) {
-    const ret = makeMutClosure(arg0, arg1, 138, __wbg_adapter_33);
+imports.wbg.__wbindgen_closure_wrapper2428 = function(arg0, arg1, arg2) {
+    const ret = makeMutClosure(arg0, arg1, 136, __wbg_adapter_33);
     return addHeapObject(ret);
 };
 imports['./snippets/dioxus-interpreter-js-7853214f69bd9fe6/inline0.js'] = __wbg_star0;
