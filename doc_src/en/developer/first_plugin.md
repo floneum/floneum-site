@@ -1,8 +1,8 @@
 # Your First plugin
 
-This example will use [rust](https://www.rust-lang.org/) to build an addition plugin for Floneum.
+This example will use [rust](https://www.rust-lang.org/) to build an new plugin for Floneum.
 
-First, edit your cargo.toml to add the rust_adapter dependancy and change the crate type to a dynamicly linked (C-like) library
+First, edit your cargo.toml to add the rust_adapter dependency and change the crate type to a dynamically linked (C-like) library
 ```toml
 [lib]
 crate-type = ["cdylib"]
