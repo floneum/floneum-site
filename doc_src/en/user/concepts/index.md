@@ -1,6 +1,6 @@
 # Important Concepts
 
-- [Language Models](./concepts/models.md)
-- [Embedding](./concepts/embedding.md)
-- [Embedding Databases](./concepts/embedding_db.md)
-- [Strutured Output](./concepts/embedding_db.md)
+- [Language Models](./models.md)
+- [Embedding](./embedding.md)
+- [Embedding Databases](./embedding_db.md)
+- [Strutured Output](./embedding_db.md)
