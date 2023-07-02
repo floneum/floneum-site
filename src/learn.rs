@@ -143,6 +143,12 @@ fn Content(cx: Scope) -> Element {
                         ".markdown-body h4 {{ font-size: 1rem; padding-top: 0.5rem; padding-bottom: 0.5rem; }}"
                         ".markdown-body h5 {{ font-size: 0.875rem; padding-top: 0.5rem; padding-bottom: 0.5rem; }}"
                         ".markdown-body h6 {{ font-size: 0.875rem; padding-top: 0.5rem; padding-bottom: 0.5rem; }}"
+                        ".markdown-body p {{ font-size: 1rem; padding-top: 0.5rem; padding-bottom: 0.5rem; }}"
+                        ".markdown-body a {{ color: #3182ce; text-decoration: none; }}"
+                        ".markdown-body a:hover {{ text-decoration: underline; }}"
+                        ".markdown-body ul {{ padding-left: 1.5rem; }}"
+                        ".markdown-body ol {{ padding-left: 1.5rem; }}"
+                        ".markdown-body li {{ padding-top: 0.25rem; padding-bottom: 0.25rem; }}"
                     }
                     article { class: "markdown-body pt-1",
                         Outlet {}
