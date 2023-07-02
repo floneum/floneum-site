@@ -4,7 +4,6 @@
 
 - [User Documentaton](user/index.md)
   - [Creating Your First Workflow](user/workflow.md)
-  - [Built in Plugins](user/built_in_plugins.md)
   - [Concepts](user/concepts/index.md)
     - [Models](user/concepts/models.md)
     - [Structured Output](user/concepts/structured.md)
