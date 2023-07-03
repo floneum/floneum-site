@@ -2,12 +2,15 @@
 // dioxus build --release --features web
 // cargo run --features ssr --release
 #![allow(non_snake_case)]
+use blog::{Blog, BlogProps};
 use dioxus::prelude::*;
 use dioxus_router::prelude::*;
 use learn::{Learn, LearnProps};
 use serde::{Deserialize, Serialize};
+pub use crate::blog_route::BookRoute as BlogRoute;
 
 mod learn;
+mod blog;
 mod search;
 
 #[inline_props]
@@ -29,16 +32,23 @@ fn HeaderFooter(cx: Scope) -> Element {
                 }
                 Search {}
                 div {
-                    class: "flex flex-row items-center",
+                    class: "flex flex-row justify-center items-center text-center",
                     Link {
-                        class: "text-xl font-bold m-2 mr-12",
+                        class: "text-xl font-bold p-2",
+                        target: Route::Blog {
+                            child: BlogRoute::Index {}
+                        },
+                        "Blog"
+                    }
+                    Link {
+                        class: "text-xl font-bold p-2",
                         target: Route::Docs {
                             child: BookRoute::Index {}
                         },
                         "Documentation"
                     }
-                    GithubLink{}
-                    DiscordLink{}
+                    GithubLink {}
+                    DiscordLink {}
                 }
             }
             Outlet {}
@@ -64,7 +74,7 @@ fn HeaderFooter(cx: Scope) -> Element {
 fn GithubLink(cx: Scope) -> Element {
     render! {
         a {
-            class: "m-2 w-6 h-6",
+            class: "p-2 w-10 h-10",
             href: "https://github.com/floneum/floneum",
             img {
                 src: "/assets/GitHub-Mark-Light-32px.png",
@@ -76,7 +86,7 @@ fn GithubLink(cx: Scope) -> Element {
 
 fn DiscordLink(cx: Scope) -> Element {
     render! {
-        a { margin: "10px", right: "10px", href: "https://discord.gg/dQdmhuB8q5",
+        a { padding: "10px", right: "10px", href: "https://discord.gg/dQdmhuB8q5",
             svg { width: "32", height: "32", view_box: "0 -28.5 256 256", preserve_aspect_ratio: "xMidYMid",
                 g {
                     path {
@@ -182,7 +192,17 @@ fn Home(cx: Scope) -> Element {
             class: "flex flex-row items-center justify-evenly w-full",
 
             Link {
-                class: "text-5xl font-bold p-4 m-12 rounded-md bg-orange-900 text-center w-1/3",
+                class: "text-5xl font-bold p-4 m-12 rounded-md bg-green-900 text-center w-1/3",
+                target: NavigationTarget::External("".to_string()),
+                "Download"
+            }
+        }
+
+        div {
+            class: "flex flex-row items-center justify-evenly w-full",
+
+            Link {
+                class: "text-5xl font-bold p-4 m-12 rounded-md bg-blue-900 text-center w-1/3",
                 target: Route::Docs {
                     child: BookRoute::UserIndex {}
                 },
@@ -209,6 +229,10 @@ enum Route {
         #[layout(Learn)]
             #[child("/docs")]
             Docs { child: BookRoute },
+        #[end_layout]
+        #[layout(Blog)]
+            #[child("/blog")]
+            Blog { child: BlogRoute },
 }
 
 use crate::{docs::BookRoute, search::{SearchActive, SearchModal, Search}};
@@ -217,6 +241,12 @@ mod docs {
     use dioxus::prelude::*;
 
     use_mdbook::mdbook_router! {"doc_src"}
+}
+
+mod blog_route {
+    use dioxus::prelude::*;
+
+    use_mdbook::mdbook_router! {"blog"}
 }
 
 fn main() {

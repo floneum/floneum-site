@@ -159,7 +159,7 @@ let m,p,ls,d,t,op,i,e,z,metaflags;
         selected: true,
         truespeed: true,
       };
-    let u32buf,u32bufp;let s,lsp,sp,sl; let c = new TextDecoder();let u8buf,u8bufp;const evt = [];
+    const evt = [];
                     let evt_tmp1, evt_tmp2;
                     function get_evt() {
                         evt_tmp2 = u8buf[u8bufp++];
@@ -183,7 +183,7 @@ let m,p,ls,d,t,op,i,e,z,metaflags;
                         else{
                             return attr[attr_tmp2&4294967167];
                         }
-                    }const ns_cache = [];
+                    }let u32buf,u32bufp;let u8buf,u8bufp;let s,lsp,sp,sl; let c = new TextDecoder();const ns_cache = [];
                     let ns_cache_tmp1, ns_cache_tmp2;
                     function get_ns_cache() {
                         ns_cache_tmp2 = u8buf[u8bufp++];
@@ -196,7 +196,7 @@ let m,p,ls,d,t,op,i,e,z,metaflags;
                             return ns_cache[ns_cache_tmp2&4294967167];
                         }
                     }
-            let value,bubbles,ns,ptr,id,event_name,field,len;
+            let field,id,len,ns,ptr,bubbles,event_name,value;
             export function create(r){
                 d=r;
             }
@@ -212,7 +212,10 @@ let m,p,ls,d,t,op,i,e,z,metaflags;
                 if ((metaflags>>>3)&1){
                 u32buf=new Uint32Array(m.buffer,m.getUint32(d+3*4,true))
             }
-            u32bufp=0;if (metaflags&1){
+            u32bufp=0;if ((metaflags>>>5)&1){
+                u8buf=new Uint8Array(m.buffer,m.getUint32(d+5*4,true))
+            }
+            u8bufp=0;if (metaflags&1){
                 lsp = m.getUint32(d+1*4,true);
             }
             if ((metaflags>>>2)&1) {
@@ -238,10 +241,7 @@ let m,p,ls,d,t,op,i,e,z,metaflags;
                     s = c.decode(new DataView(m.buffer, lsp, sl));
                 }
             }
-            sp=0;if ((metaflags>>>5)&1){
-                u8buf=new Uint8Array(m.buffer,m.getUint32(d+5*4,true))
-            }
-            u8bufp=0;
+            sp=0;
                 for(;;){
                     op=m.getUint32(p,true);
                     p+=4;
