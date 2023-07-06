@@ -7,7 +7,7 @@ use mdbook_shared::SummaryItem;
 pub fn Learn(cx: Scope) -> Element {
     cx.render(rsx! {
         div { class: "w-full pt-12 text-sm dark:bg-ideblack", min_height: "100vh",
-            div { class: "max-w-screen-2xl flex flex-row justify-between mx-auto dark:text-white",
+            div { class: "max-w-screen-2xl flex flex-row justify-between mx-auto",
                 Content {}
                 LeftNav {}
                 RightNav {}
@@ -70,10 +70,7 @@ fn SidebarChapter(cx: Scope, link: &'static SummaryItem<BookRoute>) -> Element {
 
     render! {
         li { class: "pt-1",
-            Link {
-                target: Route::Docs { child: url.clone() },
-                "{shevron}{link.name}"
-            }
+            Link { target: Route::Docs { child: url.clone() }, "{shevron}{link.name}" }
             if show_chevron && show_dropdown {
                 rsx! {
                     ul { class: "ml-6 border-l border-gray-300 py-1",
@@ -118,10 +115,7 @@ fn RightNav(cx: Scope) -> Element {
             ul { class: "",
                 for section in page.sections().iter().filter(|s| s.level <= 2) {
                     li { class: "pb-2",
-                        Link {
-                            target: NavigationTarget::External("#".to_string() + &section.id),
-                            "{section.title}"
-                        }
+                        Link { target: NavigationTarget::External("#".to_string() + &section.id), "{section.title}" }
                     }
                 }
             }
@@ -131,7 +125,7 @@ fn RightNav(cx: Scope) -> Element {
 
 fn Content(cx: Scope) -> Element {
     render! {
-        section { class: "text-gray-200 body-font overflow-hidden dark:bg-ideblack mx-auto container pt-12 pb-12 w-2/3",
+        section { class: "body-font overflow-hidden dark:bg-ideblack mx-auto container pt-12 pb-12 w-2/3",
             div { class: "-my-8",
                 div { class: "w-full mb-20 flex-wrap list-none rounded-md",
                     style {
@@ -153,9 +147,7 @@ fn Content(cx: Scope) -> Element {
                         ".markdown-body pre {{ border-radius: 0.375rem; padding: 0.5rem; word-wrap: normal; }}"
                         ".markdown-body span {{ word-wrap: normal; white-space: normal; }}"
                     }
-                    article { class: "markdown-body pt-1",
-                        Outlet {}
-                    }
+                    article { class: "markdown-body pt-1", Outlet {} }
                 }
             }
         }

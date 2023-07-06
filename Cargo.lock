@@ -704,12 +704,12 @@ dependencies = [
 name = "dioxus"
 version = "0.3.2"
 dependencies = [
- "dioxus-core",
+ "dioxus-core 0.3.3",
  "dioxus-core-macro",
  "dioxus-hooks",
  "dioxus-hot-reload",
  "dioxus-html",
- "dioxus-rsx",
+ "dioxus-rsx 0.0.3",
 ]
 
 [[package]]
@@ -730,10 +730,27 @@ dependencies = [
 ]
 
 [[package]]
+name = "dioxus-core"
+version = "0.3.3"
+source = "git+https://github.com/Demonthos/dioxus?branch=router-typesafe#f53dd5c1813833581165652759b6f2c2627f7854"
+dependencies = [
+ "bumpalo",
+ "bumpslab",
+ "futures-channel",
+ "futures-util",
+ "indexmap 1.9.3",
+ "log",
+ "longest-increasing-subsequence",
+ "rustc-hash",
+ "slab",
+ "smallbox",
+]
+
+[[package]]
 name = "dioxus-core-macro"
 version = "0.3.0"
 dependencies = [
- "dioxus-rsx",
+ "dioxus-rsx 0.0.3",
  "proc-macro2",
  "quote",
  "syn 1.0.109",
@@ -775,7 +792,7 @@ dependencies = [
 name = "dioxus-hooks"
 version = "0.3.1"
 dependencies = [
- "dioxus-core",
+ "dioxus-core 0.3.3",
  "futures-channel",
  "log",
 ]
@@ -785,9 +802,9 @@ name = "dioxus-hot-reload"
 version = "0.1.1"
 dependencies = [
  "chrono",
- "dioxus-core",
+ "dioxus-core 0.3.3",
  "dioxus-html",
- "dioxus-rsx",
+ "dioxus-rsx 0.0.3",
  "execute",
  "ignore",
  "interprocess",
@@ -802,8 +819,8 @@ name = "dioxus-html"
 version = "0.3.1"
 dependencies = [
  "async-trait",
- "dioxus-core",
- "dioxus-rsx",
+ "dioxus-core 0.3.3",
+ "dioxus-rsx 0.0.3",
  "enumset",
  "euclid",
  "keyboard-types",
@@ -858,7 +875,21 @@ dependencies = [
 name = "dioxus-rsx"
 version = "0.0.3"
 dependencies = [
- "dioxus-core",
+ "dioxus-core 0.3.3",
+ "internment",
+ "krates",
+ "proc-macro2",
+ "quote",
+ "serde",
+ "syn 1.0.109",
+]
+
+[[package]]
+name = "dioxus-rsx"
+version = "0.0.3"
+source = "git+https://github.com/Demonthos/dioxus?branch=router-typesafe#f53dd5c1813833581165652759b6f2c2627f7854"
+dependencies = [
+ "dioxus-core 0.3.3 (git+https://github.com/Demonthos/dioxus?branch=router-typesafe)",
  "internment",
  "krates",
  "proc-macro2",
@@ -872,7 +903,7 @@ name = "dioxus-ssr"
 version = "0.3.0"
 dependencies = [
  "askama_escape",
- "dioxus-core",
+ "dioxus-core 0.3.3",
  "http",
  "log",
  "lru 0.10.1",
@@ -888,7 +919,7 @@ dependencies = [
  "anyhow",
  "async-trait",
  "console_error_panic_hook",
- "dioxus-core",
+ "dioxus-core 0.3.3",
  "dioxus-html",
  "dioxus-interpreter-js",
  "futures-channel",
@@ -2114,7 +2145,7 @@ version = "0.1.0"
 dependencies = [
  "anyhow",
  "convert_case 0.6.0",
- "dioxus-rsx",
+ "dioxus-rsx 0.0.3 (git+https://github.com/Demonthos/dioxus?branch=router-typesafe)",
  "macro_state",
  "mdbook-shared",
  "postcard",

@@ -21,49 +21,38 @@ fn HeaderFooter(cx: Scope) -> Element {
 
     render! {
         SearchModal {}
-        div {
-            class: "{content_class}",
-            div {
-                class: "z-30 flex flex-row justify-between items-center border-b-2 border-gray-700 w-full",
+        Background {}
+        div { class: "z-30 fixed top-0 flex flex-row justify-between items-center border-b-2 border-gray-700 w-full backdrop-blur-md",
+            Link { class: "text-xl font-bold m-2 mr-12", target: Route::Home {}, "Floneum" }
+            Search {}
+            div { class: "flex flex-row justify-center items-center text-center",
                 Link {
-                    class: "text-xl font-bold m-2 mr-12",
-                    target: Route::Home {},
-                    "Floneum"
+                    class: "text-xl font-bold p-2",
+                    target: Route::Blog {
+    child: BlogRoute::Index {},
+},
+                    "Blog"
                 }
-                Search {}
-                div {
-                    class: "flex flex-row justify-center items-center text-center",
-                    Link {
-                        class: "text-xl font-bold p-2",
-                        target: Route::Blog {
-                            child: BlogRoute::Index {}
-                        },
-                        "Blog"
-                    }
-                    Link {
-                        class: "text-xl font-bold p-2",
-                        target: Route::Docs {
-                            child: BookRoute::Index {}
-                        },
-                        "Documentation"
-                    }
-                    GithubLink {}
-                    DiscordLink {}
+                Link {
+                    class: "text-xl font-bold p-2",
+                    target: Route::Docs {
+    child: BookRoute::Index {},
+},
+                    "Documentation"
                 }
+                GithubLink {}
+                DiscordLink {}
             }
+        }
+        div { class: "pt-12 {content_class}",
             Outlet {}
-            div {
-                class: "bg-gray-700 px-80 py-5 flex flex-row items-center justify-evenly",
-                div {
-                    class: "flex flex-col items-center",
+            div { class: "px-80 py-5 flex flex-row items-center justify-evenly",
+                div { class: "flex flex-col items-center",
                     "Community"
-    
                     DiscordLink {}
                 }
-                div {
-                    class: "flex flex-col items-center",
+                div { class: "flex flex-col items-center",
                     "About"
-    
                     GithubLink {}
                 }
             }
@@ -73,14 +62,7 @@ fn HeaderFooter(cx: Scope) -> Element {
 
 fn GithubLink(cx: Scope) -> Element {
     render! {
-        a {
-            class: "p-2 w-10 h-10",
-            href: "https://github.com/floneum/floneum",
-            img {
-                src: "/assets/GitHub-Mark-Light-32px.png",
-                alt: "Github",
-            }
-        }
+        a { class: "p-2 w-10 h-10", href: "https://github.com/floneum/floneum", img { src: "/assets/GitHub-Mark-Light-32px.png", alt: "Github" } }
     }
 }
 
@@ -103,117 +85,73 @@ fn DiscordLink(cx: Scope) -> Element {
 #[inline_props]
 fn Home(cx: Scope) -> Element {
     render! {
-        div {
-            class: "flex flex-col items-center",
-            h1 {
-                class: "font-bold text-9xl m-2 ml-12 animate-shine bg-clip-text text-transparent",
+        div { class: "flex flex-col items-center",
+            h1 { class: "font-bold text-9xl m-2 ml-12",
                 "Floneum"
             }
-            p {
-                "A graph editor for local AI workflows"
-            }
+            p { "A graph editor for local AI workflows" }
         }
-        div {
-            class: "w-full flex flex-col mt-12",
-            div {
-                class: "w-full flex flex-row justify-between items-center",
-                div {
-                    class: "animate-fade-in-left m-4",
-                    h2 {
-                        class: "text-4xl font-bold mb-2",
-                        "Build AI powered workflows with ease"
-                    }
+        div { class: "w-full flex flex-col mt-12",
+            div { class: "w-full flex flex-row justify-between items-center backdrop-blur-lg shadow-inner",
+                div { class: "animate-fade-in-left m-4",
+                    h2 { class: "text-4xl font-bold mb-2", "Build AI powered workflows with ease" }
                     p {
                         "Floneum is a workflow engine that allows you to build AI powered workflows visually"
                     }
                 }
-                div {
-                    class: "animate-fade-in-right m-4",
-                    img {
-                        class: "max-w-2xl",
-                        src: "./assets/demo-img.png",
-                    }
-                }
+                div { class: "animate-fade-in-right m-4", img { class: "max-w-2xl", src: "./assets/demo-img.png" } }
             }
-            div {
-                class: "w-full flex flex-row justify-between items-center",
-                div {
-                    class: "animate-fade-in-left-slow m-4",
-                    img {
-                        class: "max-w-2xl",
-                        src: "./assets/plugins.png",
-                    }
-                }
-                div {
-                    class: "animate-fade-in-right-slow m-4",
-                    h2 {
-                        class: "text-4xl font-bold mb-2",
-                        "Securely extend Floneum with plugins"
-                    }
+            div { class: "w-full flex flex-row justify-between items-center",
+                div { class: "animate-fade-in-left-slow m-4", img { class: "max-w-2xl", src: "./assets/plugins.png" } }
+                div { class: "animate-fade-in-right-slow m-4",
+                    h2 { class: "text-4xl font-bold mb-2", "Securely extend Floneum with plugins" }
                     p {
                         "Floneum uses WebAssembly to load plugins in a sandboxed environment and provides them with access to only the resources they need instead of giving them full access to the system"
                     }
                 }
             }
-            div {
-                class: "w-full flex flex-row justify-between items-center",
-                div {
-                    class: "animate-fade-in-left-slower m-4",
-                    h2 {
-                        class: "text-4xl font-bold mb-2",
-                        "Write plugins in your language of choice"
-                    }
+            div { class: "w-full flex flex-row justify-between items-center backdrop-blur-lg shadow-inner",
+                div { class: "animate-fade-in-left-slower m-4",
+                    h2 { class: "text-4xl font-bold mb-2", "Write plugins in your language of choice" }
                     p {
                         "You can write plugins in any language that can be compiled to WebAssembly. Floneum provides ergonomic wrappers for rust, but you can also use C, Java, or Go"
                     }
                 }
-                div {
-                    class: "animate-fade-in-right-slower m-4",
-                    div {
-                        class: "grid grid-cols-2 gap-4 justify-items-center items-center max-w-2xl",
-                        img {
-                            src: "./assets/rust_logo.svg",
-                        }
-                        img {
-                            src: "./assets/c_logo.png",
-                        }
-                        img {
-                            src: "./assets/java_logo.png",
-                        }
-                        img {
-                            src: "./assets/go_logo.png",
-                        }
+                div { class: "animate-fade-in-right-slower m-4",
+                    div { class: "grid grid-cols-2 gap-4 justify-items-center items-center max-w-2xl",
+                        img { src: "./assets/rust_logo.svg" }
+                        img { src: "./assets/c_logo.png" }
+                        img { src: "./assets/java_logo.png" }
+                        img { src: "./assets/go_logo.png" }
                     }
                 }
             }
         }
 
-        div {
-            class: "flex flex-row items-center justify-evenly w-full",
+        div { class: "flex flex-row items-center justify-evenly w-full",
 
             Link {
-                class: "text-5xl font-bold p-4 m-12 rounded-md bg-green-900 text-center w-1/3",
+                class: "text-5xl font-bold p-4 m-12 rounded-lg border border-green-900 text-center w-1/3",
                 target: NavigationTarget::External("".to_string()),
                 "Download"
             }
         }
 
-        div {
-            class: "flex flex-row items-center justify-evenly w-full",
+        div { class: "flex flex-row items-center justify-evenly w-full",
 
             Link {
-                class: "text-5xl font-bold p-4 m-12 rounded-md bg-blue-900 text-center w-1/3",
+                class: "text-5xl font-bold p-4 m-12 rounded-lg border border-blue-900 text-center w-1/3",
                 target: Route::Docs {
-                    child: BookRoute::UserIndex {}
-                },
+    child: BookRoute::UserIndex {},
+},
                 "User Documentation"
             }
 
             Link {
-                class: "text-5xl font-bold p-4 m-12 rounded-md bg-blue-900 text-center w-1/3",
+                class: "text-5xl font-bold p-4 m-12 rounded-lg border border-blue-900 text-center w-1/3",
                 target: Route::Docs {
-                    child: BookRoute::DeveloperIndex {}
-                },
+    child: BookRoute::DeveloperIndex {},
+},
                 "Developer Documentation"
             }
         }
@@ -284,5 +222,11 @@ fn main() {
             .incremental(IncrementalRendererConfig::default())
         },
     });
-    log::info!("started");
+}
+
+fn Background(cx: Scope) -> Element {
+    render! {
+        div { class: "-z-20 fixed w-full h-full -0 left-0 bg-slate-500",
+        }
+    }
 }

@@ -100,7 +100,9 @@ fn SearchResult(cx: Scope, result: mdbook_shared::search_index::SearchResult) ->
     render! {
         li { class: "w-full mt-4 p-2 rounded hover:bg-gray-600 dark:hover:bg-ideblack transition-colors duration-200 ease-in-out",
             Link {
-                target: Route::Docs { child: page.url.clone() },
+                target: Route::Docs {
+                    child: page.url.clone(),
+                },
                 onclick: move |_| {
                     *show_modal.write() = SearchActive(false);
                 },

@@ -44,26 +44,41 @@ module.exports = {
             transform: "translateY(0)",
           },
         },
-        shine: {
-          "0%": {
-            "background-image": "linear-gradient(90deg,#215d6e,#39b48e)",
-            "background-size": "1100% 100%",
-            "background-position": "0% 0%",
+        'gradient-y': {
+          '0%, 100%': {
+              'background-size':'400% 400%',
+              'background-position': 'center top'
           },
-          "50%": {
-            "background-image": "linear-gradient(90deg,#215d6e,#39b48e)",
-            "background-size": "1100% 100%",
-            "background-position": "100% 0%",
-          },
-          "100%": {
-            "background-image": "linear-gradient(90deg,#215d6e,#39b48e)",
-            "background-size": "1100% 100%",
-            "background-position": "0% 0%",
-          },
+          '50%': {
+              'background-size':'200% 200%',
+              'background-position': 'center center'
+          }
         },
+        'gradient-x': {
+            '0%, 100%': {
+                'background-size':'200% 200%',
+                'background-position': 'left center'
+            },
+            '50%': {
+                'background-size':'200% 200%',
+                'background-position': 'right center'
+            }
+        },
+        'gradient-xy': {
+            '0%, 100%': {
+                'background-size':'400% 400%',
+                'background-position': 'left center'
+            },
+            '50%': {
+                'background-size':'200% 200%',
+                'background-position': 'right center'
+            }
+        }
       },
       animation: {
-        shine: "shine 10s ease-in-out infinite",
+        'gradient-x':'gradient-x 15s ease infinite',
+        'gradient-y':'gradient-y 15s ease infinite',
+        'gradient-xy':'gradient-xy 15s ease infinite',
         "fade-in-down": "fade-in-down 0.5s ease-in-out",
         "fade-in-up": "fade-in-up 0.5s ease-in-out",
         "fade-in-right": "fade-in-right 0.5s ease-in-out",
