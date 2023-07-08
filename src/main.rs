@@ -44,7 +44,7 @@ fn HeaderFooter(cx: Scope) -> Element {
                 DiscordLink {}
             }
         }
-        div { class: "pt-12 {content_class}",
+        div { class: "pt-[52px] {content_class}",
             Outlet {}
             div { class: "px-80 py-5 flex flex-row items-center justify-evenly",
                 div { class: "flex flex-col items-center",
