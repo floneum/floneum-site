@@ -4,7 +4,7 @@ use mdbook_shared::SummaryItem;
 #[inline_props]
 pub fn Blog(cx: Scope) -> Element {
     cx.render(rsx! {
-        div { class: "w-full pt-12 text-sm backdrop-blur-lg", min_height: "100vh",
+        div { class: "w-full pt-12 text-sm backdrop-blur-lg bg-white/75", min_height: "100vh",
             div { class: "max-w-screen-2xl flex flex-row justify-between mx-auto",
                 Content {}
                 RightNav {}
@@ -71,8 +71,8 @@ fn Content(cx: Scope) -> Element {
                         ".markdown-body ul {{ padding-left: 1.5rem; }}"
                         ".markdown-body ol {{ padding-left: 1.5rem; }}"
                         ".markdown-body li {{ padding-top: 0.25rem; padding-bottom: 0.25rem; }}"
-                        ".markdown-body code {{ border-radius: 0.1rem; word-wrap: normal; padding: 1em; background-color:rgba(100, 100, 100, .5)"
-                        ".markdown-body pre {{ border-radius: 0.375rem; padding: 0.5rem; word-wrap: normal; }}"
+                        ".markdown-body code {{ border-radius: 0.1rem; word-wrap: normal; background-color: rgba(100, 100, 100, .5) }}"
+                        ".markdown-body pre {{ border-radius: 0.375rem; padding: 1em; word-wrap: normal; }}"
                         ".markdown-body span {{ word-wrap: normal; white-space: normal; }}"
                     }
                     article { class: "markdown-body pt-1", Outlet {} }
