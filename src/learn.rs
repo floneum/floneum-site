@@ -6,7 +6,7 @@ use mdbook_shared::SummaryItem;
 #[inline_props]
 pub fn Learn(cx: Scope) -> Element {
     cx.render(rsx! {
-        div { class: "w-full pt-12 text-sm dark:bg-ideblack", min_height: "100vh",
+        div { class: "w-full pt-12 text-sm backdrop-blur-lg", min_height: "100vh",
             div { class: "max-w-screen-2xl flex flex-row justify-between mx-auto",
                 Content {}
                 LeftNav {}
@@ -92,13 +92,13 @@ fn LocationLink(cx: Scope, chapter: &'static SummaryItem<BookRoute>) -> Element 
     let url = link.location.as_ref().unwrap();
 
     let current_class = match book_url.starts_with(&*url.to_string()) {
-        true => "bg-gray-200 dark:bg-gray-800",
+        true => "bg-gray-200",
         false => "",
     };
 
     render! {
         Link { target: Route::Docs { child: url.clone() },
-            li { class: "m-1 dark:hover:bg-gray-800 rounded-md pl-2 {current_class}", "{link.name}" }
+            li { class: "m-1 rounded-md pl-2 {current_class}", "{link.name}" }
         }
     }
 }
@@ -125,7 +125,7 @@ fn RightNav(cx: Scope) -> Element {
 
 fn Content(cx: Scope) -> Element {
     render! {
-        section { class: "body-font overflow-hidden dark:bg-ideblack mx-auto container pt-12 pb-12 w-2/3",
+        section { class: "body-font overflow-hidden mx-auto container pt-12 pb-12 w-2/3",
             div { class: "-my-8",
                 div { class: "w-full mb-20 flex-wrap list-none rounded-md",
                     style {
@@ -143,7 +143,7 @@ fn Content(cx: Scope) -> Element {
                         ".markdown-body ul {{ padding-left: 1.5rem; }}"
                         ".markdown-body ol {{ padding-left: 1.5rem; }}"
                         ".markdown-body li {{ padding-top: 0.25rem; padding-bottom: 0.25rem; }}"
-                        ".markdown-body code {{ border-radius: 0.1rem; word-wrap: normal; background-color:#2b303b;"
+                        ".markdown-body code {{ border-radius: 0.1rem; word-wrap: normal; padding: 1em; background-color:rgba(100, 100, 100, .5)"
                         ".markdown-body pre {{ border-radius: 0.375rem; padding: 0.5rem; word-wrap: normal; }}"
                         ".markdown-body span {{ word-wrap: normal; white-space: normal; }}"
                     }

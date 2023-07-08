@@ -17,27 +17,27 @@ mod search;
 fn HeaderFooter(cx: Scope) -> Element {
     use_shared_state_provider(cx, || SearchActive(false));
     let should_blur = use_shared_state::<SearchActive>(cx).unwrap();
-    let content_class = if should_blur.read().0 { "blur-md" } else { "" };
+    let content_class = if should_blur.read().0 { "blur-md bg-grey-100 opacity-90" } else { "" };
 
     render! {
         SearchModal {}
         Background {}
-        div { class: "z-30 fixed top-0 flex flex-row justify-between items-center border-b-2 border-gray-700 w-full backdrop-blur-md",
+        div { class: "z-30 fixed top-0 flex flex-row justify-between items-center bg-gray-100 opacity-50 border-b-2 border-gray-700 w-full backdrop-blur-lg",
             Link { class: "text-xl font-bold m-2 mr-12", target: Route::Home {}, "Floneum" }
             Search {}
             div { class: "flex flex-row justify-center items-center text-center",
                 Link {
                     class: "text-xl font-bold p-2",
                     target: Route::Blog {
-    child: BlogRoute::Index {},
-},
+                        child: BlogRoute::Index {},
+                    },
                     "Blog"
                 }
                 Link {
                     class: "text-xl font-bold p-2",
                     target: Route::Docs {
-    child: BookRoute::Index {},
-},
+                        child: BookRoute::Index {},
+                    },
                     "Documentation"
                 }
                 GithubLink {}
@@ -92,44 +92,52 @@ fn Home(cx: Scope) -> Element {
             p { "A graph editor for local AI workflows" }
         }
         div { class: "w-full flex flex-col mt-12",
-            div { class: "w-full flex flex-row justify-between items-center backdrop-blur-lg shadow-inner",
-                div { class: "animate-fade-in-left m-4",
-                    h2 { class: "text-4xl font-bold mb-2", "Build AI powered workflows with ease" }
-                    p {
-                        "Floneum is a workflow engine that allows you to build AI powered workflows visually"
+            div { class: "w-full h-full flex flex-row justify-between",
+                div { class: "self-stretch mr-4 my-4 flex flex-col justify-center backdrop-blur-3xl shadow-inner rounded-r-lg p-4",
+                    div {
+                        class: "animate-fade-in-left-slow",
+                        h2 { class: "text-4xl font-bold mb-2", "Build AI powered workflows with ease" }
+                        p {
+                            "Floneum is a workflow engine that allows you to build AI powered workflows visually"
+                        }
                     }
                 }
-                div { class: "animate-fade-in-right m-4", img { class: "max-w-2xl", src: "./assets/demo-img.png" } }
+                div { class: "animate-fade-in-right m-4", img { class: "max-w-2xl", src: "/assets/demo-img.png" } }
             }
-            div { class: "w-full flex flex-row justify-between items-center",
-                div { class: "animate-fade-in-left-slow m-4", img { class: "max-w-2xl", src: "./assets/plugins.png" } }
-                div { class: "animate-fade-in-right-slow m-4",
-                    h2 { class: "text-4xl font-bold mb-2", "Securely extend Floneum with plugins" }
-                    p {
-                        "Floneum uses WebAssembly to load plugins in a sandboxed environment and provides them with access to only the resources they need instead of giving them full access to the system"
+            div { class: "w-full h-full flex flex-row justify-between",
+                div { class: "animate-fade-in-left-slow m-4", img { class: "max-w-2xl", src: "/assets/plugins.png" } }
+                div { class: "self-stretch ml-4 my-4 flex flex-col justify-center backdrop-blur-3xl shadow-inner rounded-l-lg p-4",
+                    div {
+                        class: "animate-fade-in-right-slow",
+                        h2 { class: "text-4xl font-bold mb-2", "Securely extend Floneum with plugins" }
+                        p {
+                            "Floneum uses WebAssembly to load plugins in a sandboxed environment and provides them with access to only the resources they need instead of giving them full access to the system"
+                        }
                     }
                 }
             }
-            div { class: "w-full flex flex-row justify-between items-center backdrop-blur-lg shadow-inner",
-                div { class: "animate-fade-in-left-slower m-4",
-                    h2 { class: "text-4xl font-bold mb-2", "Write plugins in your language of choice" }
-                    p {
-                        "You can write plugins in any language that can be compiled to WebAssembly. Floneum provides ergonomic wrappers for rust, but you can also use C, Java, or Go"
+            div { class: "w-full h-full flex flex-row justify-between",
+                div { class: "self-stretch mr-4 my-4 flex flex-col justify-center backdrop-blur-3xl shadow-inner rounded-r-lg p-4",
+                    div {
+                        class: "animate-fade-in-left-slow",
+                        h2 { class: "text-4xl font-bold mb-2", "Write plugins in your language of choice" }
+                        p {
+                            "You can write plugins in any language that can be compiled to WebAssembly. Floneum provides ergonomic wrappers for rust, but you can also use C, Java, or Go"
+                        }
                     }
                 }
                 div { class: "animate-fade-in-right-slower m-4",
                     div { class: "grid grid-cols-2 gap-4 justify-items-center items-center max-w-2xl",
-                        img { src: "./assets/rust_logo.svg" }
-                        img { src: "./assets/c_logo.png" }
-                        img { src: "./assets/java_logo.png" }
-                        img { src: "./assets/go_logo.png" }
+                        img { src: "/assets/rust_logo.svg" }
+                        img { src: "/assets/c_logo.png" }
+                        img { src: "/assets/java_logo.png" }
+                        img { src: "/assets/go_logo.png" }
                     }
                 }
             }
         }
 
         div { class: "flex flex-row items-center justify-evenly w-full",
-
             Link {
                 class: "text-5xl font-bold p-4 m-12 rounded-lg border border-green-900 text-center w-1/3",
                 target: NavigationTarget::External("".to_string()),
@@ -142,16 +150,16 @@ fn Home(cx: Scope) -> Element {
             Link {
                 class: "text-5xl font-bold p-4 m-12 rounded-lg border border-blue-900 text-center w-1/3",
                 target: Route::Docs {
-    child: BookRoute::UserIndex {},
-},
+                    child: BookRoute::UserIndex {},
+                },
                 "User Documentation"
             }
 
             Link {
                 class: "text-5xl font-bold p-4 m-12 rounded-lg border border-blue-900 text-center w-1/3",
                 target: Route::Docs {
-    child: BookRoute::DeveloperIndex {},
-},
+                    child: BookRoute::DeveloperIndex {},
+                },
                 "Developer Documentation"
             }
         }
@@ -190,7 +198,7 @@ mod blog_route {
 fn main() {
     #[cfg(feature = "web")]
     wasm_logger::init(wasm_logger::Config::new(log::Level::Info));
-    #[cfg(feature = "ssr")]
+    #[cfg(feature = "prebuild")]
     {
         use dioxus_fullstack::prelude::*;
         tokio::runtime::Runtime::new()
@@ -226,7 +234,10 @@ fn main() {
 
 fn Background(cx: Scope) -> Element {
     render! {
-        div { class: "-z-20 fixed w-full h-full -0 left-0 bg-slate-500",
+        img {
+            class: "-z-20 fixed w-full h-full -0 left-0",
+            src: "/assets/background.jpeg",
+            object_fit: "cover"
         }
     }
 }

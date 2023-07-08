@@ -34,3 +34,4 @@ strip = "debuginfo"
 default = []
 web = ["dioxus-web", "dioxus-router/web"]
 ssr = ["dioxus-ssr", "dioxus-router/ssr", "tokio", "dioxus-fullstack/axum", "axum"]
+prebuild = ["ssr"]

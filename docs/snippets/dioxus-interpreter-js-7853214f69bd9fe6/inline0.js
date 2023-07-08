@@ -73,17 +73,17 @@ let m,p,ls,d,t,op,i,e,z,metaflags;
                     node.defaultValue = value;
                     break;
                 case "checked":
-                    node.checked = value === "true";
+                    node.checked = truthy(value);
                     break;
                 case "selected":
-                    node.selected = value === "true";
+                    node.selected = truthy(value);
                     break;
                 case "dangerous_inner_html":
                     node.innerHTML = value;
                     break;
                 default:
                     // https://github.com/facebook/react/blob/8b88ac2592c5f555f315f9440cbb665dd1e7457a/packages/react-dom/src/shared/DOMProperty.js#L352-L364
-                    if (value === "false" && bool_attrs.hasOwnProperty(name)) {
+                    if (!truthy(value) && bool_attrs.hasOwnProperty(name)) {
                         node.removeAttribute(name);
                     } else {
                         node.setAttribute(name, value);
@@ -159,6 +159,9 @@ let m,p,ls,d,t,op,i,e,z,metaflags;
         selected: true,
         truespeed: true,
       };
+      function truthy(val) {
+        return val === "true" || val === true;
+      }
     const evt = [];
                     let evt_tmp1, evt_tmp2;
                     function get_evt() {
@@ -171,7 +174,7 @@ let m,p,ls,d,t,op,i,e,z,metaflags;
                         else{
                             return evt[evt_tmp2&4294967167];
                         }
-                    }let u32buf,u32bufp;let u8buf,u8bufp;const attr = [];
+                    }const attr = [];
                     let attr_tmp1, attr_tmp2;
                     function get_attr() {
                         attr_tmp2 = u8buf[u8bufp++];
@@ -195,8 +198,8 @@ let m,p,ls,d,t,op,i,e,z,metaflags;
                         else{
                             return ns_cache[ns_cache_tmp2&4294967167];
                         }
-                    }let s,lsp,sp,sl; let c = new TextDecoder();
-            let event_name,id,bubbles,ns,ptr,value,field,len;
+                    }let u32buf,u32bufp;let u8buf,u8bufp;let s,lsp,sp,sl; let c = new TextDecoder();
+            let value,event_name,field,id,ptr,len,ns,bubbles;
             export function create(r){
                 d=r;
             }

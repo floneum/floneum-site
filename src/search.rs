@@ -40,7 +40,7 @@ pub fn SearchModal(cx: Scope) -> Element {
                         div { class: "h-30" }
 
                         // The actual modal
-                        div { class: "border-gray-300 border dark:bg-ideblack p-6 rounded-2xl m-8 max-h-[calc(100%-8rem)] overflow-y-auto",
+                        div { class: "border border-gray-600 p-6 rounded-2xl m-8 max-h-[calc(100%-8rem)] overflow-y-auto",
                             // Search input
                             div { class: "flex flex-row flex-grow border-b border-gray-300 pb-4",
                                 div { class: "my-auto flex flex-row",
@@ -51,7 +51,7 @@ pub fn SearchModal(cx: Scope) -> Element {
                                         onmounted: move |evt| {
                                             evt.inner().set_focus(true);
                                         },
-                                        class: "flex-grow bg-transparent border-none outline-none text-xl pl-2 text-white",
+                                        class: "flex-grow bg-transparent border-none outline-none text-xl pl-2",
                                         placeholder: "Search the docs",
                                         value: "{search_text}",
                                     }
@@ -62,7 +62,6 @@ pub fn SearchModal(cx: Scope) -> Element {
                             // Results
                             div { class: "overflow-y-auto",
                                 ul {
-                                    color: "white",
                                     match results {
                                         Ok(results) => {
                                             rsx! {
@@ -98,7 +97,7 @@ fn SearchResult(cx: Scope, result: mdbook_shared::search_index::SearchResult) ->
     };
 
     render! {
-        li { class: "w-full mt-4 p-2 rounded hover:bg-gray-600 dark:hover:bg-ideblack transition-colors duration-200 ease-in-out",
+        li { class: "w-full mt-4 p-2 rounded hover:bg-gray-600 transition-colors duration-200 ease-in-out",
             Link {
                 target: Route::Docs {
                     child: page.url.clone(),
@@ -107,9 +106,9 @@ fn SearchResult(cx: Scope, result: mdbook_shared::search_index::SearchResult) ->
                     *show_modal.write() = SearchActive(false);
                 },
                 div { class: "flex flex-col justify-between pb-1",
-                    h2 { class: "font-semibold dark:text-white", "{title}" }
+                    h2 { class: "font-semibold", "{title}" }
                 }
-                p { class: "text-sm text-gray-500 dark:text-gray-300 pr-8",
+                p { class: "text-sm text-gray-500 pr-8",
                     for segment in top_excerpt_segments {
                         if segment.highlighted {
                             rsx! {
@@ -135,7 +134,7 @@ pub fn Search(cx: Scope) -> Element {
         // Pop up a modal
         button {
             // Pop up a modal
-            class: "mx-36 bg-gray-100 rounded-lg px-3 py-3 w-full text-left text-gray-400 my-auto flex flex-row align-middle justify-between",
+            class: "mx-3 rounded-lg px-3 py-3 w-full text-left my-auto flex flex-row align-middle justify-between",
             onclick: move |_| {
                 *show_modal.write() = SearchActive(true);
                 log::info!("Search modal opened");
