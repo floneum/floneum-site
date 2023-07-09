@@ -72,8 +72,8 @@ fn Content(cx: Scope) -> Element {
                         ".markdown-body ol {{ padding-left: 1.5rem; }}"
                         ".markdown-body li {{ padding-top: 0.25rem; padding-bottom: 0.25rem; }}"
                         ".markdown-body code {{ border-radius: 0.1rem; word-wrap: normal; background-color: rgba(100, 100, 100, .5) }}"
-                        ".markdown-body pre {{ border-radius: 0.375rem; padding: 1em; word-wrap: normal; }}"
-                        ".markdown-body span {{ word-wrap: normal; white-space: normal; }}"
+                        ".markdown-body pre {{ border-radius: 0.375rem; padding: 1em; word-wrap: normal; white-space: pre; }}"
+                        ".markdown-body span {{ word-wrap: normal; white-space: pre; }}"
                     }
                     article { class: "markdown-body pt-1", Outlet {} }
                 }

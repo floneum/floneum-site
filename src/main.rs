@@ -86,18 +86,23 @@ fn DiscordLink(cx: Scope) -> Element {
 fn Home(cx: Scope) -> Element {
     render! {
         div { class: "flex flex-col items-center",
-            h1 { class: "font-bold text-9xl m-2 ml-12",
+            h1 {
+                class: "font-bold text-9xl m-2",
                 "Floneum"
             }
-            p { "A graph editor for local AI workflows" }
+            p {
+                class: "font-bold text-4xl animate-shine text-transparent bg-clip-text animate-gradient-x bg-gradient-to-r from-blue-500 to-green-500",
+                "A graph editor for local AI workflows"
+            }
         }
         div { class: "w-full flex flex-col mt-12",
             div { class: "w-full h-full flex flex-row justify-between",
                 div { class: "self-stretch mr-4 my-4 flex flex-col justify-center backdrop-blur-3xl shadow-inner rounded-r-lg p-4",
                     div {
                         class: "animate-fade-in-left-slow",
-                        h2 { class: "text-4xl font-bold mb-2", "Build AI powered workflows with ease" }
+                        h2 { class: "text-6xl font-bold mb-2", "Build AI powered workflows with ease" }
                         p {
+                            class: "text-4xl",
                             "Floneum is a workflow engine that allows you to build AI powered workflows visually"
                         }
                     }
@@ -109,8 +114,9 @@ fn Home(cx: Scope) -> Element {
                 div { class: "self-stretch ml-4 my-4 flex flex-col justify-center backdrop-blur-3xl shadow-inner rounded-l-lg p-4",
                     div {
                         class: "animate-fade-in-right-slow",
-                        h2 { class: "text-4xl font-bold mb-2", "Securely extend Floneum with plugins" }
+                        h2 { class: "text-6xl font-bold mb-2", "Securely extend Floneum with plugins" }
                         p {
+                            class: "text-4xl",
                             "Floneum uses WebAssembly to load plugins in a sandboxed environment and provides them with access to only the resources they need instead of giving them full access to the system"
                         }
                     }
@@ -120,18 +126,31 @@ fn Home(cx: Scope) -> Element {
                 div { class: "self-stretch mr-4 my-4 flex flex-col justify-center backdrop-blur-3xl shadow-inner rounded-r-lg p-4",
                     div {
                         class: "animate-fade-in-left-slow",
-                        h2 { class: "text-4xl font-bold mb-2", "Write plugins in your language of choice" }
+                        h2 { class: "text-6xl font-bold mb-2", "Write plugins in your language of choice" }
                         p {
+                            class: "text-4xl",
                             "You can write plugins in any language that can be compiled to WebAssembly. Floneum provides ergonomic wrappers for rust, but you can also use C, Java, or Go"
                         }
                     }
                 }
                 div { class: "animate-fade-in-right-slower m-4",
                     div { class: "grid grid-cols-2 gap-4 justify-items-center items-center max-w-2xl",
-                        img { src: "/assets/rust_logo.svg" }
-                        img { src: "/assets/c_logo.png" }
-                        img { src: "/assets/java_logo.png" }
-                        img { src: "/assets/go_logo.png" }
+                        img {
+                            class: "w-96",
+                            src: "/assets/rust_logo.svg"
+                        }
+                        img {
+                            class: "w-96",
+                            src: "/assets/c_logo.png"
+                        }
+                        img {
+                            class: "w-96",
+                            src: "/assets/java_logo.png"
+                        }
+                        img {
+                            class: "w-96",
+                            src: "/assets/go_logo.png"
+                        }
                     }
                 }
             }
@@ -139,28 +158,27 @@ fn Home(cx: Scope) -> Element {
 
         div { class: "flex flex-row items-center justify-evenly w-full",
             Link {
-                class: "text-5xl font-bold p-4 m-12 rounded-lg border border-green-900 text-center w-1/3",
+                class: "text-5xl font-bold p-4 m-12 text-center w-1/3 backdrop-blur-3xl shadow-inner rounded-lg bg-white/50 hover:bg-white/75",
                 target: NavigationTarget::External("".to_string()),
-                "Download"
+                "Try Floneum Today"
             }
         }
 
         div { class: "flex flex-row items-center justify-evenly w-full",
-
             Link {
-                class: "text-5xl font-bold p-4 m-12 rounded-lg border border-blue-900 text-center w-1/3",
+                class: "text-5xl font-bold p-4 m-12 text-center w-1/3 backdrop-blur-3xl shadow-inner rounded-lg bg-white/50 hover:bg-white/75",
                 target: Route::Docs {
                     child: BookRoute::UserIndex {},
                 },
-                "User Documentation"
+                "Guide"
             }
 
             Link {
-                class: "text-5xl font-bold p-4 m-12 rounded-lg border border-blue-900 text-center w-1/3",
+                class: "text-5xl font-bold p-4 m-12 text-center w-1/3 backdrop-blur-3xl shadow-inner rounded-lg bg-white/50 hover:bg-white/75",
                 target: Route::Docs {
                     child: BookRoute::DeveloperIndex {},
                 },
-                "Developer Documentation"
+                "Build Your First Plugin"
             }
         }
     }
