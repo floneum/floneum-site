@@ -24,7 +24,7 @@ fn LeftNav(cx: Scope) -> Element {
     ];
 
     render! {
-        nav { class: "z-20 text-base hidden md:block fixed top-0 left-4 mt-36 mb-16 ml-8 w-[calc(100%-1rem)] md:w-60 h-full max-h-screen md:text-[13px] text-navy content-start overflow-y-auto leading-5 flex-wrap",
+        nav { class: "z-20 text-base hidden md:block fixed top-0 left-4 mt-36 mb-16 ml-2 w-[calc(100%-1rem)] md:w-60 h-full max-h-screen md:text-[13px] text-navy content-start overflow-y-auto leading-5 flex-wrap",
             for chapter in chapters.into_iter().flatten().filter(|chapter| chapter.maybe_link().is_some()) {
                 SidebarSection { chapter: chapter }
             }
@@ -91,14 +91,19 @@ fn LocationLink(cx: Scope, chapter: &'static SummaryItem<BookRoute>) -> Element 
     let link = chapter.maybe_link()?;
     let url = link.location.as_ref().unwrap();
 
-    let current_class = match book_url.starts_with(&*url.to_string()) {
+    let current_class = match book_url==url.to_string() {
         true => "bg-gray-200",
         false => "",
     };
 
     render! {
         Link { target: Route::Docs { child: url.clone() },
-            li { class: "m-1 rounded-md pl-2 {current_class}", "{link.name}" }
+            li { 
+                span {
+                    class: "m-1 px-2 rounded-md {current_class}",
+                    "{link.name}"
+                }
+            }
         }
     }
 }

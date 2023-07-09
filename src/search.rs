@@ -24,7 +24,7 @@ pub fn SearchModal(cx: Scope) -> Element {
                 div {
                     height: "100vh",
                     width: "100vw",
-                    class: "fixed top-0 left-0 z-50 hidden md:block bg-gray-500 bg-opacity-20 overflow-y-hidden",
+                    class: "fixed top-0 left-0 z-50 hidden md:block backdrop-blur-lg bg-white/75 overflow-y-hidden",
                     onclick: move |_| {
                         *show_modal.write() = SearchActive(false)
                     },
@@ -97,7 +97,7 @@ fn SearchResult(cx: Scope, result: mdbook_shared::search_index::SearchResult) ->
     };
 
     render! {
-        li { class: "w-full mt-4 p-2 rounded hover:bg-gray-600 transition-colors duration-200 ease-in-out",
+        li { class: "w-full mt-4 p-2 rounded hover:bg-gray-100/50 transition-colors duration-200 ease-in-out",
             Link {
                 target: Route::Docs {
                     child: page.url.clone(),
@@ -134,13 +134,16 @@ pub fn Search(cx: Scope) -> Element {
         // Pop up a modal
         button {
             // Pop up a modal
-            class: "mx-3 rounded-lg px-3 py-3 w-full text-left my-auto flex flex-row align-middle justify-between",
+            class: "md:mx-3 rounded-lg md:px-3 md:py-3 text-left md:pr-[50vw] my-auto flex flex-row align-middle justify-between",
             onclick: move |_| {
                 *show_modal.write() = SearchActive(true);
                 log::info!("Search modal opened");
             },
             div { class: "h-full my-auto flex flex-row align-middle justify-between",
-                span { class: "pl-2", "Search the docs" }
+                span {
+                    class: "md:pl-2",
+                    "Search"
+                }
             }
         }
     }
