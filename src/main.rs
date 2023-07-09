@@ -62,7 +62,7 @@ fn HeaderFooter(cx: Scope) -> Element {
 
 fn GithubLink(cx: Scope) -> Element {
     render! {
-        a { class: "p-2 w-10 h-10", href: "https://github.com/floneum/floneum", img { src: "/assets/gitHub-mark.png", alt: "Github" } }
+        a { class: "p-2 w-10 h-10", href: "https://github.com/floneum/floneum", img { src: "/assets/github-mark.png", alt: "Github" } }
     }
 }
 
