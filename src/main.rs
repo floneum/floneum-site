@@ -183,7 +183,7 @@ fn Home(cx: Scope) -> Element {
         div { class: "flex flex-row items-center justify-evenly w-full",
             Link {
                 class: "text-xl md:text-5xl font-bold p-4 m-12 text-center w-1/3 backdrop-blur-3xl shadow-inner rounded-lg bg-white/50 hover:bg-white/75",
-                target: NavigationTarget::External("".to_string()),
+                target: NavigationTarget::External("https://github.com/floneum/floneum/releases/tag/v0.1.0".to_string()),
                 "Try Floneum Today"
             }
         }
