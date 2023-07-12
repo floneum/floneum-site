@@ -61,7 +61,7 @@ fn HeaderFooter(cx: Scope) -> Element {
 fn GithubLink(cx: Scope) -> Element {
     render! {
         a {
-            class: "md:p-2 w-5 md:w-10 h-5 md:h-10", href: "https://github.com/floneum/floneum",
+            class: "md:m-2 w-5 md:w-8 h-5 md:h-8", href: "https://github.com/floneum/floneum",
             img {
                 src: "/assets/github-mark.png",
                 alt: "Github Logo"
@@ -72,9 +72,9 @@ fn GithubLink(cx: Scope) -> Element {
 
 fn DiscordLink(cx: Scope) -> Element {
     render! {
-        a { padding: "10px", right: "10px", href: "https://discord.gg/dQdmhuB8q5",
+        a { margin: "10px", right: "10px", href: "https://discord.gg/dQdmhuB8q5",
             svg {
-                class: "w-5 md:w-10 h-5 md:h-10",
+                class: "w-5 md:w-8 h-5 md:h-8",
                 view_box: "0 -28.5 256 256", preserve_aspect_ratio: "xMidYMid",
                 g {
                     path {
@@ -93,11 +93,11 @@ fn Home(cx: Scope) -> Element {
     render! {
         div { class: "flex flex-col items-center",
             h1 {
-                class: "font-bold text-4xl md:text-9xl m-2",
+                class: "font-bold text-4xl md:text-9xl m-2 text-transparent bg-clip-text animate-gradient-x bg-gradient-to-r from-red-500 to-yellow-500",
                 "Floneum"
             }
             p {
-                class: "font-bold text-4xl animate-shine text-transparent bg-clip-text animate-gradient-x bg-gradient-to-r from-blue-500 to-green-500",
+                class: "font-bold text-2xl md:text-4xl",
                 "A graph editor for local AI workflows"
             }
         }
