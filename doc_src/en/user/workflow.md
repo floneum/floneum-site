@@ -12,7 +12,7 @@ To start working with language models, we need to create a prompt. We will split
 
 To add a format node, right click and select the `format` node from the drop down:
 
-![Dropdown with inference node selected](../../../assets/first_workflow_add_node.png)
+![Dropdown with generate text node selected](../../../assets/first_workflow_add_node.png)
 
 Next enter the text that the language model should complete:
 
@@ -59,9 +59,9 @@ Then let's create two more format nodes, one for the question and one for the co
 
 ![Floneum with question and context nodes](../../../assets/first_workflow_1.png)
 
-Next, we can generate text from a model with the inference node:
+Next, we can generate text from a model with the generate text node:
 
-![Floneum with inference node](../../../assets/first_workflow_2.png)
+![Floneum with generate text node](../../../assets/first_workflow_2.png)
 
 Finally, click run to start the model running. This will take several minutes the first time you run the node because the node needs to download the model. Futures runs will be significantly faster.
 

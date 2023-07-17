@@ -720,7 +720,6 @@ dependencies = [
  "bumpslab",
  "futures-channel",
  "futures-util",
- "indexmap 1.9.3",
  "log",
  "longest-increasing-subsequence",
  "rustc-hash",
