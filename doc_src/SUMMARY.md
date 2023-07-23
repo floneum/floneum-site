@@ -15,3 +15,7 @@
 
 - [Developer Documentation](developer/index.md)
   - [Your First Plugin](developer/first_plugin.md)
+
+---
+
+- [Contributor Documentation](contributor/index.md)
