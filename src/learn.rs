@@ -91,14 +91,14 @@ fn LocationLink(cx: Scope, chapter: &'static SummaryItem<BookRoute>) -> Element 
     let link = chapter.maybe_link()?;
     let url = link.location.as_ref().unwrap();
 
-    let current_class = match book_url==url.to_string() {
+    let current_class = match book_url == url.to_string() {
         true => "bg-gray-200",
         false => "",
     };
 
     render! {
         Link { target: Route::Docs { child: url.clone() },
-            li { 
+            li {
                 span {
                     class: "m-1 px-2 rounded-md {current_class}",
                     "{link.name}"

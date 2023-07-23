@@ -1,8 +1,8 @@
 use std::ops::Deref;
+use dioxus_search::SearchResult;
+use dioxus::{html::input_data::keyboard_types::Key, prelude::*};
 
-use dioxus::{prelude::*, html::input_data::keyboard_types::Key};
-
-use crate::{Link, Route};
+use crate::{Link, Route, SEARCH_INDEX};
 
 pub struct SearchActive(pub bool);
 
@@ -16,7 +16,7 @@ impl Deref for SearchActive {
 pub fn SearchModal(cx: Scope) -> Element {
     let show_modal = use_shared_state::<SearchActive>(cx).unwrap();
     let search_text = use_state(cx, String::new);
-    let results = crate::docs::LAZY_BOOK.search_index.as_ref().unwrap().search(&search_text.get());
+    let results = SEARCH_INDEX.search(&search_text.get());
 
     render! {
         if **show_modal.read() {
@@ -87,10 +87,9 @@ pub fn SearchModal(cx: Scope) -> Element {
 }
 
 #[inline_props]
-fn SearchResult(cx: Scope, result: mdbook_shared::search_index::SearchResult) -> Element {
+fn SearchResult(cx: Scope, result: SearchResult<Route>) -> Element {
     let show_modal = use_shared_state::<SearchActive>(cx).unwrap();
     let title = &result.title;
-    let page = crate::docs::LAZY_BOOK.get_page(result.id);
     let top_excerpt_segments = &match result.excerpts.first() {
         Some(excerpt) => &*excerpt.text,
         None => &[],
@@ -99,9 +98,7 @@ fn SearchResult(cx: Scope, result: mdbook_shared::search_index::SearchResult) ->
     render! {
         li { class: "w-full mt-4 p-2 rounded hover:bg-gray-100/50 transition-colors duration-200 ease-in-out",
             Link {
-                target: Route::Docs {
-                    child: page.url.clone(),
-                },
+                target: result.route.clone(),
                 onclick: move |_| {
                     *show_modal.write() = SearchActive(false);
                 },

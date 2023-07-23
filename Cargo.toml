@@ -7,19 +7,21 @@ authors = ["Evan Almloff"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-dioxus-router = { path = "../dioxus/packages/router" }
-dioxus = { path = "../dioxus/packages/dioxus" }
-dioxus-web = { path = "../dioxus/packages/web", features = ["hydrate"], optional = true }
-dioxus-ssr = { path = "../dioxus/packages/ssr", optional = true }
-dioxus-fullstack = { path = "../dioxus/packages/fullstack", features = ["router"] }
-mdbook-shared = { path = "../include_mdbook/mdbook-shared" }
-use-mdbook = { path = "../include_mdbook/use-mdbook" }
+dioxus-router = { git = "https://github.com/demonthos/dioxus", branch = "many-fixes" }
+dioxus = { git = "https://github.com/demonthos/dioxus", branch = "many-fixes" }
+dioxus-web = { git = "https://github.com/demonthos/dioxus", branch = "many-fixes", features = ["hydrate"], optional = true }
+dioxus-ssr = { git = "https://github.com/demonthos/dioxus", branch = "many-fixes", optional = true }
+dioxus-fullstack = { git = "https://github.com/demonthos/dioxus", branch = "many-fixes", features = ["router"] }
+mdbook-shared = { git = "https://github.com/Demonthos/include_mdbook", branch = "router-intigration" }
+use-mdbook = { git = "https://github.com/Demonthos/include_mdbook", branch = "router-intigration" }
+dioxus-search = { path = "/Users/evanalmloff/Desktop/Github/dioxus-search" }
 tokio = { version = "1.29.0", features = ["full"], optional = true }
 axum = { version = "0.6.12", optional = true }
 simple_logger = "4.2.0"
 log = "0.4.17"
 wasm-logger = "0.2.0"
 serde = { version = "1.0.164", features = ["derive"] }
+getrandom = { version = "0.2", features = ["js"] }
 
 [dev-dependencies]
 floneum_rust = { git = "https://github.com/floneum/floneum" }

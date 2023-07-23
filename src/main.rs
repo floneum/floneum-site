@@ -2,15 +2,15 @@
 // dioxus build --release --features web
 // cargo run --features ssr --release
 #![allow(non_snake_case)]
+pub use crate::blog_route::BookRoute as BlogRoute;
 use blog::{Blog, BlogProps};
 use dioxus::prelude::*;
 use dioxus_router::prelude::*;
 use learn::{Learn, LearnProps};
 use serde::{Deserialize, Serialize};
-pub use crate::blog_route::BookRoute as BlogRoute;
 
-mod learn;
 mod blog;
+mod learn;
 mod search;
 
 #[inline_props]
@@ -208,7 +208,7 @@ fn Home(cx: Scope) -> Element {
     }
 }
 
-#[derive(Routable, Clone, Serialize, Deserialize)]
+#[derive(Routable, Clone, Serialize, Deserialize, PartialEq)]
 #[rustfmt::skip]
 enum Route {
     #[layout(HeaderFooter)]
@@ -223,7 +223,10 @@ enum Route {
             Blog { child: BlogRoute },
 }
 
-use crate::{docs::BookRoute, search::{SearchActive, SearchModal, Search}};
+use crate::{
+    docs::BookRoute,
+    search::{Search, SearchActive, SearchModal},
+};
 
 mod docs {
     use dioxus::prelude::*;
@@ -261,6 +264,23 @@ fn main() {
             .with_level(log::LevelFilter::Warn)
             .init()
             .unwrap();
+
+        dioxus_search::SearchIndex::<Route>::create(
+            "search",
+            dioxus_search::BaseDirectoryMapping::new(std::path::PathBuf::from("./docs")).map(
+                |route: Route| {
+                    let route = route.to_string();
+                    let mut path = std::path::PathBuf::new();
+                    for (i, segment) in route.split('/').enumerate() {
+                        if (1, "docsite") == (i, segment) {
+                            continue;
+                        }
+                        path.push(segment);
+                    }
+                    Some(path.join("index.html"))
+                },
+            ),
+        );
     }
 
     dioxus_fullstack::launch_router!(@([127, 0, 0, 1], 8080), Route, {
@@ -284,3 +304,7 @@ fn Background(cx: Scope) -> Element {
         }
     }
 }
+
+static SEARCH_INDEX: dioxus_search::LazySearchIndex<Route> = dioxus_search::load_search_index! {
+    "search"
+};
