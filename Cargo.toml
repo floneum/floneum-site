@@ -7,13 +7,13 @@ authors = ["Evan Almloff"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-dioxus-router = { git = "https://github.com/demonthos/dioxus", branch = "many-fixes" }
-dioxus = { git = "https://github.com/demonthos/dioxus", branch = "many-fixes" }
-dioxus-web = { git = "https://github.com/demonthos/dioxus", branch = "many-fixes", features = ["hydrate"], optional = true }
-dioxus-ssr = { git = "https://github.com/demonthos/dioxus", branch = "many-fixes", optional = true }
-dioxus-fullstack = { git = "https://github.com/demonthos/dioxus", branch = "many-fixes", features = ["router"] }
-mdbook-shared = { git = "https://github.com/Demonthos/include_mdbook", branch = "router-intigration" }
-use-mdbook = { git = "https://github.com/Demonthos/include_mdbook", branch = "router-intigration" }
+dioxus-router = { version = "*" }
+dioxus = { version = "*" }
+dioxus-web = { version = "*", features = ["hydrate"], optional = true }
+dioxus-ssr = { version = "*", optional = true }
+dioxus-fullstack = { version = "*", features = ["router"] }
+mdbook-shared = { git = "https://github.com/DioxusLabs/include_mdbook" }
+use-mdbook = { git = "https://github.com/DioxusLabs/include_mdbook" }
 dioxus-search = { path = "/Users/evanalmloff/Desktop/Github/dioxus-search" }
 tokio = { version = "1.29.0", features = ["full"], optional = true }
 axum = { version = "0.6.12", optional = true }

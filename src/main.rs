@@ -3,14 +3,17 @@
 // cargo run --features ssr --release
 #![allow(non_snake_case)]
 pub use crate::blog_route::BookRoute as BlogRoute;
-use blog::{Blog, BlogProps};
+use blog::Blog;
 use dioxus::prelude::*;
+use dioxus_fullstack::{prelude::*, router::FullstackRouterConfig};
 use dioxus_router::prelude::*;
-use learn::{Learn, LearnProps};
+use learn::Learn;
+use home::Home;
 use serde::{Deserialize, Serialize};
 
 mod blog;
 mod learn;
+mod home;
 mod search;
 
 #[inline_props]
@@ -19,21 +22,20 @@ fn HeaderFooter(cx: Scope) -> Element {
 
     render! {
         SearchModal {}
-        Background {}
         div { class: "h-14 z-30 fixed top-0 flex flex-row justify-between items-center bg-gray-100 opacity-50 border-b-2 border-gray-700 w-screen backdrop-blur-lg",
-            Link { class: "text-xl font-bold m-2 md:mr-12", target: Route::Home {}, "Floneum" }
+            Link { class: "text-xl font-bold m-2 md:mr-12", to: Route::Home {}, "Floneum" }
             Search {}
             div { class: "flex flex-row justify-evenly items-center text-center",
                 Link {
                     class: "text-sm md:text-xl font-bold pr-1 md:p-2",
-                    target: Route::Blog {
+                    to: Route::Blog {
                         child: BlogRoute::Index {},
                     },
                     "Blog"
                 }
                 Link {
                     class: "text-sm md:text-xl font-bold md:p-2",
-                    target: Route::Docs {
+                    to: Route::Docs {
                         child: BookRoute::Index {},
                     },
                     "Documentation"
@@ -43,7 +45,7 @@ fn HeaderFooter(cx: Scope) -> Element {
             }
         }
         div { class: "pt-14",
-            Outlet {}
+            Outlet::<Route> {}
             div { class: "py-5 flex flex-row items-center justify-evenly",
                 div { class: "flex flex-col items-center",
                     "Discord Community"
@@ -83,126 +85,6 @@ fn DiscordLink(cx: Scope) -> Element {
                         fill_rule: "nonzero"
                     }
                 }
-            }
-        }
-    }
-}
-
-#[inline_props]
-fn Home(cx: Scope) -> Element {
-    render! {
-        div { class: "flex flex-col items-center",
-            h1 {
-                class: "font-bold text-4xl md:text-9xl m-2 text-transparent bg-clip-text animate-gradient-x bg-gradient-to-r from-red-500 to-yellow-500",
-                "Floneum"
-            }
-            p {
-                class: "font-bold text-2xl md:text-4xl",
-                "A graph editor for local AI workflows"
-            }
-        }
-        div { class: "w-full flex flex-col mt-12",
-            div { class: "w-full h-full flex flex-row justify-between",
-                div { class: "self-stretch mr-4 my-4 flex flex-col justify-center backdrop-blur-3xl shadow-inner rounded-r-lg p-4",
-                    div {
-                        class: "animate-fade-in-left-slow",
-                        h2 { class: "text-2xl md:text-6xl font-bold mb-2", "Build AI powered workflows with ease" }
-                        p {
-                            class: "text-xl md:text-4xl",
-                            "Floneum is a workflow engine that allows you to build AI powered workflows visually"
-                        }
-                    }
-                }
-                div {
-                    class: "animate-fade-in-right m-4",
-                    img {
-                        class: "w-[66vw]",
-                        src: "/assets/demo-img.png",
-                        alt: "Demo question answering workflow"
-                    }
-                }
-            }
-            div { class: "w-full h-full flex flex-row justify-between",
-                div {
-                    class: "animate-fade-in-left-slow m-4",
-                    img {
-                        class: "h-[33vw] w-auto max-w-none",
-                        src: "/assets/plugins.png",
-                        alt: "Plugins can access LLMs, Embeddings, and Embedding Databases"
-                    }
-                }
-                div { class: "self-stretch ml-4 my-4 flex flex-col justify-center backdrop-blur-3xl shadow-inner rounded-l-lg p-4",
-                    div {
-                        class: "animate-fade-in-right-slow",
-                        h2 { class: "text-2xl md:text-6xl font-bold mb-2", "Securely extend Floneum with plugins" }
-                        p {
-                            class: "text-xl md:text-4xl",
-                            "Floneum uses WebAssembly to load plugins in a sandboxed environment and provides them with access to only the resources they need instead of giving them full access to the system"
-                        }
-                    }
-                }
-            }
-            div { class: "w-full h-full flex flex-row justify-between",
-                div { class: "self-stretch mr-4 my-4 flex flex-col justify-center backdrop-blur-3xl shadow-inner rounded-r-lg p-4",
-                    div {
-                        class: "animate-fade-in-left-slow",
-                        h2 { class: "text-2xl md:text-6xl font-bold mb-2", "Write plugins in your language of choice" }
-                        p {
-                            class: "text-xl md:text-4xl",
-                            "You can write plugins in any language that can be compiled to WebAssembly. Floneum provides ergonomic wrappers for rust, but you can also use C, Java, or Go"
-                        }
-                    }
-                }
-                div { class: "animate-fade-in-right-slower m-4 w-[50vw]",
-                    div { class: "grid grid-cols-1 md:grid-cols-2 gap-4 justify-items-center items-center",
-                        img {
-                            class: "w-96",
-                            src: "/assets/rust_logo.svg",
-                            alt: "Rust Logo"
-                        }
-                        img {
-                            class: "w-96",
-                            src: "/assets/c_logo.png",
-                            alt: "C Logo"
-                        }
-                        img {
-                            class: "w-96",
-                            src: "/assets/java_logo.png",
-                            alt: "Java Logo"
-                        }
-                        img {
-                            class: "w-96",
-                            src: "/assets/go_logo.png",
-                            alt: "Go Logo"
-                        }
-                    }
-                }
-            }
-        }
-
-        div { class: "flex flex-row items-center justify-evenly w-full",
-            Link {
-                class: "text-xl md:text-5xl font-bold p-4 m-12 text-center w-1/3 backdrop-blur-3xl shadow-inner rounded-lg bg-white/50 hover:bg-white/75",
-                target: NavigationTarget::External("https://github.com/floneum/floneum/releases/tag/v0.1.0".to_string()),
-                "Try Floneum Today"
-            }
-        }
-
-        div { class: "flex flex-row items-center justify-evenly w-full",
-            Link {
-                class: "text-xl md:text-5xl font-bold p-4 m-12 text-center w-1/2 md:w-1/3 backdrop-blur-3xl shadow-inner rounded-lg bg-white/50 hover:bg-white/75",
-                target: Route::Docs {
-                    child: BookRoute::UserIndex {},
-                },
-                "Guide"
-            }
-
-            Link {
-                class: "text-xl md:text-5xl font-bold p-4 m-12 text-center w-1/2 md:w-1/3 backdrop-blur-3xl shadow-inner rounded-lg bg-white/50 hover:bg-white/75",
-                target: Route::Docs {
-                    child: BookRoute::DeveloperIndex {},
-                },
-                "Build Your First Plugin"
             }
         }
     }
@@ -283,26 +165,19 @@ fn main() {
         );
     }
 
-    dioxus_fullstack::launch_router!(@([127, 0, 0, 1], 8080), Route, {
-        serve_cfg: {
-            dioxus_fullstack::prelude::ServeConfigBuilder::new_with_router(
-                dioxus_fullstack::router::FullstackRouterConfig::<Route>::default(),
-            )
-            .assets_path("docs")
-            .incremental(IncrementalRendererConfig::default())
-        },
-    });
-}
+    #[allow(unused_mut)]
+    let mut config = LaunchBuilder::<FullstackRouterConfig<Route>>::router();
 
-fn Background(cx: Scope) -> Element {
-    render! {
-        img {
-            class: "-z-20 top-0 left-0 fixed w-screen h-screen",
-            src: "/assets/background.jpeg",
-            object_fit: "cover",
-            alt: "Vibrant flowing abstract art"
-        }
+    #[cfg(feature = "ssr")]
+    {
+        config = config.server_cfg(
+            ServeConfigBuilder::new_with_router(Default::default())
+                .assets_path("docs")
+                .incremental(IncrementalRendererConfig::default()),
+        );
     }
+
+    config.launch();
 }
 
 static SEARCH_INDEX: dioxus_search::LazySearchIndex<Route> = dioxus_search::load_search_index! {

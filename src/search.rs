@@ -1,6 +1,6 @@
-use std::ops::Deref;
-use dioxus_search::SearchResult;
 use dioxus::{html::input_data::keyboard_types::Key, prelude::*};
+use dioxus_search::SearchResult;
+use std::ops::Deref;
 
 use crate::{Link, Route, SEARCH_INDEX};
 
@@ -98,7 +98,7 @@ fn SearchResult(cx: Scope, result: SearchResult<Route>) -> Element {
     render! {
         li { class: "w-full mt-4 p-2 rounded hover:bg-gray-100/50 transition-colors duration-200 ease-in-out",
             Link {
-                target: result.route.clone(),
+                to: result.route.clone(),
                 onclick: move |_| {
                     *show_modal.write() = SearchActive(false);
                 },

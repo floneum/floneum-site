@@ -45,7 +45,7 @@ fn SidebarSection(cx: Scope, chapter: &'static SummaryItem<BookRoute>) -> Elemen
         div { class: "pb-4",
             if let Some(url) = &link.location {
                 rsx! {
-                    Link { target: Route::Docs { child: url.clone() }, h2 { class: "font-semibold", "{link.name}" } }
+                    Link { to: Route::Docs { child: url.clone() }, h2 { class: "font-semibold", "{link.name}" } }
                 }
             }
             ul { class: "pl-2", sections }
@@ -70,7 +70,7 @@ fn SidebarChapter(cx: Scope, link: &'static SummaryItem<BookRoute>) -> Element {
 
     render! {
         li { class: "pt-1",
-            Link { target: Route::Docs { child: url.clone() }, "{shevron}{link.name}" }
+            Link { to: Route::Docs { child: url.clone() }, "{shevron}{link.name}" }
             if show_chevron && show_dropdown {
                 rsx! {
                     ul { class: "ml-6 border-l border-gray-300 py-1",
@@ -97,7 +97,7 @@ fn LocationLink(cx: Scope, chapter: &'static SummaryItem<BookRoute>) -> Element 
     };
 
     render! {
-        Link { target: Route::Docs { child: url.clone() },
+        Link { to: Route::Docs { child: url.clone() },
             li {
                 span {
                     class: "m-1 px-2 rounded-md {current_class}",
@@ -120,7 +120,7 @@ fn RightNav(cx: Scope) -> Element {
             ul { class: "",
                 for section in page.sections().iter().filter(|s| s.level <= 2) {
                     li { class: "pb-2",
-                        Link { target: NavigationTarget::External("#".to_string() + &section.id), "{section.title}" }
+                        Link { to: NavigationTarget::<Route>::External("#".to_string() + &section.id), "{section.title}" }
                     }
                 }
             }
@@ -152,7 +152,7 @@ fn Content(cx: Scope) -> Element {
                         ".markdown-body pre {{ border-radius: 0.375rem; padding: 1em; word-wrap: normal; white-space: pre; }}"
                         ".markdown-body span {{ word-wrap: normal; white-space: pre; }}"
                     }
-                    article { class: "markdown-body pt-1", Outlet {} }
+                    article { class: "markdown-body pt-1", Outlet::<Route> {} }
                 }
             }
         }
