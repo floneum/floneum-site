@@ -15,6 +15,7 @@ mod blog;
 mod learn;
 mod home;
 mod search;
+mod plugin;
 
 #[inline_props]
 fn HeaderFooter(cx: Scope) -> Element {

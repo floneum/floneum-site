@@ -22,6 +22,7 @@ log = "0.4.17"
 wasm-logger = "0.2.0"
 serde = { version = "1.0.164", features = ["derive"] }
 getrandom = { version = "0.2", features = ["js"] }
+floneumite = { git = "https://github.com/floneum/floneum", optional = true }
 
 [dev-dependencies]
 floneum_rust = { git = "https://github.com/floneum/floneum" }
@@ -35,5 +36,5 @@ strip = "debuginfo"
 [features]
 default = []
 web = ["dioxus-web", "dioxus-router/web"]
-ssr = ["dioxus-ssr", "dioxus-router/ssr", "tokio", "dioxus-fullstack/axum", "axum"]
+ssr = ["dioxus-ssr", "dioxus-router/ssr", "tokio", "dioxus-fullstack/axum", "axum", "floneumite"]
 prebuild = ["ssr"]

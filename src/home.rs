@@ -1,7 +1,7 @@
 use dioxus::prelude::*;
 use dioxus_router::prelude::*;
 
-use crate::{Route, docs::BookRoute};
+use crate::{Route, docs::BookRoute, plugin::PluginsList};
 
 #[inline_props]
 pub(crate) fn Home(cx: Scope) -> Element {
@@ -95,6 +95,7 @@ fn Plugins(cx: Scope) -> Element {
                 }
             }
         }
+        PluginsList {}
     }
 }
 

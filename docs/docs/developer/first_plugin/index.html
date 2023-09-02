@@ -55,11 +55,7 @@
         let scrollTop = window.scrollY;
         let winHeight = window.document.documentElement.scrollHeight - window.document.documentElement.clientHeight;
         let new_scroll = Math.min(Math.max(scrollTop, 0) / Math.max(winHeight, 1), 1);
-        console.log("components");
-        console.log(scrollTop);
-        console.log(winHeight);
-  
-        console.log(new_scroll);
+        
         document.body.style.setProperty('--scroll', new_scroll);
       }, false);
     </script>
