@@ -9,8 +9,6 @@ authors = ["Evan Almloff"]
 [dependencies]
 dioxus-router = { version = "*" }
 dioxus = { version = "*" }
-dioxus-web = { version = "*", features = ["hydrate"], optional = true }
-dioxus-ssr = { version = "*", optional = true }
 dioxus-fullstack = { version = "*", features = ["router"] }
 mdbook-shared = { git = "https://github.com/DioxusLabs/include_mdbook" }
 use-mdbook = { git = "https://github.com/DioxusLabs/include_mdbook" }
@@ -35,6 +33,6 @@ strip = "debuginfo"
 
 [features]
 default = []
-web = ["dioxus-web", "dioxus-router/web"]
-ssr = ["dioxus-ssr", "dioxus-router/ssr", "tokio", "dioxus-fullstack/axum", "axum", "floneumite"]
+web = ["dioxus-fullstack/web", "dioxus-router/web"]
+ssr = ["dioxus-router/ssr", "tokio", "dioxus-fullstack/axum", "axum", "floneumite"]
 prebuild = ["ssr"]
