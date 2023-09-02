@@ -1,5 +1,4 @@
 use dioxus::prelude::*;
-use dioxus_fullstack::prelude::*;
 
 #[inline_props]
 pub fn PluginsList(cx: Scope) -> Element {
