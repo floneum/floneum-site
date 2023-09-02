@@ -7,15 +7,15 @@ use blog::Blog;
 use dioxus::prelude::*;
 use dioxus_fullstack::{prelude::*, router::FullstackRouterConfig};
 use dioxus_router::prelude::*;
-use learn::Learn;
 use home::Home;
+use learn::Learn;
 use serde::{Deserialize, Serialize};
 
 mod blog;
-mod learn;
 mod home;
-mod search;
+mod learn;
 mod plugin;
+mod search;
 
 #[inline_props]
 fn HeaderFooter(cx: Scope) -> Element {

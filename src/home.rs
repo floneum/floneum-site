@@ -1,7 +1,7 @@
 use dioxus::prelude::*;
 use dioxus_router::prelude::*;
 
-use crate::{Route, docs::BookRoute, plugin::PluginsList};
+use crate::{docs::BookRoute, plugin::PluginsList, Route};
 
 #[inline_props]
 pub(crate) fn Home(cx: Scope) -> Element {
@@ -15,7 +15,7 @@ pub(crate) fn Home(cx: Scope) -> Element {
 }
 
 fn Demo(cx: Scope) -> Element {
-    render!{
+    render! {
         div {
             class: "flex flex-col items-center justify-center text-center pb-12",
             div {
@@ -130,7 +130,7 @@ fn CallToAction(cx: Scope) -> Element {
 }
 
 fn Pitch(cx: Scope) -> Element {
-    render!{
+    render! {
         div {
             class: "-z-30 fixed grid grid-cols-2 grid-rows-2 gap-[calc(var(--scroll)*(200vw*sin(45deg)+200vh*cos(45deg)))] rotate-[calc(45deg+var(--scroll)*90deg)] w-[calc(100vw*sin(45deg)+100vh*cos(45deg))] h-[calc(100vw*sin(45deg)+100vh*cos(45deg))] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
             div {

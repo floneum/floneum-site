@@ -266,7 +266,7 @@ function makeClosure(arg0, arg1, dtor, f) {
     return real;
 }
 function __wbg_adapter_51(arg0, arg1, arg2) {
-    wasm.wasm_bindgen__convert__closures__invoke1__hd347ce19413f0cc2(arg0, arg1, addHeapObject(arg2));
+    wasm.wasm_bindgen__convert__closures__invoke1__he9fb993e6e0d697b(arg0, arg1, addHeapObject(arg2));
 }
 
 function __wbg_adapter_54(arg0, arg1) {
@@ -1256,19 +1256,19 @@ imports.wbg.__wbg_scrollTo_3fa406312438ebdf = function(arg0, arg1, arg2) {
     getObject(arg0).scrollTo(arg1, arg2);
 };
 imports.wbg.__wbindgen_closure_wrapper231 = function(arg0, arg1, arg2) {
-    const ret = makeMutClosure(arg0, arg1, 136, __wbg_adapter_48);
+    const ret = makeMutClosure(arg0, arg1, 132, __wbg_adapter_48);
     return addHeapObject(ret);
 };
 imports.wbg.__wbindgen_closure_wrapper289 = function(arg0, arg1, arg2) {
-    const ret = makeClosure(arg0, arg1, 136, __wbg_adapter_51);
+    const ret = makeClosure(arg0, arg1, 132, __wbg_adapter_51);
     return addHeapObject(ret);
 };
-imports.wbg.__wbindgen_closure_wrapper1353 = function(arg0, arg1, arg2) {
-    const ret = makeMutClosure(arg0, arg1, 136, __wbg_adapter_54);
+imports.wbg.__wbindgen_closure_wrapper1325 = function(arg0, arg1, arg2) {
+    const ret = makeMutClosure(arg0, arg1, 132, __wbg_adapter_54);
     return addHeapObject(ret);
 };
-imports.wbg.__wbindgen_closure_wrapper1479 = function(arg0, arg1, arg2) {
-    const ret = makeMutClosure(arg0, arg1, 171, __wbg_adapter_57);
+imports.wbg.__wbindgen_closure_wrapper1451 = function(arg0, arg1, arg2) {
+    const ret = makeMutClosure(arg0, arg1, 167, __wbg_adapter_57);
     return addHeapObject(ret);
 };
 imports['./snippets/dioxus-interpreter-js-603636eeca72cf05/inline0.js'] = __wbg_star0;

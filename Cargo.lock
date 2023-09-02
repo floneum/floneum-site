@@ -1195,6 +1195,7 @@ dependencies = [
  "getrandom 0.2.10",
  "log",
  "mdbook-shared",
+ "postcard",
  "serde",
  "simple_logger",
  "tokio",
