@@ -15,6 +15,10 @@ pub fn PluginsList(cx: Scope) -> Element {
     }
 
     render! {
+        h2 {
+            class: "text-4xl font-bold text-center",
+            "{plugins.len()} built in plugins"
+        }
         for (i, col) in plugins.chunks_exact((plugins.len() / ROWS).max(1)).enumerate() {
             div {
                 class: "flex flex-row w-[600vw] overflow-clip",
