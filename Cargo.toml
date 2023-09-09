@@ -7,12 +7,12 @@ authors = ["Evan Almloff"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-dioxus-router = { version = "*" }
-dioxus = { version = "*" }
-dioxus-fullstack = { version = "*", features = ["router"] }
+dioxus-router = { version = "0.4" }
+dioxus = { version = "0.4" }
+dioxus-fullstack = { version = "0.4", features = ["router"] }
 mdbook-shared = { git = "https://github.com/DioxusLabs/include_mdbook" }
 use-mdbook = { git = "https://github.com/DioxusLabs/include_mdbook" }
-dioxus-search = { path = "/Users/evanalmloff/Desktop/Github/dioxus-search" }
+dioxus-search = { git = "https://github.com/DioxusLabs/dioxus-search" }
 tokio = { version = "1.29.0", features = ["full"], optional = true }
 axum = { version = "0.6.12", optional = true }
 simple_logger = "4.2.0"
@@ -21,6 +21,7 @@ wasm-logger = "0.2.0"
 serde = { version = "1.0.164", features = ["derive"] }
 getrandom = { version = "0.2", features = ["js"] }
 postcard = { version = "1.0.4", features = ["use-std"] }
+futures-util-preview = "0.2.2"
 
 [dev-dependencies]
 floneum_rust = { git = "https://github.com/floneum/floneum" }
