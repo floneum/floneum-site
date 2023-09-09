@@ -40,4 +40,4 @@ It is also used to declare the interface in wasmtime [here](https://github.com/f
 
 UI:
 
-The main UI for Floneum is currently written in [EGUI](https://lib.rs/crates/egui). The code for the UI of floneum can be found in the [main package](https://github.com/floneum/floneum/blob/cd83ac7d3487826c54789619529db53125859923/src/main.rs)
+The main UI for Floneum is written in [Diouxs](https://lib.rs/crates/dioxus). The code for the UI of floneum can be found in the [main package](https://github.com/floneum/floneum/tree/master/src)
