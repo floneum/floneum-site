@@ -1,6 +1,6 @@
 # Announcing Floneum 0.2
 
-Floneum 0.2 is here with improvements on a range of issues from UI to web scraping to plugin distribution!
+Floneum 0.2 is here with improvements ranging from UI to web scraping to plugin distribution!
 
 Before we dive into what is new, what exactly is Floneum? Floneum is a user-friendly visual editor for AI workflows packaged as an easy to install application with no external dependencies. It runs large language workflows entirely locally.
 
@@ -54,7 +54,7 @@ video {
 
 ### Nightly builds
 
-If you want to keep up with the latest developments of Floneum, nightly builds are now created for [every release](https://github.com/floneum/floneum/actions/runs/6102318885).
+If you want to keep up with the latest developments of Floneum, nightly builds are now created for [every commit](https://github.com/floneum/floneum/actions/runs/6102318885).
 
 ![Nightly Build Files](../../assets/nightly_builds.png)
 
