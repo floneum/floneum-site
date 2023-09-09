@@ -8,7 +8,7 @@ pub fn PluginsList(cx: Scope) -> Element {
     });
 
     const ROWS: usize = 5;
-    
+
     fn translation(row: usize) -> String {
         let scroll_speed = ((row as i32 % 2) * 2 - 1) * 100;
         let offset = if row % 2 == 0 { 50 } else { -150 };
