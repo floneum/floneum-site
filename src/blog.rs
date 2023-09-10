@@ -4,7 +4,7 @@ use mdbook_shared::SummaryItem;
 #[inline_props]
 pub fn Blog(cx: Scope) -> Element {
     cx.render(rsx! {
-        div { class: "w-full pt-12 text-sm backdrop-blur-lg bg-white/75", min_height: "100vh",
+        div { class: "w-full pt-12 backdrop-blur-lg bg-white/75", min_height: "100vh",
             div { class: "max-w-screen-2xl flex flex-row justify-between mx-auto",
                 Content {}
                 RightNav {}
@@ -59,13 +59,13 @@ fn Content(cx: Scope) -> Element {
                     style {
                         ".markdown-body ul {{ list-style: disc; }}"
                         ".markdown-body li {{ display: list-item; }}"
-                        ".markdown-body h1 {{ font-size: 2.25rem; padding-top: 0.5rem; padding-bottom: 0.5rem; }}"
-                        ".markdown-body h2 {{ font-size: 1.5rem; padding-top: 0.5rem; padding-bottom: 0.5rem; }}"
-                        ".markdown-body h3 {{ font-size: 1.25rem; padding-top: 0.5rem; padding-bottom: 0.5rem; }}"
-                        ".markdown-body h4 {{ font-size: 1rem; padding-top: 0.5rem; padding-bottom: 0.5rem; }}"
-                        ".markdown-body h5 {{ font-size: 0.875rem; padding-top: 0.5rem; padding-bottom: 0.5rem; }}"
+                        ".markdown-body h1 {{ font-size: 4rem; padding-top: 2rem; padding-bottom: 2rem; }}"
+                        ".markdown-body h2 {{ font-size: 3rem; padding-top: 1.5rem; padding-bottom: 1.5rem; }}"
+                        ".markdown-body h3 {{ font-size: 2rem; padding-top: 1rem; padding-bottom: 1rem; }}"
+                        ".markdown-body h4 {{ font-size: 1.5rem; padding-top: 0.75rem; padding-bottom: 0.75rem; }}"
+                        ".markdown-body h5 {{ font-size: 1rem; padding-top: 0.5rem; padding-bottom: 0.5rem; }}"
                         ".markdown-body h6 {{ font-size: 0.875rem; padding-top: 0.5rem; padding-bottom: 0.5rem; }}"
-                        ".markdown-body p {{ font-size: 1rem; padding-top: 0.5rem; padding-bottom: 0.5rem; }}"
+                        ".markdown-body p {{ font-size: 1.5rem; padding-top: 0.5rem; padding-bottom: 0.5rem; }}"
                         ".markdown-body a {{ color: #3182ce; text-decoration: none; }}"
                         ".markdown-body a:hover {{ text-decoration: underline; }}"
                         ".markdown-body ul {{ padding-left: 1.5rem; }}"
@@ -74,6 +74,7 @@ fn Content(cx: Scope) -> Element {
                         ".markdown-body code {{ border-radius: 0.1rem; word-wrap: normal; background-color: rgba(100, 100, 100, .5) }}"
                         ".markdown-body pre {{ border-radius: 0.375rem; padding: 1em; word-wrap: normal; white-space: pre; }}"
                         ".markdown-body span {{ word-wrap: normal; white-space: pre; }}"
+                        ".markdown-body video {{ border-radius: 0.5rem; }}"
                     }
                     article { class: "markdown-body pt-1", Outlet::<Route> {} }
                 }
