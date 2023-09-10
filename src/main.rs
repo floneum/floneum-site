@@ -166,19 +166,22 @@ fn main() {
         );
     }
 
-    #[allow(unused_mut)]
-    let mut config = LaunchBuilder::<FullstackRouterConfig<Route>>::router();
-
-    #[cfg(feature = "ssr")]
+    #[cfg(not(feature = "prebuild"))]
     {
-        config = config.server_cfg(
-            ServeConfigBuilder::new_with_router(Default::default())
-                .assets_path("docs")
-                .incremental(IncrementalRendererConfig::default()),
-        );
+        #[allow(unused_mut)]
+        let mut config = LaunchBuilder::<FullstackRouterConfig<Route>>::router();
+    
+        #[cfg(feature = "ssr")]
+        {
+            config = config.server_cfg(
+                ServeConfigBuilder::new_with_router(Default::default())
+                    .assets_path("docs")
+                    .incremental(IncrementalRendererConfig::default()),
+            );
+        }
+    
+        config.launch();
     }
-
-    config.launch();
 }
 
 static SEARCH_INDEX: dioxus_search::LazySearchIndex<Route> = dioxus_search::load_search_index! {
