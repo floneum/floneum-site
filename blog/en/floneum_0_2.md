@@ -143,3 +143,7 @@ To get started, just go to [the downloads page](https://github.com/floneum/flone
 If you want to learn more about Floneum, check out the [user documentation](https://floneum.com/docs/user) or [plugin developer documentation](https://floneum.com/docs/developer).
 
 If you have any questions, feel free to join the [Floneum Discord](https://discord.gg/dQdmhuB8q5) and ask away!
+
+Join the discussion:
+- [Reddit](https://www.reddit.com/r/LocalLLaMA/comments/16gusz2/floneum_02_released_open_source_local_graph/)
+- [HN](https://news.ycombinator.com/item?id=37481027)
