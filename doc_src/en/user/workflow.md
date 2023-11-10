@@ -2,7 +2,7 @@
 
 In this example, we will create a workflow that answers questions from a database of information.
 
-> Before starting this guide, you must [download](https://github.com/floneum/floneum/releases/tag/v0.1.0) Floneum.
+> Before starting this guide, you must [download](https://github.com/floneum/floneum/releases/tag/v0.2.0) Floneum.
 
 ## Text Generation
 

@@ -4,6 +4,10 @@ Floneum is a graph editor for AI workflows with a focus on community made plugin
 
 ![Demo Screenshot](https://github.com/Demonthos/floneum/assets/66571940/c60d621d-72b9-423c-b1d5-57cdb737e449)
 
+## Installation
+
+Before you get started using Floneum, make sure to [download it from the releases page](https://github.com/floneum/floneum/releases/tag/v0.2.0).
+
 ## Features
 
 - Visual interface: You can use Floneum without any knowledge of programming. The visual graph editor makes it easy to combine community made plugins with local AI models

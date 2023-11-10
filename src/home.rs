@@ -104,7 +104,7 @@ fn CallToAction(cx: Scope) -> Element {
         div { class: "flex flex-row items-center justify-evenly w-full",
             Link {
                 class: "text-xl md:text-5xl font-bold p-4 m-12 text-center w-1/3 rounded-lg bg-[#283549] hover:border-2 border-[#283549] text-white",
-                to: "https://github.com/floneum/floneum/releases/tag/v0.1.0",
+                to: "https://github.com/floneum/floneum/releases/tag/v0.2.0",
                 "Try Floneum Today"
             }
         }
