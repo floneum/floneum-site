@@ -93,13 +93,13 @@ pub fn KalosmHome(cx: Scope) -> Element {
                         }
                     }
                 }
-                div { class: "flex-col justify-center text-black text-center text-7xl font-bold relative z-[1] max-w-[1301px] overflow-hidden self-stretch min-h-[560px] pt-0 mt-36 pb-96 px-16 items-end max-md:max-w-full max-md:text-4xl max-md:mt-10 max-md:pl-5 max-md:pr-8 max-md:pb-10",
+                div { class: "flex-col justify-center text-black text-center text-7xl font-bold relative z-[1] max-w-[1301px] overflow-hidden self-stretch min-h-[560px] pt-0 mt-36 px-16 items-end max-md:max-w-full max-md:text-4xl max-md:mt-10 max-md:pl-5 max-md:pr-8 max-md:pb-10",
+                    "Text recognition"
                     img {
                         "loading": "lazy",
                         srcset: "https://cdn.builder.io/api/v1/image/assets/TEMP/d78cb2fad3c36bb1d14dcb69bfbb86416a9fae714cdbc08e65a45ca4f584a2a7?apiKey=04af1066e8604f98b159e5700077f35c&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/d78cb2fad3c36bb1d14dcb69bfbb86416a9fae714cdbc08e65a45ca4f584a2a7?apiKey=04af1066e8604f98b159e5700077f35c&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/d78cb2fad3c36bb1d14dcb69bfbb86416a9fae714cdbc08e65a45ca4f584a2a7?apiKey=04af1066e8604f98b159e5700077f35c&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/d78cb2fad3c36bb1d14dcb69bfbb86416a9fae714cdbc08e65a45ca4f584a2a7?apiKey=04af1066e8604f98b159e5700077f35c&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/d78cb2fad3c36bb1d14dcb69bfbb86416a9fae714cdbc08e65a45ca4f584a2a7?apiKey=04af1066e8604f98b159e5700077f35c&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/d78cb2fad3c36bb1d14dcb69bfbb86416a9fae714cdbc08e65a45ca4f584a2a7?apiKey=04af1066e8604f98b159e5700077f35c&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/d78cb2fad3c36bb1d14dcb69bfbb86416a9fae714cdbc08e65a45ca4f584a2a7?apiKey=04af1066e8604f98b159e5700077f35c&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/d78cb2fad3c36bb1d14dcb69bfbb86416a9fae714cdbc08e65a45ca4f584a2a7?apiKey=04af1066e8604f98b159e5700077f35c&",
                         class: "object-contain object-center w-full overflow-hidden self-stretch max-md:max-w-full"
                     }
-                    "Text recognition"
                 }
                 img {
                     "loading": "lazy",
