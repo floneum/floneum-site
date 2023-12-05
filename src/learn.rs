@@ -65,7 +65,7 @@ fn SidebarChapter(cx: Scope, link: &'static SummaryItem<BookRoute>) -> Element {
     // for instance, if the current page is /docs/0.4/en/learn/overview
     // then we want to show the dropdown for /docs/0.4/en/learn
     let show_dropdown = *list_toggle.get() || book_url.starts_with(&*url.to_string());
-    let show_chevron = link.nested_items.len() > 0;
+    let show_chevron = !link.nested_items.is_empty();
     let shevron = if show_chevron { "> " } else { "" };
 
     render! {
@@ -98,12 +98,7 @@ fn LocationLink(cx: Scope, chapter: &'static SummaryItem<BookRoute>) -> Element 
 
     render! {
         Link { to: Route::Docs { child: url.clone() },
-            li {
-                span {
-                    class: "m-1 px-2 rounded-md {current_class}",
-                    "{link.name}"
-                }
-            }
+            li { span { class: "m-1 px-2 rounded-md {current_class}", "{link.name}" } }
         }
     }
 }

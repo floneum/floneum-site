@@ -33,12 +33,12 @@ pub fn SearchModal(cx: Scope) -> Element {
                             *show_modal.write() = SearchActive(false)
                         }
                     },
-
+        
                     // A little weird, but we're putting an empty div with a scaled height to buffer the top of the modal
                     div { class: "max-w-screen-md mx-auto h-full flex flex-col",
                         onclick: move |evt| evt.stop_propagation(),
                         div { class: "h-30" }
-
+        
                         // The actual modal
                         div { class: "border border-gray-600 p-6 rounded-2xl m-8 max-h-[calc(100%-8rem)] overflow-y-auto",
                             // Search input
@@ -58,7 +58,7 @@ pub fn SearchModal(cx: Scope) -> Element {
                                 }
                                 div {}
                             }
-
+        
                             // Results
                             div { class: "overflow-y-auto",
                                 ul {
@@ -102,9 +102,7 @@ fn SearchResult(cx: Scope, result: SearchResult<Route>) -> Element {
                 onclick: move |_| {
                     *show_modal.write() = SearchActive(false);
                 },
-                div { class: "flex flex-col justify-between pb-1",
-                    h2 { class: "font-semibold", "{title}" }
-                }
+                div { class: "flex flex-col justify-between pb-1", h2 { class: "font-semibold", "{title}" } }
                 p { class: "text-sm text-gray-500 pr-8",
                     for segment in top_excerpt_segments {
                         if segment.highlighted {
@@ -137,10 +135,7 @@ pub fn Search(cx: Scope) -> Element {
                 log::info!("Search modal opened");
             },
             div { class: "h-full my-auto flex flex-row align-middle justify-between",
-                span {
-                    class: "md:pl-2",
-                    "Search"
-                }
+                span { class: "md:pl-2", "Search" }
             }
         }
     }

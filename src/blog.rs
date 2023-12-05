@@ -26,9 +26,7 @@ fn LocationLink(cx: Scope, chapter: &'static SummaryItem<BookRoute>) -> Element 
     };
 
     render! {
-        Link { to: Route::Docs { child: url.clone() },
-            li { class: "m-1 rounded-md pl-2 {current_class}", "{link.name}" }
-        }
+        Link { to: Route::Docs { child: url.clone() }, li { class: "m-1 rounded-md pl-2 {current_class}", "{link.name}" } }
     }
 }
 
