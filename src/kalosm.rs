@@ -7,14 +7,21 @@ pub fn KalosmHome(cx: Scope) -> Element {
                 div { class: "text-black text-5xl font-bold self-center my-auto max-md:text-4xl",
                     "Kalosm"
                 }
-                div { class: "flex-col justify-center bg-gray-400 bg-opacity-20 text-black text-opacity-20 text-center text-5xl font-bold relative max-w-[1231px] fill-zinc-300 fill-opacity-40 overflow-hidden min-h-[110px] grow items-center px-16 py-9 max-md:text-4xl max-md:max-w-full max-md:px-5",
+                div { class: "flex-col justify-center bg-gray-400 bg-opacity-20 text-black text-opacity-20 text-center text-5xl font-bold relative w-1/2 fill-zinc-300 fill-opacity-40 overflow-hidden items-center px-8 py-4 max-md:text-4xl max-md:px-5 rounded-md",
                     "Search the docs"
                 }
                 div { class: "text-black text-5xl font-bold self-center whitespace-nowrap my-auto max-md:text-4xl",
-                    "🐙"
+                    a {
+                        class: "github-button",
+                        href: "https://github.com/floneum/floneum",
+                        "data-size": "large",
+                        "data-show-count": "true",
+                        aria_label: "Star floneum/floneum on GitHub",
+                        "Star"
+                    }
                 }
             }
-            div { class: "text-center text-8xl font-bold max-w-[1945px] mt-24 max-md:max-w-full max-md:text-4xl max-md:mt-10 bg-gradient-to-r from-[#FE6D73] to-[#FFCB77] text-transparent bg-clip-text",
+            div { class: "text-center text-8xl font-bold max-w-[1945px] mt-[30vh] max-md:max-w-full max-md:text-4xl max-md:mt-10 bg-gradient-to-r from-[#FE6D73] to-[#FFCB77] text-transparent bg-clip-text",
                 "Build with controllable, private AI"
             }
             div { class: "justify-center text-black text-center text-5xl font-bold max-w-[1150px] mt-20 max-md:max-w-full max-md:text-4xl max-md:mt-10",
@@ -67,7 +74,7 @@ pub fn KalosmHome(cx: Scope) -> Element {
                                 div { class: "justify-center text-black text-center text-7xl font-bold self-stretch mt-7 max-md:max-w-full max-md:text-4xl",
                                     "Your outputs"
                                 }
-                                div { class: "text-black text-center text-5xl font-bold self-stretch mt-20 max-w-[700px] max-md:text-4xl max-md:mt-10",
+                                div { class: "text-black text-center text-5xl font-bold self-stretch mt-12 max-w-[700px] max-md:text-4xl max-md:mt-10",
                                     "Kalosm is built for "
                                     span {
                                         class: "bg-gradient-to-r from-[#FE6D73] to-[#FFCB77] text-transparent bg-clip-text whitespace-pre-wrap",
@@ -77,12 +84,12 @@ pub fn KalosmHome(cx: Scope) -> Element {
                                 }
                             }
                         }
-                        div { class: "flex flex-col items-stretch w-[60%] mx-5 max-md:w-full max-md:ml-0",
+                        div { class: "flex flex-col items-stretch w-[60%] ml-5 max-md:w-full max-md:ml-0",
                             div { class: "bg-cyan-700 flex grow flex-col items-stretch w-full pl-16 pr-10 py-12 rounded-[100px_0px_0px_100px] max-md:max-w-full max-md:mt-10 max-md:px-5",
                                 div { class: "text-black text-center self-center text-7xl font-bold max-md:max-w-full max-md:text-4xl",
                                     "Your compute"
                                 }
-                                div { class: "text-black text-center self-center text-5xl font-bold mt-20 max-w-[700px] max-md:text-4xl max-md:mt-10",
+                                div { class: "text-black text-center self-center text-5xl font-bold mt-12 max-w-[700px] max-md:text-4xl max-md:mt-10",
                                     "Kalosm models run locally which means "
                                     span {
                                         class: "bg-gradient-to-r from-[#FE6D73] to-[#FFCB77] text-transparent bg-clip-text",
@@ -93,7 +100,7 @@ pub fn KalosmHome(cx: Scope) -> Element {
                         }
                     }
                 }
-                div { class: "flex-col justify-center text-black text-center text-7xl font-bold relative z-[1] max-w-[1301px] overflow-hidden self-stretch min-h-[560px] pt-0 mt-36 px-16 items-end max-md:max-w-full max-md:text-4xl max-md:mt-10 max-md:pl-5 max-md:pr-8 max-md:pb-10",
+                div { class: "flex-col justify-center text-black text-center text-6xl font-bold relative z-[1] max-w-[1301px] overflow-hidden self-stretch pt-0 mt-36 px-16 items-end max-md:max-w-full max-md:text-4xl max-md:mt-10 max-md:pl-5 max-md:pr-8 max-md:pb-10",
                     "Text recognition"
                     img {
                         "loading": "lazy",
@@ -110,7 +117,7 @@ pub fn KalosmHome(cx: Scope) -> Element {
                     div { class: "text-orange-50 text-center text-2xl font-bold whitespace-nowrap bg-stone-900 justify-center items-stretch px-9 py-12 rounded-2xl max-md:max-w-full max-md:px-5",
                         "industry , Mr. Brown commented icily . \" Let us have a"
                     }
-                    div { class: "justify-center text-black text-center text-7xl font-bold self-center max-w-[1301px] mt-44 max-md:max-w-full max-md:text-4xl max-md:mt-10",
+                    div { class: "justify-center text-black text-center text-6xl font-bold self-center max-w-[1301px] mt-44 max-md:max-w-full max-md:text-4xl max-md:mt-10",
                         "Chat Models"
                         br {}
                         span {
@@ -129,22 +136,22 @@ pub fn KalosmHome(cx: Scope) -> Element {
                         "¡Ahoy matey! I be yer trusty AI helper, ready to assist ye with anythingye needs. Whatcha need me teach ye today, cap'n? Just let me know whatit is and me crew of code monkeys will get crackin'."
                     }
                 }
-                img {
-                    "loading": "lazy",
-                    srcset: "https://cdn.builder.io/api/v1/image/assets/TEMP/537cd418-a50f-4a9a-8ab4-dd7ce88a2a60?apiKey=04af1066e8604f98b159e5700077f35c&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/537cd418-a50f-4a9a-8ab4-dd7ce88a2a60?apiKey=04af1066e8604f98b159e5700077f35c&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/537cd418-a50f-4a9a-8ab4-dd7ce88a2a60?apiKey=04af1066e8604f98b159e5700077f35c&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/537cd418-a50f-4a9a-8ab4-dd7ce88a2a60?apiKey=04af1066e8604f98b159e5700077f35c&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/537cd418-a50f-4a9a-8ab4-dd7ce88a2a60?apiKey=04af1066e8604f98b159e5700077f35c&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/537cd418-a50f-4a9a-8ab4-dd7ce88a2a60?apiKey=04af1066e8604f98b159e5700077f35c&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/537cd418-a50f-4a9a-8ab4-dd7ce88a2a60?apiKey=04af1066e8604f98b159e5700077f35c&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/537cd418-a50f-4a9a-8ab4-dd7ce88a2a60?apiKey=04af1066e8604f98b159e5700077f35c&",
-                    class: "aspect-[3.07] object-contain object-center w-full overflow-hidden self-stretch mt-44 max-md:max-w-full max-md:mt-10"
+                div { class: "flex-col justify-center text-black text-center text-6xl font-bold relative z-[1] max-w-[1301px] overflow-hidden self-stretch pt-0 mt-36 px-16 items-end max-md:max-w-full max-md:text-4xl max-md:mt-10 max-md:pl-5 max-md:pr-8 max-md:pb-10",
+                    "Audio transcription"
+                    img {
+                        "loading": "lazy",
+                        src: "/assets/whisper-code.png",
+                        class: "object-contain object-center w-full overflow-hidden self-stretch max-md:max-w-full"
+                    }
                 }
                 div { class: "self-center flex w-[1159px] max-w-full flex-col mt-16 px-5 items-end max-md:mt-10",
                     div { class: "justify-center text-orange-50 text-2xl font-bold whitespace-nowrap bg-stone-900 items-stretch pl-8 pr-10 py-11 rounded-2xl max-md:max-w-full max-md:px-5",
                         "This is a test of voice transcription"
                     }
-                    div { class: "text-black text-center text-9xl font-bold self-stretch mt-64 max-md:max-w-full max-md:text-4xl max-md:mt-10",
-                        "And much more"
-                    }
                 }
                 for (i, chunk, mut colors) in FEATURES.chunks_exact(3).enumerate().map(|(i, chunk)| (i, chunk, FEATURE_COLORS.iter().cycle().skip(i))) {
                     div {
-                        class: "{(i==0).then_some(\"mt-56\").unwrap_or(\"mt-6\")} self-stretch flex flex-row items-start justify-between md:gap-5 sm:gap-1",
+                        class: "{(i==0).then_some(\"mt-24\").unwrap_or(\"mt-6\")} self-stretch flex flex-row items-start justify-between md:gap-5 sm:gap-1",
                         if i % 2 == 0 {
                             render! {
                                 div { class: "flex flex-col items-center whitespace-pre h-24 justify-center text-white text-center lg:text-xl font-bold {colors.next().unwrap()} w-1/12 pt-2 pb-2 md:px-6 self-start",
@@ -166,7 +173,7 @@ pub fn KalosmHome(cx: Scope) -> Element {
                         }
                     }
                 }
-                div { class: "justify-center bg-gradient-to-r from-[#FE6D73] to-[#FFCB77] text-[#FEF9EF] text-center text-9xl font-bold max-w-full self-center w-[1202px] items-center mt-32 mb-11 pt-24 pb-24 px-16 rounded-[100px] max-md:max-w-full max-md:text-4xl max-md:my-10 max-md:px-5 max-md:py-10",
+                div { class: "justify-center bg-gradient-to-r from-[#FE6D73] to-[#FFCB77] text-[#FEF9EF] text-center text-4xl font-bold w-1/2 self-center items-center mt-32 mb-11 py-12 px-8 rounded-[100px] max-md:text-2xl max-md:my-10 max-md:px-5 max-md:py-10",
                     "Get Started"
                 }
             }
