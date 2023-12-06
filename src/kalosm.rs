@@ -3,7 +3,7 @@ use dioxus::prelude::*;
 pub fn KalosmHome(cx: Scope) -> Element {
     render!{
         div { class: "bg-[#FEF9EF] flex flex-col items-center pt-7",
-            div { class: "flex w-full max-w-[1694px] items-stretch justify-between gap-5 px-5 max-md:max-w-full max-md:flex-wrap max-md:justify-center",
+            div { class: "flex w-full max-w-[1694px] items-stretch justify-between gap-5 md:px-5 max-md:max-w-full max-md:flex-wrap max-md:justify-center",
                 div { class: "text-black text-5xl font-bold self-center my-auto max-md:text-4xl",
                     "Kalosm"
                 }
