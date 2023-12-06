@@ -114,7 +114,7 @@ pub fn KalosmHome(cx: Scope) -> Element {
                     class: "aspect-[10.26] object-contain object-center w-full overflow-hidden self-stretch max-md:max-w-full"
                 }
                 div { class: "self-stretch flex w-full flex-col mt-16 pl-20 items-start max-md:max-w-full max-md:mt-10 max-md:pl-5",
-                    div { class: "text-orange-50 text-center text-2xl font-bold whitespace-nowrap bg-stone-900 justify-center items-stretch px-9 py-12 rounded-2xl max-md:max-w-full max-md:px-5",
+                    div { class: "text-orange-50 text-center md:text-2xl font-bold whitespace-nowrap bg-stone-900 justify-center items-stretch px-9 py-12 rounded-2xl max-md:max-w-full max-md:px-5",
                         "industry , Mr. Brown commented icily . \" Let us have a"
                     }
                     div { class: "justify-center text-black text-center text-6xl font-bold self-center max-w-[1301px] mt-44 max-md:max-w-full max-md:text-4xl max-md:mt-10",
