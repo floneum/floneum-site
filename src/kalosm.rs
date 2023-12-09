@@ -1,31 +1,13 @@
 use dioxus::prelude::*;
 
 pub fn KalosmHome(cx: Scope) -> Element {
-    render!{
-        div { class: "bg-[#FEF9EF] flex flex-col items-center pt-7",
-            div { class: "flex w-full max-w-[1694px] items-stretch justify-between gap-5 md:px-5 max-md:max-w-full max-md:flex-wrap max-md:justify-center",
-                div { class: "text-black text-5xl font-bold self-center my-auto max-md:text-4xl",
-                    "Kalosm"
-                }
-                div { class: "flex-col justify-center bg-gray-400 bg-opacity-20 text-black text-opacity-20 text-center text-5xl font-bold relative w-1/2 fill-zinc-300 fill-opacity-40 overflow-hidden items-center px-8 py-4 max-md:text-4xl max-md:px-5 rounded-md",
-                    "Search the docs"
-                }
-                div { class: "text-black text-5xl font-bold self-center whitespace-nowrap my-auto max-md:text-4xl",
-                    a {
-                        class: "github-button",
-                        href: "https://github.com/floneum/floneum",
-                        "data-size": "large",
-                        "data-show-count": "true",
-                        aria_label: "Star floneum/floneum on GitHub",
-                        "Star"
-                    }
-                }
-            }
+    render! {
+        div { class: "flex flex-col items-center pt-7",
             div { class: "text-center text-8xl font-bold max-w-[1945px] mt-[30vh] max-md:max-w-full max-md:text-4xl max-md:mt-10 bg-gradient-to-r from-[#FE6D73] to-[#FFCB77] text-transparent bg-clip-text",
                 "Build with controllable, private AI"
             }
             div { class: "justify-center text-black text-center text-5xl font-bold max-w-[1150px] mt-20 max-md:max-w-full max-md:text-4xl max-md:mt-10",
-                "Kalosm makes it easy to interact with local, language, audio, and image models"
+                "Kalosm makes it easy to interact with local, language, audio, and image models in Rust"
             }
             img {
                 srcset: "https://cdn.builder.io/api/v1/image/assets/TEMP/02eebe30ae892586bd9e8f5abb1f49a097533aafa4634af897ac64c4c0005df4?apiKey=04af1066e8604f98b159e5700077f35c&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/02eebe30ae892586bd9e8f5abb1f49a097533aafa4634af897ac64c4c0005df4?apiKey=04af1066e8604f98b159e5700077f35c&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/02eebe30ae892586bd9e8f5abb1f49a097533aafa4634af897ac64c4c0005df4?apiKey=04af1066e8604f98b159e5700077f35c&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/02eebe30ae892586bd9e8f5abb1f49a097533aafa4634af897ac64c4c0005df4?apiKey=04af1066e8604f98b159e5700077f35c&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/02eebe30ae892586bd9e8f5abb1f49a097533aafa4634af897ac64c4c0005df4?apiKey=04af1066e8604f98b159e5700077f35c&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/02eebe30ae892586bd9e8f5abb1f49a097533aafa4634af897ac64c4c0005df4?apiKey=04af1066e8604f98b159e5700077f35c&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/02eebe30ae892586bd9e8f5abb1f49a097533aafa4634af897ac64c4c0005df4?apiKey=04af1066e8604f98b159e5700077f35c&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/02eebe30ae892586bd9e8f5abb1f49a097533aafa4634af897ac64c4c0005df4?apiKey=04af1066e8604f98b159e5700077f35c&",
@@ -197,9 +179,4 @@ const FEATURES: &[&str] = &[
     "context",
 ];
 
-const FEATURE_COLORS: &[&str] = &[
-    "bg-cyan-700",
-    "bg-red-400",
-    "bg-teal-500",
-    "bg-orange-300",
-];
+const FEATURE_COLORS: &[&str] = &["bg-cyan-700", "bg-red-400", "bg-teal-500", "bg-orange-300"];
