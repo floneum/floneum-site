@@ -1310,28 +1310,28 @@ imports.wbg.__wbindgen_memory = function() {
     const ret = wasm.memory;
     return addHeapObject(ret);
 };
-imports.wbg.__wbindgen_closure_wrapper9099 = function(arg0, arg1, arg2) {
-    const ret = makeMutClosure(arg0, arg1, 844, __wbg_adapter_48);
+imports.wbg.__wbindgen_closure_wrapper9752 = function(arg0, arg1, arg2) {
+    const ret = makeMutClosure(arg0, arg1, 1000, __wbg_adapter_48);
     return addHeapObject(ret);
 };
-imports.wbg.__wbindgen_closure_wrapper9101 = function(arg0, arg1, arg2) {
-    const ret = makeMutClosure(arg0, arg1, 842, __wbg_adapter_51);
+imports.wbg.__wbindgen_closure_wrapper9754 = function(arg0, arg1, arg2) {
+    const ret = makeMutClosure(arg0, arg1, 998, __wbg_adapter_51);
     return addHeapObject(ret);
 };
-imports.wbg.__wbindgen_closure_wrapper9103 = function(arg0, arg1, arg2) {
-    const ret = makeMutClosure(arg0, arg1, 846, __wbg_adapter_54);
+imports.wbg.__wbindgen_closure_wrapper9756 = function(arg0, arg1, arg2) {
+    const ret = makeMutClosure(arg0, arg1, 1002, __wbg_adapter_54);
     return addHeapObject(ret);
 };
-imports.wbg.__wbindgen_closure_wrapper11106 = function(arg0, arg1, arg2) {
-    const ret = makeClosure(arg0, arg1, 1008, __wbg_adapter_57);
+imports.wbg.__wbindgen_closure_wrapper11759 = function(arg0, arg1, arg2) {
+    const ret = makeClosure(arg0, arg1, 1164, __wbg_adapter_57);
     return addHeapObject(ret);
 };
-imports.wbg.__wbindgen_closure_wrapper11393 = function(arg0, arg1, arg2) {
-    const ret = makeMutClosure(arg0, arg1, 1044, __wbg_adapter_60);
+imports.wbg.__wbindgen_closure_wrapper12046 = function(arg0, arg1, arg2) {
+    const ret = makeMutClosure(arg0, arg1, 1200, __wbg_adapter_60);
     return addHeapObject(ret);
 };
-imports.wbg.__wbindgen_closure_wrapper11651 = function(arg0, arg1, arg2) {
-    const ret = makeMutClosure(arg0, arg1, 1073, __wbg_adapter_63);
+imports.wbg.__wbindgen_closure_wrapper12304 = function(arg0, arg1, arg2) {
+    const ret = makeMutClosure(arg0, arg1, 1232, __wbg_adapter_63);
     return addHeapObject(ret);
 };
 imports['./snippets/dioxus-interpreter-js-603636eeca72cf05/inline0.js'] = __wbg_star0;

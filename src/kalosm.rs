@@ -2,7 +2,7 @@ use dioxus::prelude::*;
 
 pub fn KalosmHome(cx: Scope) -> Element {
     render! {
-        div { class: "flex flex-col items-center pt-7",
+        div { class: "flex flex-col items-center",
             div { class: "text-center text-8xl font-bold max-w-[1945px] mt-[30vh] max-md:max-w-full max-md:text-4xl max-md:mt-10 bg-gradient-to-r from-[#FE6D73] to-[#FFCB77] text-transparent bg-clip-text",
                 "Build with controllable, private AI"
             }

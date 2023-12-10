@@ -6,7 +6,7 @@ use mdbook_shared::SummaryItem;
 #[inline_props]
 pub fn KalosmLearn(cx: Scope) -> Element {
     cx.render(rsx! {
-        div { class: "w-full pt-12 text-sm backdrop-blur-lg bg-white/75", min_height: "100vh",
+        div { class: "bg-[#FEF9EF] w-full h-full pt-12 text-sm backdrop-blur-lg", min_height: "100vh",
             div { class: "max-w-screen-2xl flex flex-row justify-between mx-auto",
                 learn::Content {}
                 LeftNav {}
