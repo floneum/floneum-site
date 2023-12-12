@@ -1,4 +1,4 @@
-# Text Generation with Kalosm in Rust - Synchronous and Streaming
+# Text Generation with Kalosm in Rust
 
 ## Introduction
 
@@ -6,17 +6,10 @@ Kalosm, provides both synchronous and streaming approaches for generating text. 
 
 ## Setting up the Kalosm Model
 
-Initializing the Kalosm model is the first step in both synchronous and streaming text generation. In this example, we use the Mistral model Zephyr 7B Beta, but Kalosm also supports Phi, and remote models with the same API.
+Initializing the Kalosm model is the first step in both synchronous and streaming text generation. In this example, we use the model Mistral 7b, but Kalosm also supports other Llama models, Phi, and remote models with the same API.
 
 ```rust
-use kalosm::language::*;
-
-fn main() {
-    let mut model = Llama::builder()
-        .with_source(LlamaSource::zephyr_7b_beta())
-        .build()
-        .unwrap();
-}
+{{#include src/doc_snippets/llms.rs:create_model}}
 ```
 
 ## Synchronous Text Generation
@@ -24,18 +17,7 @@ fn main() {
 For synchronous text generation, use the `generate_text` method. Specify the prompt and any additional configurations, such as the maximum length of the generated text:
 
 ```rust
-use kalosm::language::*;
-
-fn main() {
-    let mut model = Llama::builder()
-        .with_source(LlamaSource::zephyr_7b_beta())
-        .build()
-        .unwrap();
-    
-    // New code
-    let text = model.generate_text(prompt).with_max_length(300).unwrap();
-    println!("{}", text);
-}
+{{#include src/doc_snippets/llms.rs:synchronous_text}}
 ```
 
 ## Streaming Text Generation
@@ -43,29 +25,7 @@ fn main() {
 Streaming text generation allows efficient handling of large amounts of generated text. Use the `stream_text` method to initiate the generation process and iterate over the generated tokens:
 
 ```rust
-use kalosm::language::*;
-use std::io::Write;
-
-fn main() {
-    let mut model = Llama::builder()
-        .with_source(LlamaSource::zephyr_7b_beta())
-        .build()
-        .unwrap();
-
-    // New code
-    let prompt = "The capital of France is";
-    print!("{prompt}");
-    let mut text_stream = model
-        .stream_text(prompt)
-        .with_max_length(1000)
-        .await
-        .unwrap();
-
-    while let Some(token) = text_stream.next().await {
-        print!("{token}");
-        std::io::stdout().flush().unwrap();
-    }
-}
+{{#include src/doc_snippets/llms.rs:streaming_text}}
 ```
 
 Just like the synchronous method, you can specify additional configurations, such as the maximum length of the generated text before awaiting the stream to start generating text.

@@ -1,6 +1,6 @@
-# Understanding the Chat-based Constrained Generation Example
+# Chat-based Interaction
 
-Let's delve into the provided example code, which demonstrates a chat-based interaction using Kalosm. The primary goal is to understand how the chat system is set up and how the language model generates responses based on user input.
+ Chat is a simple but effective way to interact with a language model. This example demonstrates how to set up a chat-based interaction with a pirate-themed assistant using Kalosm.
 
 ## Setting up the Environment
 
@@ -16,43 +16,32 @@ tokio = { version = "1", features = ["full"] }
 
 Now, let's break down the example code step by step:
 
-1. **Importing Dependencies:**
-   ```rust
-   use kalosm::{language::*, *};
-   ```
+- Creating a Chat Language Model
 
-   Import the necessary libraries and dependencies from the `kalosm` crate.
+Kalosm supports several chat variants of language models with the builder method introduced in [llms](../index.md) chapter. If you want a good default chat model, Kalosm also provides the `new_chat` method.
 
-2. **Initializing the Chat-based Language Model:**
-   ```rust
-   let mut model = Llama::new_chat();
-   ```
+```rust
+{{#include src/doc_snippets/chat.rs:create_chat_model}}
+```
 
-   Create a new chat-based language model using `Llama::new_chat()`.
+- Creating a Chat Instance
 
-3. **Configuring the Chat:**
-   ```rust
-   let mut chat = Chat::builder(&mut model)
-       .with_system_prompt("The assistant will act like a pirate")
-       .build();
-   ```
+Now that we have a language model, we can create a chat instance using the builder pattern. The `with_system_prompt` method sets a system prompt that defines the behavior of the assistant. In this case, the assistant is configured to act like a pirate.
 
-   Create a chat instance using the builder pattern. The `with_system_prompt` method sets a system prompt that defines the behavior of the assistant. In this case, the assistant is configured to act like a pirate.
+```rust
+{{#include src/doc_snippets/chat.rs:create_chat_wrapper}}
+```
+
+Create a chat instance using the builder pattern. The `with_system_prompt` method sets a system prompt that defines the behavior of the assistant. In this case, the assistant is configured to act like a pirate.
 
 4. **Starting the Conversation Loop:**
-   ```rust
-   loop {
-       chat.add_message(prompt_input("\n> ").unwrap())
-           .await
-           .unwrap()
-           .to_std_out()
-           .await
-           .unwrap();
-   }
-   ```
 
-   Enter a loop where the user can input messages. The `prompt_input("\n> ")` function is used to obtain user input, and the `add_message` method adds the user's message to the conversation. The assistant generates a response using the language model, and the resulting message is printed to the standard output using `to_std_out()`.
+After you have created a chat instance, you can start the conversation loop. First, we need to get the users question from the terminal with `prompt_input`. Every time you add a message to the conversation with `add_message`, the assistant will start streaming a response. You can use the `to_std_out` method to print the response to the standard output.
+
+```rust
+
+```
 
 ## Conclusion
 
-This example sets up a chat-based interaction with a pirate-themed assistant using Kalosm. Users can input messages, and the assistant responds accordingly based on the configured system prompt. The code demonstrates a simple but effective way to engage in interactive conversations with a language model. Developers can extend and customize this example to build more sophisticated chat applications tailored to specific themes or contexts.
+This example demonstrates how to set up a chat-based interaction with a pirate-themed assistant using Kalosm. More chat example code can be found in the [examples](https://github.com/floneum/floneum/tree/master/interfaces/kalosm/examples) folder.

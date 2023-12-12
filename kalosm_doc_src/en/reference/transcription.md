@@ -2,35 +2,35 @@
 
 Audio transcription with Kalosm involves the use of Automatic Speech Recognition (ASR) models to convert spoken language into written text. This process is crucial in applications ranging from voice assistants to transcription services. Let's explore the key concepts behind audio transcription using Kalosm:
 
-## 1. Automatic Speech Recognition (ASR)
+## Automatic Speech Recognition (ASR)
 
 ASR is a technology that converts spoken language into written text. It analyzes audio signals to identify and transcribe spoken words.
 
-## 2. Whisper ASR Model
+## Whisper ASR Model
 
 Kalosm provides the Whisper ASR model, designed for accurate and efficient speech recognition. Developers can choose different Whisper models based on their requirements, such as `DistilLargeV2` in the example.
 
-## 3. Audio Input
+## Audio Input
 
 The audio source can be diverse, ranging from pre-recorded files to real-time input from a microphone. The example code uses `kalosm_sound::MicInput::record_until` to record audio from the microphone for a specified duration.
 
-## 4. Transcription Process
+## Transcription Process
 
 The recorded audio is then passed through the Whisper ASR model for transcription. Kalosm's `transcribe` method is utilized to perform this operation. The output is a stream of transcribed segments.
 
-## 5. Real-time Output
+## Real-time Output
 
 The transcribed segments are processed in real-time. The code snippet prints the transcribed text along with corresponding time stamps, indicating when each segment started and ended.
 
-## 6. Handling No Speech
+## Handling No Speech
 
 The code includes a check for the probability of no speech in a given segment. If the probability is high (above 0.90 in the example), it indicates that no speech was detected during that period.
 
-## 7. Iterative Processing
+## Iterative Processing
 
 The entire process is typically performed iteratively in a loop, allowing continuous transcription of audio segments.
 
-## 8. Application Scenarios
+## Application Scenarios
 
 Audio transcription with Kalosm finds applications in voice-controlled systems, transcription services, virtual assistants, and more. Developers can tailor the use of ASR to specific contexts and requirements.
 

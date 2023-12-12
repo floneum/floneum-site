@@ -2,25 +2,10 @@
 
 ## Overview
 
-Constrained generation in Kalosm refers to the ability to generate text that adheres to specific constraints or grammatical structures. This is achieved by using the Kalosm library, which provides a powerful framework for natural language generation and parsing.
+Language models can be incredibly powerful tools for tasks that are difficult to define. However, in some cases, it is necessary to constrain the output of a language model to a specific set of rules or patterns. For example, you may want to generate text in a JSON format. Kalosm provides a powerful mechanism for constrained generation that allows you to define a set of constraints and generate text that adheres to those constraints.
 
-In the provided example code, we demonstrate how to use Kalosm for constrained generation by creating a language model that generates text conforming to a predefined set of constraints.
 
-## Setting up the Environment
-
-Before diving into the code, ensure that you have the required dependencies. The example uses the `futures_util` and `kalosm_language` crates. Make sure to add these dependencies to your project's `Cargo.toml` file:
-
-```toml
-[dependencies]
-futures-util = "0.3"
-kalosm-language = "0.1"
-```
-
-## Example Code Explanation
-
-Let's break down the provided example code step by step.
-
-1. **Importing Dependencies:**
+Importing Dependencies:**
    ```rust
    use futures_util::stream::StreamExt;
    use kalosm_language::*;

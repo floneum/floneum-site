@@ -20,6 +20,8 @@ use learn::Learn;
 use serde::{Deserialize, Serialize};
 
 mod blog;
+#[cfg(feature = "check_docs")]
+mod doc_snippets;
 mod home;
 mod kalosm;
 mod kalosm_learn;
