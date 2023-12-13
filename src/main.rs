@@ -162,6 +162,7 @@ enum Route {
                 KalosmDocs { child: KalosmBookRoute },
             #[end_layout]
         #[end_nest]
+    #[end_layout]
     #[layout(HeaderFooter)]
         #[route("/")]
         Home {},

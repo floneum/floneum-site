@@ -1,10 +1,10 @@
 mod first {
     // ANCHOR: first
-    use kalosm::{language::*, *};
+    use kalosm::language::*;
 
     #[tokio::main]
     async fn main() {
-        let mut model = Llama::new_chat();
+        let model = Llama::new_chat();
     }
     // ANCHOR_END: first
 }

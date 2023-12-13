@@ -2,90 +2,42 @@
 
 ## Overview
 
-Language models can be incredibly powerful tools for tasks that are difficult to define. However, in some cases, it is necessary to constrain the output of a language model to a specific set of rules or patterns. For example, you may want to generate text in a JSON format. Kalosm provides a powerful mechanism for constrained generation that allows you to define a set of constraints and generate text that adheres to those constraints.
+Language models can be incredibly powerful tools for difficult to define tasks. However, in some cases, it is necessary to constrain the output of a language model to a specific pattern. For example, you may want to generate text in a JSON format. Kalosm provides a powerful mechanism for constrained generation that allows you to define a set of constraints and generate text that adheres to those constraints.
 
 
-Importing Dependencies:**
-   ```rust
-   use futures_util::stream::StreamExt;
-   use kalosm_language::*;
-   use kalosm_sample::*;
-   use std::io::Write;
-   use std::sync::Arc;
-   use std::sync::Mutex;
-   ```
+## Defining Constraints
 
-   Import necessary libraries and dependencies, including `futures_util`, `kalosm_language`, and `kalosm_sample`.
+Kalosm provides a set of parsers that can be used to define constraints. These parsers can be combined to create complex constraints. The following parsers are available:
 
-2. **Initializing the Language Model:**
-   ```rust
-   let mut llm = Phi::start().await;
-   ```
+- `LiteralParser`: Matches a literal string.
+- `IntegerParser`: Matches an integer (along with parsers for each rust integer type).
+- `FloatParser`: Matches a float.
+- `StringParser`: Matches a string.
+- `SeparatorParser`: Matches any number of items separated by a separator.
+- `IndexParser`: Matches any of a set of parsers and returns the index of the matched parser.
+- `StopOn`: Matches anything until a literal.
+- `WordParser`: Matches a single word.
+- `VecParser`: Matches a vector of items.
 
-   Create an instance of the Kalosm language model (`Phi`) using the `start` method.
+These parsers can be combined using the following combinators:
 
-3. **Defining Constraints:**
-   ```rust
-   let prompt = "Five US states in central US are ";
-   let states = [
-       // List of US states
-   ];
-   let states_parser = states
-       .into_iter()
-       .map(LiteralParser::from)
-       .collect::<Vec<_>>();
-   let states = IndexParser::new(states_parser);
-   let validator = states
-       .then(LiteralParser::from(", "))
-       .repeat(5..=5)
-       .then(LiteralParser::from("\n"));
-   let validator_state = validator.create_parser_state();
-   ```
+- `then`: Matches the first parser followed by the second parser.
+- `or`: Matches the first parser or the second parser.
+- `repeat`: Matches the parser a specified number of times.
 
-   Define a prompt and constraints. In this case, the constraint is a list of US states followed by a comma and repeated five times.
+In this example, we will create a parser that completes a sentence with only valid states by combining the `LiteralParser` and `IndexParser`:
 
-4. **Constrained Generation:**
-   ```rust
-   let mut words = llm
-       .stream_structured_text_with_sampler(
-           prompt,
-           validator,
-           validator_state,
-           Arc::new(Mutex::new(GenerationParameters::default().sampler())),
-       )
-       .await
-       .unwrap();
-   ```
+```rust
+{{#include src/doc_snippets/structured.rs:create_parser}}
+```
 
-   Generate text that adheres to the defined constraints using the `stream_structured_text_with_sampler` method.
+## Generating Text
 
-5. **Displaying the Output:**
-   ```rust
-   while let Some(text) = words.next().await {
-       print!("{}", text);
-       std::io::stdout().flush().unwrap();
-   }
-   ```
+Once you have defined a parser, you can generate text that adheres to the constraints defined by the parser. The `stream_structured_text` function takes a prompt and a parser and returns a stream of text that adheres to the constraints defined by the parser along with the results once generation is finished. The following example shows how to generate text using the parser defined above:
 
-   Print the generated text to the console.
-
-6. **Result Inspection:**
-   ```rust
-   println!("{:#?}", words.result().await);
-   ```
-
-   Print additional information about the generated text, such as parsing result.
-
-7. **Unconstrained Generation:**
-   ```rust
-   let mut words = llm.stream_text(prompt).with_max_length(100).await.unwrap();
-   while let Some(text) = words.next().await {
-       print!("{}", text);
-       std::io::stdout().flush().unwrap();
-   }
-   ```
-
-   Generate text without constraints for comparison.
+```rust
+{{#include src/doc_snippets/structured.rs:streaming_text}}
+```
 
 ## Conclusion
 

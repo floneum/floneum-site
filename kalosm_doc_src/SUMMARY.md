@@ -2,13 +2,11 @@
 
 [Introduction](index.md)
 
-- [Classification](reference/classification.md)
 - [Text Recognition](reference/text_recognition.md)
 - [Image Generation](reference/image_generation.md)
 - [Transcription](reference/transcription.md)
 - [Web Scraping](reference/web_scraping.md)
 - [Image Segmentation](reference/image_segmentation.md)
-- [Embedding](reference/embedding.md)
 
 ---
 

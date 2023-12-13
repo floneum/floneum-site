@@ -23,7 +23,7 @@ async fn main() {
     // ANCHOR_END: synchronous_text
 
     // ANCHOR: streaming_text
-    let mut text_stream = model
+    let text_stream = model
         .stream_text("The capital of France is")
         // Set any options you need
         .with_max_length(1000)
