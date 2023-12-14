@@ -4,67 +4,20 @@ Web crawling with Kalosm allows developers to systematically browse the web, ext
 
 ## Kalosm's Web Crawling API
 
-Kalosm provides a powerful web crawling API through the `Page::crawl` method. This method takes a starting URL, a browsing mode, and a closure that defines the crawling logic.
+Kalosm provides a powerful web crawling API through the `Page::crawl` method. This method takes a starting URL, a browsing mode, and a closure that defines the crawling logic. The browser mode controls if the crawler should only retrieve the HTML content of the page or if it should also run a full headless browser to execute JavaScript and load dynamic content. The closure defines the behavior for each visited page. It receives a `Page` object representing the current web page. The closure must return a `Pin<Box<dyn Future<Output = CrawlFeedback>>>` to instruct the crawler to follow links on the current page.
 
 ```rust
-Page::crawl(
-    Url::parse("https://www.nytimes.com/live/2023/09/21/world/zelensky-russia-ukraine-news").unwrap(),
-    BrowserMode::Static,
-    // Closure defining crawling logic...
-).await.unwrap();
+{{#include src/doc_snippets/web_scraping.rs:create_crawler}}
 ```
 
-## Initializing Counters
+## Reading the HTML Content of a Page
 
-Two counters, `count` and `real_visited`, are used to keep track of page processing. These counters are implemented using `AtomicUsize` and `Arc` for thread-safe shared state.
-
-```rust
-let count = Arc::new(AtomicUsize::new(0));
-let real_visited = Arc::new(AtomicUsize::new(0));
-```
-
-## Crawling Closure
-
-The closure passed to `Page::crawl` defines the behavior for each visited page. It receives a `Page` object representing the current web page.
+Kalosm provides utilities to extract information from the HTML content of a page. The `Page::article` method extracts an article from a webpage. From that article you can extract the title, and the text of the page. If you need lower level access to the HTML content, you can use the `Page::html` method to get the raw HTML content of the page.
 
 ```rust
-move |page: Page| {
-    // Closure logic...
-    // Must return a Pin<Box<dyn Future<Output = CrawlFeedback>>>
-}
-```
-
-## Crawling Logic
-
-Inside the closure, several steps are performed:
-
-- Increment the `real_visited` counter to track the actual number of visited pages.
-- Check the `count` counter to determine if the maximum number of pages to process has been reached. If so, stop crawling.
-- Attempt to retrieve the article content from the page using `page.article().await`. If unsuccessful, skip the page.
-- Check the length of the page's body. If it's less than 100 characters, skip the page.
-- Print the title and body of the page.
-- Increment the `count` counter.
-- Return `CrawlFeedback::follow_all()` to instruct the crawler to follow all links on the current page.
-
-```rust
-let Ok(page) = page.article().await else {
-    return CrawlFeedback::follow_none();
-};
-
-let body = page.body();
-
-if body.len() < 100 {
-    return CrawlFeedback::follow_none();
-}
-
-println!("Title: {}", page.title());
-println!("Article:\n{}", body);
-
-count.fetch_add(1, Ordering::SeqCst);
-
-CrawlFeedback::follow_all()
+{{#include src/doc_snippets/web_scraping.rs:read_article}}
 ```
 
 ## Conclusion
 
-This example serves as a foundational guide for building web crawling applications with Kalosm. Developers can customize the crawling logic to extract specific information, handle errors, and adapt the application to their unique use cases. Understanding the provided example empowers developers to effectively use Kalosm's web crawling API for tasks such as data extraction, content analysis, and monitoring web pages.
+This example serves as a foundational guide for building web crawling applications with Kalosm. You can combine a web crawler with a [LLM](./llms/index.md) to perform more complex analysis on the content of web pages. Or you could train a [custom classifier](https://github.com/floneum/floneum/blob/master/interfaces/kalosm-learning/examples/classify.rs) to classify web pages based on their content.

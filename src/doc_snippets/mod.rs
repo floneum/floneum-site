@@ -1,7 +1,10 @@
 mod chat;
 mod embeddings;
+mod image_generation;
+mod image_segmentation;
 mod kalosm;
 mod llms;
 mod structured;
 mod text_recognition;
 mod transcription;
+mod web_scraping;

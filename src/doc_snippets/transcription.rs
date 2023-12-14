@@ -10,7 +10,7 @@ async fn main() -> Result<(), anyhow::Error> {
     // ANCHOR: record_audio
     use tokio::time::{Duration, Instant};
     // Record audio from the microphone for 5 seconds.
-    let audio = kalosm_sound::MicInput::default()
+    let audio = MicInput::default()
         .record_until(Instant::now() + Duration::from_secs(5))
         .await
         .unwrap();
