@@ -2160,6 +2160,7 @@ dependencies = [
 name = "floneum-site"
 version = "0.1.0"
 dependencies = [
+ "anyhow",
  "axum",
  "dioxus",
  "dioxus-fullstack",
@@ -2169,6 +2170,7 @@ dependencies = [
  "floneumite",
  "futures-util-preview",
  "getrandom 0.2.11",
+ "image 0.24.7",
  "kalosm",
  "log",
  "mdbook-shared",

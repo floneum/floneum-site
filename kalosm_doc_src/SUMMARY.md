@@ -12,10 +12,6 @@
 
 - [LLMS](reference/llms/index.md)
   - [Chat](reference/llms/chat.md)
-  - [Moderation](reference/llms/moderation.md)
+  <!-- - [Moderation](reference/llms/moderation.md) -->
   - [Structured Generation](reference/llms/structured_generation.md)
-  - [Context](reference/llms/context/index.md)
-    - [Audio](reference/llms/context/audio.md)
-    - [Documents](reference/llms/context/documents.md)
-    - [RSS](reference/llms/context/rss.md)
-    - [Search](reference/llms/context/search.md)
+  - [Context](reference/llms/context.md)

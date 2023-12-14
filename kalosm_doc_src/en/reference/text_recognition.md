@@ -1,49 +1,43 @@
-# Optical Character Recognition
+# Text Recognition
 
-Single-Line OCR (Optical Character Recognition) using Kalosm allows developers to extract text information from images. The example provided demonstrates the fundamental steps to perform single-line OCR using Kalosm's vision module.
+Kalosm allows developers to extract text information from images using optical character recognition (OCR). This guide demonstrates how to perform single-line OCR using Kalosm's vision module.
 
-## Kalosm's OCR Module
+## Adding dependencies
 
-Kalosm's OCR module provides functionality for text recognition in images. In this example, the `Ocr::builder()` method is used to create an OCR model.
+Before we get started, we need to add an additional crate for image loading. Add the following line to your `Cargo.toml` file:
 
-```rust
-let mut model = Ocr::builder().build().unwrap();
+```toml
+[dependencies]
+# Your Kalosm dependency added in the start of the documentation...
+image = "0.24.7"
 ```
 
-This line initializes an OCR model that will be used to recognize text in images.
+## Creating an OCR Model
+
+Kalosm's `vision` module provides functionality for text recognition in images. In this example, the `Ocr::builder()` method is used to create an OCR model that can transcribe single lines of text.
+
+```rust
+{{#include src/doc_snippets/text_recognition.rs:create_model}}
+```
 
 ## Loading Image
 
-The example uses the `image::open` function to load an image from the file system.
+Next, we need to load an image that contains text. The `image` crate provides the [open](https://docs.rs/image/latest/image/fn.open.html) method to load an image from a file path, or the [Reader](https://docs.rs/image/latest/image/io/struct.Reader.html) for more advanced loading options.
 
 ```rust
-let image = image::open("examples/ocr.png").unwrap();
+{{#include src/doc_snippets/text_recognition.rs:create_model}}
 ```
 
 Replace the file path with the location of your image. This loaded image will be processed for text recognition.
 
 ## Text Recognition
 
-The OCR model is then used to recognize text in the loaded image. The `recognize_text` method takes an `OcrInferenceSettings` object, which is constructed using the loaded image.
+Finally, we can use the `recognize_text` method to extract text information from the image. The `recognize_text` method takes an `OcrInferenceSettings` struct as input. This struct contains the image to be processed, as well as other settings that can be used to customize the OCR process.
 
 ```rust
-let text = model
-    .recognize_text(OcrInferenceSettings::new(image).unwrap())
-    .unwrap();
+{{#include src/doc_snippets/text_recognition.rs:recognize_text}}
 ```
-
-The `recognize_text` method processes the image and extracts the text information.
-
-## Displaying Results
-
-The recognized text is printed to the console.
-
-```rust
-println!("{}", text);
-```
-
-This line outputs the recognized text to the console, allowing developers to view the OCR results.
 
 ## Conclusion
 
-This example provides a basic structure for performing single-line OCR using Kalosm's vision module. Developers can customize this code to suit their specific use cases, handle errors, and integrate OCR functionality into their applications. Understanding the steps involved in single-line OCR with Kalosm enables developers to efficiently extract textual information from images for various applications.
+This example provides a basic structure for performing single-line OCR using Kalosm's vision module. You can combine text recognition with an [LLM](./llms/index.md) to analyze complex documents or photos.

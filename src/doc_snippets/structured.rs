@@ -2,7 +2,6 @@
 async fn main() {
     // ANCHOR: create_parser
     use kalosm::language::*;
-    use kalosm::*;
 
     // Create a list of parser for states
     let states = ["Alaska", "Delaware", "Florida", "Georgia", "Hawaii"];

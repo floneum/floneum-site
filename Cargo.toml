@@ -22,8 +22,10 @@ serde = { version = "1.0.164", features = ["derive"] }
 getrandom = { version = "0.2", features = ["js"] }
 postcard = { version = "1.0.4", features = ["use-std"] }
 futures-util-preview = "0.2.2"
+anyhow = { version = "1.0.75", optional = true }
 
 kalosm = { git = "https://github.com/floneum/floneum", optional = true }
+image = { version = "0.24.7", optional = true }
 
 [dev-dependencies]
 floneum_rust = { git = "https://github.com/floneum/floneum" }
@@ -45,4 +47,4 @@ default = []
 web = ["dioxus-fullstack/web", "dioxus-router/web"]
 ssr = ["dioxus-fullstack/router", "tokio", "dioxus-fullstack/axum", "axum"]
 prebuild = ["ssr"]
-check_docs = ["kalosm", "tokio"]
+check_docs = ["kalosm", "tokio", "anyhow", "image"]

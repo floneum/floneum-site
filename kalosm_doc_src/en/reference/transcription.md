@@ -1,102 +1,31 @@
 # Audio Transcription
 
-Audio transcription with Kalosm involves the use of Automatic Speech Recognition (ASR) models to convert spoken language into written text. This process is crucial in applications ranging from voice assistants to transcription services. Let's explore the key concepts behind audio transcription using Kalosm:
+Kalosm provides helpers that allow you to easily transcribe audio data from either your microphone or a file. In this chapter, we will learn how to use Kalosm to perform real time audio transcription.
 
-## Automatic Speech Recognition (ASR)
+## Creating a Transcription Model
 
-ASR is a technology that converts spoken language into written text. It analyzes audio signals to identify and transcribe spoken words.
-
-## Whisper ASR Model
-
-Kalosm provides the Whisper ASR model, designed for accurate and efficient speech recognition. Developers can choose different Whisper models based on their requirements, such as `DistilLargeV2` in the example.
-
-## Audio Input
-
-The audio source can be diverse, ranging from pre-recorded files to real-time input from a microphone. The example code uses `kalosm_sound::MicInput::record_until` to record audio from the microphone for a specified duration.
-
-## Transcription Process
-
-The recorded audio is then passed through the Whisper ASR model for transcription. Kalosm's `transcribe` method is utilized to perform this operation. The output is a stream of transcribed segments.
-
-## Real-time Output
-
-The transcribed segments are processed in real-time. The code snippet prints the transcribed text along with corresponding time stamps, indicating when each segment started and ended.
-
-## Handling No Speech
-
-The code includes a check for the probability of no speech in a given segment. If the probability is high (above 0.90 in the example), it indicates that no speech was detected during that period.
-
-## Iterative Processing
-
-The entire process is typically performed iteratively in a loop, allowing continuous transcription of audio segments.
-
-## Application Scenarios
-
-Audio transcription with Kalosm finds applications in voice-controlled systems, transcription services, virtual assistants, and more. Developers can tailor the use of ASR to specific contexts and requirements.
-
-# Example: Audio Transcription with Kalosm API
+First, we need to create a transcription model. A transcription model is a machine learning model that can be used to transcribe audio data. Kalosm provides a `Whisper` struct that can be used to create a transcription model.
 
 ```rust
-// Importing dependencies...
-
-#[tokio::main]
-async fn main() -> Result<(), anyhow::Error> {
-    // Create a new small whisper model.
-    let model = WhisperBuilder::default()
-        .with_source(WhisperSource::DistilLargeV2)
-        .build()?;
-
-    let mut current_time_stamp = 0.0;
-    loop {
-        // Record audio from the microphone for 5 seconds.
-        let audio = kalosm_sound::MicInput::default()
-            .record_until(Instant::now() + Duration::from_secs(5))
-            .await?;
-
-        // Transcribe the audio.
-        let mut transcribed = model.transcribe(audio)?;
-
-        // As the model transcribes the audio, print the text to the console.
-        while let Some(transcribed) = transcribed.next().await {
-            let start = current_time_stamp + transcribed.start();
-            let end = start + transcribed.duration();
-            if transcribed.probability_of_no_speech() < 0.90 {
-                let text = transcribed.text();
-                println!("({:01} - {:01}): {}", start, end, text);
-            } else {
-                println!(
-                    "({:01} - {:01}): <no speech> ({})",
-                    start,
-                    end,
-                    transcribed.text()
-                );
-            }
-            current_time_stamp = end;
-        }
-    }
-}
+{{#include src/doc_snippets/transcription.rs:create_model}}
 ```
 
-## Explanation of API Usage:
+## Recording Audio
 
-1. **Whisper ASR Model Creation:**
+Next, we need to record some audio from our environment. We can use the `MicInput` struct with the `record_until` method to record audio from our microphone until a certain point in time:
 
-   Create a Whisper ASR model using `WhisperBuilder`. In this example, we use the `DistilLargeV2` source for the model.
+```rust
+{{#include src/doc_snippets/transcription.rs:record_audio}}
+```
 
-2. **Audio Recording:**
+## Transcribing Audio
 
-   Record audio from the microphone for 5 seconds using `MicInput::record_until`.
+Finally, we can use the `transcribe` method to transcribe the audio data that we recorded into text. The transcribe method takes some audio data and returns a stream of snippets of text along with the confidence of the transcription.
 
-3. **Transcribing Audio:**
+```rust
+{{#include src/doc_snippets/transcription.rs:transcribe}}
+```
 
-   Transcribe the recorded audio using the Whisper ASR model. The result is a stream of transcribed segments.
+## Conclusion
 
-4. **Real-time Output Processing:**
-
-   Iterate over the transcribed segments in real-time, printing the transcribed text along with corresponding time stamps.
-
-5. **Handling No Speech:**
-
-   Check the probability of no speech in a given segment. If the probability is high, indicate that no speech was detected.
-
-This example showcases how to use Kalosm's API to integrate audio transcription capabilities into your Rust application. Developers can adapt and extend this code to suit specific use cases, such as voice-controlled systems or transcription services. Understanding the API calls and their sequence helps developers effectively use Kalosm for audio transcription.
+In this chapter, we learned how to use Kalosm to transcribe audio data from our microphone. Audio data can be a powerful source of real time information. You can combine audio data with [resource augmented generation](../guides/resource_augmented_generation.md) to create a [chat bot that understands it's surroundings](https://github.com/floneum/floneum/blob/master/interfaces/kalosm/examples/live_qa.rs).
