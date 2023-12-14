@@ -3,7 +3,7 @@ use crate::docs::LAZY_BOOK;
 use crate::*;
 use mdbook_shared::SummaryItem;
 
-#[inline_props]
+#[component]
 pub fn Learn(cx: Scope) -> Element {
     cx.render(rsx! {
         div { class: "w-full pt-12 text-sm backdrop-blur-lg bg-white/75", min_height: "100vh",
@@ -32,7 +32,7 @@ fn LeftNav(cx: Scope) -> Element {
     }
 }
 
-#[inline_props]
+#[component]
 fn SidebarSection(cx: Scope, chapter: &'static SummaryItem<BookRoute>) -> Element {
     let link = chapter.maybe_link()?;
 
@@ -45,7 +45,7 @@ fn SidebarSection(cx: Scope, chapter: &'static SummaryItem<BookRoute>) -> Elemen
         div { class: "pb-4",
             if let Some(url) = &link.location {
                 rsx! {
-                    Link { to: Route::Docs { child: url.clone() }, h2 { class: "font-semibold", "{link.name}" } }
+                    Link { to: Route::Docs { child: *url }, h2 { class: "font-semibold", "{link.name}" } }
                 }
             }
             ul { class: "pl-2", sections }
@@ -53,7 +53,7 @@ fn SidebarSection(cx: Scope, chapter: &'static SummaryItem<BookRoute>) -> Elemen
     }
 }
 
-#[inline_props]
+#[component]
 fn SidebarChapter(cx: Scope, link: &'static SummaryItem<BookRoute>) -> Element {
     let link = link.maybe_link()?;
     let url = link.location.as_ref().unwrap();
@@ -70,7 +70,7 @@ fn SidebarChapter(cx: Scope, link: &'static SummaryItem<BookRoute>) -> Element {
 
     render! {
         li { class: "pt-1",
-            Link { to: Route::Docs { child: url.clone() }, "{shevron}{link.name}" }
+            Link { to: Route::Docs { child: *url }, "{shevron}{link.name}" }
             if show_chevron && show_dropdown {
                 rsx! {
                     ul { class: "ml-6 border-l border-gray-300 py-1",
@@ -84,7 +84,7 @@ fn SidebarChapter(cx: Scope, link: &'static SummaryItem<BookRoute>) -> Element {
     }
 }
 
-#[inline_props]
+#[component]
 fn LocationLink(cx: Scope, chapter: &'static SummaryItem<BookRoute>) -> Element {
     let book_url = use_book(cx).to_string();
 
@@ -97,7 +97,7 @@ fn LocationLink(cx: Scope, chapter: &'static SummaryItem<BookRoute>) -> Element 
     };
 
     render! {
-        Link { to: Route::Docs { child: url.clone() },
+        Link { to: Route::Docs { child: *url },
             li { span { class: "m-1 px-2 rounded-md {current_class}", "{link.name}" } }
         }
     }
@@ -123,7 +123,7 @@ fn RightNav(cx: Scope) -> Element {
     }
 }
 
-fn Content(cx: Scope) -> Element {
+pub fn Content(cx: Scope) -> Element {
     render! {
         section { class: "body-font overflow-hidden mx-auto container pt-12 pb-12 w-2/3",
             div { class: "-my-8",

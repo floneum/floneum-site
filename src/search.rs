@@ -16,7 +16,7 @@ impl Deref for SearchActive {
 pub fn SearchModal(cx: Scope) -> Element {
     let show_modal = use_shared_state::<SearchActive>(cx).unwrap();
     let search_text = use_state(cx, String::new);
-    let results = SEARCH_INDEX.search(&search_text.get());
+    let results = SEARCH_INDEX.search(search_text.get());
 
     render! {
         if **show_modal.read() {
@@ -33,12 +33,12 @@ pub fn SearchModal(cx: Scope) -> Element {
                             *show_modal.write() = SearchActive(false)
                         }
                     },
-        
+
                     // A little weird, but we're putting an empty div with a scaled height to buffer the top of the modal
                     div { class: "max-w-screen-md mx-auto h-full flex flex-col",
                         onclick: move |evt| evt.stop_propagation(),
                         div { class: "h-30" }
-        
+
                         // The actual modal
                         div { class: "border border-gray-600 p-6 rounded-2xl m-8 max-h-[calc(100%-8rem)] overflow-y-auto",
                             // Search input
@@ -58,7 +58,7 @@ pub fn SearchModal(cx: Scope) -> Element {
                                 }
                                 div {}
                             }
-        
+
                             // Results
                             div { class: "overflow-y-auto",
                                 ul {
@@ -86,8 +86,8 @@ pub fn SearchModal(cx: Scope) -> Element {
     }
 }
 
-#[inline_props]
-fn SearchResult(cx: Scope, result: SearchResult<Route>) -> Element {
+#[component]
+pub fn SearchResult(cx: Scope, result: SearchResult<Route>) -> Element {
     let show_modal = use_shared_state::<SearchActive>(cx).unwrap();
     let title = &result.title;
     let top_excerpt_segments = &match result.excerpts.first() {

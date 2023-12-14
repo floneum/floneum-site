@@ -1,7 +1,7 @@
 use crate::*;
 use mdbook_shared::SummaryItem;
 
-#[inline_props]
+#[component]
 pub fn Blog(cx: Scope) -> Element {
     cx.render(rsx! {
         div { class: "w-full pt-12 backdrop-blur-lg bg-white/75", min_height: "100vh",
@@ -13,7 +13,7 @@ pub fn Blog(cx: Scope) -> Element {
     })
 }
 
-#[inline_props]
+#[component]
 fn LocationLink(cx: Scope, chapter: &'static SummaryItem<BookRoute>) -> Element {
     let book_url = use_book(cx).to_string();
 
@@ -26,7 +26,7 @@ fn LocationLink(cx: Scope, chapter: &'static SummaryItem<BookRoute>) -> Element 
     };
 
     render! {
-        Link { to: Route::Docs { child: url.clone() }, li { class: "m-1 rounded-md pl-2 {current_class}", "{link.name}" } }
+        Link { to: Route::Docs { child: *url }, li { class: "m-1 rounded-md pl-2 {current_class}", "{link.name}" } }
     }
 }
 

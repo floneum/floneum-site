@@ -1,6 +1,6 @@
 use dioxus::prelude::*;
 
-#[inline_props]
+#[component]
 pub fn PluginsList(cx: Scope) -> Element {
     let plugins: &Vec<PluginInfo> = cx.use_hook(|| {
         let bytes = include_bytes!("../plugins.bin");
@@ -35,7 +35,7 @@ pub struct PluginInfo {
     description: String,
 }
 
-#[inline_props]
+#[component]
 pub fn Plugin(cx: Scope, plugin: PluginInfo) -> Element {
     let show_description = use_state(cx, || false);
 

@@ -3,23 +3,34 @@
 // cargo run --features ssr --release
 #![allow(non_snake_case)]
 pub use crate::blog_route::BookRoute as BlogRoute;
+use crate::kalosm_learn::KalosmLearn;
+use crate::{
+    docs::BookRoute,
+    kalosm_docs::BookRoute as KalosmBookRoute,
+    kalosm_search::KalosmSearchModal,
+    search::{Search, SearchActive, SearchModal},
+};
 use blog::Blog;
 use dioxus::prelude::*;
 use dioxus_fullstack::{prelude::*, router::FullstackRouterConfig};
 use dioxus_router::prelude::*;
 use home::Home;
+use kalosm::KalosmHome;
 use learn::Learn;
 use serde::{Deserialize, Serialize};
-use kalosm::KalosmHome;
 
 mod blog;
+#[cfg(feature = "check_docs")]
+mod doc_snippets;
 mod home;
+mod kalosm;
+mod kalosm_learn;
+mod kalosm_search;
 mod learn;
 mod plugin;
 mod search;
-mod kalosm;
 
-#[inline_props]
+#[component]
 fn HeaderFooter(cx: Scope) -> Element {
     use_shared_state_provider(cx, || SearchActive(false));
 
@@ -48,6 +59,53 @@ fn HeaderFooter(cx: Scope) -> Element {
             }
         }
         div { class: "pt-14",
+            Outlet::<Route> {}
+            div { class: "py-5 flex flex-row items-center justify-evenly",
+                div { class: "flex flex-col items-center",
+                    "Discord Community"
+                    DiscordLink {}
+                }
+                div { class: "flex flex-col items-center",
+                    "Source Code"
+                    GithubLink {}
+                }
+            }
+        }
+    }
+}
+
+#[component]
+fn KalosmHeaderFooter(cx: Scope) -> Element {
+    use_shared_state_provider(cx, || SearchActive(false));
+
+    render! {
+        KalosmSearchModal {}
+        div { class: "h-14 z-30 fixed top-0 flex flex-row justify-between items-center bg-gray-100 opacity-50 border-b-2 border-gray-700 w-screen backdrop-blur-lg",
+            Link { class: "text-xl font-bold m-2 md:mr-12", to: Route::KalosmHome {}, "Kalosm" }
+            Search {}
+            div { class: "flex flex-row justify-evenly items-center text-center",
+                Link {
+                    class: "text-sm md:text-xl font-bold pr-1 md:p-2",
+                    to: Route::Blog {
+                        child: BlogRoute::Index {},
+                    },
+                    "Blog"
+                }
+                Link {
+                    class: "text-sm md:text-xl font-bold md:p-2",
+                    to: Route::KalosmDocs {
+                        child: KalosmBookRoute::Index {},
+                    },
+                    "Documentation"
+                }
+                GithubLink {}
+                DiscordLink {}
+            }
+        }
+        div {
+            class: "bg-[#FEF9EF] w-full h-14"
+        }
+        div { class: "pt-14 bg-[#FEF9EF]",
             Outlet::<Route> {}
             div { class: "py-5 flex flex-row items-center justify-evenly",
                 div { class: "flex flex-col items-center",
@@ -95,8 +153,16 @@ fn DiscordLink(cx: Scope) -> Element {
 #[derive(Routable, Clone, Serialize, Deserialize, PartialEq)]
 #[rustfmt::skip]
 enum Route {
-    #[route("/kalosm")]
-    KalosmHome {},
+    #[layout(KalosmHeaderFooter)]
+        #[nest("/kalosm")]
+            #[route("/")]
+            KalosmHome {},
+            #[layout(KalosmLearn)]
+                #[child("/docs")]
+                KalosmDocs { child: KalosmBookRoute },
+            #[end_layout]
+        #[end_nest]
+    #[end_layout]
     #[layout(HeaderFooter)]
         #[route("/")]
         Home {},
@@ -109,10 +175,11 @@ enum Route {
             Blog { child: BlogRoute },
 }
 
-use crate::{
-    docs::BookRoute,
-    search::{Search, SearchActive, SearchModal},
-};
+mod kalosm_docs {
+    use dioxus::prelude::*;
+
+    use_mdbook::mdbook_router! {"kalosm_doc_src"}
+}
 
 mod docs {
     use dioxus::prelude::*;
@@ -156,6 +223,29 @@ fn main() {
             dioxus_search::BaseDirectoryMapping::new(std::path::PathBuf::from("./docs")).map(
                 |route: Route| {
                     let route = route.to_string();
+                    if route.contains("kalosm") {
+                        return None;
+                    }
+                    let mut path = std::path::PathBuf::new();
+                    for (i, segment) in route.split('/').enumerate() {
+                        if (1, "docsite") == (i, segment) {
+                            continue;
+                        }
+                        path.push(segment);
+                    }
+                    Some(path.join("index.html"))
+                },
+            ),
+        );
+
+        dioxus_search::SearchIndex::<Route>::create(
+            "kalosm-search",
+            dioxus_search::BaseDirectoryMapping::new(std::path::PathBuf::from("./docs")).map(
+                |route: Route| {
+                    let route = route.to_string();
+                    if !route.contains("kalosm") {
+                        return None;
+                    }
                     let mut path = std::path::PathBuf::new();
                     for (i, segment) in route.split('/').enumerate() {
                         if (1, "docsite") == (i, segment) {
@@ -173,7 +263,7 @@ fn main() {
     {
         #[allow(unused_mut)]
         let mut config = LaunchBuilder::<FullstackRouterConfig<Route>>::router();
-    
+
         #[cfg(feature = "ssr")]
         {
             config = config.server_cfg(
@@ -182,11 +272,15 @@ fn main() {
                     .incremental(IncrementalRendererConfig::default()),
             );
         }
-    
+
         config.launch();
     }
 }
 
 static SEARCH_INDEX: dioxus_search::LazySearchIndex<Route> = dioxus_search::load_search_index! {
     "search"
+};
+
+static KALOSM_SEARCH_INDEX: dioxus_search::LazySearchIndex<Route> = dioxus_search::load_search_index! {
+    "kalosm-search"
 };
