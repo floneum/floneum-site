@@ -3,7 +3,7 @@ use crate::kalosm_docs::LAZY_BOOK;
 use crate::*;
 use mdbook_shared::SummaryItem;
 
-#[inline_props]
+#[component]
 pub fn KalosmLearn(cx: Scope) -> Element {
     cx.render(rsx! {
         div { class: "bg-[#FEF9EF] w-full h-full pt-12 text-sm backdrop-blur-lg", min_height: "100vh",
@@ -32,7 +32,7 @@ fn LeftNav(cx: Scope) -> Element {
     }
 }
 
-#[inline_props]
+#[component]
 fn SidebarSection(cx: Scope, chapter: &'static SummaryItem<KalosmBookRoute>) -> Element {
     let link = chapter.maybe_link()?;
 
@@ -53,7 +53,7 @@ fn SidebarSection(cx: Scope, chapter: &'static SummaryItem<KalosmBookRoute>) -> 
     }
 }
 
-#[inline_props]
+#[component]
 fn SidebarChapter(cx: Scope, link: &'static SummaryItem<KalosmBookRoute>) -> Element {
     let link = link.maybe_link()?;
     let url = link.location.as_ref().unwrap();
@@ -84,7 +84,7 @@ fn SidebarChapter(cx: Scope, link: &'static SummaryItem<KalosmBookRoute>) -> Ele
     }
 }
 
-#[inline_props]
+#[component]
 fn LocationLink(cx: Scope, chapter: &'static SummaryItem<KalosmBookRoute>) -> Element {
     let book_url = use_book(cx).to_string();
 

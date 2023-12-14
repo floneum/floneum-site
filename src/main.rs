@@ -30,7 +30,7 @@ mod learn;
 mod plugin;
 mod search;
 
-#[inline_props]
+#[component]
 fn HeaderFooter(cx: Scope) -> Element {
     use_shared_state_provider(cx, || SearchActive(false));
 
@@ -74,7 +74,7 @@ fn HeaderFooter(cx: Scope) -> Element {
     }
 }
 
-#[inline_props]
+#[component]
 fn KalosmHeaderFooter(cx: Scope) -> Element {
     use_shared_state_provider(cx, || SearchActive(false));
 

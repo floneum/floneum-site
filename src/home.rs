@@ -3,7 +3,7 @@ use dioxus_router::prelude::*;
 
 use crate::{docs::BookRoute, plugin::PluginsList, Route};
 
-#[inline_props]
+#[component]
 pub(crate) fn Home(cx: Scope) -> Element {
     render! {
         Pitch {}

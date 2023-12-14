@@ -3,6 +3,7 @@ mod embeddings;
 mod image_generation;
 mod image_segmentation;
 mod kalosm;
+mod live_qa;
 mod llms;
 mod structured;
 mod text_recognition;

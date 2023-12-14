@@ -86,7 +86,7 @@ pub fn SearchModal(cx: Scope) -> Element {
     }
 }
 
-#[inline_props]
+#[component]
 pub fn SearchResult(cx: Scope, result: SearchResult<Route>) -> Element {
     let show_modal = use_shared_state::<SearchActive>(cx).unwrap();
     let title = &result.title;
