@@ -3,8 +3,8 @@ async fn main() -> Result<(), anyhow::Error> {
     // ANCHOR: create_whisper
     use futures_util::StreamExt;
     use kalosm::*;
-    use kalosm_language::*;
-    use kalosm_sound::*;
+    use kalosm::language::*;
+    use kalosm::audio::*;
     use std::sync::Arc;
     use tokio::{
         sync::RwLock,
@@ -31,7 +31,7 @@ async fn main() -> Result<(), anyhow::Error> {
                     .block_on(async move {
                         let recording_time = Duration::from_secs(30);
                         loop {
-                            let input = kalosm_sound::MicInput::default()
+                            let input = MicInput::default()
                                 .record_until(Instant::now() + recording_time)
                                 .await
                                 .unwrap();
@@ -55,7 +55,7 @@ async fn main() -> Result<(), anyhow::Error> {
                     .block_on(async move {
                         let recording_time = Duration::from_secs(30);
                         loop {
-                            let input = kalosm_sound::MicInput::default()
+                            let input = MicInput::default()
                                 .record_until(Instant::now() + recording_time)
                                 .await
                                 .unwrap();

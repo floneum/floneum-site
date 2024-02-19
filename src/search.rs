@@ -48,8 +48,8 @@ pub fn SearchModal(cx: Scope) -> Element {
                                         oninput: move |evt| {
                                             search_text.set(evt.value.clone());
                                         },
-                                        onmounted: move |evt| {
-                                            evt.inner().set_focus(true);
+                                        onmounted: move |evt| async move {
+                                            let _ = evt.inner().set_focus(true).await;
                                         },
                                         class: "flex-grow bg-transparent border-none outline-none text-xl pl-2",
                                         placeholder: "Search the docs",
