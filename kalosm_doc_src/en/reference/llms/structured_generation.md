@@ -31,6 +31,12 @@ In this example, we will create a parser that completes a sentence with only val
 {{#include src/doc_snippets/structured.rs:create_parser}}
 ```
 
+If you don't care about the output of the parser, but you want the LLM to adhere to a specific structure, you can also use a `RegexParser` to match a regular expression:
+
+```rust
+{{#include src/doc_snippets/structured.rs:regex_parser}}
+```
+
 ## Generating Text
 
 Once you have defined a parser, you can generate text that adheres to the constraints defined by the parser. The `stream_structured_text` function takes a prompt and a parser and returns a stream of text that adheres to the constraints defined by the parser along with the results once generation is finished. The following example shows how to generate text using the parser defined above:

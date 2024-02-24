@@ -22,7 +22,7 @@ Try different values for the text we are embedding. How does the embedding chang
 
 ## Creating an Embedding Database
 
-Now that we know how to create embeddings, we can use them to create an embedding database. An embedding database is a data structure that stores embeddings and allows you to search for documents that are similar to a given query. Kalosm provides a `DocumentDatabase` struct that can be used to create an embedding database. You can choose a chunk strategy to use when creating the embedding database. A chunk strategy determines how documents are split into chunks before being embedded. In this example, we will use the `Sentence` chunk strategy, which splits documents into sentences before embedding them. The bert embedding model tends to work best with single sentence chunks.
+Now that we know how to create embeddings, we can use them to create an embedding database. An embedding database is a data structure that stores embeddings and allows you to search for documents that are similar to a given query. Kalosm provides a `DocumentTable` struct that can be used to create an embedding database linked to a table in a [Surrealdb](https://surrealdb.com/) database. You can choose a chunk strategy to use when creating the embedding database. A chunk strategy determines how documents are split into chunks before being embedded. In this example, we will use the `Sentence` chunk strategy, which splits documents into sentences before embedding them. The bert embedding model tends to work best with single sentence chunks.
 
 ```rust
 {{#include src/doc_snippets/embeddings.rs:create_embedding_database}}

@@ -18,7 +18,7 @@ This sets up a transcription model using the Whisper source for English (`Whispe
 
 ## Creating a Context Database
 
-The next step is to create a context database. Kalosm provides a `ContextDatabase` struct that serves as a context database. We need to wrap the database in a `Arc` and a `RwLock` so that it can be shared across threads:
+The next step is to create a context database. Kalosm provides `DocumentTable` struct that indexes a [Surrealdb](https://surrealdb.com/) database table with a vector database which can serve as our context database. We need to wrap the database in a `Arc` so that it can be shared across threads:
 
 ```rust
 {{#include src/doc_snippets/live_qa.rs:create_context_db}}
@@ -60,4 +60,4 @@ Finally, we can implement the main chat loop that asks the user for input, searc
 
 ## Conclusion
 
-Resource augmented generation in Kalosm makes it possible for language models to generate responses based on up-to-date information from the real world. This guide has shown you how to implement resource augmented generation using the Kalosm library. For more information, the reference documentation documents more details about: [Whisper](../reference/transcription.md), [ContextDatabase](../reference/llms/context.md), and [Chat](../reference/llms/chat.md).
+Resource augmented generation in Kalosm makes it possible for language models to generate responses based on up-to-date information from the real world. This guide has shown you how to implement resource augmented generation using the Kalosm library. For more information, the reference documentation documents more details about: [Whisper](../reference/transcription.md), [DocumentTable](../reference/llms/context.md), and [Chat](../reference/llms/chat.md).
