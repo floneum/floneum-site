@@ -1,79 +1,77 @@
 #[tokio::main]
 async fn main() -> Result<(), anyhow::Error> {
     // ANCHOR: create_whisper
-    use futures_util::StreamExt;
-    use kalosm::*;
-    use kalosm::language::*;
     use kalosm::audio::*;
+    use kalosm::language::*;
+    use kalosm::*;
     use std::sync::Arc;
-    use tokio::{
-        sync::RwLock,
-        time::{Duration, Instant},
-    };
+    use tokio::time::{Duration, Instant};
     let model = WhisperBuilder::default()
         .with_source(WhisperSource::MediumEn)
         .build()?;
     // ANCHOR_END: create_whisper
 
     // ANCHOR: create_context_db
-    let document_engine = Arc::new(RwLock::new(FuzzySearchIndex::default()));
+	// Create database connection
+    let db = surrealdb::Surreal::new::<surrealdb::engine::local::RocksDb>("./db/temp.db").await.unwrap();
+
+    // Select a specific namespace / database
+    db.use_ns("test").use_db("test").await.unwrap();
+
+	// Create a new document database table
+    let document_table = Arc::new(db
+        .document_table_builder("documents")
+		// Store the embedding database at ./db/embeddings.db
+        .at("./db/embeddings.db")
+        .build()
+        .unwrap());
+
     // ANCHOR_END: create_context_db
-    {
-        let model = WhisperBuilder::default()
-            .with_source(WhisperSource::MediumEn)
-            .build()?;
-        // ANCHOR: record_audio
-        {
-            let document_engine = document_engine.clone();
-            std::thread::spawn(move || {
-                tokio::runtime::Runtime::new()
-                    .unwrap()
-                    .block_on(async move {
-                        let recording_time = Duration::from_secs(30);
-                        loop {
-                            let input = MicInput::default()
-                                .record_until(Instant::now() + recording_time)
-                                .await
-                                .unwrap();
-                        }
-                    })
-            });
-        }
-        // ANCHOR_END: record_audio
-    }
+	// ANCHOR: record_audio
+	{
+		std::thread::spawn(move || {
+			tokio::runtime::Runtime::new()
+				.unwrap()
+				.block_on(async move {
+					let recording_time = Duration::from_secs(30);
+					loop {
+						let _input = MicInput::default()
+							.record_until(Instant::now() + recording_time)
+							.await
+							.unwrap();
+					}
+				})
+		});
+	}
+	// ANCHOR_END: record_audio
 
-    {
-        let model = WhisperBuilder::default()
-            .with_source(WhisperSource::MediumEn)
-            .build()?;
-        // ANCHOR: transcribe_audio
-        {
-            let document_engine = document_engine.clone();
-            std::thread::spawn(move || {
-                tokio::runtime::Runtime::new()
-                    .unwrap()
-                    .block_on(async move {
-                        let recording_time = Duration::from_secs(30);
-                        loop {
-                            let input = MicInput::default()
-                                .record_until(Instant::now() + recording_time)
-                                .await
-                                .unwrap();
+	// ANCHOR: transcribe_audio
+	{
+		let document_table = document_table.clone();
+		std::thread::spawn(move || {
+			tokio::runtime::Runtime::new()
+				.unwrap()
+				.block_on(async move {
+					let recording_time = Duration::from_secs(30);
+					loop {
+						let input = MicInput::default()
+							.record_until(Instant::now() + recording_time)
+							.await
+							.unwrap();
 
-                            if let Ok(mut transcribed) = model.transcribe(input) {
-                                while let Some(transcribed) = transcribed.next().await {
-                                    if transcribed.probability_of_no_speech() < 0.90 {
-                                        let text = transcribed.text();
-                                        document_engine.write().await.add(text).await.unwrap();
-                                    }
-                                }
-                            }
-                        }
-                    })
-            });
-        }
-        // ANCHOR_END: transcribe_audio
-    }
+						if let Ok(mut transcribed) = model.transcribe(input) {
+							while let Some(transcribed) = transcribed.next().await {
+								if transcribed.probability_of_no_speech() < 0.90 {
+									let document = transcribed.text().into_document().await.unwrap();
+									document_table.insert(document).await.unwrap();
+								}
+							}
+						}
+					}
+				})
+		});
+	}
+	// ANCHOR_END: transcribe_audio
 
     // ANCHOR: create_chat
     let mut model = Llama::new_chat();
@@ -86,16 +84,15 @@ async fn main() -> Result<(), anyhow::Error> {
         let user_question = prompt_input("\n> ").unwrap();
 
         // Search for relevant context in the document engine
-        let mut engine = document_engine.write().await;
-        let context = {
-            let context = engine.search(&user_question, 5).await;
-            let context = context
-                .iter()
-                .take(5)
-                .map(|x| x.to_string())
-                .collect::<Vec<_>>();
-            context.join("\n")
-        };
+        let context = document_table.select_nearest(&user_question, 5).await?.into_iter().map(
+			|document| {
+				format!(
+					"Title: {}\nBody: {}\n",
+					document.record.title(),
+					document.record.body()
+				)
+			}
+		).collect::<Vec<_>>().join("\n");
 
         // Format a prompt with the question and context
         let prompt = format!(

@@ -7,7 +7,7 @@ async fn main() {
         Page::crawl(
             Url::parse("https://floneum.com/blog/floneum_0_2").unwrap(),
             BrowserMode::Static,
-            move |page: Page| {
+            move |_page: Page| {
                 Box::pin(async move { CrawlFeedback::follow_all() })
                     as std::pin::Pin<Box<dyn std::future::Future<Output = CrawlFeedback>>>
             },

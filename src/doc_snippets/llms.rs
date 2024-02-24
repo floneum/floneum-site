@@ -3,7 +3,7 @@ async fn main() {
     // ANCHOR: create_model
     use kalosm::language::*;
     // Create a builder for a chat model
-    let mut model = Llama::builder()
+    let model = Llama::builder()
         // Set the source of the model
         .with_source(LlamaSource::mistral_7b())
         // Build the model. This will fetch the model from the source if it is not cached.

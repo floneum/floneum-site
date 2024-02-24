@@ -7,8 +7,8 @@ authors = ["Evan Almloff"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-dioxus-router = { version = "0.4" }
 dioxus = { version = "0.4" }
+dioxus-router = { version = "0.4" }
 dioxus-fullstack = { version = "0.4", features = ["router"] }
 mdbook-shared = { git = "https://github.com/DioxusLabs/include_mdbook" }
 use-mdbook = { git = "https://github.com/DioxusLabs/include_mdbook" }
@@ -29,6 +29,7 @@ image = { version = "0.24.7", optional = true }
 
 [dev-dependencies]
 floneum_rust = { git = "https://github.com/floneum/floneum" }
+wit-bindgen = { git = "https://github.com/bytecodealliance/wit-bindgen" }
 
 [build-dependencies]
 tokio = { version = "1", features = ["full"] }

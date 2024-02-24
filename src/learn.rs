@@ -39,7 +39,7 @@ fn SidebarSection(cx: Scope, chapter: &'static SummaryItem<BookRoute>) -> Elemen
     let sections = link
         .nested_items
         .iter()
-        .filter_map(|link| render! { SidebarChapter { link: link } });
+        .map(|link| render! { SidebarChapter { link: link } }.unwrap());
 
     render! {
         div { class: "pb-4",

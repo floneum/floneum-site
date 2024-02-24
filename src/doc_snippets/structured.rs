@@ -22,7 +22,7 @@ async fn main() {
     // ANCHOR_END: create_parser
 
     // ANCHOR: streaming_text
-    let mut llm = Phi::start().await;
+    let llm = Phi::start().await;
     let (structured, result) = llm
         .stream_structured_text("A state that starts with A", validator)
         .await

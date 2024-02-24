@@ -4,13 +4,13 @@ mod first {
 
     #[tokio::main]
     async fn main() {
-        let model = Llama::new_chat();
+        let _model = Llama::new_chat();
     }
     // ANCHOR_END: first
 }
 mod second {
     // ANCHOR: second
-    use kalosm::{language::*, *};
+    use kalosm::{language::*};
 
     #[tokio::main]
     async fn main() {

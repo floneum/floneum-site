@@ -1,7 +1,7 @@
 #[tokio::main]
 async fn main() -> Result<(), anyhow::Error> {
     // ANCHOR: create_model
-    use kalosm::audio::*;
+    use kalosm::{audio::*, language::*};
 
     // Create a new whisper model.
     let model = Whisper::default();
@@ -18,7 +18,7 @@ async fn main() -> Result<(), anyhow::Error> {
 
     // ANCHOR: transcribe
     // Transcribe the audio.
-    let mut transcribed = model.transcribe(audio).unwrap();
+    let transcribed = model.transcribe(audio).unwrap();
 
     // As the model transcribes the audio, print the text to the console.
     transcribed.to_std_out().await.unwrap();
