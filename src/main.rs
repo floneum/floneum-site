@@ -108,7 +108,7 @@ fn DiscordLink() -> Element {
     }
 }
 
-#[derive(Routable, Clone, Serialize, Deserialize, PartialEq)]
+#[derive(Routable, Debug, Clone, Serialize, Deserialize, PartialEq)]
 #[rustfmt::skip]
 enum Route {
     #[layout(KalosmHeaderFooter)]

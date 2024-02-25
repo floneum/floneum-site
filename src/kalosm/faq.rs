@@ -22,7 +22,7 @@ fn Question(question: String, index: usize, children: Element) -> Element {
                             "stroke": "currentColor",
                             "aria-hidden": "true",
                             class: "h-6 w-6",
-                            class: if visible() { "" } else { "hidden" },
+                            class: if visible() { "hidden" } else { "" },
                             path {
                                 "stroke-linejoin": "round",
                                 "d": "M12 6v12m6-6H6",
@@ -36,7 +36,7 @@ fn Question(question: String, index: usize, children: Element) -> Element {
                             "fill": "none",
                             "aria-hidden": "true",
                             class: "h-6 w-6",
-                            class: if visible() { "hidden" } else { "" },
+                            class: if visible() { "" } else { "hidden" },
                             path {
                                 "d": "M18 12H6",
                                 "stroke-linejoin": "round",
