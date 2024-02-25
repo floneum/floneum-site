@@ -1,0 +1,26 @@
+{
+  "name": "floneum-site",
+  "version": "1.0.0",
+  "description": "Serve locally with: ```sh npx tailwindcss -i ./input.css -o ./output.css --watch trunk build --features web cargo run --features ssr ```",
+  "main": "tailwind.config.js",
+  "directories": {
+    "doc": "docs",
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/floneum/floneum-site.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/floneum/floneum-site/issues"
+  },
+  "homepage": "https://github.com/floneum/floneum-site#readme",
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.7"
+  }
+}

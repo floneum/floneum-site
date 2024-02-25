@@ -2,20 +2,22 @@ use crate::*;
 use mdbook_shared::SummaryItem;
 
 #[component]
-pub fn Blog(cx: Scope) -> Element {
-    cx.render(rsx! {
-        div { class: "w-full pt-12 backdrop-blur-lg bg-white/75", min_height: "100vh",
+pub fn Blog() -> Element {
+    rsx! {
+        div {
+            class: "w-full pt-12 backdrop-blur-lg bg-white/75",
+            min_height: "100vh",
             div { class: "max-w-screen-2xl flex flex-row justify-between mx-auto",
                 Content {}
                 RightNav {}
             }
         }
-    })
+    }
 }
 
 #[component]
-fn LocationLink(cx: Scope, chapter: &'static SummaryItem<BookRoute>) -> Element {
-    let book_url = use_book(cx).to_string();
+fn LocationLink(chapter: &'static SummaryItem<BookRoute>) -> Element {
+    let book_url = use_book().to_string();
 
     let link = chapter.maybe_link()?;
     let url = link.location.as_ref().unwrap();
@@ -25,15 +27,15 @@ fn LocationLink(cx: Scope, chapter: &'static SummaryItem<BookRoute>) -> Element 
         false => "",
     };
 
-    render! {
+    rsx! {
         Link { to: Route::Docs { child: *url }, li { class: "m-1 rounded-md pl-2 {current_class}", "{link.name}" } }
     }
 }
 
-fn RightNav(cx: Scope) -> Element {
-    let page = use_book(cx);
+fn RightNav() -> Element {
+    let page = use_book();
 
-    render! {
+    rsx! {
         div {
             class: "z-20 overflow-y-auto hidden xl:block fixed top-0 mt-36 pb-16 pl-3.5 -ml-3.5 w-60 h-full md:text-[13px] leading-5 text-navy docs-right-sidebar",
             right: "calc(40vw - 40.875rem)",
@@ -49,8 +51,8 @@ fn RightNav(cx: Scope) -> Element {
     }
 }
 
-fn Content(cx: Scope) -> Element {
-    render! {
+fn Content() -> Element {
+    rsx! {
         section { class: "body-font overflow-hidden mx-auto container pt-12 pb-12 w-2/3",
             div { class: "-my-8",
                 div { class: "w-full mb-20 flex-wrap list-none rounded-md",
@@ -81,8 +83,8 @@ fn Content(cx: Scope) -> Element {
     }
 }
 
-fn use_book(cx: &ScopeState) -> BlogRoute {
-    let route = use_route(cx).unwrap();
+fn use_book() -> BlogRoute {
+    let route = use_route::<Route>();
     match route {
         Route::Blog { child } => child,
         _ => unreachable!(),

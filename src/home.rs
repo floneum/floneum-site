@@ -1,11 +1,10 @@
 use dioxus::prelude::*;
-use dioxus_router::prelude::*;
 
 use crate::{docs::BookRoute, plugin::PluginsList, Route};
 
 #[component]
-pub(crate) fn Home(cx: Scope) -> Element {
-    render! {
+pub(crate) fn Home() -> Element {
+    rsx! {
         Pitch {}
         div { height: "125vh" }
         Demo {}
@@ -14,8 +13,8 @@ pub(crate) fn Home(cx: Scope) -> Element {
     }
 }
 
-fn Demo(cx: Scope) -> Element {
-    render! {
+fn Demo() -> Element {
+    rsx! {
         div { class: "flex flex-col items-center justify-center text-center pb-12",
             div { class: "w-3/4",
                 h2 { class: "text-2xl md:text-6xl font-bold rounded-md",
@@ -33,8 +32,8 @@ fn Demo(cx: Scope) -> Element {
     }
 }
 
-fn Plugins(cx: Scope) -> Element {
-    render! {
+fn Plugins() -> Element {
+    rsx! {
         div { class: "w-screen h-[75vw] flex flex-col justify-center items-center static",
             h2 { class: "bg-[#B95F62] text-2xl md:text-6xl font-bold text-center left-[calc(200vw-var(--scroll)*200vw)] w-screen rounded-t-md p-2",
                 "Securely extend Floneum with plugins"
@@ -64,13 +63,21 @@ fn Plugins(cx: Scope) -> Element {
                             src: "/assets/rust_logo.svg",
                             alt: "Rust Logo"
                         }
-                        img { class: "w-28", src: "/assets/c_logo.png", alt: "C Logo" }
+                        img {
+                            class: "w-28",
+                            src: "/assets/c_logo.png",
+                            alt: "C Logo"
+                        }
                         img {
                             class: "w-28",
                             src: "/assets/java_logo.png",
                             alt: "Java Logo"
                         }
-                        img { class: "w-28", src: "/assets/go_logo.png", alt: "Go Logo" }
+                        img {
+                            class: "w-28",
+                            src: "/assets/go_logo.png",
+                            alt: "Go Logo"
+                        }
                     }
                 }
             }
@@ -79,8 +86,8 @@ fn Plugins(cx: Scope) -> Element {
     }
 }
 
-fn CallToAction(cx: Scope) -> Element {
-    render! {
+fn CallToAction() -> Element {
+    rsx! {
         div { class: "flex flex-row items-center justify-evenly w-full",
             Link {
                 class: "text-xl md:text-5xl font-bold p-4 m-12 text-center w-1/3 rounded-lg bg-[#283549] hover:border-2 border-[#283549] text-white",
@@ -109,8 +116,8 @@ fn CallToAction(cx: Scope) -> Element {
     }
 }
 
-fn Pitch(cx: Scope) -> Element {
-    render! {
+fn Pitch() -> Element {
+    rsx! {
         div { class: "-z-30 fixed grid grid-cols-2 grid-rows-2 gap-[calc(var(--scroll)*(200vw*sin(45deg)+200vh*cos(45deg)))] rotate-[calc(45deg+var(--scroll)*90deg)] w-[calc(100vw*sin(45deg)+100vh*cos(45deg))] h-[calc(100vw*sin(45deg)+100vh*cos(45deg))] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
             div { class: "bg-[#B95F62] w-full h-full flex flex-col justify-end items-end text-white overflow-clip",
                 h2 { class: "text-xlg sm:text-4xl md:text-5xl lg:text-6xl font-bold p-8 w-1/2 text-right",

@@ -10,7 +10,7 @@ mod first {
 }
 mod second {
     // ANCHOR: second
-    use kalosm::{language::*};
+    use kalosm::language::*;
 
     #[tokio::main]
     async fn main() {

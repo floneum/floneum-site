@@ -2,14 +2,14 @@
 
 Serve locally with:
 ```sh
-npx tailwindcss -i ./input.css -o ./output.css --watch
-trunk build --features web
+npx tailwindcss -i ./input.css -o ./public/output.css --watch
+dx build --features web
 cargo run --features ssr
 ```
 
 Prepare an official build with:
 ```sh
-npx tailwindcss -i ./input.css -o ./output.css --watch
-trunk build --features web --release
+npx tailwindcss -i ./input.css -o ./public/output.css --watch
+dx build --features web --release
 cargo run --features prebuild --release
 ```

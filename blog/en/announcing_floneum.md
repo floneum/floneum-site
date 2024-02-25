@@ -2,7 +2,7 @@
 
 We are thrilled to introduce Floneum, an intuitive graph editor designed specifically for local AI workflows. Floneum empowers users to effortlessly guide large language models and build structured workflows tailored to their specific use cases.
 
-![Floneum Demo](../../assets/demo-img.png)
+![Floneum Demo](./public/assets/demo-img.png)
 
 ## What is Floneum?
 

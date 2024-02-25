@@ -21,12 +21,11 @@ async fn main() {
 
     // ANCHOR_END: create_parser
 
-     // ANCHOR: regex_parser
-     
+    // ANCHOR: regex_parser
 
     // You can also use a regex to match the same pattern. However, you will not get a parsed result once the generator is finished.
     let validator = RegexParser::new(r"((Alaska|Delaware|Florida|Georgia|Hawaii), ){5}\n").unwrap();
- 
+
     // ANCHOR_END: regex_parser
 
     // ANCHOR: streaming_text

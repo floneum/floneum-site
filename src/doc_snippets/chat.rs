@@ -1,7 +1,7 @@
 #[tokio::main]
 async fn main() {
     // ANCHOR: create_chat_model
-    use kalosm::{language::*};
+    use kalosm::language::*;
     let mut model = Llama::new_chat();
     // ANCHOR_END: create_chat_model
 

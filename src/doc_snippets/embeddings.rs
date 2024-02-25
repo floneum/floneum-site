@@ -2,7 +2,7 @@
 async fn main() {
     {
         // ANCHOR: create_embedding_model
-        use kalosm::{language::*};
+        use kalosm::language::*;
 
         let bert = Bert::default();
         // ANCHOR_END: create_embedding_model
@@ -19,7 +19,9 @@ async fn main() {
         use kalosm::{language::*, *};
 
         // Create database connection
-        let db = surrealdb::Surreal::new::<surrealdb::engine::local::RocksDb>("./db/temp.db").await.unwrap();
+        let db = surrealdb::Surreal::new::<surrealdb::engine::local::RocksDb>("./db/temp.db")
+            .await
+            .unwrap();
 
         // Select a specific namespace / database
         db.use_ns("test").use_db("test").await.unwrap();

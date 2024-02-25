@@ -1,0 +1,48 @@
+[application]
+
+# dioxus project name
+name = "floneum-site"
+
+# default platform
+# you can also use `dioxus serve/build --platform XXX` to use other platform
+# value: web | desktop
+default_platform = "web"
+
+# Web `build` & `serve` dist path
+out_dir = "docs"
+
+# resource (static) file folder
+asset_dir = "public"
+
+[web.app]
+
+# HTML title tag content
+title = "Kalosm"
+
+base_path = "."
+
+[web.watcher]
+
+watch_path = ["docs-src", "src"]
+index_on_404 = true
+
+# include `assets` in web platform
+[web.resource]
+
+# CSS style file
+style = []
+
+# Javascript code file
+script = []
+
+[web.resource.dev]
+
+# Javascript code file
+# serve: [dev-server] only
+script = []
+
+[application.tools]
+
+# use binaryen.wasm-opt for output Wasm file
+# binaryen just will trigger in `web` platform
+binaryen = { wasm_opt = true }

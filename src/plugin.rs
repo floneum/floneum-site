@@ -1,10 +1,11 @@
 use dioxus::prelude::*;
+use std::rc::Rc;
 
 #[component]
-pub fn PluginsList(cx: Scope) -> Element {
-    let plugins: &Vec<PluginInfo> = cx.use_hook(|| {
+pub fn PluginsList() -> Element {
+    let plugins: Rc<Vec<PluginInfo>> = use_hook(|| {
         let bytes = include_bytes!("../plugins.bin");
-        postcard::from_bytes(bytes).unwrap()
+        Rc::new(postcard::from_bytes(bytes).unwrap())
     });
 
     const ROWS: usize = 5;
@@ -15,7 +16,7 @@ pub fn PluginsList(cx: Scope) -> Element {
         format!("translateX(calc(var(--scroll)*{scroll_speed}% + {offset}%))")
     }
 
-    render! {
+    rsx! {
         h2 { class: "text-4xl font-bold text-center", "{plugins.len()} built in plugins" }
         for (i , col) in plugins.chunks_exact((plugins.len() / ROWS).max(1)).enumerate() {
             div {
@@ -36,21 +37,20 @@ pub struct PluginInfo {
 }
 
 #[component]
-pub fn Plugin(cx: Scope, plugin: PluginInfo) -> Element {
-    let show_description = use_state(cx, || false);
+pub fn Plugin(plugin: PluginInfo) -> Element {
+    let mut show_description = use_signal(|| false);
 
-    render! {
+    rsx! {
         button {
             class: "bg-slate-500 rounded-md p-2 w-full h-40 flex flex-col justify-center items-center m-2 text-2xl font-bold text-center",
-            onclick: move |_| show_description.set(!show_description.get()),
+            onclick: move |_| show_description.toggle(),
             onmouseenter: move |_| show_description.set(true),
             onmouseleave: move |_| show_description.set(false),
 
-            if *show_description.get() {
-                plugin.description.to_string()
-            }
-            else {
-                plugin.name.to_string()
+            if show_description() {
+                "{plugin.description}"
+            } else {
+                "{plugin.name}"
             }
         }
     }

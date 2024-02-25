@@ -6,6 +6,6 @@ To load a community plugin, you simply download a .wasm file and select the file
 
 You can load community plugins by downloading a `.wasm` file and then loading the plugin from the file path:
 
-![Plugin Textbox](../../../assets/local_load_plugin.png)
+![Plugin Textbox](./public/assets/load_local_plugin.png)
 
 By using community plugins, you can enhance Floneum's functionality in a safe and controlled manner.
