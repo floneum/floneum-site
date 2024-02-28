@@ -194,7 +194,7 @@ pub fn Search() -> Element {
                 div { class: "h-full my-auto flex flex-row align-middle justify-between",
                     span { class: "md:pl-2", "Search" }
                     div { class: "ml-3 flex-none font-semibold text-gray-500",
-                        kbd { class: "font-sans", "⌘" }
+                        kbd { class: "font-sans", "CTRL" }
                         kbd { class: "font-sans", "/" }
                     }
                 }

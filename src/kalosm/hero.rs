@@ -42,7 +42,11 @@ pub fn Hero() -> Element {
                                     DataAnimation {}
                                 }
                                 p { class: "mt-14 text-lg leading-8 text-gray-600",
-                                    "Kalosm makes it easy to interact with private language, audio, and image models in Rust"
+                                    "Kalosm is an "
+                                    span { class: "font-semibold",
+                                        "open source"
+                                    }
+                                    " framework for private language, audio, and image models in Rust"
                                 }
                                 div { class: "mt-10 flex items-center gap-x-6",
                                     Link {
