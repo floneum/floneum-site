@@ -72,9 +72,13 @@ fn SidebarChapter(link: &'static SummaryItem<KalosmBookRoute>) -> Element {
 
     rsx! {
         li { class: "pt-1",
-            Link { to: Route::KalosmDocs { child: *url }, "{shevron}{link.name}" }
+            Link {
+                class: "font-normal text-slate-500 hover:text-slate-700",
+                to: Route::KalosmDocs { child: *url },
+                "{shevron}{link.name}"
+            }
             if show_chevron && show_dropdown {
-                ul { class: "font-normal text-slate-500 hover:text-slate-700",
+                ul {
                     for nest in link.nested_items.iter() {
                         LocationLink { chapter: nest }
                     }

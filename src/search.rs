@@ -30,17 +30,17 @@ pub fn SearchModal(props: SearchModalProps) -> Element {
         return 0.;
         js_sys::Date::now()
     });
-    use_future(move || {
+    let _ = use_resource(move || {
         async move {
             // debounce the search
             if *last_key_press.read() - js_sys::Date::now() > 100. {
                 log::info!("searching for {}", &*SEARCH_TEXT.read());
-                results.set(index.search(&*SEARCH_TEXT.read()));
+                results.set(index.search(&SEARCH_TEXT.read()));
                 last_key_press.set(js_sys::Date::now());
             } else {
                 gloo_timers::future::TimeoutFuture::new(100).await;
                 log::info!("searching for {}", &*SEARCH_TEXT.read());
-                results.set(index.search(&*SEARCH_TEXT.read()));
+                results.set(index.search(&SEARCH_TEXT.read()));
             }
         }
     });
