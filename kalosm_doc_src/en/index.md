@@ -7,7 +7,7 @@ Kalosm is a library with dead simple interfaces for local, language, audio, and 
 - Add the Kalosm library
 
 ```bash
-cargo add kalosm --git https://github.com/floneum/floneum
+cargo add kalosm
 ```
 
 - Initialize a Kalosm model
