@@ -43,9 +43,7 @@ pub fn Hero() -> Element {
                                 }
                                 p { class: "mt-14 text-lg leading-8 text-gray-600",
                                     "Kalosm is an "
-                                    span { class: "font-semibold",
-                                        "open source"
-                                    }
+                                    span { class: "font-semibold", "open source" }
                                     " framework for private language, audio, and image models in Rust"
                                 }
                                 div { class: "mt-10 flex items-center gap-x-6",
