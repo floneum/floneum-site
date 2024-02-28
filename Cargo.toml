@@ -102,6 +102,6 @@ strip = "debuginfo"
 [features]
 default = []
 web = ["dioxus/web"]
-ssr = ["tokio", "dioxus/axum", "axum"]
-prebuild = ["ssr", "fs_extra"]
+server = ["tokio", "dioxus/axum", "axum"]
+prebuild = ["server", "fs_extra"]
 check_docs = ["kalosm", "tokio", "anyhow", "image"]

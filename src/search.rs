@@ -20,7 +20,10 @@ impl PartialEq for SearchModalProps {
 
 pub fn SearchModal(props: SearchModalProps) -> Element {
     let index = props.index;
-    let mut results = use_signal(move || index.search(&*SEARCH_TEXT.read()));
+    let mut results = use_signal(move || {
+        log::info!("searching for {}", &*SEARCH_TEXT.read());
+        index.search(&*SEARCH_TEXT.read())
+    });
 
     let mut last_key_press = use_signal(|| {
         #[cfg(not(target_arch = "wasm32"))]
@@ -31,10 +34,12 @@ pub fn SearchModal(props: SearchModalProps) -> Element {
         async move {
             // debounce the search
             if *last_key_press.read() - js_sys::Date::now() > 100. {
+                log::info!("searching for {}", &*SEARCH_TEXT.read());
                 results.set(index.search(&*SEARCH_TEXT.read()));
                 last_key_press.set(js_sys::Date::now());
             } else {
                 gloo_timers::future::TimeoutFuture::new(100).await;
+                log::info!("searching for {}", &*SEARCH_TEXT.read());
                 results.set(index.search(&*SEARCH_TEXT.read()));
             }
         }

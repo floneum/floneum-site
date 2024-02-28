@@ -2,6 +2,7 @@ use crate::{search::SearchModal, Route, KALOSM_SEARCH_INDEX};
 use dioxus::prelude::*;
 
 mod cta;
+mod data_roller;
 mod faq;
 mod features;
 mod footer;

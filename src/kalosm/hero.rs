@@ -1,3 +1,4 @@
+use super::data_roller::DataAnimation;
 use crate::{BlogRoute, KalosmBookRoute, Route};
 use dioxus::prelude::*;
 
@@ -37,9 +38,10 @@ pub fn Hero() -> Element {
                                     }
                                 }
                                 h1 { class: "mt-10 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl",
-                                    "AI you can trust with your diary"
+                                    "AI you can trust with your "
+                                    DataAnimation {}
                                 }
-                                p { class: "mt-6 text-lg leading-8 text-gray-600",
+                                p { class: "mt-14 text-lg leading-8 text-gray-600",
                                     "Kalosm makes it easy to interact with private language, audio, and image models in Rust"
                                 }
                                 div { class: "mt-10 flex items-center gap-x-6",
