@@ -401,3 +401,11 @@ Kalosm 0.2 adds support for several new models, including:
 For a detailed list of changes between v0.1.0 and v0.2.0, please see the [full changelog](https://github.com/floneum/floneum/compare/v0.2.0...v0.2.0-kalosm).
 
 I hope you enjoy using Kalosm v0.2.0! Your feedback is invaluable to us, so please don't hesitate to share your thoughts and report any issues you encounter.
+
+## What's next?
+
+In the next release, we plan to add support for fine tuning models and training new heads for existing models. We also plan to continue improving the performance of the language models and adding support for more models.
+
+If any of those features sound interesting or you want to propose a new feature, consider contributing on [Github](https://github.com/floneum/floneum/tree/master/interfaces/kalosm).
+
+If you are interested in building an application with Kalosm, [join the Discord](https://discord.gg/dQdmhuB8q5) and get involved with the community!
