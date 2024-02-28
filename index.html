@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html class="w-full h-full">
+
 <head>
   <title></title>
   <link rel="icon" href="/assets/Icon.png" type="image/png" />
@@ -8,37 +9,70 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta charset="UTF-8" />
   <link rel="stylesheet" href="/output.css" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.1.0/github-markdown-light.min.css" />
   <style>
+    .markdown-body ul {
+      list-style: disc;
+    }
+
+    .markdown-body ol {
+      list-style: decimal;
+    }
+
+    .markdown-body li {
+      display: list-item;
+    }
+
+    .markdown-body button {
+      display: inline-block;
+      background-color: rgba(209, 213, 219, 0.3);
+      border-radius: 0.25rem;
+      padding: 0.25rem 0.5rem;
+      border: 1px solid;
+      margin: 0.25rem;
+    }
+
+    .markdown-body .header {
+      color: inherit
+    }
+
     .markdown-body {
       box-sizing: border-box;
       min-width: 200px;
       max-width: 980px;
-      margin: 0 auto;
+      margin: 0 5%;
+      /* padding: 45px; */
       list-style: disc;
     }
+
     .main::-webkit-scrollbar {
       display: none;
     }
 
     /* Hide scrollbar for IE, Edge and Firefox */
     .main {
-      -ms-overflow-style: none;  /* IE and Edge */
-      scrollbar-width: none;  /* Firefox */
+      -ms-overflow-style: none;
+      /* IE and Edge */
+      scrollbar-width: none;
+      /* Firefox */
     }
   </style>
   <script src="https://buttons.github.io/buttons.js"></script>
 </head>
+
 <body style="overflow-x:hidden;--scroll:0;" class="w-full h-full">
-    <div id="main" class="w-full h-full">
-    </div>
-    <script>
-      window.addEventListener('scroll', () => {
-        let scrollTop = window.scrollY;
-        let winHeight = window.document.documentElement.scrollHeight - window.document.documentElement.clientHeight;
-        let new_scroll = Math.min(Math.max(scrollTop, 0) / Math.max(winHeight, 1), 1);
-        
-        document.body.style.setProperty('--scroll', new_scroll);
-      }, false);
-    </script>
+  <div id="main" class="w-full h-full">
+  </div>
+  <script>
+    window.addEventListener('scroll', () => {
+      let scrollTop = window.scrollY;
+      let winHeight = window.document.documentElement.scrollHeight - window.document.documentElement.clientHeight;
+      let new_scroll = Math.min(Math.max(scrollTop, 0) / Math.max(winHeight, 1), 1);
+
+      document.body.style.setProperty('--scroll', new_scroll);
+    }, false);
+  </script>
 </body>
+
 </html>

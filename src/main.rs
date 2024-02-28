@@ -27,6 +27,7 @@ mod learn;
 mod plugin;
 mod search;
 mod shortcut;
+mod table_of_contents;
 
 #[component]
 fn HeaderFooter() -> Element {

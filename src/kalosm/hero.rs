@@ -53,6 +53,12 @@ pub fn Hero() -> Element {
                                         "Documentation"
                                     }
                                     Link {
+                                        to: "https://discord.gg/dQdmhuB8q5",
+                                        class: "text-sm font-semibold leading-6 text-gray-900",
+                                        "Join the community"
+                                        span { "aria-hidden": "true", "→" }
+                                    }
+                                    Link {
                                         to: "https://github.com/floneum/floneum/tree/master/interfaces/kalosm",
                                         class: "text-sm font-semibold leading-6 text-gray-900",
                                         "View on GitHub "

@@ -2,10 +2,9 @@ use dioxus::prelude::*;
 
 pub fn DataAnimation() -> Element {
     let items = ["Data", "Code", "Diary", "Conversations", "History"];
-    let mut iter = items.iter();
     rsx! {
         ul {
-            for (i, item) in iter.enumerate() {
+            for (i , item) in items.iter().enumerate() {
                 li {
                     class: "slideIn-item-{i+1}",
                     opacity: "0",

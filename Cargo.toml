@@ -8,9 +8,12 @@ authors = ["Evan Almloff"]
 
 [dependencies]
 dioxus = { git = "https://github.com/ealmloff/dioxus", branch = "fix-fullstack-history", features = ["fullstack", "router"] }
-syntect-html = { git = "https://github.com/dioxuslabs/include_mdbook", branch = "update-to-dioxus-next" }
-mdbook-shared = { git = "https://github.com/dioxuslabs/include_mdbook", branch = "update-to-dioxus-next" }
-use-mdbook = { git = "https://github.com/dioxuslabs/include_mdbook", branch = "update-to-dioxus-next" }
+# syntect-html = { git = "https://github.com/dioxuslabs/include_mdbook", branch = "update-to-dioxus-next" }
+syntect-html = { path = "/Users/evanalmloff/Desktop/Github/include_mdbook/syntect-html" }
+# mdbook-shared = { git = "https://github.com/dioxuslabs/include_mdbook", branch = "update-to-dioxus-next" }
+mdbook-shared = { path = "/Users/evanalmloff/Desktop/Github/include_mdbook/mdbook-shared" }
+# use-mdbook = { git = "https://github.com/dioxuslabs/include_mdbook", branch = "update-to-dioxus-next" }
+use-mdbook = { path = "/Users/evanalmloff/Desktop/Github/include_mdbook/use-mdbook" }
 dioxus-search = { git = "https://github.com/dioxuslabs/dioxus-search", branch = "dioxus-next" }
 
 manganis = { git = "https://github.com/DioxusLabs/collect-assets" }

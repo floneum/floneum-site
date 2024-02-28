@@ -22,7 +22,7 @@ pub fn SearchModal(props: SearchModalProps) -> Element {
     let index = props.index;
     let mut results = use_signal(move || {
         log::info!("searching for {}", &*SEARCH_TEXT.read());
-        index.search(&*SEARCH_TEXT.read())
+        index.search(&SEARCH_TEXT.read())
     });
 
     let mut last_key_press = use_signal(|| {

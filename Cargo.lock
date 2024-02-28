@@ -5242,7 +5242,6 @@ checksum = "490cc448043f947bae3cbee9c203358d62dbee0db12107a74be5c30ccfd09771"
 [[package]]
 name = "mdbook-macro"
 version = "0.1.0"
-source = "git+https://github.com/dioxuslabs/include_mdbook?branch=update-to-dioxus-next#74c198cd75f36f7eb405a53cfe479e42d8c09e2e"
 dependencies = [
  "anyhow",
  "convert_case 0.6.0",
@@ -5263,7 +5262,6 @@ dependencies = [
 [[package]]
 name = "mdbook-shared"
 version = "0.1.0"
-source = "git+https://github.com/dioxuslabs/include_mdbook?branch=update-to-dioxus-next#74c198cd75f36f7eb405a53cfe479e42d8c09e2e"
 dependencies = [
  "anyhow",
  "bytes",
@@ -8904,7 +8902,6 @@ dependencies = [
 [[package]]
 name = "syntect-html"
 version = "0.1.0"
-source = "git+https://github.com/dioxuslabs/include_mdbook?branch=update-to-dioxus-next#74c198cd75f36f7eb405a53cfe479e42d8c09e2e"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -9887,7 +9884,6 @@ checksum = "daf8dba3b7eb870caf1ddeed7bc9d2a049f3cfdfae7cb521b087cc33ae4c49da"
 [[package]]
 name = "use-mdbook"
 version = "0.1.0"
-source = "git+https://github.com/dioxuslabs/include_mdbook?branch=update-to-dioxus-next#74c198cd75f36f7eb405a53cfe479e42d8c09e2e"
 dependencies = [
  "lazy_static",
  "mdbook-macro",
