@@ -12,7 +12,7 @@ To start working with language models, we need to create a prompt. We will split
 
 To add a format node, right click and select the `format` node from the drop down:
 
-![Dropdown with generate text node selected](./public/assets/first_workflow_add_node.png)
+![Dropdown with generate text node selected](public/assets/first_workflow_add_node.png)
 
 Next enter the text that the language model should complete:
 
@@ -57,11 +57,11 @@ Floeum
 
 Then let's create two more format nodes, one for the question and one for the context that is needed to answer the question:
 
-![Floneum with question and context nodes](./public/assets/first_workflow_1.png)
+![Floneum with question and context nodes](public/assets/first_workflow_1.png)
 
 Next, we can generate text from a model with the generate text node:
 
-![Floneum with generate text node](./public/assets/first_workflow_2.png)
+![Floneum with generate text node](public/assets/first_workflow_2.png)
 
 Finally, click run to start the model running. This will take several minutes the first time you run the node because the node needs to download the model. Futures runs will be significantly faster.
 
@@ -78,7 +78,7 @@ First remove the format node with the context that king charles is the king of e
 
 Then, let's create a database. Add the `embedding_db` node:
 
-![Floneum with embedding db node](./public/assets/first_workflow_3.png)
+![Floneum with embedding db node](public/assets/first_workflow_3.png)
 
 Next, set the seperator to `,` and the documents to index (add to the database) to:
 
@@ -94,11 +94,11 @@ Now, let's search the database for documents close to our query instead of relyi
 
 Then add an embedding node which converst some text from the query into the embedded meaning in the lanuage model selected:
 
-![Floneum with query embedding node](./public/assets/first_workflow_4.png)
+![Floneum with query embedding node](public/assets/first_workflow_4.png)
 
 Finally, add a search node that searches for the top 1 closest documents to the query and adds that context to the prompt:
 
-![Floneum with search node](./public/assets/first_workflow_5.png)
+![Floneum with search node](public/assets/first_workflow_5.png)
 
 ## Conclusion
 

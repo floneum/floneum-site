@@ -10,13 +10,13 @@ Floneum is a visual editor for AI workflows packaged as an easy to install appli
 
 When the MVP of Floneum was released, it only contained plugins for reading from wikipedia and getting the raw (unreadable) HTML from a website. In the 0.4 release, we added a new `Get Article` plugin that allows you to read an article from *any* URL automatically!
 
-![Get Article Plugin Demo](./public/assets/get_article_demo.png)
+![Get Article Plugin Demo](public/assets/get_article_demo.png)
 
 ### Reading Website Feeds
 
 Many websites have a feed of recently published content in an RSS stream. You can now use that RSS feed within Floneum to automatically gather a series of articles. For example, you can use the RSS feed from the [new york times paper](https://rss.nytimes.com/services/xml/rss/nyt/World.xml) to get the latest world news:
 
-![RSS Plugin Demo](./public/assets/rss_demo.png)
+![RSS Plugin Demo](public/assets/rss_demo.png)
 
 ### Automated Browsing Plugins
 
@@ -29,7 +29,7 @@ video {
     autoplay: true,
     muted: true,
     source {
-        src: "./public/assets/headless_browser.mp4",
+        src: "/public/assets/headless_browser.mp4",
         r#type: "video/mp4"
     }
 }
@@ -49,7 +49,7 @@ div {
         autoplay: true,
         muted: true,
         source {
-            src: "./public/assets/save_cloud.mp4",
+            src: "/public/assets/save_cloud.mp4",
             r#type: "video/mp4"
         }
     }
@@ -60,7 +60,7 @@ div {
         autoplay: true,
         muted: true,
         source {
-            src: "./public/assets/load_cloud.mp4",
+            src: "/public/assets/load_cloud.mp4",
             r#type: "video/mp4"
         }
     }
@@ -71,7 +71,7 @@ div {
 
 Floneum aims to make development of workflows simple. As part of that, clear and concise documentation is very important to us. As part of the new release, each plugin now has an example of the plugin's usage along side the documentation in the current node view. You can click on the example to get a quick overview of inputs and outputs for a specific node.
 
-![Plugin Example](./public/assets/plugin_examples.png)
+![Plugin Example](public/assets/plugin_examples.png)
 
 ### Rewritten UI!
 
@@ -105,7 +105,7 @@ That's it! Just tag your github repo with `floneum` and your plugin will be avai
 
 If you want to keep up with the latest developments of Floneum, nightly builds are now created for [every commit](https://github.com/floneum/floneum/actions/runs/6102318885) to the main branch. You can download the latest nightly build from the CI of the main branch:
 
-![Nightly Build Files](./public/assets/nightly_builds.png)
+![Nightly Build Files](public/assets/nightly_builds.png)
 
 > Updates and discussions about development also happen on the [Floneum Discord](https://discord.gg/dQdmhuB8q5).
 
@@ -115,11 +115,11 @@ While Floneum is still in early development, it is already possible to build a r
 
 ### News feed summarization!
 
-![News Summarization Example](./public/assets/news_summary.png)
+![News Summarization Example](public/assets/news_summary.png)
 
 ### Combining multiple models to create an efficient question answering workflow sources relevant to your use case!
 
-![Question Answering Example](./public/assets/question_answer_example.png)
+![Question Answering Example](public/assets/question_answer_example.png)
 
 ### Automatic content creation with browser automation!
 
@@ -130,7 +130,7 @@ video {
     autoplay: true,
     muted: true,
     source {
-        src: "./public/assets/headless_browsing_example.mp4",
+        src: "/public/assets/headless_browsing_example.mp4",
         r#type: "video/mp4"
     }
 }
