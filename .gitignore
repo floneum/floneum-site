@@ -2,3 +2,4 @@
 /static
 /dist
 /node_modules
+/.dioxus

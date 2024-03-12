@@ -7,13 +7,10 @@ authors = ["Evan Almloff"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-dioxus = { git = "https://github.com/ealmloff/dioxus", branch = "fix-fullstack-history", features = ["fullstack", "router"] }
-# syntect-html = { git = "https://github.com/dioxuslabs/include_mdbook", branch = "update-to-dioxus-next" }
-syntect-html = { path = "/Users/evanalmloff/Desktop/Github/include_mdbook/syntect-html" }
-# mdbook-shared = { git = "https://github.com/dioxuslabs/include_mdbook", branch = "update-to-dioxus-next" }
-mdbook-shared = { path = "/Users/evanalmloff/Desktop/Github/include_mdbook/mdbook-shared" }
-# use-mdbook = { git = "https://github.com/dioxuslabs/include_mdbook", branch = "update-to-dioxus-next" }
-use-mdbook = { path = "/Users/evanalmloff/Desktop/Github/include_mdbook/use-mdbook" }
+dioxus = { git = "https://github.com/dioxuslabs/dioxus", features = ["fullstack", "router"] }
+syntect-html = { git = "https://github.com/dioxuslabs/include_mdbook", branch = "update-to-dioxus-next" }
+mdbook-shared = { git = "https://github.com/dioxuslabs/include_mdbook", branch = "update-to-dioxus-next" }
+use-mdbook = { git = "https://github.com/dioxuslabs/include_mdbook", branch = "update-to-dioxus-next", default-features = false }
 dioxus-search = { git = "https://github.com/dioxuslabs/dioxus-search", branch = "dioxus-next" }
 
 manganis = { git = "https://github.com/DioxusLabs/collect-assets" }
@@ -54,47 +51,26 @@ floneumite = { git = "https://github.com/floneum/floneum" }
 postcard = { version = "1.0.4", features = ["use-std"] }
 serde = { version = "1.0.164", features = ["derive"] }
 
-[patch.'https://github.com/dioxuslabs/dioxus']
-dioxus = { git = "https://github.com/ealmloff/dioxus", branch = "fix-fullstack-history" }
-dioxus-lib = { git = "https://github.com/ealmloff/dioxus", branch = "fix-fullstack-history" }
-dioxus-core = { git = "https://github.com/ealmloff/dioxus", branch = "fix-fullstack-history" }
-dioxus-core-macro = { git = "https://github.com/ealmloff/dioxus", branch = "fix-fullstack-history" }
-dioxus-signals = { git = "https://github.com/ealmloff/dioxus", branch = "fix-fullstack-history" }
-dioxus-html = { git = "https://github.com/ealmloff/dioxus", branch = "fix-fullstack-history" }
-dioxus-cli-config = { git = "https://github.com/ealmloff/dioxus", branch = "fix-fullstack-history" }
-dioxus-router = { git = "https://github.com/ealmloff/dioxus", branch = "fix-fullstack-history" }
-dioxus-router-macro = { git = "https://github.com/ealmloff/dioxus", branch = "fix-fullstack-history" }
-dioxus-rsx = { git = "https://github.com/ealmloff/dioxus", branch = "fix-fullstack-history" }
-
-dioxus-web = { git = "https://github.com/ealmloff/dioxus", branch = "fix-fullstack-history" }
-dioxus-ssr = { git = "https://github.com/ealmloff/dioxus", branch = "fix-fullstack-history" }
-dioxus-tui = { git = "https://github.com/ealmloff/dioxus", branch = "fix-fullstack-history" }
-dioxus-desktop = { git = "https://github.com/ealmloff/dioxus", branch = "fix-fullstack-history" }
-dioxus-liveview = { git = "https://github.com/ealmloff/dioxus", branch = "fix-fullstack-history" }
-dioxus-fullstack = { git = "https://github.com/ealmloff/dioxus", branch = "fix-fullstack-history" }
-dioxus-native-core = { git = "https://github.com/ealmloff/dioxus", branch = "fix-fullstack-history" }
-dioxus-native-core-macro = { git = "https://github.com/ealmloff/dioxus", branch = "fix-fullstack-history" }
-
 [patch.crates-io]
-dioxus = { git = "https://github.com/ealmloff/dioxus", branch = "fix-fullstack-history" }
-dioxus-lib = { git = "https://github.com/ealmloff/dioxus", branch = "fix-fullstack-history" }
-dioxus-core = { git = "https://github.com/ealmloff/dioxus", branch = "fix-fullstack-history" }
-dioxus-core-macro = { git = "https://github.com/ealmloff/dioxus", branch = "fix-fullstack-history" }
-dioxus-signals = { git = "https://github.com/ealmloff/dioxus", branch = "fix-fullstack-history" }
-dioxus-html = { git = "https://github.com/ealmloff/dioxus", branch = "fix-fullstack-history" }
-dioxus-cli-config = { git = "https://github.com/ealmloff/dioxus", branch = "fix-fullstack-history" }
-dioxus-router = { git = "https://github.com/ealmloff/dioxus", branch = "fix-fullstack-history" }
-dioxus-router-macro = { git = "https://github.com/ealmloff/dioxus", branch = "fix-fullstack-history" }
-dioxus-rsx = { git = "https://github.com/ealmloff/dioxus", branch = "fix-fullstack-history" }
+dioxus = { git = "https://github.com/dioxuslabs/dioxus" }
+dioxus-lib = { git = "https://github.com/dioxuslabs/dioxus" }
+dioxus-core = { git = "https://github.com/dioxuslabs/dioxus" }
+dioxus-core-macro = { git = "https://github.com/dioxuslabs/dioxus" }
+dioxus-signals = { git = "https://github.com/dioxuslabs/dioxus" }
+dioxus-html = { git = "https://github.com/dioxuslabs/dioxus" }
+dioxus-cli-config = { git = "https://github.com/dioxuslabs/dioxus" }
+dioxus-router = { git = "https://github.com/dioxuslabs/dioxus" }
+dioxus-router-macro = { git = "https://github.com/dioxuslabs/dioxus" }
+dioxus-rsx = { git = "https://github.com/dioxuslabs/dioxus" }
 
-dioxus-web = { git = "https://github.com/ealmloff/dioxus", branch = "fix-fullstack-history" }
-dioxus-ssr = { git = "https://github.com/ealmloff/dioxus", branch = "fix-fullstack-history" }
-dioxus-tui = { git = "https://github.com/ealmloff/dioxus", branch = "fix-fullstack-history" }
-dioxus-desktop = { git = "https://github.com/ealmloff/dioxus", branch = "fix-fullstack-history" }
-dioxus-liveview = { git = "https://github.com/ealmloff/dioxus", branch = "fix-fullstack-history" }
-dioxus-fullstack = { git = "https://github.com/ealmloff/dioxus", branch = "fix-fullstack-history" }
-dioxus-native-core = { git = "https://github.com/ealmloff/dioxus", branch = "fix-fullstack-history" }
-dioxus-native-core-macro = { git = "https://github.com/ealmloff/dioxus", branch = "fix-fullstack-history" }
+dioxus-web = { git = "https://github.com/dioxuslabs/dioxus" }
+dioxus-ssr = { git = "https://github.com/dioxuslabs/dioxus" }
+dioxus-tui = { git = "https://github.com/dioxuslabs/dioxus" }
+dioxus-desktop = { git = "https://github.com/dioxuslabs/dioxus" }
+dioxus-liveview = { git = "https://github.com/dioxuslabs/dioxus" }
+dioxus-fullstack = { git = "https://github.com/dioxuslabs/dioxus" }
+dioxus-native-core = { git = "https://github.com/dioxuslabs/dioxus" }
+dioxus-native-core-macro = { git = "https://github.com/dioxuslabs/dioxus" }
 
 [profile.release]
 lto = true
