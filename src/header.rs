@@ -37,7 +37,14 @@ pub fn Header() -> Element {
                 div { class: "flex h-16 justify-between",
                     div { class: "flex px-2 lg:px-0",
                         div { class: "flex flex-shrink-0 items-center",
-                            Link { class: "text-xl font-bold m-2 md:mr-12", to: Route::Home {}, "Floneum" }
+                            Link { class: "text-xl m-2 md:mr-12 flex flex-row items-center", to: Route::Home {},
+                                img {
+                                    src: "/assets/Icon.png",
+                                    class: "h-8 w-8 mx-2",
+                                    alt: "Floneum"
+                                }
+                                "Floneum"
+                            }
                         }
                         div { class: "hidden lg:ml-6 lg:flex lg:space-x-8",
                             for (text , link) in links.clone() {

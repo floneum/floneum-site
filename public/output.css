@@ -933,6 +933,11 @@ select {
   margin-bottom: -2rem;
 }
 
+.mx-2 {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -1067,6 +1072,10 @@ select {
   height: 1.75rem;
 }
 
+.h-8 {
+  height: 2rem;
+}
+
 .h-\[25vw\] {
   height: 25vw;
 }
@@ -1141,6 +1150,10 @@ select {
 
 .w-64 {
   width: 16rem;
+}
+
+.w-8 {
+  width: 2rem;
 }
 
 .w-\[200\%\] {

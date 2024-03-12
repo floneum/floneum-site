@@ -17,7 +17,7 @@ asset_dir = "public"
 [web.app]
 
 # HTML title tag content
-title = "Kalosm"
+title = "Floneum"
 
 base_path = "."
 
