@@ -61,7 +61,7 @@ pub fn Hero() -> Element {
                                         span { "aria-hidden": "true", "→" }
                                     }
                                     Link {
-                                        to: "https://github.com/floneum/floneum/tree/master/interfaces/kalosm",
+                                        to: "https://github.com/floneum/floneum/tree/main/interfaces/kalosm",
                                         class: "text-sm font-semibold leading-6 text-gray-900",
                                         "View on GitHub "
                                         span { "aria-hidden": "true", "→" }

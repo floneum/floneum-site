@@ -406,6 +406,6 @@ I hope you enjoy using Kalosm v0.2.0! Your feedback is invaluable to us, so plea
 
 In the next release, we plan to add support for fine tuning models and training new heads for existing models. We also plan to continue improving the performance of the language models and adding support for more models.
 
-If any of those features sound interesting or you want to propose a new feature, consider contributing on [Github](https://github.com/floneum/floneum/tree/master/interfaces/kalosm).
+If any of those features sound interesting or you want to propose a new feature, consider contributing on [Github](https://github.com/floneum/floneum/tree/main/interfaces/kalosm).
 
 If you are interested in building an application with Kalosm, [join the Discord](https://discord.gg/dQdmhuB8q5) and get involved with the community!

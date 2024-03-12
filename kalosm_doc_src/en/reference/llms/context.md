@@ -36,7 +36,7 @@ Once you have created an embedding database, you can add documents to it with th
 {{#include src/doc_snippets/embeddings.rs:extend_database}}
 ```
 
-> This example uses rss context, but you can also use [audio](https://github.com/floneum/floneum/blob/master/interfaces/kalosm/examples/live_qa.rs), [filesystem](https://github.com/floneum/floneum/blob/94542cf49923cb4e15e34244336f8844ee2194c4/interfaces/kalosm/examples/fs_context.rs#L31), or [search engine](https://github.com/floneum/floneum/blob/94542cf49923cb4e15e34244336f8844ee2194c4/interfaces/kalosm-language/src/context/search/mod.rs#L16-L31) context
+> This example uses rss context, but you can also use [audio](https://github.com/floneum/floneum/blob/main/interfaces/kalosm/examples/live_qa.rs), [filesystem](https://github.com/floneum/floneum/blob/94542cf49923cb4e15e34244336f8844ee2194c4/interfaces/kalosm/examples/fs_context.rs#L31), or [search engine](https://github.com/floneum/floneum/blob/94542cf49923cb4e15e34244336f8844ee2194c4/interfaces/kalosm-language/src/context/search/mod.rs#L16-L31) context
 > You can also use a [fuzzy search engine](https://github.com/floneum/floneum/blob/94542cf49923cb4e15e34244336f8844ee2194c4/interfaces/kalosm/examples/fs_context.rs#L19-L20) with the same api if you prefer traditional search
 
 ### Searching the Embedding Database

@@ -6,14 +6,10 @@ use mdbook_shared::SummaryItem;
 #[component]
 pub fn Learn() -> Element {
     rsx! {
-        div {
-            class: "w-full pt-12 text-sm backdrop-blur-lg bg-white/75",
-            min_height: "100vh",
-            div { class: "max-w-screen-2xl flex flex-row justify-between mx-auto",
-                Content {}
-                LeftNav {}
-                RightNav {}
-            }
+        div { class: "relative mx-auto flex w-full max-w-8xl flex-auto justify-center sm:px-2 lg:px-8 xl:px-12",
+            LeftNav {}
+            learn::Content {}
+            RightNav {}
         }
     }
 }
@@ -26,9 +22,15 @@ fn LeftNav() -> Element {
     ];
 
     rsx! {
-        nav { class: "z-20 text-base hidden md:block fixed top-0 left-4 mt-36 mb-16 ml-2 w-[calc(100%-1rem)] md:w-60 h-full max-h-screen md:text-[13px] text-navy content-start overflow-y-auto leading-5 flex-wrap",
-            for chapter in chapters.into_iter().flatten().filter(|chapter| chapter.maybe_link().is_some()) {
-                SidebarSection { chapter: chapter }
+        div { class: "hidden lg:relative lg:block lg:flex-none",
+            div { class: "absolute bottom-0 right-0 top-16 hidden h-12 w-px bg-gradient-to-t from-slate-800 dark:block" }
+            div { class: "absolute bottom-0 right-0 top-28 hidden w-px bg-slate-800 dark:block" }
+            div { class: "sticky top-[4.75rem] -ml-0.5 h-[calc(100vh-4.75rem)] w-64 overflow-y-auto overflow-x-hidden py-16 pl-0.5 pr-8 xl:w-72 xl:pr-16",
+                nav { class: "font-normal text-slate-500 hover:text-slate-700",
+                    for chapter in chapters.into_iter().flatten().filter(|chapter| chapter.maybe_link().is_some()) {
+                        SidebarSection { chapter: chapter }
+                    }
+                }
             }
         }
     }
@@ -70,9 +72,13 @@ fn SidebarChapter(link: &'static SummaryItem<BookRoute>) -> Element {
 
     rsx! {
         li { class: "pt-1",
-            Link { to: Route::Docs { child: *url }, "{shevron}{link.name}" }
+            Link {
+                class: "font-normal text-slate-500 hover:text-slate-700",
+                to: Route::Docs { child: *url },
+                "{shevron}{link.name}"
+            }
             if show_chevron && show_dropdown {
-                ul { class: "ml-6 border-l border-gray-300 py-1",
+                ul {
                     for nest in link.nested_items.iter() {
                         LocationLink { chapter: nest }
                     }
@@ -90,13 +96,13 @@ fn LocationLink(chapter: &'static SummaryItem<BookRoute>) -> Element {
     let url = link.location.as_ref().unwrap();
 
     let current_class = match book_url == url.to_string() {
-        true => "bg-gray-200",
-        false => "",
+        true => "block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full font-semibold text-sky-500 before:bg-sky-500",
+        false => "block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block",
     };
 
     rsx! {
         Link { to: Route::Docs { child: *url },
-            li { span { class: "m-1 px-2 rounded-md {current_class}", "{link.name}" } }
+            li { span { class: "{current_class}", "{link.name}" } }
         }
     }
 }

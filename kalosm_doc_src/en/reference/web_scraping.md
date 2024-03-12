@@ -20,4 +20,4 @@ Kalosm provides utilities to extract information from the HTML content of a page
 
 ## Conclusion
 
-This example serves as a foundational guide for building web crawling applications with Kalosm. You can combine a web crawler with a [LLM](./llms/index.md) to perform more complex analysis on the content of web pages. Or you could train a [custom classifier](https://github.com/floneum/floneum/blob/master/interfaces/kalosm-learning/examples/classify.rs) to classify web pages based on their content.
+This example serves as a foundational guide for building web crawling applications with Kalosm. You can combine a web crawler with a [LLM](./llms/index.md) to perform more complex analysis on the content of web pages. Or you could train a [custom classifier](https://github.com/floneum/floneum/blob/main/interfaces/kalosm-learning/examples/classify.rs) to classify web pages based on their content.

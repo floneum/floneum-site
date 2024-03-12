@@ -32,7 +32,7 @@ pub fn Footer() -> Element {
                 }
                 div { class: "mt-10 flex justify-center space-x-10",
                     Link {
-                        to: "https://github.com/floneum/floneum/tree/master/interfaces/kalosm",
+                        to: "https://github.com/floneum/floneum/tree/main/interfaces/kalosm",
                         class: "text-gray-400 hover:text-gray-500",
                         span { class: "sr-only", "Github" }
                         svg {

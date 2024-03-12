@@ -58,6 +58,7 @@ pub fn SearchModal(props: SearchModalProps) -> Element {
                     onkeydown: move |evt| {
                         if evt.key() == Key::Escape {
                             *SEARCH_ACTIVE.write() = false;
+                            SEARCH_TEXT.write().clear();
                         }
                     },
                     div {
@@ -131,6 +132,7 @@ pub fn SearchResult(result: SearchResult<Route>) -> Element {
                 to: result.route.clone(),
                 onclick: move |_| {
                     *SEARCH_ACTIVE.write() = false;
+                    SEARCH_TEXT.write().clear();
                 },
                 svg {
                     "stroke": "currentColor",
@@ -203,7 +205,11 @@ pub fn Search() -> Element {
 }
 
 fn SearchHints() -> Element {
-    let example_searches = ["Resource augmented generation", "Transcription", "Chatbot"];
+    let example_searches = [
+        "Resource augmented generation",
+        "Language Model",
+        "Embedding",
+    ];
 
     rsx! {
         h2 {

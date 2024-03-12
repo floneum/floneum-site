@@ -13,8 +13,8 @@ edition = "2021"
 [output.html]
 mathjax-support = true
 site-url = "/mdBook/"
-git-repository-url = "https://github.com/floneum/floneum/edit/master/docs"
-edit-url-template = "https://github.com/floneum/floneum/edit/master/docs/{path}"
+git-repository-url = "https://github.com/floneum/floneum/edit/main/docs"
+edit-url-template = "https://github.com/floneum/floneum/edit/main/docs/{path}"
 
 [output.html.search]
 limit-results = 20

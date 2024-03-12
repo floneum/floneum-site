@@ -44,4 +44,4 @@ After you have created a chat instance, you can start the conversation loop. Fir
 
 ## Conclusion
 
-This example demonstrates how to set up a chat-based interaction with a pirate-themed assistant using Kalosm. More chat example code can be found in the [examples](https://github.com/floneum/floneum/tree/master/interfaces/kalosm/examples) folder.
+This example demonstrates how to set up a chat-based interaction with a pirate-themed assistant using Kalosm. More chat example code can be found in the [examples](https://github.com/floneum/floneum/tree/main/interfaces/kalosm/examples) folder.

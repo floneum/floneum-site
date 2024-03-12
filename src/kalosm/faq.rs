@@ -65,25 +65,25 @@ pub fn Faq() -> Element {
                         Question { question: "What can you build with Kalosm?", index: 0,
                             "You can think of Kalosm as the plumbing between different pre-trained models and the surrounding world. Kalosm makes it easy to build applications that use pre-trained models to generate text, audio, and images. You can build anything from "
                             Link {
-                                to: "https://github.com/floneum/floneum/blob/master/interfaces/kalosm/examples/remote.rs",
+                                to: "https://github.com/floneum/floneum/blob/main/interfaces/kalosm/examples/remote.rs",
                                 class: "text-indigo-600",
                                 "chatbots"
                             }
                             " and "
                             Link {
-                                to: "https://github.com/floneum/floneum/tree/master/interfaces/kalosm#voice-transcription",
+                                to: "https://github.com/floneum/floneum/tree/main/interfaces/kalosm#voice-transcription",
                                 class: "text-indigo-600",
                                 "note-taking apps"
                             }
                             " to "
                             Link {
-                                to: "https://github.com/floneum/floneum/tree/master/interfaces/kalosm#image-generation",
+                                to: "https://github.com/floneum/floneum/tree/main/interfaces/kalosm#image-generation",
                                 class: "text-indigo-600",
                                 "artistic tools"
                             }
                             " and "
                             Link {
-                                to: "https://github.com/floneum/floneum/tree/master/interfaces/kalosm#embedding-powered-search",
+                                to: "https://github.com/floneum/floneum/tree/main/interfaces/kalosm#embedding-powered-search",
                                 class: "text-indigo-600",
                                 "search engines"
                             }
@@ -96,13 +96,13 @@ pub fn Faq() -> Element {
                         Question { question: "Can Kalosm be used with remote models like GPT-3?", index: 2,
                             "Yes! Kalosm is local-first, but it can be "
                             Link {
-                                to: "https://github.com/floneum/floneum/blob/master/interfaces/kalosm/examples/remote.rs",
+                                to: "https://github.com/floneum/floneum/blob/main/interfaces/kalosm/examples/remote.rs",
                                 class: "text-indigo-600",
                                 "used with remote models"
                             }
                             " like GPT-3. You can also split up work between local and remote models or use "
                             Link {
-                                to: "https://github.com/floneum/floneum/blob/master/interfaces/kalosm/examples/remote-open-ai-compatable.rs",
+                                to: "https://github.com/floneum/floneum/blob/main/interfaces/kalosm/examples/remote-open-ai-compatable.rs",
                                 class: "text-indigo-600",
                                 "remote open source models"
                             }
