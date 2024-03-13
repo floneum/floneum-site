@@ -24,6 +24,6 @@ cargo install --git https://github.com/floneum/floneum floneum-cli
 floneum build --release
 ```
 
-> You can look at the default plugins [here](../../../plugins) to see how more complex plugins work
+> You can look at the default plugins [here](https://github.com/floneum/floneum/tree/main/floneum/plugins) to see how more complex plugins work
 
 Finally, load your plugin by running the main Floneum application and typing the path to your `.wasm` file in the load plugin text box in the top left.
