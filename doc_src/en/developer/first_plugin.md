@@ -2,14 +2,15 @@
 
 This example will use [rust](https://www.rust-lang.org/) to build an new plugin for Floneum.
 
-First, edit your cargo.toml to add the rust_adapter dependency and change the crate type to a dynamically linked (C-like) library
+First, edit your cargo.toml to add floneum_rust and wit-bindgen as dependencies and change the crate type to a dynamically linked (C-like) library
 
 ```toml
 [lib]
 crate-type = ["cdylib"]
 
 [dependencies]
-rust_adapter = { git = "https://github.com/floneum/floneum" }
+floneum_rust = { git = "https://github.com/floneum/floneum" }
+wit-bindgen = { git = "https://github.com/bytecodealliance/wit-bindgen", rev = "285f0c6ad5da3d6cd8ef2e0635df51f229d6578f" }
 ```
 
 Then create your plugin with the export plugin macro:
