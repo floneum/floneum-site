@@ -334,7 +334,7 @@ loop {
 
 ## RAG improvements
 
-RAG (Retrieval-Augmented Generation) is a powerful tool for generating text with up-to-date or proprietary information. Resource augmented generation generally follows the following steps:
+RAG (Retrieval-Augmented Generation) is a powerful tool for generating text with up-to-date or proprietary information. Retrieval-augmented generation generally follows the following steps:
 
 1) Gather context from some local files, your database, or web data. In kalosm, you can retrieve data from any source that implements [`IntoDocument`](https://docs.rs/kalosm/0.2.0/kalosm/language/trait.IntoDocument.html) or [`IntoDocuments`](https://docs.rs/kalosm/0.2.0/kalosm/language/trait.IntoDocuments.html). You can gather your sources from [local documents](https://docs.rs/kalosm/0.2.0/kalosm/language/struct.DocumentFolder.html), a [search term](https://docs.rs/kalosm/0.2.0/kalosm/language/struct.SearchQuery.html), [specific web page](https://docs.rs/kalosm/0.2.0/kalosm/language/struct.Url.html), an [RSS feed](https://docs.rs/kalosm/0.2.0/kalosm/language/struct.RssFeed.html), or even a [custom web crawler](https://docs.rs/kalosm/0.2.0/kalosm/language/enum.Page.html#method.crawl).
 2) Insert that context into a searchable database. Kalosm includes a [vector database](https://docs.rs/kalosm/0.2.0/kalosm/language/struct.VectorDB.html) that can be used to store and retrieve similar documents.

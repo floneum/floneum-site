@@ -1,8 +1,8 @@
-# Resource Augmented Generation in Kalosm
+# Retrieval-augmented generation in Kalosm
 
 ## Introduction
 
-Resource augmented generation in Kalosm is a powerful approach that combines natural language generation with real-time information from audio data. This guide will walk you through the process of implementing resource augmented generation using the Kalosm library.
+Retrieval-augmented generation in Kalosm is a powerful approach that combines natural language generation with real-time information from audio data. This guide will walk you through the process of implementing retrieval-augmented generation using the Kalosm library.
 
 > Before you begin, make sure you have the Kalosm library installed and set up in your Rust project. You can refer to the [Introduction](../index.md) for instructions on how to install Kalosm.
 
@@ -50,7 +50,7 @@ Next, we need to create a chat model. We can use the default chat model provided
 {{#include src/doc_snippets/live_qa.rs:create_chat}}
 ```
 
-## Implementing Resource Augmented Generation
+## Implementing Retrieval-Augmented Generation 
 
 Finally, we can implement the main chat loop that asks the user for input, searches the context database for relevant information, and generates a response using the chat model.
 
@@ -60,4 +60,4 @@ Finally, we can implement the main chat loop that asks the user for input, searc
 
 ## Conclusion
 
-Resource augmented generation in Kalosm makes it possible for language models to generate responses based on up-to-date information from the real world. This guide has shown you how to implement resource augmented generation using the Kalosm library. For more information, the reference documentation documents more details about: [Whisper](../reference/transcription.md), [DocumentTable](../reference/llms/context.md), and [Chat](../reference/llms/chat.md).
+Retrieval-augmented generation in Kalosm makes it possible for language models to generate responses based on up-to-date information from the real world. This guide has shown you how to implement retrieval-augmented generation using the Kalosm library. For more information, the reference documentation documents more details about: [Whisper](../reference/transcription.md), [DocumentTable](../reference/llms/context.md), and [Chat](../reference/llms/chat.md).

@@ -206,7 +206,7 @@ pub fn Search() -> Element {
 
 fn SearchHints() -> Element {
     let example_searches = [
-        "Resource augmented generation",
+        "Retrieval-augmented generation",
         "Language Model",
         "Embedding",
     ];
