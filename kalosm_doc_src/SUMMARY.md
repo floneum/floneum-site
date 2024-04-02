@@ -18,4 +18,4 @@
 ---
 
 - [Guides](guides/index.md)
-  - [Retrieval-augmented generation](guides/resource_augmented_generation.md)
+  - [Retrieval-augmented generation](guides/retrieval_augmented_generation.md)

@@ -28,4 +28,4 @@ Finally, we can use the `transcribe` method to transcribe the audio data that we
 
 ## Conclusion
 
-In this chapter, we learned how to use Kalosm to transcribe audio data from our microphone. Audio data can be a powerful source of real time information. You can combine audio data with [retrieval-augmented generation](../guides/resource_augmented_generation.md) to create a [chat bot that understands it's surroundings](https://github.com/floneum/floneum/blob/main/interfaces/kalosm/examples/live_qa.rs).
+In this chapter, we learned how to use Kalosm to transcribe audio data from our microphone. Audio data can be a powerful source of real time information. You can combine audio data with [retrieval-augmented generation](../guides/retrieval_augmented_generation.md) to create a [chat bot that understands it's surroundings](https://github.com/floneum/floneum/blob/main/interfaces/kalosm/examples/live_qa.rs).
