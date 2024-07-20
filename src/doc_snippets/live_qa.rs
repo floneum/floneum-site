@@ -1,8 +1,8 @@
 #[tokio::main]
 async fn main() -> Result<(), anyhow::Error> {
     // ANCHOR: create_whisper
-    use kalosm::sound::*;
     use kalosm::language::*;
+    use kalosm::sound::*;
     use kalosm::*;
     use std::sync::Arc;
     use tokio::time::{Duration, Instant};
@@ -14,8 +14,7 @@ async fn main() -> Result<(), anyhow::Error> {
 
     // ANCHOR: create_context_db
     // Create database connection
-    let db = surrealdb::Surreal::new::<surrealdb::engine::local::RocksDb>("./db/temp.db")
-        .await?;
+    let db = surrealdb::Surreal::new::<surrealdb::engine::local::RocksDb>("./db/temp.db").await?;
 
     // Select a specific namespace / database
     db.use_ns("test").use_db("test").await?;

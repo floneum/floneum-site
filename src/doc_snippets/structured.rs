@@ -30,8 +30,7 @@ async fn main() {
 
     // ANCHOR: streaming_text
     let llm = Phi::v2().await.unwrap();
-    let mut structured = llm
-        .stream_structured_text("A state that starts with A", validator);
+    let mut structured = llm.stream_structured_text("A state that starts with A", validator);
 
     structured.to_std_out().await.unwrap();
 
