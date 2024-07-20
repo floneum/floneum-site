@@ -1,6 +1,6 @@
 # Structured Generation Visualized
 
-![Structured Generation Visualized](/assets/structured_generation_visualized.png)
+![Structured Generation Visualized](./public/assets/structured_generation_visualized.png)
 
 First some background:
 - Tokens
@@ -175,10 +175,10 @@ Right now, we are running the parser for every single one of the 128,000 tokens 
 
 There are generally a few steps between the token probabilities after constraints and the token that gets chosen. Each of those steps that modify the probabilities of the tokens is called a sampler. One common sampler is the top-k sampler which only samples the top k tokens with the highest probability. Here is what that could look like if we only keep the top 2 tokens (k=2):
 
-![Top-k Sampling](/assets/top_k_sampling.png)
+![Top-k Sampling](./public/assets/top_k_sampling.png)
 
 > Generally k is larger, but much smaller than the number of tokens in the model. The default in kalosm if 64.
 
 We can combine the top-k sampler with constrained generation by only looking for the top k valid tokens after the constraints have been applied. Once we have the most probable k tokens, we can stop running the constraints against tokens at all. Since the LLM knows about the constraints, the valid tokens tend to have a very high probability which means we can skip parsing the majority of the 128,000 tokens.
 
-![Top-K Accelerated Structured Generation](/assets/top_k_accelerated_structured_generation.png)
+![Top-K Accelerated Structured Generation](./public/assets/top_k_accelerated_structured_generation.png)
