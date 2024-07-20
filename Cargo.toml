@@ -8,9 +8,9 @@ authors = ["Evan Almloff"]
 
 [dependencies]
 dioxus = { git = "https://github.com/dioxuslabs/dioxus", features = ["fullstack", "router"] }
-syntect-html = { git = "https://github.com/ealmloff/include_mdbook", branch = "bump-dioxus" }
-mdbook-shared = { git = "https://github.com/ealmloff/include_mdbook", branch = "bump-dioxus" }
-use-mdbook = { git = "https://github.com/ealmloff/include_mdbook", branch = "bump-dioxus" }
+syntect-html = { path = "/Users/evanalmloff/Desktop/Github/include_mdbook/syntect-html" }
+mdbook-shared = { path = "/Users/evanalmloff/Desktop/Github/include_mdbook/mdbook-shared" }
+use-mdbook = { path = "/Users/evanalmloff/Desktop/Github/include_mdbook/use-mdbook" }
 dioxus-search = { git = "https://github.com/dioxuslabs/dioxus-search" }
 manganis = { git = "https://github.com/DioxusLabs/manganis", features = ["dioxus"] }
 tokenizers = { version = "0.19.1", default-features = false }

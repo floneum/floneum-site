@@ -337,9 +337,10 @@ fn LoadTokenizer(children: Element) -> Element {
     #[cfg(feature = "web")]
     use_future(move || async move {
         let run = || async move {
-            let resp = gloo_net::http::Request::get("/tokenizer.json")
-                .send()
-                .await?;
+            let resp =
+                gloo_net::http::Request::get(manganis::mg!(file("./public/assets/tokenizer.json")))
+                    .send()
+                    .await?;
             let bytes = resp.binary().await?;
             let tokenizer = tokenizers::Tokenizer::from_bytes(&bytes)
                 .map(Rc::new)
