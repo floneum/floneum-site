@@ -16,7 +16,7 @@ async fn main() {
 
     {
         // ANCHOR: create_embedding_database
-        use kalosm::{language::*, *};
+        use kalosm::language::*;
 
         // Create database connection
         let db = surrealdb::Surreal::new::<surrealdb::engine::local::RocksDb>("./db/temp.db")

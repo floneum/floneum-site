@@ -2725,6 +2725,7 @@ dependencies = [
  "serde",
  "simple_logger",
  "slab",
+ "surrealdb",
  "syntect-html",
  "tokenizers",
  "tokio",
