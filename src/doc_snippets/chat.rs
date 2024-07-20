@@ -2,11 +2,11 @@
 async fn main() {
     // ANCHOR: create_chat_model
     use kalosm::language::*;
-    let mut model = Llama::new_chat();
+    let model = Llama::new_chat().await.unwrap();
     // ANCHOR_END: create_chat_model
 
     // ANCHOR: create_chat_wrapper
-    let mut chat = Chat::builder(&mut model)
+    let mut chat = Chat::builder(model)
         .with_system_prompt("The assistant will act like a pirate")
         .build();
     // ANCHOR_END: create_chat_wrapper
@@ -14,8 +14,6 @@ async fn main() {
     // ANCHOR: streaming_text
     loop {
         chat.add_message(prompt_input("\n> ").unwrap())
-            .await
-            .unwrap()
             .to_std_out()
             .await
             .unwrap();
