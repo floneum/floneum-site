@@ -21,8 +21,7 @@ fn Question(question: String, index: usize, children: Element) -> Element {
                             "viewBox": "0 0 24 24",
                             "stroke": "currentColor",
                             "aria-hidden": "true",
-                            class: "h-6 w-6",
-                            class: if visible() { "hidden" } else { "" },
+                            class: if visible() { "h-6 w-6 hidden" } else { "h-6 w-6" },
                             path {
                                 "stroke-linejoin": "round",
                                 "d": "M12 6v12m6-6H6",
@@ -35,8 +34,7 @@ fn Question(question: String, index: usize, children: Element) -> Element {
                             "stroke": "currentColor",
                             "fill": "none",
                             "aria-hidden": "true",
-                            class: "h-6 w-6",
-                            class: if visible() { "" } else { "hidden" },
+                            class: if visible() { "h-6 w-6 hidden" } else { "h-6 w-6" },
                             path {
                                 "d": "M18 12H6",
                                 "stroke-linejoin": "round",
@@ -47,7 +45,10 @@ fn Question(question: String, index: usize, children: Element) -> Element {
                 }
             }
             dd { class: "mt-2 pr-12", id: "faq-{index}",
-                p { class: "text-base leading-7 text-gray-600", class: if visible() { "" } else { "hidden" }, {children} }
+                p {
+                    class: if visible() { "text-base leading-7 text-gray-600" } else { "text-base leading-7 text-gray-600 hidden" },
+                    {children}
+                }
             }
         }
     }
@@ -62,7 +63,9 @@ pub fn Faq() -> Element {
                         "Frequently asked questions"
                     }
                     dl { class: "mt-10 space-y-6 divide-y divide-gray-900/10",
-                        Question { question: "What can you build with Kalosm?", index: 0,
+                        Question {
+                            question: "What can you build with Kalosm?",
+                            index: 0,
                             "You can think of Kalosm as the plumbing between different pre-trained models and the surrounding world. Kalosm makes it easy to build applications that use pre-trained models to generate text, audio, and images. You can build anything from "
                             Link {
                                 to: "https://github.com/floneum/floneum/blob/main/interfaces/kalosm/examples/remote.rs",
@@ -88,12 +91,20 @@ pub fn Faq() -> Element {
                                 "search engines"
                             }
                         }
-                        Question { question: "Do you need a GPU to use Kalosm models?", index: 1,
+                        Question {
+                            question: "Do you need a GPU to use Kalosm models?",
+                            index: 1,
                             "No! Kalosm uses quantization and other techniques to make it possible to run models on a CPU. Kalosm uses "
-                            Link { to: "https://github.com/huggingface/candle", class: "text-indigo-600", "Candle" }
+                            Link {
+                                to: "https://github.com/huggingface/candle",
+                                class: "text-indigo-600",
+                                "Candle"
+                            }
                             " which supports running quantized models on a CPU with upcoming support for Metal and CUDA."
                         }
-                        Question { question: "Can Kalosm be used with remote models like GPT-3?", index: 2,
+                        Question {
+                            question: "Can Kalosm be used with remote models like GPT-3?",
+                            index: 2,
                             "Yes! Kalosm is local-first, but it can be "
                             Link {
                                 to: "https://github.com/floneum/floneum/blob/main/interfaces/kalosm/examples/remote.rs",

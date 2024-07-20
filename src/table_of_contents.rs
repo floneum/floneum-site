@@ -19,7 +19,9 @@ pub fn TableOfContents(TableOfContentsProps { sections }: TableOfContentsProps) 
                     }
                     ol { role: "list", class: "mt-4 space-y-3 text-sm",
                         for section in sections.iter().filter(|s| s.level <= 2) {
-                            li { key: "{section.id}", class: "pb-2 {padding_map[section.level-1]}",
+                            li {
+                                key: "{section.id}",
+                                class: "pb-2 {padding_map[section.level-1]}",
                                 h3 {
                                     a {
                                         class: "font-normal text-slate-500 hover:text-slate-700",

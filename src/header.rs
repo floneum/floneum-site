@@ -37,7 +37,9 @@ pub fn Header() -> Element {
                 div { class: "flex h-16 justify-between",
                     div { class: "flex px-2 lg:px-0",
                         div { class: "flex flex-shrink-0 items-center",
-                            Link { class: "text-xl m-2 md:mr-12 flex flex-row items-center", to: Route::Home {},
+                            Link {
+                                class: "text-xl m-2 md:mr-12 flex flex-row items-center",
+                                to: Route::Home {},
                                 img {
                                     src: "/assets/Icon.png",
                                     class: "h-8 w-8 mx-2",
@@ -48,7 +50,11 @@ pub fn Header() -> Element {
                         }
                         div { class: "hidden lg:ml-6 lg:flex lg:space-x-8",
                             for (text , link) in links.clone() {
-                                Link { class: desktop_nav_link_class(&route, &link), to: link, {text} }
+                                Link {
+                                    class: desktop_nav_link_class(&route, &link),
+                                    to: link,
+                                    {text}
+                                }
                             }
                         }
                     }
@@ -94,7 +100,9 @@ pub fn Header() -> Element {
                     }
                 }
             }
-            div { class: "lg:hidden", class: if mobile_menu_open() { "block" } else { "hidden" }, id: "mobile-menu",
+            div {
+                class: if mobile_menu_open() { "lg:hidden block" } else { "lg:hidden hidden" },
+                id: "mobile-menu",
                 div { class: "space-y-1 pb-3 pt-2",
                     for (text , link) in links {
                         Link {

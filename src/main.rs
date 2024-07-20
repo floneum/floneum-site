@@ -25,6 +25,7 @@ mod learn;
 mod plugin;
 mod search;
 mod shortcut;
+mod structured_generation_visualized;
 mod table_of_contents;
 
 #[component]
@@ -75,6 +76,10 @@ mod docs {
 }
 
 mod blog_route {
+    use crate::structured_generation_visualized::{
+        StructuredGenerationAcceleratedVisualization, StructuredGenerationVisualization,
+        TokenizationVisualization,
+    };
     use dioxus::prelude::*;
 
     use_mdbook::mdbook_router! {"blog"}
@@ -94,46 +99,12 @@ fn main() {
             .init()
             .unwrap();
 
-        tokio::runtime::Runtime::new()
-            .unwrap()
-            .block_on(async move {
-                let index_html = std::fs::read_to_string("docs/index.html").unwrap();
-                let main_tag = r#"<div id="main" class="w-full h-full">"#;
-                let (before_body, after_body) =
-                    index_html.split_once(main_tag).expect("main id not found");
-                let after_body = after_body
-                    .split_once("</div>")
-                    .expect("main id not found")
-                    .1;
-                let wrapper = DefaultRenderer {
-                    before_body: before_body.to_string() + main_tag,
-                    after_body: "</div>".to_string() + after_body,
-                };
-                let mut renderer = IncrementalRenderer::builder()
-                    .static_dir("docs_static")
-                    .map_path(|route| {
-                        let mut path = std::env::current_dir().unwrap();
-                        path.push("docs_static");
-                        for segment in route.split('/') {
-                            path.push(segment);
-                        }
-                        println!("build: {path:?}");
-                        path
-                    })
-                    .build();
-                renderer.renderer_mut().pre_render = true;
-                pre_cache_static_routes::<Route, _>(&mut renderer, &wrapper)
-                    .await
-                    .unwrap();
+        std::env::remove_var("DIOXUS_ACTIVE");
+        std::env::remove_var("CARGO");
 
-                // Copy everything from docs_static to docs
-                let mut options = fs_extra::dir::CopyOptions::new();
-                options.overwrite = true;
-                options.content_only = true;
-                options.copy_inside = true;
-                std::fs::create_dir_all("./docs").unwrap();
-                fs_extra::dir::move_dir("./docs_static", "./docs", &options).unwrap();
-            });
+        LaunchBuilder::new()
+            .with_cfg(dioxus::static_site_generation::Config::new().github_pages())
+            .launch(app);
         println!("prebuilt");
 
         dioxus_search::SearchIndex::<Route>::create(
@@ -172,7 +143,11 @@ fn main() {
     }
 
     #[cfg(not(feature = "prebuild"))]
-    launch(|| rsx! { Router::<Route> {} });
+    launch(|| {
+        rsx! {
+            Router::<Route> {}
+        }
+    });
 }
 
 static SEARCH_INDEX: dioxus_search::LazySearchIndex<Route> = dioxus_search::load_search_index! {
