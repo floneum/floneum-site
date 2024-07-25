@@ -2,14 +2,13 @@
 
 ![Structured Generation Visualized](./public/assets/structured_generation_visualized.png)
 
-First some background:
-- Tokens
-- LLMs
-- Grammars/Incremental parsing
+Text is the universal format for data. APIs communicate with JSON, code is written in text, and the end result is often rendered in HTML. Because LLMs are trained on a giant corpus of web text, they are excellent at understanding and writing text in machine readable formats like JSON.
 
-Structured Generation Visualized
 
-Text is a universal format for data. Data in text form is all over the web. Communication happens in JSON, code is written in . Because LLMs are trained on a giant corpus of web text, they can generally understand and write text in a machine readable format like JSON.
+You can use LLMs to generate arbitrary data:
+<!-- ![LLMs can generate arbitrary data](./public/assets/llms_can_generate_arbitrary_data.png) -->
+
+
 
 
 I want 100 different random characters with reasonable names, descriptions, and ages. Instead of creating each character individually, what if we ask a small LLM to generate JSON for each character?
@@ -31,7 +30,7 @@ We need JSON in this format:
 }
 ```
 
-We can use the [Kalosm](https://github.com/floneum/floneum/tree/main/interfaces/kalosm) library to generate text with the phi-3-mini-4k-instruct model. We will use the `Task` struct to create a task that streams unstructured text into stdout:
+We can use the [Kalosm](https://github.com/floneum/floneum/tree/main/interfaces/kalosm) library to generate text with the phi-3-mini-4k-instruct model. We will use the `Task` struct to create a task that streams unstructured text into the terminal:
 
 ```rust
 // Cargo.toml
@@ -54,7 +53,7 @@ async fn main() {
     let task = Task::builder("You generate data in a JSON format").build();
 
     // Run the task
-    let result = task.run(r#"Generate a character with this format: { "name": string, "description": string, "metadata": { "age": number, "height_cm": number, "weight_kg": number, "hair_color": string, "eye_color": string } }"#, &model);
+    let mut result = task.run(r#"Generate a character with this format: { "name": string, "description": string, "metadata": { "age": number, "height_cm": number, "weight_kg": number, "hair_color": string, "eye_color": string } }"#, &model);
 
     // Stream the text into stdout
     result.to_std_out().await.unwrap();
@@ -137,7 +136,7 @@ async fn main() {
         .build();
 
     // Run the task
-    let result = task.run(r#"Generate a character with this format: { "name": string, "description": string, "metadata": { "age": number, "height_cm": number, "weight_kg": number, "hair_color": string, "eye_color": string } }"#, &model);
+    let mut result = task.run(r#"Generate a character with this format: { "name": string, "description": string, "metadata": { "age": number, "height_cm": number, "weight_kg": number, "hair_color": string, "eye_color": string } }"#, &model);
 
     // Stream the text into stdout
     result.to_std_out().await.unwrap();
@@ -182,3 +181,95 @@ There are generally a few steps between the token probabilities after constraint
 We can combine the top-k sampler with constrained generation by only looking for the top k valid tokens after the constraints have been applied. Once we have the most probable k tokens, we can stop running the constraints against tokens at all. Since the LLM knows about the constraints, the valid tokens tend to have a very high probability which means we can skip parsing the majority of the 128,000 tokens.
 
 ![Top-K Accelerated Structured Generation](./public/assets/top_k_accelerated_structured_generation.png)
+
+## Beyond REGEX
+
+REGEX is great for simple constraints, but it is both tedious to write and limited to simple patterns.
+
+### Deriving Parsers
+
+If you don't need complete control over the syntax the model uses to generate json, you can just derive a parser for JSON from a type:
+
+```rust
+// Cargo.toml
+// [dependencies]
+// kalosm = { version = "0.3", features = ["language", "metal"] }
+// tokio = { version = "1.37.0", features = ["full"] }
+
+use kalosm::language::*;
+
+// Define a type for the character
+#[derive(Parse)]
+struct Character {
+    name: String,
+    description: String,
+    metadata: Metadata,
+}
+
+// Define a type for the metadata
+#[derive(Parse)]
+struct Metadata {
+    age: u8,
+    height_cm: u8,
+    weight_kg: u8,
+    hair_color: String,
+    eye_color: String,
+}
+
+#[tokio::main]
+async fn main() {
+    // Create a new model. We are using the Phi-3 model which is small and focused on reasoning tasks.
+    let model = Llama::phi_3()
+        .await
+        .unwrap();
+
+    // Create a constraint that parses our character type
+    let constraint = Character::new_parser();
+    // Create a task that generates text for a character
+    let task = Task::builder("You generate data in a JSON format")
+        .with_constraints(constraint)
+        .build();
+
+    // Run the task
+    let mut result = task.run(r#"Generate a character with this format: { "name": string, "description": string, "metadata": { "age": number, "height_cm": number, "weight_kg": number, "hair_color": string, "eye_color": string } }"#, &model);
+
+    // Stream the text into stdout
+    result.to_std_out().await.unwrap();
+
+    // BONUS: Parsing is validation. If you derive a parser, you automatically get out parsed data!
+    let parsed: Parsed = result.parse().await.unwrap();
+}
+```
+
+### Creating Custom Parsers
+
+If you need more control over what the model generates, you can create your own parser. Unlike regex, your parser can parse languages that [require context like html](https://github.com/ealmloff/html-parser):
+
+```rust
+use kalosm::language::*;
+
+#[tokio::main]
+async fn main() {
+    let model = Llama::phi_3().await.unwrap();
+    let task = Task::builder("The assistant generates plain HTML")
+        .with_constraints(
+            html_parser::Element::new_parser()
+        )
+        .build();
+
+    let input = prompt_input("> ").unwrap();
+    let mut output = task.run(input, &model);
+    output.to_std_out().await.unwrap();
+    let html: html_parser::Element = output.await.unwrap();
+    println!();
+    println!("{:#?}", html);
+}
+```
+
+Because parsing runs in native rust code, you can parse even complex languages like html with constraints for elements, attributes and values in real time:
+
+<!-- ![HTML Parser](./public/assets/html_parser.mp4) -->
+
+## Conclusion
+
+
