@@ -1,20 +1,8 @@
-# Structured Generation Visualized
+# Strongly Typed Data Generation
 
 ![Structured Generation Visualized](./public/assets/structured_generation_visualized.png)
 
-Text is the universal format for data. APIs communicate with JSON, code is written in text, and the end result is often rendered in HTML. Because LLMs are trained on a giant corpus of web text, they are excellent at understanding and writing text in machine readable formats like JSON.
-
-
-You can use LLMs to generate arbitrary data:
-<!-- ![LLMs can generate arbitrary data](./public/assets/llms_can_generate_arbitrary_data.png) -->
-
-
-
-
-I want 100 different random characters with reasonable names, descriptions, and ages. Instead of creating each character individually, what if we ask a small LLM to generate JSON for each character?
-
-
-We need JSON in this format:
+Text is the universal format for data. Computers communicate with JSON, code is written in text, and the end result is often rendered in HTML. LLMs are trained on a giant corpus of web text, so they should be excellent at understanding and writing text in machine readable formats like JSON right? Let's try asking a LLM to generate JSON for a character in this format:
 
 ```
 {
@@ -30,6 +18,8 @@ We need JSON in this format:
 }
 ```
 
+<details>
+<summary>Click to see the code</summary>
 We can use the [Kalosm](https://github.com/floneum/floneum/tree/main/interfaces/kalosm) library to generate text with the phi-3-mini-4k-instruct model. We will use the `Task` struct to create a task that streams unstructured text into the terminal:
 
 ```rust
@@ -59,6 +49,7 @@ async fn main() {
     result.to_std_out().await.unwrap();
 }
 ```
+</details>
 
 Running the program sometimes generates valid JSON with reasonable data:
 
@@ -91,12 +82,17 @@ But other times, it generates nonsense:
 }
 ```
 
-Instead of just telling the LLM about the format we want, what if we force it to generate text that conforms to the format?
+Ok, so just asking nicely doesn't work so well. The LLM knows something about the structure of JSON, but it isn't consistent enough to generate valid JSON every time.
+
+
+Lets help it along. Instead of letting the LLM generate any text it thinks is likely, we can force it to generate text that conforms to the format we want with structured generation.
 
 ## Token Generation
 
 First, lets dive into a bit of background on LLMs. Large language models are trained on a massive corpus of text. Instead of reading characters, or words in a sentence, the LLM is trained to read chunks of text called tokens. On average each token is about 2/3 of a word, but depending on the word it could be the entire word or a single character.
 
+
+Lets take a look at what tokens look like from the perspective of the LLM. You can see what previous tokens the LLM has seen at the bottom of the visualization and a few of the possible next tokens on the right:
 
 ```inject-dioxus
 TokenizationVisualization {}
@@ -108,10 +104,29 @@ To generate text, LLMs assign a probability to each token and picks a token with
 ## Incremental Parsing
 
 Determining exactly what sequences are valid can be more difficult than it first appears. We need a parser that:
-1) Incrementally parses new text in a way we can roll back. If the current tokens are `{"age":` we need to be able to try adding `a` and if it fails, roll back to `{"age"`. It shouldn't need to re-parse the entire string for every one of the `128,000` possible new tokens.
-2) Fails fast. If a new token is invalid, we need to know that immediately. We can't batch up several new tokens and try to parse them all at once.
+1) Incrementally parses new text in a way we can roll back. If the current tokens are `{"age":` we need to be able to try adding `a` and if it fails, roll back to `{"age"`. If our current text is long, our parser shouldn't need to re-parse the entire history for every one of the `~128,000` possible new tokens
+2) Fails immediately if a new token is invalid. We need to validate every token individually so we don't waste time trying a sequence of tokens and then walking back once we realize it's invalid
 
-It turns out Regular Expressions are very well suited for this task. A regular expression can be represented as a finite state machine. Each state in the machine can be stored and restored easily.
+It turns out Regular Expressions are very well suited for this task. Every regular expression can be decomposed into a series of states and transitions (called a finite state machine). Each state is cheap to store, generally just a single index into a table. Each transition is cheap to compute, just a lookup into a table.
+
+
+Here is a regular expression that matches our JSON schema:
+
+```regex
+\{ "name": "[A-Z][a-z]{1,10} [A-Z][a-z]{1,10}", "description": "[ A-Za-z]+", "metadata": \{ "age": \d{1,2}, "height_cm": \d{1,3}, "weight_kg": \d{1,3}, "hair_color": "[A-Z][a-z]+", "eye_color": "[A-Z][a-z]+" \} \}
+```
+
+## Constrained Augmented Sampling
+
+Instead of just picking a token with the highest probability, we can filter the probabilities to only include tokens that are valid for our format. Even if you choose completely random options from the list of probabilities, the LLM will still generate text that conforms to the format.
+
+Now for some places in the parser, the LLM only has to choose between a few tokens on the right:
+
+```inject-dioxus
+StructuredGenerationVisualization {}
+```
+
+Lets see what our LLM generates with the constraints we created earlier. We will use the `Kalosm` library to create a LLM and stream text that fits our constraints:
 
 ```rust
 // Cargo.toml
@@ -143,48 +158,31 @@ async fn main() {
 }
 ```
 
+The results are much more consistent. The LLM always generates valid JSON because of the constraints. It also generates json in a more precise format because we were able to specify everything about the format we wanted. It knows that the name is two words that each start with a capital letter, and the age can't be more than two digits.
+
 ```json
 { "name": "Evelyn Archer", "description": "A cunning and resourceful detective with a sharp eye for detail who has solved numerous complex cases in the bustling city of New York during her prime years as an investigator at midlife crisis stage when she starts to question life choices leading up until now that age is just another number", "metadata": { "age": 45, "height_cm": 168, "weight_kg": 70, "hair_color": "Auburn", "eye_color": "Hazel" } }
 ```
 
-## Constrained Augmented Sampling
-
-Instead of just picking a token with the highest probability, we can filter the probabilities to only include tokens that are valid for our format. Even if you choose completely random options from the list of probabilities, the LLM will still generate text that conforms to the format.
-
-From the LLM perspective, it can only "choose" from the valid tokens. Something like this:
-
-```inject-dioxus
-StructuredGenerationVisualization {}
-```
-
 ## Accelerated Structured Generation
 
-You may have noticed that some of the choices the LLM makes only have one valid next token. We don't actually need to run the LLM at all for these choices. Instead, we can just choose the next token directly. Now the LLM only chooses valid tokens where there is an interesting choice to make:
+You may have noticed that some of the choices the LLM makes only have one valid next token. We don't actually need to run the LLM at all for these choices. Instead, we can just choose the next token directly.
+
+
+In practice, this acts a bit like autocomplete. Once the LLM starts generating a specific part of the grammar, the rest of it is filled for it:
 
 ```inject-dioxus
 StructuredGenerationAcceleratedVisualization {}
 ```
 
-Instead of choosing each one of the ~16 tokens, we only need to choose between the ~4 important tokens.
-
-## Sampler Aware Structured Generation
-
-Right now, we are running the parser for every single one of the 128,000 tokens every time we add a new token to the sequence. This is very inefficient. Instead, we can take advantage of the structure of the sampler to only run the parser for the tokens that could actually be sampled.
-
-
-There are generally a few steps between the token probabilities after constraints and the token that gets chosen. Each of those steps that modify the probabilities of the tokens is called a sampler. One common sampler is the top-k sampler which only samples the top k tokens with the highest probability. Here is what that could look like if we only keep the top 2 tokens (k=2):
-
-![Top-k Sampling](./public/assets/top_k_sampling.png)
-
-> Generally k is larger, but much smaller than the number of tokens in the model. The default in kalosm if 64.
-
-We can combine the top-k sampler with constrained generation by only looking for the top k valid tokens after the constraints have been applied. Once we have the most probable k tokens, we can stop running the constraints against tokens at all. Since the LLM knows about the constraints, the valid tokens tend to have a very high probability which means we can skip parsing the majority of the 128,000 tokens.
-
-![Top-K Accelerated Structured Generation](./public/assets/top_k_accelerated_structured_generation.png)
+Instead of choosing each one of the ~16 tokens, we only need to choose between the ~4 important tokens!
 
 ## Beyond REGEX
 
-REGEX is great for simple constraints, but it is both tedious to write and limited to simple patterns.
+REGEX is great for simple constraints, but it is both tedious to write and limited to simple patterns. There are some structures you just can't express with REGEX. For example, the general version of JSON itself!
+
+
+JSON is recursive which means we need to store extra state to keep track of the current depth of the JSON that regex doesn't have.
 
 ### Deriving Parsers
 
@@ -268,7 +266,26 @@ async fn main() {
 
 Because parsing runs in native rust code, you can parse even complex languages like html with constraints for elements, attributes and values in real time:
 
+```inject-dioxus
+HtmlStructuredGenerationAcceleratedVisualization {}
+```
+
 <!-- ![HTML Parser](./public/assets/html_parser.mp4) -->
+
+## Sampler Aware Structured Generation
+
+Right now, we are running the parser for every single one of the 128,000 tokens every time we add a new token to the sequence. That was fine for REGEX validation which is just a fancy look up table, but as our parsers get more complex, it starts to grind generation to halt. Instead of running the parser for every token, we can take advantage of the structure of the sampler to only run the parser for the tokens that could actually be sampled.
+
+
+There are generally a few steps between the token probabilities after constraints and the token that gets chosen. Each of those steps that modify the probabilities of the tokens is called a sampler. One common sampler is the top-k sampler which only samples the top k tokens with the highest probability. Here is what that could look like if we only keep the top 2 tokens (k=2):
+
+![Top-k Sampling](./public/assets/top_k_sampling.png)
+
+> Generally k is larger, but much smaller than the number of tokens in the model. The default in kalosm if 64.
+
+We can combine the top-k sampler with constrained generation by only looking for the top k valid tokens after the constraints have been applied. Once we have the most probable k tokens, we can stop running the constraints against tokens at all. Since the LLM knows about the constraints, the valid tokens tend to have a very high probability which means we can skip parsing the majority of the 128,000 tokens.
+
+![Top-K Accelerated Structured Generation](./public/assets/top_k_accelerated_structured_generation.png)
 
 ## Conclusion
 

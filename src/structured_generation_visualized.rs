@@ -1,4 +1,5 @@
 use dioxus::prelude::*;
+use kalosm_sample::{CreateParserState, Parse, ParseStatus, Parser};
 use rand::prelude::SliceRandom;
 use regex_automata::dfa::sparse::DFA;
 use regex_automata::{
@@ -158,6 +159,121 @@ fn StructuredGenerationAcceleratedVisualizationLoaded() -> Element {
     }
 }
 
+pub fn HtmlStructuredGenerationAcceleratedVisualization() -> Element {
+    rsx! {
+        LoadTokenizer { HtmlStructuredGenerationAcceleratedVisualizationLoaded {} }
+    }
+}
+
+fn HtmlStructuredGenerationAcceleratedVisualizationLoaded() -> Element {
+    let mut tokenized_text = use_tokenized_text();
+    use_memo(move || {
+        let parser = html_parser::Element::new_parser();
+        let state = parser.create_parser_state();
+        let current_text = tokenized_text.text.cloned();
+        if let Ok(ParseStatus::Incomplete { required_next, .. }) =
+            parser.parse(&state, current_text.as_bytes())
+        {
+            if required_next.is_empty() {
+                return;
+            }
+            tracing::info!("required next: {required_next} after {current_text}");
+            tokenized_text.text.write().push_str(&required_next);
+        }
+    });
+    rsx! {
+        TokenizedTextInput { text: tokenized_text.text }
+        div { class: "flex flex-row gap-5 justify-between",
+            div { class: "w-[50vw]",
+                div { class: "flex flex-row flex-wrap gap-5 justify-start",
+                    HtmlTokenizedTextView { text: tokenized_text.text, tokens: tokenized_text.tokens.clone() }
+                }
+            }
+            NextHtmlTokens { text: tokenized_text.text }
+        }
+    }
+}
+
+#[component]
+fn HtmlTokenizedTextView(text: Signal<String>, tokens: Memo<Vec<String>>) -> Element {
+    let tokens = tokens.read();
+    rsx! {
+        for i in 0..tokens.len() {
+            HtmlValidatedToken { text: tokens[..i].join(""), token: "{tokens[i]}" }
+        }
+    }
+}
+
+#[component]
+fn NextHtmlTokens(text: Signal<String>) -> Element {
+    let semi_random_tokens = use_semi_random_tokens();
+    let valid_next_tokens = use_next_valid_html_tokens(semi_random_tokens.clone(), text);
+    let first_few_tokens = use_ten_tokens(semi_random_tokens.clone(), valid_next_tokens);
+
+    rsx! {
+        NextTokensBox {
+            for token in first_few_tokens.iter() {
+                HtmlValidatedTokenButton { text: text.clone(), token: "{token}" }
+            }
+        }
+    }
+}
+
+fn use_html_valid(text: ReadOnlySignal<String>, token: ReadOnlySignal<String>) -> Memo<bool> {
+    use_memo(move || {
+        let mut parser = html_parser::Element::new_parser();
+        let state = parser.create_parser_state();
+        if let Ok(ParseStatus::Incomplete { new_state, .. }) =
+            parser.parse(&state, text.read().as_bytes())
+        {
+            let token = token.read();
+            let state = parser.parse(&new_state, token.as_bytes());
+            return state.is_ok();
+        }
+        false
+    })
+}
+
+#[component]
+fn HtmlValidatedToken(text: ReadOnlySignal<String>, token: ReadOnlySignal<String>) -> Element {
+    let valid = use_html_valid(text, token);
+    rsx! {
+        ValidatedToken { valid: valid(), token: "{token}" }
+    }
+}
+
+#[component]
+fn HtmlValidatedTokenButton(text: Signal<String>, token: ReadOnlySignal<String>) -> Element {
+    let valid = use_html_valid(text.into(), token);
+    rsx! {
+        TokenButton { text, token, disabled: !valid() }
+    }
+}
+
+fn use_next_valid_html_tokens(
+    semi_random_tokens: Rc<Vec<String>>,
+    text: Signal<String>,
+) -> Memo<Vec<String>> {
+    use_memo(move || {
+        let mut tokens = Vec::new();
+        let mut parser = html_parser::Element::new_parser();
+        let state = parser.create_parser_state();
+        if let Ok(ParseStatus::Incomplete { new_state, .. }) =
+            parser.parse(&state, text.read().as_bytes())
+        {
+            for token in semi_random_tokens.iter() {
+                let token = normalize_token(token);
+                let state = parser.parse(&new_state, token.as_bytes());
+                let valid = state.is_ok();
+                if valid {
+                    tokens.push(token);
+                }
+            }
+        }
+        tokens
+    })
+}
+
 fn use_semi_random_tokens() -> Rc<Vec<String>> {
     let tokenizer = use_hook(consume_tokenizer);
     use_hook(move || {
@@ -273,17 +389,12 @@ fn use_start_state(regex: RegexState, token_states: Memo<Vec<StateID>>) -> Memo<
     })
 }
 
-#[component]
-fn NextTokens(
-    regex: RegexState,
-    text: Signal<String>,
-    token_states: Memo<Vec<StateID>>,
-) -> Element {
-    let start_state = use_start_state(regex, token_states);
-    let semi_random_tokens = use_semi_random_tokens();
-    let valid_next_tokens = use_valid_next_tokens(regex, semi_random_tokens.clone(), start_state);
-    let first_few_tokens = use_memo(move || {
-        let mut tokens = valid_next_tokens.read()[..valid_next_tokens.len().min(10)].to_vec();
+fn use_ten_tokens(
+    semi_random_tokens: Rc<Vec<String>>,
+    other_tokens: Memo<Vec<String>>,
+) -> Memo<Vec<String>> {
+    use_memo(move || {
+        let mut tokens = other_tokens.read()[..other_tokens.len().min(10)].to_vec();
 
         // Add remaining random tokens that don't match the regex
         for token in semi_random_tokens.iter() {
@@ -295,7 +406,19 @@ fn NextTokens(
         }
 
         tokens
-    });
+    })
+}
+
+#[component]
+fn NextTokens(
+    regex: RegexState,
+    text: Signal<String>,
+    token_states: Memo<Vec<StateID>>,
+) -> Element {
+    let start_state = use_start_state(regex, token_states);
+    let semi_random_tokens = use_semi_random_tokens();
+    let valid_next_tokens = use_valid_next_tokens(regex, semi_random_tokens.clone(), start_state);
+    let first_few_tokens = use_ten_tokens(semi_random_tokens.clone(), valid_next_tokens);
 
     let states = use_memo(move || {
         let mut states = Vec::new();
@@ -391,7 +514,7 @@ fn TokenizedTextView(
     token_states: Memo<Vec<StateID>>,
 ) -> Element {
     rsx! {
-        for (token , state) in tokenized_text
+        for (token, state) in tokenized_text
             .tokens
             .read()
             .iter()
@@ -464,9 +587,16 @@ fn RegexValidatedToken(
 ) -> Element {
     let valid = use_valid(regex, state);
     rsx! {
+        ValidatedToken { valid: valid(), token }
+    }
+}
+
+#[component]
+fn ValidatedToken(valid: bool, token: String) -> Element {
+    rsx! {
         Token {
             token,
-            class: if valid() { "text-green-500" } else { "text-red-500" }
+            class: if valid { "text-green-500" } else { "text-red-500" }
         }
     }
 }

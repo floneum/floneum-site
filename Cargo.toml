@@ -18,6 +18,8 @@ tracing = "0.1.40"
 regex-automata = { version = "0.4.7", features = ["dfa-search", "dfa-build"], default-features = false }
 rand = "0.8.5"
 getrandom = { version = "0.2.15" }
+html-parser = { git = "https://github.com/ealmloff/html-parser" }
+kalosm-sample = { git = "https://github.com/floneum/floneum" }
 
 tokio = { version = "1.29.0", features = ["full"], optional = true }
 axum = { version = "0.6.12", optional = true }

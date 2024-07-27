@@ -77,6 +77,7 @@ mod docs {
 
 mod blog_route {
     use crate::structured_generation_visualized::{
+        HtmlStructuredGenerationAcceleratedVisualization,
         StructuredGenerationAcceleratedVisualization, StructuredGenerationVisualization,
         TokenizationVisualization,
     };
