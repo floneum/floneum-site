@@ -1869,7 +1869,7 @@ dependencies = [
 [[package]]
 name = "dioxus"
 version = "0.5.2"
-source = "git+https://github.com/dioxuslabs/dioxus#443b9a4af686be28701202659f55853309041c13"
+source = "git+https://github.com/dioxuslabs/dioxus#c4e55c7fb6206866f08f18c0a6f3b96425d550cf"
 dependencies = [
  "axum 0.7.5",
  "dioxus-config-macro",
@@ -1892,7 +1892,7 @@ dependencies = [
 [[package]]
 name = "dioxus-cli-config"
 version = "0.5.2"
-source = "git+https://github.com/dioxuslabs/dioxus#443b9a4af686be28701202659f55853309041c13"
+source = "git+https://github.com/dioxuslabs/dioxus#c4e55c7fb6206866f08f18c0a6f3b96425d550cf"
 dependencies = [
  "built",
  "clap 4.5.11",
@@ -1905,7 +1905,7 @@ dependencies = [
 [[package]]
 name = "dioxus-config-macro"
 version = "0.5.2"
-source = "git+https://github.com/dioxuslabs/dioxus#443b9a4af686be28701202659f55853309041c13"
+source = "git+https://github.com/dioxuslabs/dioxus#c4e55c7fb6206866f08f18c0a6f3b96425d550cf"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -1932,7 +1932,7 @@ dependencies = [
 [[package]]
 name = "dioxus-core"
 version = "0.5.2"
-source = "git+https://github.com/dioxuslabs/dioxus#443b9a4af686be28701202659f55853309041c13"
+source = "git+https://github.com/dioxuslabs/dioxus#c4e55c7fb6206866f08f18c0a6f3b96425d550cf"
 dependencies = [
  "const_format",
  "futures-channel",
@@ -1951,7 +1951,7 @@ dependencies = [
 [[package]]
 name = "dioxus-core-macro"
 version = "0.5.2"
-source = "git+https://github.com/dioxuslabs/dioxus#443b9a4af686be28701202659f55853309041c13"
+source = "git+https://github.com/dioxuslabs/dioxus#c4e55c7fb6206866f08f18c0a6f3b96425d550cf"
 dependencies = [
  "convert_case 0.6.0",
  "dioxus-rsx 0.5.2 (git+https://github.com/dioxuslabs/dioxus)",
@@ -1964,7 +1964,7 @@ dependencies = [
 [[package]]
 name = "dioxus-fullstack"
 version = "0.5.2"
-source = "git+https://github.com/dioxuslabs/dioxus#443b9a4af686be28701202659f55853309041c13"
+source = "git+https://github.com/dioxuslabs/dioxus#c4e55c7fb6206866f08f18c0a6f3b96425d550cf"
 dependencies = [
  "async-trait",
  "axum 0.7.5",
@@ -2004,7 +2004,7 @@ dependencies = [
 [[package]]
 name = "dioxus-hooks"
 version = "0.5.2"
-source = "git+https://github.com/dioxuslabs/dioxus#443b9a4af686be28701202659f55853309041c13"
+source = "git+https://github.com/dioxuslabs/dioxus#c4e55c7fb6206866f08f18c0a6f3b96425d550cf"
 dependencies = [
  "dioxus-core 0.5.2 (git+https://github.com/dioxuslabs/dioxus)",
  "dioxus-signals",
@@ -2020,7 +2020,7 @@ dependencies = [
 [[package]]
 name = "dioxus-hot-reload"
 version = "0.5.2"
-source = "git+https://github.com/dioxuslabs/dioxus#443b9a4af686be28701202659f55853309041c13"
+source = "git+https://github.com/dioxuslabs/dioxus#c4e55c7fb6206866f08f18c0a6f3b96425d550cf"
 dependencies = [
  "dioxus-cli-config",
  "dioxus-core 0.5.2 (git+https://github.com/dioxuslabs/dioxus)",
@@ -2039,7 +2039,7 @@ dependencies = [
 [[package]]
 name = "dioxus-html"
 version = "0.5.2"
-source = "git+https://github.com/dioxuslabs/dioxus#443b9a4af686be28701202659f55853309041c13"
+source = "git+https://github.com/dioxuslabs/dioxus#c4e55c7fb6206866f08f18c0a6f3b96425d550cf"
 dependencies = [
  "async-trait",
  "dioxus-core 0.5.2 (git+https://github.com/dioxuslabs/dioxus)",
@@ -2066,7 +2066,7 @@ dependencies = [
 [[package]]
 name = "dioxus-html-internal-macro"
 version = "0.5.2"
-source = "git+https://github.com/dioxuslabs/dioxus#443b9a4af686be28701202659f55853309041c13"
+source = "git+https://github.com/dioxuslabs/dioxus#c4e55c7fb6206866f08f18c0a6f3b96425d550cf"
 dependencies = [
  "convert_case 0.6.0",
  "proc-macro2",
@@ -2077,7 +2077,7 @@ dependencies = [
 [[package]]
 name = "dioxus-interpreter-js"
 version = "0.5.2"
-source = "git+https://github.com/dioxuslabs/dioxus#443b9a4af686be28701202659f55853309041c13"
+source = "git+https://github.com/dioxuslabs/dioxus#c4e55c7fb6206866f08f18c0a6f3b96425d550cf"
 dependencies = [
  "dioxus-core 0.5.2 (git+https://github.com/dioxuslabs/dioxus)",
  "dioxus-html",
@@ -2093,7 +2093,7 @@ dependencies = [
 [[package]]
 name = "dioxus-lib"
 version = "0.5.2"
-source = "git+https://github.com/dioxuslabs/dioxus#443b9a4af686be28701202659f55853309041c13"
+source = "git+https://github.com/dioxuslabs/dioxus#c4e55c7fb6206866f08f18c0a6f3b96425d550cf"
 dependencies = [
  "dioxus-config-macro",
  "dioxus-core 0.5.2 (git+https://github.com/dioxuslabs/dioxus)",
@@ -2107,7 +2107,7 @@ dependencies = [
 [[package]]
 name = "dioxus-liveview"
 version = "0.5.2"
-source = "git+https://github.com/dioxuslabs/dioxus#443b9a4af686be28701202659f55853309041c13"
+source = "git+https://github.com/dioxuslabs/dioxus#c4e55c7fb6206866f08f18c0a6f3b96425d550cf"
 dependencies = [
  "axum 0.7.5",
  "dioxus-cli-config",
@@ -2132,7 +2132,7 @@ dependencies = [
 [[package]]
 name = "dioxus-router"
 version = "0.5.2"
-source = "git+https://github.com/dioxuslabs/dioxus#443b9a4af686be28701202659f55853309041c13"
+source = "git+https://github.com/dioxuslabs/dioxus#c4e55c7fb6206866f08f18c0a6f3b96425d550cf"
 dependencies = [
  "dioxus-cli-config",
  "dioxus-fullstack",
@@ -2152,7 +2152,7 @@ dependencies = [
 [[package]]
 name = "dioxus-router-macro"
 version = "0.5.2"
-source = "git+https://github.com/dioxuslabs/dioxus#443b9a4af686be28701202659f55853309041c13"
+source = "git+https://github.com/dioxuslabs/dioxus#c4e55c7fb6206866f08f18c0a6f3b96425d550cf"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -2179,7 +2179,7 @@ dependencies = [
 [[package]]
 name = "dioxus-rsx"
 version = "0.5.2"
-source = "git+https://github.com/dioxuslabs/dioxus#443b9a4af686be28701202659f55853309041c13"
+source = "git+https://github.com/dioxuslabs/dioxus#c4e55c7fb6206866f08f18c0a6f3b96425d550cf"
 dependencies = [
  "dioxus-core 0.5.2 (git+https://github.com/dioxuslabs/dioxus)",
  "internment",
@@ -2241,7 +2241,7 @@ dependencies = [
 [[package]]
 name = "dioxus-signals"
 version = "0.5.2"
-source = "git+https://github.com/dioxuslabs/dioxus#443b9a4af686be28701202659f55853309041c13"
+source = "git+https://github.com/dioxuslabs/dioxus#c4e55c7fb6206866f08f18c0a6f3b96425d550cf"
 dependencies = [
  "dioxus-core 0.5.2 (git+https://github.com/dioxuslabs/dioxus)",
  "futures-channel",
@@ -2257,7 +2257,7 @@ dependencies = [
 [[package]]
 name = "dioxus-ssr"
 version = "0.5.2"
-source = "git+https://github.com/dioxuslabs/dioxus#443b9a4af686be28701202659f55853309041c13"
+source = "git+https://github.com/dioxuslabs/dioxus#c4e55c7fb6206866f08f18c0a6f3b96425d550cf"
 dependencies = [
  "askama_escape",
  "async-trait",
@@ -2279,7 +2279,7 @@ dependencies = [
 [[package]]
 name = "dioxus-static-site-generation"
 version = "0.5.2"
-source = "git+https://github.com/dioxuslabs/dioxus#443b9a4af686be28701202659f55853309041c13"
+source = "git+https://github.com/dioxuslabs/dioxus#c4e55c7fb6206866f08f18c0a6f3b96425d550cf"
 dependencies = [
  "axum 0.7.5",
  "dioxus-cli-config",
@@ -2299,7 +2299,7 @@ dependencies = [
 [[package]]
 name = "dioxus-web"
 version = "0.5.2"
-source = "git+https://github.com/dioxuslabs/dioxus#443b9a4af686be28701202659f55853309041c13"
+source = "git+https://github.com/dioxuslabs/dioxus#c4e55c7fb6206866f08f18c0a6f3b96425d550cf"
 dependencies = [
  "ciborium",
  "console_error_panic_hook",
@@ -2325,7 +2325,7 @@ dependencies = [
 [[package]]
 name = "dioxus_server_macro"
 version = "0.5.2"
-source = "git+https://github.com/dioxuslabs/dioxus#443b9a4af686be28701202659f55853309041c13"
+source = "git+https://github.com/dioxuslabs/dioxus#c4e55c7fb6206866f08f18c0a6f3b96425d550cf"
 dependencies = [
  "convert_case 0.6.0",
  "proc-macro2",
@@ -2730,7 +2730,7 @@ dependencies = [
  "image 0.24.9",
  "js-sys",
  "kalosm",
- "kalosm-sample 0.2.1",
+ "kalosm-sample",
  "log",
  "manganis",
  "mdbook-shared",
@@ -2755,7 +2755,7 @@ dependencies = [
 [[package]]
 name = "floneum_rust"
 version = "0.1.0"
-source = "git+https://github.com/floneum/floneum#e8ac99caa88b8d6ddc90c22280c127c7bb6e2c78"
+source = "git+https://github.com/floneum/floneum#a97125bcdd9d0bb3466a5e4ff410ccaf43527873"
 dependencies = [
  "floneum_rust_macro",
  "serde",
@@ -2765,7 +2765,7 @@ dependencies = [
 [[package]]
 name = "floneum_rust_macro"
 version = "0.1.0"
-source = "git+https://github.com/floneum/floneum#e8ac99caa88b8d6ddc90c22280c127c7bb6e2c78"
+source = "git+https://github.com/floneum/floneum#a97125bcdd9d0bb3466a5e4ff410ccaf43527873"
 dependencies = [
  "convert_case 0.6.0",
  "proc-macro2",
@@ -2777,7 +2777,7 @@ dependencies = [
 [[package]]
 name = "floneumite"
 version = "0.1.0"
-source = "git+https://github.com/floneum/floneum#e8ac99caa88b8d6ddc90c22280c127c7bb6e2c78"
+source = "git+https://github.com/floneum/floneum#a97125bcdd9d0bb3466a5e4ff410ccaf43527873"
 dependencies = [
  "anyhow",
  "directories",
@@ -3234,7 +3234,7 @@ dependencies = [
 [[package]]
 name = "generational-box"
 version = "0.5.2"
-source = "git+https://github.com/dioxuslabs/dioxus#443b9a4af686be28701202659f55853309041c13"
+source = "git+https://github.com/dioxuslabs/dioxus#c4e55c7fb6206866f08f18c0a6f3b96425d550cf"
 dependencies = [
  "parking_lot",
 ]
@@ -3729,9 +3729,9 @@ dependencies = [
 
 [[package]]
 name = "headless_chrome"
-version = "1.0.10"
+version = "1.0.12"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f905ae344b3779f266f8492c21955ab8ff3c56c11c234dfe675eebd5d5527533"
+checksum = "f50752288ae8799c84ed7fc6616611b7493c53d92265198b8a607c7e4256ebd2"
 dependencies = [
  "anyhow",
  "auto_generate_cdp",
@@ -3744,7 +3744,7 @@ dependencies = [
  "serde_json",
  "tempfile",
  "thiserror",
- "tungstenite 0.21.0",
+ "tungstenite 0.23.0",
  "url",
  "which",
  "winreg 0.52.0",
@@ -3882,9 +3882,10 @@ checksum = "62adaabb884c94955b19907d60019f4e145d091c75345379e70d1ee696f7854f"
 [[package]]
 name = "html-parser"
 version = "0.1.0"
+source = "git+https://github.com/ealmloff/html-parser#3dafbf595c2dea79855c10513869811eef66d711"
 dependencies = [
  "convert_case 0.6.0",
- "kalosm-sample 0.2.1",
+ "kalosm-sample",
  "reqwest 0.12.5",
  "serde",
 ]
@@ -4480,7 +4481,7 @@ dependencies = [
 [[package]]
 name = "kalosm"
 version = "0.2.2"
-source = "git+https://github.com/floneum/floneum#e8ac99caa88b8d6ddc90c22280c127c7bb6e2c78"
+source = "git+https://github.com/floneum/floneum#a97125bcdd9d0bb3466a5e4ff410ccaf43527873"
 dependencies = [
  "anyhow",
  "async-trait",
@@ -4507,7 +4508,7 @@ dependencies = [
 [[package]]
 name = "kalosm-common"
 version = "0.1.0"
-source = "git+https://github.com/floneum/floneum#e8ac99caa88b8d6ddc90c22280c127c7bb6e2c78"
+source = "git+https://github.com/floneum/floneum#a97125bcdd9d0bb3466a5e4ff410ccaf43527873"
 dependencies = [
  "anyhow",
  "candle-core",
@@ -4523,7 +4524,7 @@ dependencies = [
 [[package]]
 name = "kalosm-language"
 version = "0.2.2"
-source = "git+https://github.com/floneum/floneum#e8ac99caa88b8d6ddc90c22280c127c7bb6e2c78"
+source = "git+https://github.com/floneum/floneum#a97125bcdd9d0bb3466a5e4ff410ccaf43527873"
 dependencies = [
  "anyhow",
  "arroy",
@@ -4543,7 +4544,7 @@ dependencies = [
  "itertools 0.11.0",
  "kalosm-language-model",
  "kalosm-llama",
- "kalosm-sample 0.2.1 (git+https://github.com/floneum/floneum)",
+ "kalosm-sample",
  "kalosm-streams",
  "llm-samplers",
  "log",
@@ -4577,14 +4578,14 @@ dependencies = [
 [[package]]
 name = "kalosm-language-model"
 version = "0.2.1"
-source = "git+https://github.com/floneum/floneum#e8ac99caa88b8d6ddc90c22280c127c7bb6e2c78"
+source = "git+https://github.com/floneum/floneum#a97125bcdd9d0bb3466a5e4ff410ccaf43527873"
 dependencies = [
  "anyhow",
  "async-trait",
  "candle-core",
  "futures-util",
  "kalosm-common",
- "kalosm-sample 0.2.1 (git+https://github.com/floneum/floneum)",
+ "kalosm-sample",
  "kalosm-streams",
  "llm-samplers",
  "log",
@@ -4604,7 +4605,7 @@ dependencies = [
 [[package]]
 name = "kalosm-llama"
 version = "0.2.2"
-source = "git+https://github.com/floneum/floneum#e8ac99caa88b8d6ddc90c22280c127c7bb6e2c78"
+source = "git+https://github.com/floneum/floneum#a97125bcdd9d0bb3466a5e4ff410ccaf43527873"
 dependencies = [
  "anyhow",
  "async-trait",
@@ -4614,7 +4615,7 @@ dependencies = [
  "half 2.4.1",
  "kalosm-common",
  "kalosm-language-model",
- "kalosm-sample 0.2.1 (git+https://github.com/floneum/floneum)",
+ "kalosm-sample",
  "kalosm-streams",
  "llm-samplers",
  "once_cell",
@@ -4627,7 +4628,7 @@ dependencies = [
 [[package]]
 name = "kalosm-ocr"
 version = "0.2.1"
-source = "git+https://github.com/floneum/floneum#e8ac99caa88b8d6ddc90c22280c127c7bb6e2c78"
+source = "git+https://github.com/floneum/floneum#a97125bcdd9d0bb3466a5e4ff410ccaf43527873"
 dependencies = [
  "anyhow",
  "candle-core",
@@ -4646,16 +4647,7 @@ dependencies = [
 [[package]]
 name = "kalosm-parse-macro"
 version = "0.2.1"
-dependencies = [
- "proc-macro2",
- "quote",
- "syn 2.0.72",
-]
-
-[[package]]
-name = "kalosm-parse-macro"
-version = "0.2.1"
-source = "git+https://github.com/floneum/floneum#e8ac99caa88b8d6ddc90c22280c127c7bb6e2c78"
+source = "git+https://github.com/floneum/floneum#a97125bcdd9d0bb3466a5e4ff410ccaf43527873"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -4665,26 +4657,17 @@ dependencies = [
 [[package]]
 name = "kalosm-sample"
 version = "0.2.1"
+source = "git+https://github.com/floneum/floneum#a97125bcdd9d0bb3466a5e4ff410ccaf43527873"
 dependencies = [
  "anyhow",
- "kalosm-parse-macro 0.2.1",
- "regex-automata 0.4.7",
-]
-
-[[package]]
-name = "kalosm-sample"
-version = "0.2.1"
-source = "git+https://github.com/floneum/floneum#e8ac99caa88b8d6ddc90c22280c127c7bb6e2c78"
-dependencies = [
- "anyhow",
- "kalosm-parse-macro 0.2.1 (git+https://github.com/floneum/floneum)",
+ "kalosm-parse-macro",
  "regex-automata 0.4.7",
 ]
 
 [[package]]
 name = "kalosm-sound"
 version = "0.2.1"
-source = "git+https://github.com/floneum/floneum#e8ac99caa88b8d6ddc90c22280c127c7bb6e2c78"
+source = "git+https://github.com/floneum/floneum#a97125bcdd9d0bb3466a5e4ff410ccaf43527873"
 dependencies = [
  "anyhow",
  "async-trait",
@@ -4714,7 +4697,7 @@ dependencies = [
 [[package]]
 name = "kalosm-streams"
 version = "0.2.1"
-source = "git+https://github.com/floneum/floneum#e8ac99caa88b8d6ddc90c22280c127c7bb6e2c78"
+source = "git+https://github.com/floneum/floneum#a97125bcdd9d0bb3466a5e4ff410ccaf43527873"
 dependencies = [
  "futures-util",
  "image 0.24.9",
@@ -4725,7 +4708,7 @@ dependencies = [
 [[package]]
 name = "kalosm-vision"
 version = "0.2.1"
-source = "git+https://github.com/floneum/floneum#e8ac99caa88b8d6ddc90c22280c127c7bb6e2c78"
+source = "git+https://github.com/floneum/floneum#a97125bcdd9d0bb3466a5e4ff410ccaf43527873"
 dependencies = [
  "image 0.24.9",
  "kalosm-ocr",
@@ -4789,7 +4772,7 @@ dependencies = [
 [[package]]
 name = "lazy-js-bundle"
 version = "0.5.2"
-source = "git+https://github.com/dioxuslabs/dioxus#443b9a4af686be28701202659f55853309041c13"
+source = "git+https://github.com/dioxuslabs/dioxus#c4e55c7fb6206866f08f18c0a6f3b96425d550cf"
 
 [[package]]
 name = "lazy_static"
@@ -5194,9 +5177,9 @@ checksum = "0e7465ac9959cc2b1404e8e2367b43684a6d13790fe23056cc8c6c5a6b7bcb94"
 
 [[package]]
 name = "matrixmultiply"
-version = "0.3.8"
+version = "0.3.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7574c1cf36da4798ab73da5b215bbf444f50718207754cb522201d78d1cd0ff2"
+checksum = "9380b911e3e96d10c1f415da0876389aaf1b56759054eeb0de7df940c456ba1a"
 dependencies = [
  "autocfg",
  "rawpointer",
@@ -6935,7 +6918,7 @@ dependencies = [
 [[package]]
 name = "rbert"
 version = "0.2.1"
-source = "git+https://github.com/floneum/floneum#e8ac99caa88b8d6ddc90c22280c127c7bb6e2c78"
+source = "git+https://github.com/floneum/floneum#a97125bcdd9d0bb3466a5e4ff410ccaf43527873"
 dependencies = [
  "anyhow",
  "async-trait",
@@ -7342,7 +7325,7 @@ dependencies = [
 [[package]]
 name = "rphi"
 version = "0.2.1"
-source = "git+https://github.com/floneum/floneum#e8ac99caa88b8d6ddc90c22280c127c7bb6e2c78"
+source = "git+https://github.com/floneum/floneum#a97125bcdd9d0bb3466a5e4ff410ccaf43527873"
 dependencies = [
  "anyhow",
  "async-trait",
@@ -7351,7 +7334,7 @@ dependencies = [
  "candle-transformers",
  "kalosm-common",
  "kalosm-language-model",
- "kalosm-sample 0.2.1 (git+https://github.com/floneum/floneum)",
+ "kalosm-sample",
  "kalosm-streams",
  "llm-samplers",
  "rand 0.8.5",
@@ -7582,7 +7565,7 @@ checksum = "955d28af4278de8121b7ebeb796b6a45735dc01436d898801014aced2773a3d6"
 [[package]]
 name = "rwhisper"
 version = "0.2.1"
-source = "git+https://github.com/floneum/floneum#e8ac99caa88b8d6ddc90c22280c127c7bb6e2c78"
+source = "git+https://github.com/floneum/floneum#a97125bcdd9d0bb3466a5e4ff410ccaf43527873"
 dependencies = [
  "anyhow",
  "async-trait",
@@ -7608,7 +7591,7 @@ dependencies = [
 [[package]]
 name = "rwuerstchen"
 version = "0.2.1"
-source = "git+https://github.com/floneum/floneum#e8ac99caa88b8d6ddc90c22280c127c7bb6e2c78"
+source = "git+https://github.com/floneum/floneum#a97125bcdd9d0bb3466a5e4ff410ccaf43527873"
 dependencies = [
  "anyhow",
  "async-trait",
@@ -7771,7 +7754,7 @@ dependencies = [
 [[package]]
 name = "segment-anything-rs"
 version = "0.2.1"
-source = "git+https://github.com/floneum/floneum#e8ac99caa88b8d6ddc90c22280c127c7bb6e2c78"
+source = "git+https://github.com/floneum/floneum#a97125bcdd9d0bb3466a5e4ff410ccaf43527873"
 dependencies = [
  "anyhow",
  "candle-core",
@@ -9187,9 +9170,9 @@ dependencies = [
 
 [[package]]
 name = "tokio"
-version = "1.39.1"
+version = "1.39.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d040ac2b29ab03b09d4129c2f5bbd012a3ac2f79d38ff506a4bf8dd34b0eac8a"
+checksum = "daa4fb1bc778bd6f04cbfc4bb2d06a7396a8f299dc33ea1900cedaa316f467b1"
 dependencies = [
  "backtrace",
  "bytes",
@@ -10845,9 +10828,9 @@ dependencies = [
 
 [[package]]
 name = "xxhash-rust"
-version = "0.8.11"
+version = "0.8.12"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "63658493314859b4dfdf3fb8c1defd61587839def09582db50b8a4e93afca6bb"
+checksum = "6a5cbf750400958819fb6178eaa83bee5cd9c29a26a40cc241df8c70fdd46984"
 
 [[package]]
 name = "yaml-rust"
@@ -10984,4 +10967,4 @@ dependencies = [
 [[patch.unused]]
 name = "dioxus-desktop"
 version = "0.5.2"
-source = "git+https://github.com/dioxuslabs/dioxus#443b9a4af686be28701202659f55853309041c13"
+source = "git+https://github.com/dioxuslabs/dioxus#c4e55c7fb6206866f08f18c0a6f3b96425d550cf"
