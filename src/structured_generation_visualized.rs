@@ -62,11 +62,13 @@ struct RegexState {
 }
 
 fn use_regex_state() -> RegexState {
-    let regex = use_signal(|| {
-        String::from(
-            r#"\{"name":"[A-Z][a-z]{1,4} [A-Z][a-z]{1,4}","age":[1-9]\d?,"favorite beverage":"(coffee|tea|soda|water|juice|milk)"\}"#,
-        )
-    });
+    use_regex_state_with_initial_regex(
+        r#"\{"name":"[A-Z][a-z]{1,4} [A-Z][a-z]{1,4}","age":[1-9]\d?,"favorite beverage":"(coffee|tea|soda|water|juice|milk)"\}"#,
+    )
+}
+
+fn use_regex_state_with_initial_regex(initial: impl ToString) -> RegexState {
+    let regex = use_signal(|| initial.to_string());
     let parsed = use_memo(move || RegexPartialEq(DFA::new(regex.read().as_str())));
     RegexState { regex, parsed }
 }
@@ -105,11 +107,11 @@ pub fn StructuredGenerationAcceleratedVisualization() -> Element {
     }
 }
 
-fn StructuredGenerationAcceleratedVisualizationLoaded() -> Element {
-    let regex = use_regex_state();
-    let mut tokenized_text = use_tokenized_text();
-    let token_states = use_token_states(regex, tokenized_text);
-    let start_state = use_start_state(regex, token_states);
+fn use_accelerate_with_regex(
+    regex: RegexState,
+    start_state: Memo<Option<StateID>>,
+    mut tokenized_text: TokenizedText,
+) {
     use_memo(move || {
         if let (Ok(dfa), Some(start_state)) = (regex.parsed.read().as_ref(), start_state()) {
             let mut current_state = start_state;
@@ -145,8 +147,43 @@ fn StructuredGenerationAcceleratedVisualizationLoaded() -> Element {
             tokenized_text.text.write().push_str(&as_str);
         }
     });
+}
+
+fn StructuredGenerationAcceleratedVisualizationLoaded() -> Element {
+    let regex = use_regex_state();
+    let tokenized_text = use_tokenized_text();
+    let token_states = use_token_states(regex, tokenized_text);
+    let start_state = use_start_state(regex, token_states);
+    use_accelerate_with_regex(regex, start_state, tokenized_text);
     rsx! {
         RegexInput { regex }
+        TokenizedTextInput { text: tokenized_text.text }
+        div { class: "flex flex-row gap-5 justify-between",
+            div { class: "w-[50vw]",
+                div { class: "flex flex-row flex-wrap gap-5 justify-start",
+                    TokenizedTextView { regex, tokenized_text, token_states }
+                }
+            }
+            NextTokens { regex, text: tokenized_text.text, token_states }
+        }
+    }
+}
+
+pub fn DerivingParsers() -> Element {
+    rsx! {
+        LoadTokenizer { DerivingParsersLoaded {} }
+    }
+}
+
+fn DerivingParsersLoaded() -> Element {
+    let regex = use_regex_state_with_initial_regex(
+        r#"\{ "name": ".*?", "description": ".*?", "metadata": \{ "age": (100|\d\d|[1-9]), "height_cm": ([12][12345][12345]|\d\d|\d), "weight_kg": ([12][12345][12345]|\d\d|\d), "hair_color": ".*?", "eye_color": ".*?" \} \}"#,
+    );
+    let tokenized_text = use_tokenized_text();
+    let token_states = use_token_states(regex, tokenized_text);
+    let start_state = use_start_state(regex, token_states);
+    use_accelerate_with_regex(regex, start_state, tokenized_text);
+    rsx! {
         TokenizedTextInput { text: tokenized_text.text }
         div { class: "flex flex-row gap-5 justify-between",
             div { class: "w-[50vw]",
@@ -221,7 +258,7 @@ fn NextHtmlTokens(text: Signal<String>) -> Element {
 
 fn use_html_valid(text: ReadOnlySignal<String>, token: ReadOnlySignal<String>) -> Memo<bool> {
     use_memo(move || {
-        let mut parser = html_parser::Element::new_parser();
+        let parser = html_parser::Element::new_parser();
         let state = parser.create_parser_state();
         if let Ok(ParseStatus::Incomplete { new_state, .. }) =
             parser.parse(&state, text.read().as_bytes())
@@ -256,7 +293,7 @@ fn use_next_valid_html_tokens(
 ) -> Memo<Vec<String>> {
     use_memo(move || {
         let mut tokens = Vec::new();
-        let mut parser = html_parser::Element::new_parser();
+        let parser = html_parser::Element::new_parser();
         let state = parser.create_parser_state();
         if let Ok(ParseStatus::Incomplete { new_state, .. }) =
             parser.parse(&state, text.read().as_bytes())
@@ -460,10 +497,9 @@ fn LoadTokenizer(children: Element) -> Element {
     #[cfg(feature = "web")]
     use_future(move || async move {
         let run = || async move {
-            let resp =
-                gloo_net::http::Request::get(manganis::mg!(file("./public/assets/tokenizer.json")))
-                    .send()
-                    .await?;
+            let resp = gloo_net::http::Request::get(asset!("./public/assets/tokenizer.json"))
+                .send()
+                .await?;
             let bytes = resp.binary().await?;
             let tokenizer = tokenizers::Tokenizer::from_bytes(&bytes)
                 .map(Rc::new)

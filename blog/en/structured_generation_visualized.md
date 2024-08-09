@@ -1,4 +1,4 @@
-# Structured Generation
+# Structured Generation Visualized
 
 ![Structured Generation Visualized](./public/assets/structured_generation_visualized.png)
 
@@ -22,9 +22,7 @@ This should be pretty simple. Lets use a small model that is good at structured 
 
 ```rust
 // Create a new model. We are using the Phi-3 model which is small and focused on reasoning tasks.
-let model = Llama::builder()
-    .with_source(LlamaSource::phi_3_mini_4k_instruct())
-    .build()
+let model = Llama::phi_3()
     .await
     .unwrap();
 
@@ -162,9 +160,6 @@ The LLM will still need to read the new text that got filled in, but that proces
 
 REGEX is great for simple constraints, but it is both tedious to write and limited to simple patterns. There are some structures you just can't express with REGEX. For example, the general version of JSON itself!
 
-
-JSON is recursive which means we need to store extra state to keep track of the current depth of the JSON that regex doesn't have.
-
 ### Deriving Parsers
 
 If you don't need complete control over the syntax the model uses to generate json, you can just derive a parser for JSON from a type:
@@ -188,6 +183,8 @@ struct Character {
 // Define a type for the metadata
 #[derive(Parse)]
 struct Metadata {
+    // You can easily set ranges for numbers. In regex this would need to be `100|\d\d|[1-9]`
+    #[parse(with = U8Parser::new(1..=100))]
     age: u8,
     height_cm: u8,
     weight_kg: u8,
@@ -220,9 +217,16 @@ async fn main() {
 }
 ```
 
+```inject-dioxus
+DerivingParsers {}
+```
+
 ### Creating Custom Parsers
 
-If you need more control over what the model generates, you can create your own parser. Unlike regex, your parser can parse languages that [require context like html](https://github.com/ealmloff/html-parser):
+If you need more control over what the model generates, you can create your own parser. Unlike regex, your parser can parse languages that [require context like html](https://github.com/ealmloff/html-parser).
+
+
+Regular languages are limited to patterns that can be parsed with a set number of states. Recursive structured like HTML require an unbounded stack to keep track of the current depth of the HTML. In Kalosm, you can implement a custom parser that can parse any language with an arbitrary number of states.
 
 ```rust
 use kalosm::language::*;
@@ -251,11 +255,12 @@ Because parsing runs in native rust code, you can parse even complex languages l
 HtmlStructuredGenerationAcceleratedVisualization {}
 ```
 
-<!-- ![HTML Parser](./public/assets/html_parser.mp4) -->
-
 ## Sampler Aware Structured Generation
 
-Right now, we are running the parser for every single one of the 128,000 tokens every time we add a new token to the sequence. That was fine for REGEX validation which is just a fancy look up table, but as our parsers get more complex, it starts to grind generation to halt. Instead of running the parser for every token, we can take advantage of the structure of the sampler to only run the parser for the tokens that could actually be sampled.
+Right now, we are running the parser for every single one of the 128,000 tokens every time we add a new token to the sequence. That wasn't an issue for REGEX which just performs a lookup for each new token, but it can be slow for more complex parsers.
+
+
+Instead of running the parser for every token, we can take advantage of the structure of the sampler to only run the parser for the tokens that could actually be sampled.
 
 
 There are generally a few steps between the token probabilities after constraints and the token that gets chosen. Each of those steps that modify the probabilities of the tokens is called a sampler. One common sampler is the top-k sampler which only samples the top k tokens with the highest probability. Here is what that could look like if we only keep the top 2 tokens (k=2):
@@ -270,4 +275,7 @@ We can combine the top-k sampler with constrained generation by only looking for
 
 ## Conclusion
 
+Structured generation gives you fine grained control of text generation while accelerating the speed of generation. More consistent outputs makes it possible to use LLMs with typed APIs or guide LLMs along a longer multi-step processes. I open you found this explanation useful and I would love to hear what use cases you have for structured generation.
 
+
+If you need a complex structured generation parser, try out [Kalosm](https://floneum.com/kalosm). You can write your parsers in Rust which mean they run extremely fast. For parsers that can run up to a quarter million times per token, slow it not an option. Or join the [discord](https://discord.gg/dQdmhuB8q5) to discuss this article.

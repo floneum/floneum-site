@@ -41,7 +41,7 @@ pub fn Header() -> Element {
                                 class: "text-xl m-2 md:mr-12 flex flex-row items-center",
                                 to: Route::Home {},
                                 img {
-                                    src: "/assets/Icon.png",
+                                    src: asset!("./public/assets/Icon.png"),
                                     class: "h-8 w-8 mx-2",
                                     alt: "Floneum"
                                 }

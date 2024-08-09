@@ -77,7 +77,7 @@ mod docs {
 
 mod blog_route {
     use crate::structured_generation_visualized::{
-        HtmlStructuredGenerationAcceleratedVisualization,
+        DerivingParsers, HtmlStructuredGenerationAcceleratedVisualization,
         StructuredGenerationAcceleratedVisualization, StructuredGenerationVisualization,
         TokenizationVisualization,
     };
@@ -144,11 +144,16 @@ fn main() {
     }
 
     #[cfg(not(feature = "prebuild"))]
-    launch(|| {
-        rsx! {
-            Router::<Route> {}
-        }
-    });
+    launch(app);
+}
+
+fn app() -> Element {
+    rsx! {
+        head::Link { rel: "stylesheet", href: asset!("./public/output.css") }
+        head::Link { rel: "stylesheet", href: asset!("https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.1.0/github-markdown-light.min.css") }
+        head::Link { rel: "icon", href: asset!("./public/assets/Icon.png"), type: "image/png" }
+        Router::<Route> {}
+    }
 }
 
 static SEARCH_INDEX: dioxus_search::LazySearchIndex<Route> = dioxus_search::load_search_index! {
