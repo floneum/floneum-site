@@ -8,6 +8,7 @@ async fn main() {
         .with_source(LlamaSource::mistral_7b())
         // Build the model. This will fetch the model from the source if it is not cached.
         .build()
+        .await
         .unwrap();
     // ANCHOR_END: create_model
 
@@ -23,7 +24,7 @@ async fn main() {
     // ANCHOR_END: synchronous_text
 
     // ANCHOR: streaming_text
-    let text_stream = model
+    let mut text_stream = model
         .stream_text("The capital of France is")
         // Set any options you need
         .with_max_length(1000)

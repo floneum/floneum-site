@@ -1,7 +1,8 @@
-fn main() {
+#[tokio::main]
+async fn main() {
     // ANCHOR: create_model
     use kalosm::vision::*;
-    let mut model = Ocr::builder().build().unwrap();
+    let mut model = Ocr::builder().build().await.unwrap();
     // ANCHOR_END: create_model
     // ANCHOR: load_image
     let image = image::open("examples/ocr.png").unwrap();

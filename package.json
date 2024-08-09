@@ -22,5 +22,8 @@
   "homepage": "https://github.com/floneum/floneum-site#readme",
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.7"
+  },
+  "dependencies": {
+    "tailwindcss": "^3.4.4"
   }
 }

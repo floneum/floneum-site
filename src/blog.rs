@@ -19,7 +19,10 @@ pub fn Blog() -> Element {
 fn LocationLink(chapter: &'static SummaryItem<BookRoute>) -> Element {
     let book_url = use_book().to_string();
 
-    let link = chapter.maybe_link()?;
+    let link = match chapter.maybe_link() {
+        Some(link) => link,
+        None => return rsx! {},
+    };
     let url = link.location.as_ref().unwrap();
 
     let current_class = match book_url.starts_with(&*url.to_string()) {
@@ -28,19 +31,27 @@ fn LocationLink(chapter: &'static SummaryItem<BookRoute>) -> Element {
     };
 
     rsx! {
-        Link { to: Route::Docs { child: *url }, li { class: "m-1 rounded-md pl-2 {current_class}", "{link.name}" } }
+        Link { to: Route::Docs { child: *url },
+            li { class: "m-1 rounded-md pl-2 {current_class}", "{link.name}" }
+        }
     }
 }
 
 fn RightNav() -> Element {
     let page = use_book();
 
-    rsx! { crate::table_of_contents::TableOfContents { sections: page.sections().to_vec() } }
+    rsx! {
+        crate::table_of_contents::TableOfContents { sections: page.sections().to_vec() }
+    }
 }
 
 fn Content() -> Element {
+    let page = use_book();
+    let title = &page.page().title;
+
     rsx! {
-        section { class: "body-font overflow-hidden mx-auto container pt-12 pb-12 w-2/3",
+        Title { "{title} - Floneum Blog" }
+        section { class: "body-font overflow-hidden mx-auto container pt-12 pb-12 md:w-2/3",
             div { class: "-my-8",
                 div { class: "w-full mb-20 flex-wrap list-none rounded-md",
                     article { class: "markdown-body pt-1", Outlet::<Route> {} }

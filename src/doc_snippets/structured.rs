@@ -29,15 +29,11 @@ async fn main() {
     // ANCHOR_END: regex_parser
 
     // ANCHOR: streaming_text
-    let llm = Phi::start().await;
-    let (structured, result) = llm
-        .stream_structured_text("A state that starts with A", validator)
-        .await
-        .unwrap()
-        .split();
+    let llm = Phi::v2().await.unwrap();
+    let mut structured = llm.stream_structured_text("A state that starts with A", validator);
 
     structured.to_std_out().await.unwrap();
 
-    println!("Result: {:?}", result.await.unwrap());
+    println!("Result: {:?}", structured.await.unwrap());
     // ANCHOR_END: streaming_text
 }

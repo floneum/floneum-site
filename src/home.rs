@@ -20,10 +20,12 @@ fn Demo() -> Element {
                 h2 { class: "text-2xl md:text-6xl font-bold rounded-md",
                     "Build AI powered workflows with ease"
                 }
-                div { class: "m-4", img {
-                    src: "/assets/demo-img.png",
-                    alt: "Demo question answering workflow"
-                } }
+                div { class: "m-4",
+                    img {
+                        src: "/assets/demo-img.png",
+                        alt: "Demo question answering workflow"
+                    }
+                }
                 p { class: "text-xl md:text-4xl",
                     "Floneum allows you to build workflows that use large language models with a simple drag and drop interface"
                 }

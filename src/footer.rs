@@ -26,7 +26,11 @@ pub fn Footer() -> Element {
                     class: "-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12",
                     for (name , link) in links {
                         div { class: "pb-6",
-                            Link { to: link, class: "text-sm leading-6 text-gray-600 hover:text-gray-900", {name} }
+                            Link {
+                                to: link,
+                                class: "text-sm leading-6 text-gray-600 hover:text-gray-900",
+                                {name}
+                            }
                         }
                     }
                 }
