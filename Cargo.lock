@@ -908,9 +908,9 @@ dependencies = [
 
 [[package]]
 name = "cc"
-version = "1.1.7"
+version = "1.1.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "26a5c3fd7bfa1ce3897a3a3501d362b2d87b7f2583ebcb4a949ec25911025cbc"
+checksum = "504bdec147f2cc13c8b57ed9401fd8a147cc66b67ad5cb241394244f2c947549"
 dependencies = [
  "jobserver",
  "libc",
@@ -1098,9 +1098,9 @@ dependencies = [
 
 [[package]]
 name = "clap"
-version = "4.5.13"
+version = "4.5.15"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0fbb260a053428790f3de475e304ff84cdbc4face759ea7a3e64c1edd938a7fc"
+checksum = "11d8838454fda655dafd3accb2b6e2bea645b9e4078abe84a22ceb947235c5cc"
 dependencies = [
  "clap_builder",
  "clap_derive",
@@ -1108,9 +1108,9 @@ dependencies = [
 
 [[package]]
 name = "clap_builder"
-version = "4.5.13"
+version = "4.5.15"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "64b17d7ea74e9f833c7dbf2cbe4fb12ff26783eda4782a8975b72f895c9b4d99"
+checksum = "216aec2b177652e3846684cbfe25c9964d18ec45234f0f5da5157b207ed1aab6"
 dependencies = [
  "anstream",
  "anstyle",
@@ -1339,7 +1339,7 @@ dependencies = [
  "wasm-bindgen",
  "wasm-bindgen-futures",
  "web-sys",
- "windows",
+ "windows 0.54.0",
 ]
 
 [[package]]
@@ -1846,6 +1846,16 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "339544cc9e2c4dc3fc7149fd630c5f22263a4fdf18a98afd0075784968b5cf00"
 
 [[package]]
+name = "diatomic-waker"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "92a510eb4dc7fa435297888c00e0f999aa2ee3e920a357221c35ab615a80bbcf"
+dependencies = [
+ "loom",
+ "waker-fn",
+]
+
+[[package]]
 name = "digest"
 version = "0.10.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1894,7 +1904,7 @@ version = "0.6.0-alpha.1"
 source = "git+https://github.com/ealmloff/dioxus?branch=new-with-index#57f1bd0224b4c09c2e5e97963c29af415565fcf6"
 dependencies = [
  "built",
- "clap 4.5.13",
+ "clap 4.5.15",
  "once_cell",
  "serde",
  "serde_json",
@@ -1953,7 +1963,7 @@ dependencies = [
  "base64 0.22.1",
  "bytes",
  "ciborium",
- "clap 4.5.13",
+ "clap 4.5.15",
  "dioxus-cli-config",
  "dioxus-hot-reload",
  "dioxus-interpreter-js",
@@ -2594,7 +2604,7 @@ checksum = "531e46835a22af56d1e3b66f04844bed63158bc094a628bec1d321d9b4c44bf2"
 dependencies = [
  "bit-set",
  "regex-automata 0.4.7",
- "regex-syntax",
+ "regex-syntax 0.8.4",
 ]
 
 [[package]]
@@ -2643,14 +2653,14 @@ dependencies = [
 
 [[package]]
 name = "filetime"
-version = "0.2.23"
+version = "0.2.24"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1ee447700ac8aa0b2f2bd7bc4462ad686ba06baa6727ac149a2d6277f0d240fd"
+checksum = "bf401df4a4e3872c4fe8151134cf483738e74b67fc934d6532c882b3d24a4550"
 dependencies = [
  "cfg-if 1.0.0",
  "libc",
- "redox_syscall 0.4.1",
- "windows-sys 0.52.0",
+ "libredox",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]
@@ -2661,9 +2671,9 @@ checksum = "0ce7134b9999ecaf8bcd65542e436736ef32ddca1b3e06094cb6ec5755203b80"
 
 [[package]]
 name = "flate2"
-version = "1.0.30"
+version = "1.0.31"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5f54427cfd1c7829e2a139fcefea601bf088ebca651d2bf53ebc600eac295dae"
+checksum = "7f211bbe8e69bbd0cfdea405084f128ae8b4aaa6b0b522fc8f2b009084797920"
 dependencies = [
  "crc32fast",
  "miniz_oxide 0.7.4",
@@ -2697,6 +2707,7 @@ dependencies = [
  "kalosm",
  "kalosm-sample",
  "log",
+ "manganis",
  "mdbook-shared",
  "postcard",
  "rand 0.8.5",
@@ -2719,7 +2730,7 @@ dependencies = [
 [[package]]
 name = "floneum_rust"
 version = "0.1.0"
-source = "git+https://github.com/floneum/floneum#0c166713d4d8d53232fe58f66a6b64088612f237"
+source = "git+https://github.com/floneum/floneum#021e37934768b29ca7cc243e13ba052fcb031771"
 dependencies = [
  "floneum_rust_macro",
  "serde",
@@ -2729,7 +2740,7 @@ dependencies = [
 [[package]]
 name = "floneum_rust_macro"
 version = "0.1.0"
-source = "git+https://github.com/floneum/floneum#0c166713d4d8d53232fe58f66a6b64088612f237"
+source = "git+https://github.com/floneum/floneum#021e37934768b29ca7cc243e13ba052fcb031771"
 dependencies = [
  "convert_case 0.6.0",
  "proc-macro2",
@@ -2741,7 +2752,7 @@ dependencies = [
 [[package]]
 name = "floneumite"
 version = "0.1.0"
-source = "git+https://github.com/floneum/floneum#0c166713d4d8d53232fe58f66a6b64088612f237"
+source = "git+https://github.com/floneum/floneum#021e37934768b29ca7cc243e13ba052fcb031771"
 dependencies = [
  "anyhow",
  "directories",
@@ -2873,12 +2884,12 @@ dependencies = [
 
 [[package]]
 name = "futures-buffered"
-version = "0.2.6"
+version = "0.2.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "02dcae03ee5afa5ea17b1aebc793806b8ddfc6dc500e0b8e8e1eb30b9dad22c0"
+checksum = "91fa130f3777d0d4b0993653c20bc433026d3290627693c4ed1b18dd237357ab"
 dependencies = [
+ "diatomic-waker",
  "futures-core",
- "futures-util",
  "pin-project-lite",
 ]
 
@@ -3193,6 +3204,19 @@ version = "0.6.0-alpha.1"
 source = "git+https://github.com/ealmloff/dioxus?branch=new-with-index#57f1bd0224b4c09c2e5e97963c29af415565fcf6"
 dependencies = [
  "parking_lot",
+]
+
+[[package]]
+name = "generator"
+version = "0.7.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5cc16584ff22b460a382b7feec54b23d2908d858152e5739a120b949293bd74e"
+dependencies = [
+ "cc",
+ "libc",
+ "log",
+ "rustversion",
+ "windows 0.48.0",
 ]
 
 [[package]]
@@ -4095,9 +4119,9 @@ dependencies = [
 
 [[package]]
 name = "hyper-util"
-version = "0.1.6"
+version = "0.1.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3ab92f4f49ee4fb4f997c784b7a2e0fa70050211e0b6a287f898c3c9785ca956"
+checksum = "cde7055719c54e36e95e8719f95883f22072a48ede39db7fc17a4e1d5281e9b9"
 dependencies = [
  "bytes",
  "futures-channel",
@@ -4437,7 +4461,7 @@ dependencies = [
 [[package]]
 name = "kalosm"
 version = "0.2.2"
-source = "git+https://github.com/floneum/floneum#0c166713d4d8d53232fe58f66a6b64088612f237"
+source = "git+https://github.com/floneum/floneum#021e37934768b29ca7cc243e13ba052fcb031771"
 dependencies = [
  "anyhow",
  "async-trait",
@@ -4464,7 +4488,7 @@ dependencies = [
 [[package]]
 name = "kalosm-common"
 version = "0.1.0"
-source = "git+https://github.com/floneum/floneum#0c166713d4d8d53232fe58f66a6b64088612f237"
+source = "git+https://github.com/floneum/floneum#021e37934768b29ca7cc243e13ba052fcb031771"
 dependencies = [
  "anyhow",
  "candle-core",
@@ -4480,7 +4504,7 @@ dependencies = [
 [[package]]
 name = "kalosm-language"
 version = "0.2.2"
-source = "git+https://github.com/floneum/floneum#0c166713d4d8d53232fe58f66a6b64088612f237"
+source = "git+https://github.com/floneum/floneum#021e37934768b29ca7cc243e13ba052fcb031771"
 dependencies = [
  "anyhow",
  "arroy",
@@ -4534,7 +4558,7 @@ dependencies = [
 [[package]]
 name = "kalosm-language-model"
 version = "0.2.1"
-source = "git+https://github.com/floneum/floneum#0c166713d4d8d53232fe58f66a6b64088612f237"
+source = "git+https://github.com/floneum/floneum#021e37934768b29ca7cc243e13ba052fcb031771"
 dependencies = [
  "anyhow",
  "async-trait",
@@ -4561,7 +4585,7 @@ dependencies = [
 [[package]]
 name = "kalosm-llama"
 version = "0.2.2"
-source = "git+https://github.com/floneum/floneum#0c166713d4d8d53232fe58f66a6b64088612f237"
+source = "git+https://github.com/floneum/floneum#021e37934768b29ca7cc243e13ba052fcb031771"
 dependencies = [
  "anyhow",
  "async-trait",
@@ -4584,7 +4608,7 @@ dependencies = [
 [[package]]
 name = "kalosm-ocr"
 version = "0.2.1"
-source = "git+https://github.com/floneum/floneum#0c166713d4d8d53232fe58f66a6b64088612f237"
+source = "git+https://github.com/floneum/floneum#021e37934768b29ca7cc243e13ba052fcb031771"
 dependencies = [
  "anyhow",
  "candle-core",
@@ -4603,7 +4627,7 @@ dependencies = [
 [[package]]
 name = "kalosm-parse-macro"
 version = "0.2.1"
-source = "git+https://github.com/floneum/floneum#0c166713d4d8d53232fe58f66a6b64088612f237"
+source = "git+https://github.com/floneum/floneum#021e37934768b29ca7cc243e13ba052fcb031771"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -4613,7 +4637,7 @@ dependencies = [
 [[package]]
 name = "kalosm-sample"
 version = "0.2.1"
-source = "git+https://github.com/floneum/floneum#0c166713d4d8d53232fe58f66a6b64088612f237"
+source = "git+https://github.com/floneum/floneum#021e37934768b29ca7cc243e13ba052fcb031771"
 dependencies = [
  "anyhow",
  "kalosm-parse-macro",
@@ -4623,7 +4647,7 @@ dependencies = [
 [[package]]
 name = "kalosm-sound"
 version = "0.2.1"
-source = "git+https://github.com/floneum/floneum#0c166713d4d8d53232fe58f66a6b64088612f237"
+source = "git+https://github.com/floneum/floneum#021e37934768b29ca7cc243e13ba052fcb031771"
 dependencies = [
  "anyhow",
  "async-trait",
@@ -4653,7 +4677,7 @@ dependencies = [
 [[package]]
 name = "kalosm-streams"
 version = "0.2.1"
-source = "git+https://github.com/floneum/floneum#0c166713d4d8d53232fe58f66a6b64088612f237"
+source = "git+https://github.com/floneum/floneum#021e37934768b29ca7cc243e13ba052fcb031771"
 dependencies = [
  "futures-util",
  "image 0.24.9",
@@ -4664,7 +4688,7 @@ dependencies = [
 [[package]]
 name = "kalosm-vision"
 version = "0.2.1"
-source = "git+https://github.com/floneum/floneum#0c166713d4d8d53232fe58f66a6b64088612f237"
+source = "git+https://github.com/floneum/floneum#021e37934768b29ca7cc243e13ba052fcb031771"
 dependencies = [
  "image 0.24.9",
  "kalosm-ocr",
@@ -4708,7 +4732,7 @@ dependencies = [
  "petgraph",
  "pico-args",
  "regex",
- "regex-syntax",
+ "regex-syntax 0.8.4",
  "string_cache",
  "term",
  "tiny-keccak",
@@ -4856,6 +4880,7 @@ checksum = "c0ff37bd590ca25063e35af745c343cb7a0271906fb7b37e4813e8f79f00268d"
 dependencies = [
  "bitflags 2.6.0",
  "libc",
+ "redox_syscall",
 ]
 
 [[package]]
@@ -4956,6 +4981,19 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b3bd0dd2cd90571056fdb71f6275fada10131182f84899f4b2a916e565d81d86"
 
 [[package]]
+name = "loom"
+version = "0.5.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ff50ecb28bb86013e935fb6683ab1f6d3a20016f123c76fd4c27470076ac30f5"
+dependencies = [
+ "cfg-if 1.0.0",
+ "generator",
+ "scoped-tls",
+ "tracing",
+ "tracing-subscriber",
+]
+
+[[package]]
 name = "lru"
 version = "0.12.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -5029,18 +5067,18 @@ dependencies = [
 
 [[package]]
 name = "manganis"
-version = "0.3.0-alpha.0"
+version = "0.3.0-alpha.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "578cb1a3a1a7dfad59feaa34eb928855e7f7d09a031db913b84ac2cc10fdfb84"
+checksum = "10870c8dbbfa53eaad99e7cc0689de6f2033d8769e02df28cb681b437e159473"
 dependencies = [
  "manganis-macro",
 ]
 
 [[package]]
 name = "manganis-common"
-version = "0.3.0-alpha.0"
+version = "0.3.0-alpha.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "86a1bfc5ff78ac6ade38584b033952f7cef921b90db6d5ac2016bc30caf47f8b"
+checksum = "d9be0dd0eaf5ce21947bcc38131d7934a1f573b76e6e44fe9e401cb27dcb33cf"
 dependencies = [
  "anyhow",
  "base64 0.21.7",
@@ -5056,8 +5094,8 @@ dependencies = [
 
 [[package]]
 name = "manganis-common"
-version = "0.3.0-alpha.0"
-source = "git+https://github.com/DioxusLabs/manganis#d96248c8a5de529f881717476df95bf9ac975edf"
+version = "0.3.0-alpha.1"
+source = "git+https://github.com/DioxusLabs/manganis#00b8a5c0d1b2101b52998a577d383b436818dba0"
 dependencies = [
  "anyhow",
  "base64 0.21.7",
@@ -5073,11 +5111,11 @@ dependencies = [
 
 [[package]]
 name = "manganis-macro"
-version = "0.3.0-alpha.0"
+version = "0.3.0-alpha.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "046c953865755a7b4e41f3680a2659833b41fdb171a0bffbaeba8b8237319924"
+checksum = "3ca00f3c266ba409900d32707f4bc66a60fbb707cf9d4d8d44d8e265c431c149"
 dependencies = [
- "manganis-common 0.3.0-alpha.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "manganis-common 0.3.0-alpha.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "proc-macro2",
  "quote",
  "serde_json",
@@ -5140,6 +5178,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "matchers"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8263075bb86c5a1b1427b5ae862e8889656f126e9f77c484496e8b47cf5c5558"
+dependencies = [
+ "regex-automata 0.1.10",
+]
+
+[[package]]
 name = "matches"
 version = "0.1.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -5192,7 +5239,7 @@ dependencies = [
  "convert_case 0.6.0",
  "dioxus-rsx",
  "macro_state",
- "manganis-common 0.3.0-alpha.0 (git+https://github.com/DioxusLabs/manganis)",
+ "manganis-common 0.3.0-alpha.1 (git+https://github.com/DioxusLabs/manganis)",
  "mdbook-shared",
  "postcard",
  "proc-macro2",
@@ -5696,9 +5743,9 @@ checksum = "830b246a0e5f20af87141b25c173cd1b609bd7779a4617d6ec582abaf90870f3"
 
 [[package]]
 name = "object"
-version = "0.36.2"
+version = "0.36.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3f203fa8daa7bb185f760ae12bd8e097f63d17041dcdcaf675ac54cdf863170e"
+checksum = "27b64972346851a39438c60b341ebc01bba47464ae329e55cf343eb93964efd9"
 dependencies = [
  "memchr",
 ]
@@ -5954,7 +6001,7 @@ checksum = "1e401f977ab385c9e4e3ab30627d6f26d00e2c73eef317493c4ec6d468726cf8"
 dependencies = [
  "cfg-if 1.0.0",
  "libc",
- "redox_syscall 0.5.3",
+ "redox_syscall",
  "smallvec",
  "windows-targets 0.52.6",
 ]
@@ -5985,7 +6032,7 @@ checksum = "17359afc20d7ab31fdb42bb844c8b3bb1dabd7dcf7e68428492da7f16966fcef"
 [[package]]
 name = "pathfinder_color"
 version = "0.5.0"
-source = "git+https://github.com/servo/pathfinder#6ef6ccb519d7771dbea02e7ef50cc0ee34b3020b"
+source = "git+https://github.com/servo/pathfinder#45b7a89449d1ebc12da870d1914e1b85c6b475d0"
 dependencies = [
  "pathfinder_simd",
 ]
@@ -5993,7 +6040,7 @@ dependencies = [
 [[package]]
 name = "pathfinder_content"
 version = "0.5.0"
-source = "git+https://github.com/servo/pathfinder#6ef6ccb519d7771dbea02e7ef50cc0ee34b3020b"
+source = "git+https://github.com/servo/pathfinder#45b7a89449d1ebc12da870d1914e1b85c6b475d0"
 dependencies = [
  "arrayvec 0.5.2",
  "bitflags 1.3.2",
@@ -6008,7 +6055,7 @@ dependencies = [
 [[package]]
 name = "pathfinder_geometry"
 version = "0.5.1"
-source = "git+https://github.com/servo/pathfinder#6ef6ccb519d7771dbea02e7ef50cc0ee34b3020b"
+source = "git+https://github.com/servo/pathfinder#45b7a89449d1ebc12da870d1914e1b85c6b475d0"
 dependencies = [
  "log",
  "pathfinder_simd",
@@ -6017,7 +6064,7 @@ dependencies = [
 [[package]]
 name = "pathfinder_gpu"
 version = "0.5.0"
-source = "git+https://github.com/servo/pathfinder#6ef6ccb519d7771dbea02e7ef50cc0ee34b3020b"
+source = "git+https://github.com/servo/pathfinder#45b7a89449d1ebc12da870d1914e1b85c6b475d0"
 dependencies = [
  "bitflags 1.3.2",
  "fxhash",
@@ -6034,7 +6081,7 @@ dependencies = [
 [[package]]
 name = "pathfinder_renderer"
 version = "0.5.0"
-source = "git+https://github.com/servo/pathfinder#6ef6ccb519d7771dbea02e7ef50cc0ee34b3020b"
+source = "git+https://github.com/servo/pathfinder#45b7a89449d1ebc12da870d1914e1b85c6b475d0"
 dependencies = [
  "bitflags 1.3.2",
  "byte-slice-cast",
@@ -6062,12 +6109,12 @@ dependencies = [
 [[package]]
 name = "pathfinder_resources"
 version = "0.5.0"
-source = "git+https://github.com/servo/pathfinder#6ef6ccb519d7771dbea02e7ef50cc0ee34b3020b"
+source = "git+https://github.com/servo/pathfinder#45b7a89449d1ebc12da870d1914e1b85c6b475d0"
 
 [[package]]
 name = "pathfinder_simd"
 version = "0.5.4"
-source = "git+https://github.com/servo/pathfinder#6ef6ccb519d7771dbea02e7ef50cc0ee34b3020b"
+source = "git+https://github.com/servo/pathfinder#45b7a89449d1ebc12da870d1914e1b85c6b475d0"
 dependencies = [
  "rustc_version",
 ]
@@ -6075,7 +6122,7 @@ dependencies = [
 [[package]]
 name = "pathfinder_ui"
 version = "0.5.0"
-source = "git+https://github.com/servo/pathfinder#6ef6ccb519d7771dbea02e7ef50cc0ee34b3020b"
+source = "git+https://github.com/servo/pathfinder#45b7a89449d1ebc12da870d1914e1b85c6b475d0"
 dependencies = [
  "hashbrown 0.7.2",
  "pathfinder_color",
@@ -6889,7 +6936,7 @@ dependencies = [
 [[package]]
 name = "rbert"
 version = "0.2.1"
-source = "git+https://github.com/floneum/floneum#0c166713d4d8d53232fe58f66a6b64088612f237"
+source = "git+https://github.com/floneum/floneum#021e37934768b29ca7cc243e13ba052fcb031771"
 dependencies = [
  "anyhow",
  "async-trait",
@@ -6929,15 +6976,6 @@ name = "reborrow"
 version = "0.5.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "03251193000f4bd3b042892be858ee50e8b3719f2b08e5833ac4353724632430"
-
-[[package]]
-name = "redox_syscall"
-version = "0.4.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4722d768eff46b75989dd134e5c353f0d6296e5aaa3132e776cbdb56be7731aa"
-dependencies = [
- "bitflags 1.3.2",
-]
 
 [[package]]
 name = "redox_syscall"
@@ -6988,7 +7026,7 @@ dependencies = [
  "aho-corasick",
  "memchr",
  "regex-automata 0.4.7",
- "regex-syntax",
+ "regex-syntax 0.8.4",
 ]
 
 [[package]]
@@ -6996,6 +7034,9 @@ name = "regex-automata"
 version = "0.1.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6c230d73fb8d8c1b9c0b3135c5142a8acee3a0558fb8db5cf1cb65f8d7862132"
+dependencies = [
+ "regex-syntax 0.6.29",
+]
 
 [[package]]
 name = "regex-automata"
@@ -7005,8 +7046,14 @@ checksum = "38caf58cc5ef2fed281f89292ef23f6365465ed9a41b7a7754eb4e26496c92df"
 dependencies = [
  "aho-corasick",
  "memchr",
- "regex-syntax",
+ "regex-syntax 0.8.4",
 ]
+
+[[package]]
+name = "regex-syntax"
+version = "0.6.29"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f162c6dd7b008981e4d40210aca20b4bd0f9b60ca9271061b07f78537722f2e1"
 
 [[package]]
 name = "regex-syntax"
@@ -7098,7 +7145,7 @@ dependencies = [
  "once_cell",
  "percent-encoding",
  "pin-project-lite",
- "rustls-pemfile 2.1.2",
+ "rustls-pemfile 2.1.3",
  "serde",
  "serde_json",
  "serde_urlencoded",
@@ -7296,7 +7343,7 @@ dependencies = [
 [[package]]
 name = "rphi"
 version = "0.2.1"
-source = "git+https://github.com/floneum/floneum#0c166713d4d8d53232fe58f66a6b64088612f237"
+source = "git+https://github.com/floneum/floneum#021e37934768b29ca7cc243e13ba052fcb031771"
 dependencies = [
  "anyhow",
  "async-trait",
@@ -7492,9 +7539,9 @@ dependencies = [
 
 [[package]]
 name = "rustls-pemfile"
-version = "2.1.2"
+version = "2.1.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "29993a25686778eb88d4189742cd713c9bce943bc54251a33509dc63cbacf73d"
+checksum = "196fe16b00e106300d3e45ecfcb764fa292a535d7326a29a5875c579c7417425"
 dependencies = [
  "base64 0.22.1",
  "rustls-pki-types",
@@ -7502,9 +7549,9 @@ dependencies = [
 
 [[package]]
 name = "rustls-pki-types"
-version = "1.7.0"
+version = "1.8.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "976295e77ce332211c0d24d92c0e83e50f5c5f046d11082cea19f3df13a3562d"
+checksum = "fc0a2ce646f8655401bb81e7927b812614bd5d91dbc968696be50603510fcaf0"
 
 [[package]]
 name = "rustls-webpki"
@@ -7536,7 +7583,7 @@ checksum = "955d28af4278de8121b7ebeb796b6a45735dc01436d898801014aced2773a3d6"
 [[package]]
 name = "rwhisper"
 version = "0.2.1"
-source = "git+https://github.com/floneum/floneum#0c166713d4d8d53232fe58f66a6b64088612f237"
+source = "git+https://github.com/floneum/floneum#021e37934768b29ca7cc243e13ba052fcb031771"
 dependencies = [
  "anyhow",
  "async-trait",
@@ -7562,7 +7609,7 @@ dependencies = [
 [[package]]
 name = "rwuerstchen"
 version = "0.2.1"
-source = "git+https://github.com/floneum/floneum#0c166713d4d8d53232fe58f66a6b64088612f237"
+source = "git+https://github.com/floneum/floneum#021e37934768b29ca7cc243e13ba052fcb031771"
 dependencies = [
  "anyhow",
  "async-trait",
@@ -7588,9 +7635,9 @@ checksum = "f3cb5ba0dc43242ce17de99c180e96db90b235b8a9fdc9543c96d2209116bd9f"
 
 [[package]]
 name = "safetensors"
-version = "0.4.3"
+version = "0.4.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8ced76b22c7fba1162f11a5a75d9d8405264b467a07ae0c9c29be119b9297db9"
+checksum = "7725d4d98fa515472f43a6e2bbf956c48e06b89bb50593a040e5945160214450"
 dependencies = [
  "serde",
  "serde_json",
@@ -7622,6 +7669,12 @@ checksum = "fbc91545643bcf3a0bbb6569265615222618bdf33ce4ffbbd13c4bbd4c093534"
 dependencies = [
  "windows-sys 0.52.0",
 ]
+
+[[package]]
+name = "scoped-tls"
+version = "1.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e1cf6437eb19a8f4a6cc0f7dca544973b0b78843adbfeb3683d1a94a0024a294"
 
 [[package]]
 name = "scopeguard"
@@ -7725,7 +7778,7 @@ dependencies = [
 [[package]]
 name = "segment-anything-rs"
 version = "0.2.1"
-source = "git+https://github.com/floneum/floneum#0c166713d4d8d53232fe58f66a6b64088612f237"
+source = "git+https://github.com/floneum/floneum#021e37934768b29ca7cc243e13ba052fcb031771"
 dependencies = [
  "anyhow",
  "candle-core",
@@ -7801,9 +7854,9 @@ checksum = "a3f0bf26fd526d2a95683cd0f87bf103b8539e2ca1ef48ce002d67aad59aa0b4"
 
 [[package]]
 name = "serde"
-version = "1.0.204"
+version = "1.0.205"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "bc76f558e0cbb2a839d37354c575f1dc3fdc6546b5be373ba43d95f231bf7c12"
+checksum = "e33aedb1a7135da52b7c21791455563facbbcc43d0f0f66165b42c21b3dfb150"
 dependencies = [
  "serde_derive",
 ]
@@ -7833,9 +7886,9 @@ dependencies = [
 
 [[package]]
 name = "serde_derive"
-version = "1.0.204"
+version = "1.0.205"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e0cd7e117be63d3c3678776753929474f3b04a43a080c744d6b0ae2a8c28e222"
+checksum = "692d6f5ac90220161d6774db30c662202721e64aed9058d2c394f451261420c1"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -8283,9 +8336,9 @@ dependencies = [
 
 [[package]]
 name = "spade"
-version = "2.10.0"
+version = "2.11.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7d676a3ce6cfd1e455199fefcf82db082f970872ce017df660f076a4e07a0d64"
+checksum = "766195f983f4098dc3bf37fb66bd609f6e6258c4b8db684d05252b2c694cdbcd"
 dependencies = [
  "hashbrown 0.14.5",
  "num-traits",
@@ -8847,7 +8900,7 @@ dependencies = [
  "once_cell",
  "onig",
  "plist",
- "regex-syntax",
+ "regex-syntax 0.8.4",
  "serde",
  "serde_derive",
  "serde_json",
@@ -8930,15 +8983,15 @@ dependencies = [
 
 [[package]]
 name = "tempfile"
-version = "3.11.0"
+version = "3.12.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b8fcd239983515c23a32fb82099f97d0b11b8c72f654ed659363a95c3dad7a53"
+checksum = "04cbcdd0c794ebb0d4cf35e88edd2f7d2c4c3e9a5a6dab322839b321c6a87a64"
 dependencies = [
  "cfg-if 1.0.0",
  "fastrand 2.1.0",
  "once_cell",
  "rustix",
- "windows-sys 0.52.0",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]
@@ -9132,7 +9185,7 @@ dependencies = [
  "rayon",
  "rayon-cond",
  "regex",
- "regex-syntax",
+ "regex-syntax 0.8.4",
  "serde",
  "serde_json",
  "spm_precompiled",
@@ -9468,10 +9521,14 @@ version = "0.3.18"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ad0f048c97dbd9faa9b7df56362b8ebcaa52adb06b498c050d2f4e32f90a7a8b"
 dependencies = [
+ "matchers",
  "nu-ansi-term",
+ "once_cell",
+ "regex",
  "sharded-slab",
  "smallvec",
  "thread_local",
+ "tracing",
  "tracing-core",
  "tracing-log",
 ]
@@ -9717,9 +9774,9 @@ checksum = "8ecb6da28b8a351d773b68d5825ac39017e680750f980f3a1a85cd8dd28a47c1"
 
 [[package]]
 name = "ureq"
-version = "2.10.0"
+version = "2.10.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "72139d247e5f97a3eff96229a7ae85ead5328a39efe76f8bf5a06313d505b6ea"
+checksum = "b74fc6b57825be3373f7054754755f03ac3a8f5d70015ccad699ba2029956f4a"
 dependencies = [
  "base64 0.22.1",
  "flate2",
@@ -10203,6 +10260,15 @@ checksum = "712e227841d057c1ee1cd2fb22fa7e5a5461ae8e48fa2ca79ec42cfc1931183f"
 
 [[package]]
 name = "windows"
+version = "0.48.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e686886bc078bc1b0b600cac0147aadb815089b6e4da64016cbd754b6342700f"
+dependencies = [
+ "windows-targets 0.48.5",
+]
+
+[[package]]
+name = "windows"
 version = "0.54.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9252e5725dbed82865af151df558e754e4a3c2c30818359eb17465f1346a1b49"
@@ -10510,7 +10576,7 @@ dependencies = [
 [[package]]
 name = "wit-bindgen"
 version = "0.29.0"
-source = "git+https://github.com/bytecodealliance/wit-bindgen#a20a9497019fc6ad7c7d6f10d1a6dae8c127a392"
+source = "git+https://github.com/bytecodealliance/wit-bindgen#3f8e0fb6acc31a8bfe735d83169f0f6803b707da"
 dependencies = [
  "wit-bindgen-rt 0.29.0",
  "wit-bindgen-rust-macro 0.29.0",
@@ -10538,7 +10604,7 @@ dependencies = [
 [[package]]
 name = "wit-bindgen-core"
 version = "0.29.0"
-source = "git+https://github.com/bytecodealliance/wit-bindgen#a20a9497019fc6ad7c7d6f10d1a6dae8c127a392"
+source = "git+https://github.com/bytecodealliance/wit-bindgen#3f8e0fb6acc31a8bfe735d83169f0f6803b707da"
 dependencies = [
  "anyhow",
  "heck 0.5.0",
@@ -10557,7 +10623,7 @@ dependencies = [
 [[package]]
 name = "wit-bindgen-rt"
 version = "0.29.0"
-source = "git+https://github.com/bytecodealliance/wit-bindgen#a20a9497019fc6ad7c7d6f10d1a6dae8c127a392"
+source = "git+https://github.com/bytecodealliance/wit-bindgen#3f8e0fb6acc31a8bfe735d83169f0f6803b707da"
 dependencies = [
  "bitflags 2.6.0",
 ]
@@ -10591,7 +10657,7 @@ dependencies = [
 [[package]]
 name = "wit-bindgen-rust"
 version = "0.29.0"
-source = "git+https://github.com/bytecodealliance/wit-bindgen#a20a9497019fc6ad7c7d6f10d1a6dae8c127a392"
+source = "git+https://github.com/bytecodealliance/wit-bindgen#3f8e0fb6acc31a8bfe735d83169f0f6803b707da"
 dependencies = [
  "anyhow",
  "heck 0.5.0",
@@ -10633,7 +10699,7 @@ dependencies = [
 [[package]]
 name = "wit-bindgen-rust-macro"
 version = "0.29.0"
-source = "git+https://github.com/bytecodealliance/wit-bindgen#a20a9497019fc6ad7c7d6f10d1a6dae8c127a392"
+source = "git+https://github.com/bytecodealliance/wit-bindgen#3f8e0fb6acc31a8bfe735d83169f0f6803b707da"
 dependencies = [
  "anyhow",
  "prettyplease",
@@ -10796,9 +10862,9 @@ dependencies = [
 
 [[package]]
 name = "xml-rs"
-version = "0.8.20"
+version = "0.8.21"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "791978798f0597cfc70478424c2b4fdc2b7a8024aaff78497ef00f24ef674193"
+checksum = "539a77ee7c0de333dcc6da69b177380a0b81e0dacfa4f7344c465a36871ee601"
 
 [[package]]
 name = "xml5ever"

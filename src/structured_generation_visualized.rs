@@ -177,7 +177,7 @@ pub fn DerivingParsers() -> Element {
 
 fn DerivingParsersLoaded() -> Element {
     let regex = use_regex_state_with_initial_regex(
-        r#"\{ "name": ".*?", "description": ".*?", "metadata": \{ "age": (100|\d\d|[1-9]), "height_cm": ([12][12345][12345]|\d\d|\d), "weight_kg": ([12][12345][12345]|\d\d|\d), "hair_color": ".*?", "eye_color": ".*?" \} \}"#,
+        r#"\{ "name": "[^"]+", "description": "[^"]+", "metadata": \{ "age": (100|[1-9]\d|[1-9]), "height_cm": ([12][12345][12345]|[1-9]\d|\d), "weight_kg": ([12][12345][12345]|[1-9]\d|\d), "hair_color": "[^"]+", "eye_color": "[^"]+" \} \}"#,
     );
     let tokenized_text = use_tokenized_text();
     let token_states = use_token_states(regex, tokenized_text);

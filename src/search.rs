@@ -20,14 +20,14 @@ impl PartialEq for SearchModalProps {
 
 pub fn SearchModal(props: SearchModalProps) -> Element {
     let index = props.index;
+    #[allow(unused_mut)]
     let mut results = use_signal(move || {
         log::info!("searching for {}", &*SEARCH_TEXT.read());
         index.search(&SEARCH_TEXT.read())
     });
 
+    #[cfg(target_arch = "wasm32")]
     let mut last_key_press = use_signal(|| {
-        #[cfg(not(target_arch = "wasm32"))]
-        return 0.;
         js_sys::Date::now()
     });
     #[cfg(feature = "web")]
