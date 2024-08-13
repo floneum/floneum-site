@@ -1,24 +1,23 @@
 #[tokio::main]
 async fn main() -> Result<(), anyhow::Error> {
     // ANCHOR: create_whisper
-    use kalosm::audio::*;
     use kalosm::language::*;
+    use kalosm::sound::*;
     use kalosm::*;
     use std::sync::Arc;
     use tokio::time::{Duration, Instant};
     let model = WhisperBuilder::default()
         .with_source(WhisperSource::MediumEn)
-        .build()?;
+        .build()
+        .await?;
     // ANCHOR_END: create_whisper
 
     // ANCHOR: create_context_db
     // Create database connection
-    let db = surrealdb::Surreal::new::<surrealdb::engine::local::RocksDb>("./db/temp.db")
-        .await
-        .unwrap();
+    let db = surrealdb::Surreal::new::<surrealdb::engine::local::RocksDb>("./db/temp.db").await?;
 
     // Select a specific namespace / database
-    db.use_ns("test").use_db("test").await.unwrap();
+    db.use_ns("test").use_db("test").await?;
 
     // Create a new document database table
     let document_table = Arc::new(
@@ -26,7 +25,7 @@ async fn main() -> Result<(), anyhow::Error> {
             // Store the embedding database at ./db/embeddings.db
             .at("./db/embeddings.db")
             .build()
-            .unwrap(),
+            .await?,
     );
 
     // ANCHOR_END: create_context_db
@@ -78,14 +77,14 @@ async fn main() -> Result<(), anyhow::Error> {
     // ANCHOR_END: transcribe_audio
 
     // ANCHOR: create_chat
-    let mut model = Llama::new_chat();
-    let mut chat = Chat::builder(&mut model).with_system_prompt("The assistant help answer questions based on the context given by the user. The model knows that the information the user gives it is always true.").build();
+    let model = Llama::new_chat().await?;
+    let mut chat = Chat::builder(model).with_system_prompt("The assistant help answer questions based on the context given by the user. The model knows that the information the user gives it is always true.").build();
     // ANCHOR_END: create_chat
 
     // ANCHOR: rag
     loop {
         // Ask the user for a question
-        let user_question = prompt_input("\n> ").unwrap();
+        let user_question = prompt_input("\n> ")?;
 
         // Search for relevant context in the document engine
         let context = document_table
@@ -111,9 +110,9 @@ async fn main() -> Result<(), anyhow::Error> {
         println!("{}", prompt);
 
         // And finally, respond to the user
-        let output_stream = chat.add_message(prompt).await.unwrap();
+        let mut output_stream = chat.add_message(prompt);
         print!("Bot: ");
-        output_stream.to_std_out().await.unwrap();
+        output_stream.to_std_out().await?;
     }
     // ANCHOR_END: rag
 }

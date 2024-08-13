@@ -19,8 +19,6 @@ asset_dir = "public"
 # HTML title tag content
 title = "Floneum"
 
-base_path = "."
-
 [web.watcher]
 
 watch_path = ["docs-src", "src"]

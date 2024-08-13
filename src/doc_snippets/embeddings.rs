@@ -4,7 +4,7 @@ async fn main() {
         // ANCHOR: create_embedding_model
         use kalosm::language::*;
 
-        let bert = Bert::default();
+        let bert = Bert::new().await.unwrap();
         // ANCHOR_END: create_embedding_model
 
         // ANCHOR: create_embeddings
@@ -16,7 +16,7 @@ async fn main() {
 
     {
         // ANCHOR: create_embedding_database
-        use kalosm::{language::*, *};
+        use kalosm::language::*;
 
         // Create database connection
         let db = surrealdb::Surreal::new::<surrealdb::engine::local::RocksDb>("./db/temp.db")
@@ -27,11 +27,12 @@ async fn main() {
         db.use_ns("test").use_db("test").await.unwrap();
 
         // Create a document table
-        let mut document_table = db
+        let document_table = db
             .document_table_builder("documents")
             // Store the embedding database in the ./db/embeddings.db file
             .at("./db/embeddings.db")
             .build()
+            .await
             .unwrap();
         // ANCHOR_END: create_embedding_database
 
@@ -52,7 +53,7 @@ async fn main() {
         loop {
             let user_question = prompt_input("Query: ").unwrap();
             let user_question_embedding = document_table
-                .embedding_model_mut()
+                .embedding_model()
                 .embed(&user_question)
                 .await
                 .unwrap();
@@ -60,7 +61,7 @@ async fn main() {
             println!(
                 "vector: {:?}",
                 document_table
-                    .select_nearest_embedding(user_question_embedding, 5)
+                    .select_nearest(user_question_embedding, 5)
                     .await
                     .unwrap()
             );

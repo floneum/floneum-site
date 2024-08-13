@@ -20,16 +20,15 @@ impl PartialEq for SearchModalProps {
 
 pub fn SearchModal(props: SearchModalProps) -> Element {
     let index = props.index;
+    #[allow(unused_mut)]
     let mut results = use_signal(move || {
         log::info!("searching for {}", &*SEARCH_TEXT.read());
         index.search(&SEARCH_TEXT.read())
     });
 
-    let mut last_key_press = use_signal(|| {
-        #[cfg(not(target_arch = "wasm32"))]
-        return 0.;
-        js_sys::Date::now()
-    });
+    #[cfg(target_arch = "wasm32")]
+    let mut last_key_press = use_signal(|| js_sys::Date::now());
+    #[cfg(feature = "web")]
     let _ = use_resource(move || {
         async move {
             // debounce the search
@@ -99,7 +98,7 @@ pub fn SearchModal(props: SearchModalProps) -> Element {
                                     } else {
                                         ul { class: "max-h-96 overflow-y-auto p-2 text-sm text-gray-700",
                                             for result in results {
-                                                SearchResult { result: result.clone() }
+                                                SearchResultView { result: result.clone() }
                                             }
                                         }
                                     }
@@ -119,7 +118,7 @@ pub fn SearchModal(props: SearchModalProps) -> Element {
 }
 
 #[component]
-pub fn SearchResult(result: SearchResult<Route>) -> Element {
+pub fn SearchResultView(result: SearchResult<Route>) -> Element {
     let title = &result.title;
     let top_excerpt_segments = &match result.excerpts.first() {
         Some(excerpt) => &*excerpt.text,
@@ -222,7 +221,8 @@ fn SearchHints() -> Element {
                 ul { class: "text-sm text-gray-700",
                     for example in example_searches {
                         li { class: "group flex cursor-default select-none items-center rounded-md px-3 py-2",
-                            button { onclick: move |_| {
+                            button {
+                                onclick: move |_| {
                                     *SEARCH_TEXT.write() = example.to_string();
                                 },
                                 span { class: "ml-3 flex-auto truncate", "{example}" }

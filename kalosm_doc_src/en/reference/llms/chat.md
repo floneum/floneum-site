@@ -8,7 +8,7 @@ Before we explore the code, ensure that you have the required dependencies. The 
 
 ```toml
 [dependencies]
-kalosm = "0.1"
+kalosm = { version = "0.3", features = ["language"] }
 tokio = { version = "1", features = ["full"] }
 ```
 

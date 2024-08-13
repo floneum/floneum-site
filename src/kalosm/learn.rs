@@ -28,7 +28,7 @@ fn LeftNav() -> Element {
             div { class: "sticky top-[4.75rem] -ml-0.5 h-[calc(100vh-4.75rem)] w-64 overflow-y-auto overflow-x-hidden py-16 pl-0.5 pr-8 xl:w-72 xl:pr-16",
                 nav { class: "font-normal text-slate-500 hover:text-slate-700",
                     for chapter in chapters.into_iter().flatten().filter(|chapter| chapter.maybe_link().is_some()) {
-                        SidebarSection { chapter: chapter }
+                        SidebarSection { chapter }
                     }
                 }
             }
@@ -38,17 +38,26 @@ fn LeftNav() -> Element {
 
 #[component]
 fn SidebarSection(chapter: &'static SummaryItem<KalosmBookRoute>) -> Element {
-    let link = chapter.maybe_link()?;
+    let link = match chapter.maybe_link() {
+        Some(link) => link,
+        None => return rsx! {},
+    };
 
-    let sections = link
-        .nested_items
-        .iter()
-        .map(|link| rsx! { SidebarChapter { link: link } }.unwrap());
+    let sections = link.nested_items.iter().map(|link| {
+        rsx! {
+            SidebarChapter { link }
+        }
+        .unwrap()
+    });
 
     rsx! {
         div { class: "pb-4",
             if let Some(url) = &link.location {
-                Link { to: Route::KalosmDocs { child: *url }, h2 { class: "font-normal text-slate-500 hover:text-slate-700", "{link.name}" } }
+                Link { to: Route::KalosmDocs { child: *url },
+                    h2 { class: "font-normal text-slate-500 hover:text-slate-700",
+                        "{link.name}"
+                    }
+                }
             }
             ul { class: "pl-2", {sections} }
         }
@@ -57,7 +66,10 @@ fn SidebarSection(chapter: &'static SummaryItem<KalosmBookRoute>) -> Element {
 
 #[component]
 fn SidebarChapter(link: &'static SummaryItem<KalosmBookRoute>) -> Element {
-    let link = link.maybe_link()?;
+    let link = match link.maybe_link() {
+        Some(link) => link,
+        None => return rsx! {},
+    };
     let url = link.location.as_ref().unwrap();
     let list_toggle = use_signal(|| false);
 
@@ -92,7 +104,10 @@ fn SidebarChapter(link: &'static SummaryItem<KalosmBookRoute>) -> Element {
 fn LocationLink(chapter: &'static SummaryItem<KalosmBookRoute>) -> Element {
     let book_url = use_book().to_string();
 
-    let link = chapter.maybe_link()?;
+    let link = match chapter.maybe_link() {
+        Some(link) => link,
+        None => return rsx! {},
+    };
     let url = link.location.as_ref().unwrap();
 
     let current_class = match book_url == url.to_string() {
@@ -102,7 +117,9 @@ fn LocationLink(chapter: &'static SummaryItem<KalosmBookRoute>) -> Element {
 
     rsx! {
         Link { to: Route::KalosmDocs { child: *url },
-            li { span { class: "{current_class}", "{link.name}" } }
+            li {
+                span { class: "{current_class}", "{link.name}" }
+            }
         }
     }
 }
@@ -110,7 +127,9 @@ fn LocationLink(chapter: &'static SummaryItem<KalosmBookRoute>) -> Element {
 fn RightNav() -> Element {
     let page = use_book();
 
-    rsx! { crate::table_of_contents::TableOfContents { sections: page.sections().to_vec() } }
+    rsx! {
+        crate::table_of_contents::TableOfContents { sections: page.sections().to_vec() }
+    }
 }
 
 fn use_book() -> KalosmBookRoute {

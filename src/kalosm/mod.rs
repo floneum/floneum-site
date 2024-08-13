@@ -22,6 +22,9 @@ pub fn KalosmHome() -> Element {
 #[component]
 pub fn KalosmHeaderFooter() -> Element {
     rsx! {
+        Title {
+            "Kalosm"
+        }
         SearchModal { index: &KALOSM_SEARCH_INDEX }
         header::Header {}
         Outlet::<Route> {}
