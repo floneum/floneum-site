@@ -96,6 +96,7 @@ pub fn Header() -> Element {
                 }
             }
             div {
+                class: if mobile_menu_open() { "lg:hidden block" } else { "lg:hidden hidden" },
                 id: "mobile-menu",
                 div { class: "space-y-1 pb-3 pt-2",
                     for (text , link) in links {

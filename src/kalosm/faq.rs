@@ -34,7 +34,7 @@ fn Question(question: String, index: usize, children: Element) -> Element {
                             "stroke": "currentColor",
                             "fill": "none",
                             "aria-hidden": "true",
-                            class: if visible() { "h-6 w-6 hidden" } else { "h-6 w-6" },
+                            class: if visible() { "h-6 w-6" } else { "h-6 w-6 hidden" },
                             path {
                                 "d": "M18 12H6",
                                 "stroke-linejoin": "round",
