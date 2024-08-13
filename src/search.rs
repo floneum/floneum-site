@@ -27,9 +27,7 @@ pub fn SearchModal(props: SearchModalProps) -> Element {
     });
 
     #[cfg(target_arch = "wasm32")]
-    let mut last_key_press = use_signal(|| {
-        js_sys::Date::now()
-    });
+    let mut last_key_press = use_signal(|| js_sys::Date::now());
     #[cfg(feature = "web")]
     let _ = use_resource(move || {
         async move {

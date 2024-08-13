@@ -495,18 +495,25 @@ fn consume_tokenizer() -> Rc<Tokenizer> {
 #[component]
 fn LoadTokenizer(children: Element) -> Element {
     #[cfg(feature = "web")]
-    use_future(move || async move {
-        let run = || async move {
-            let resp = gloo_net::http::Request::get(asset!("./public/assets/tokenizer.json"))
-                .send()
-                .await?;
-            let bytes = resp.binary().await?;
-            let tokenizer = tokenizers::Tokenizer::from_bytes(&bytes)
-                .map(Rc::new)
-                .map_err(|e| dioxus::CapturedError::from_display(e))?;
-            Ok(tokenizer)
-        };
-        *TOKENIZER.write() = Some(run().await);
+    use_hook(move || {
+        static TOKENIZER_LOADING: GlobalSignal<bool> = Signal::global(|| false);
+        if *TOKENIZER_LOADING.read() {
+            return;
+        }
+        *TOKENIZER_LOADING.write() = true;
+        spawn(async move {
+            let run = || async move {
+                let resp = gloo_net::http::Request::get(asset!("./public/assets/tokenizer.json"))
+                    .send()
+                    .await?;
+                let bytes = resp.binary().await?;
+                let tokenizer = tokenizers::Tokenizer::from_bytes(&bytes)
+                    .map(Rc::new)
+                    .map_err(|e| dioxus::CapturedError::from_display(e))?;
+                Ok(tokenizer)
+            };
+            *TOKENIZER.write() = Some(run().await);
+        });
     });
 
     match &*TOKENIZER.read() {
@@ -521,8 +528,20 @@ fn LoadTokenizer(children: Element) -> Element {
             }
         },
         None => rsx! {
-            p { "Loading..." }
+            LoadingIndicator {}
         },
+    }
+}
+
+fn LoadingIndicator() -> Element {
+    rsx! {
+        head::Link { rel: "stylesheet", href: asset!("./public/assets/loading.css") }
+        div {
+            class: "w-full flex flex-row justify-center items-center",
+            div {
+                class: "spinner",
+            }
+        }
     }
 }
 
