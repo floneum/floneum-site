@@ -1,4 +1,5 @@
 mod chat;
+mod custom_parser;
 mod embeddings;
 mod image_generation;
 mod image_segmentation;

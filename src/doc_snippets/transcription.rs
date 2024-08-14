@@ -3,25 +3,42 @@ async fn main() -> Result<(), anyhow::Error> {
     // ANCHOR: create_model
     use kalosm::sound::*;
 
-    // Create a new whisper model.
-    let model = Whisper::new().await.unwrap();
+    // Create a new whisper model
+    let model = Whisper::new().await?;
     // ANCHOR_END: create_model
 
+    // ANCHOR: create_model_with_loading_handler
+    let model = Whisper::builder()
+        .build_with_loading_handler(|progress| match progress {
+            ModelLoadingProgress::Downloading {
+                source,
+                start_time,
+                progress,
+            } => {
+                let progress = (progress * 100.0) as u32;
+                let elapsed = start_time.elapsed().as_secs_f32();
+                println!("Downloading file {source} {progress}% ({elapsed}s)");
+            }
+            ModelLoadingProgress::Loading { progress } => {
+                let progress = (progress * 100.0) as u32;
+                println!("Loading model {progress}%");
+            }
+        })
+        .await?;
+    // ANCHOR_END: create_model_with_loading_handler
+
     // ANCHOR: record_audio
-    use tokio::time::{Duration, Instant};
-    // Record audio from the microphone for 5 seconds.
-    let audio = MicInput::default()
-        .record_until(Instant::now() + Duration::from_secs(5))
-        .await
-        .unwrap();
+    // Stream audio from the microphone
+    let mic = MicInput::default();
+    let stream = mic.stream()?;
     // ANCHOR_END: record_audio
 
     // ANCHOR: transcribe
     // Transcribe the audio.
-    let mut transcribed = model.transcribe(audio).unwrap();
+    let mut transcribed = stream.transcribe(model);
 
     // As the model transcribes the audio, print the text to the console.
-    transcribed.to_std_out().await.unwrap();
+    transcribed.to_std_out().await?;
     // ANCHOR_END: transcribe
 
     Ok(())

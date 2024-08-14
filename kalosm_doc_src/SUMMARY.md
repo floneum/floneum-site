@@ -12,7 +12,8 @@
 - [LLMS](reference/llms/index.md)
   - [Chat](reference/llms/chat.md)
   <!-- - [Moderation](reference/llms/moderation.md) -->
-  - [Structured Generation](reference/llms/structured_generation.md)
+  - [Structured Generation](reference/llms/structured_generation/index.md)
+    - [Custom Parsers](reference/llms/structured_generation/custom_parsers.md)
   - [Context](reference/llms/context.md)
 
 ---

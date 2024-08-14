@@ -18,22 +18,28 @@ async fn main() {
         .then(LiteralParser::from(", "))
         .repeat(5..=5)
         .then(LiteralParser::from("\n"));
-
     // ANCHOR_END: create_parser
 
-    // ANCHOR: regex_parser
-
-    // You can also use a regex to match the same pattern. However, you will not get a parsed result once the generator is finished.
-    let validator = RegexParser::new(r"((Alaska|Delaware|Florida|Georgia|Hawaii), ){5}\n").unwrap();
-
-    // ANCHOR_END: regex_parser
+    // ANCHOR: derive_parser
+    #[derive(Clone, Debug, Parse, Schema)]
+    struct Character {
+        name: String,
+        description: String,
+        age: u8,
+    }
+    // ANCHOR_END: derive_parser
 
     // ANCHOR: streaming_text
-    let llm = Phi::v2().await.unwrap();
-    let mut structured = llm.stream_structured_text("A state that starts with A", validator);
+    let llm = Llama::phi_3().await.unwrap();
+    let task = Task::builder_for::<Character>(
+        "You generate realistic characters for a procedurally generated game.",
+    )
+    .build();
 
-    structured.to_std_out().await.unwrap();
+    let mut stream = task
+        .run("Generate a character that is a wizard", &llm);
+    stream.to_std_out().await.unwrap();
 
-    println!("Result: {:?}", structured.await.unwrap());
+    println!("Result: {:?}", stream.await.unwrap());
     // ANCHOR_END: streaming_text
 }

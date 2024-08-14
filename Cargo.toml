@@ -31,7 +31,7 @@ postcard = { version = "1.0.4", features = ["use-std"] }
 futures-util-preview = "0.2.2"
 anyhow = { version = "1.0.75", optional = true }
 
-kalosm = { git = "https://github.com/floneum/floneum", features = ["full"], optional = true }
+kalosm = { version = "0.3.1", features = ["full"], optional = true }
 image = { version = "0.24.7", optional = true }
 slab = "0.4.9"
 wasm-bindgen = "0.2.91"

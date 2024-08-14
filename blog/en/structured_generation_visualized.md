@@ -2,7 +2,10 @@
 
 ![Structured Generation Visualized](./public/assets/structured_generation_visualized.png)
 
-Text is the universal format for data. The code for this post that communicates with JSON and and renders the result with HTML. Almost every part of that process is visualized with text. LLMs are trained on a giant corpus of web text, so they should be excellent at understanding and writing formats like JSON right? Let's try asking a LLM to generate JSON for a character in this format:
+Text is the universal format for data. The code for this post is written in text, communicates with JSON and renders the result with HTML. Every part of that process can be represented with text.
+
+
+LLMs are trained on a giant corpus of text, but can they generate data? Most of that text is just prose, but many LLMs are also trained on structured formats like code. Let's try asking a LLM to generate structured JSON for a character in this format:
 
 ```
 {
@@ -10,15 +13,15 @@ Text is the universal format for data. The code for this post that communicates 
     "description": string,
     "metadata": {
         "age": number,
-        "height": number (cm),
-        "weight": number (kg),
+        "height_cm": number,
+        "weight_kg": number,
         "hair_color": string,
         "eye_color": string,
     }
 }
 ```
 
-This should be pretty simple. Let's use a small model that is good at structured formats and reasoning called Phi-3-Mini. We can use [Kalosm](https://github.com/floneum/floneum/tree/main/interfaces/kalosm) to stream the text:
+Let's use a small model that is good at structured formats and reasoning called Phi-3-Mini. We can use [Kalosm](https://github.com/floneum/floneum/tree/main/interfaces/kalosm) to generate and stream the text locally:
 
 ```rust
 // Create a new model. We are using the Phi-3 model which is small and focused on reasoning tasks.
@@ -67,14 +70,14 @@ But other times, it generates nonsense:
 }
 ```
 
-Ok, so just asking nicely isn't enough... The LLM knows something about the structure of JSON, but it isn't consistent enough to generate valid JSON every time.
+`","kg",`? That doesn't look right... Ok, so just asking nicely isn't enough. The LLM knows something about the structure of JSON, but it isn't consistent enough to generate valid JSON every time.
 
 
-We need some way of controlling what the LLM generates to guide it twards our format. First, what exactly does the LLM generate?
+We need some way of controlling what the LLM generates to guide it towards our format.
 
 ## Token Generation
 
-LLM sees text in chunks of tokens. On average, each token is about 2/3 of a word, but depending on the word, it could be the entire word or a single character.
+Before we start controlling the output of a language model, lets look at how exactly text generation works. LLM sees text in chunks called tokens. On average, each token is about 2/3 of a word, but depending on the word, it could be the entire word or a single character.
 
 
 Let's take a look at what tokens look like from the perspective of the LLM. You can see what previous tokens the LLM has seen at the bottom of the visualization and a few of the next possible tokens on the right:
@@ -87,15 +90,16 @@ TokenizationVisualization {}
 To generate text, LLMs assign a probability to each token and pick a token with a high probability. Picking a token from the list of probabilities is called sampling.
 
 
-We need to control what tokens the LLM picks after it assigns a probability to each token. Instead of choosing the most likely token, we must look for only tokens that fit our format.
+We need to control that sampling process to change influence the token our LLM picks after it assigns a probability to each token. Instead of choosing the most likely token, we can look for only tokens that fit our format.
 
 ## Defining the Format
 
 To find tokens that fit our format, we need a parser that:
 1) Incrementally parses new text in a way we can roll back. If the current tokens are `{"age":` we need to be able to try adding `a` and if it fails, roll back to `{"age"`. If our current text is long, our parser shouldn't need to re-parse the entire history for every one of the `~128,000` possible new tokens
-2) Fails immediately if a new token is invalid. We need to validate every token individually so we don't waste time trying a sequence of tokens and then walking back once we realize it's invalid
+2) Fails immediately if a new token is invalid. We need to validate every token individually so we don't waste time generating a sequence of tokens and then walking back once we realize it's invalid
 
-Regular Expressions are very well suited for this task. We can compute regular expressions with a finite state machine. Each state is cheap to store, generally just a single index into a table. Each transition is cheap to compute, just a lookup into a table.
+Regular Expressions are very well suited for this task. We can compute regular expressions with a finite state machine. Simple regular expressions can be represented with a lookup table which makes storing states and adding characters very cheap.
+
 
 Here is a regular expression that matches our JSON schema:
 
@@ -141,23 +145,17 @@ The results are much more consistent. The LLM always generates valid JSON becaus
 
 ## Accelerated Structured Generation
 
-You may have noticed that in some positions, the LLM only has one valid token choice. We don't actually need to run the LLM in these cases. Instead, we can choose the next token directly.
-
-
-In practice, this acts a bit like autocomplete. Once the LLM starts generating a specific part of the grammar, the rest of the chunk gets filled in automatically:
+You may have noticed that in some positions, the LLM only has one valid token choice. We don't actually need to run the LLM in these cases. Instead, we can choose the next token directly. In practice, this acts a bit like autocomplete. Once the LLM starts generating a specific part of the grammar, the rest of the chunk gets filled in automatically:
 
 ```inject-dioxus
 StructuredGenerationAcceleratedVisualization {}
 ```
 
-Instead of choosing each of the ~16 tokens, we only need to choose between the ~4 interesting tokens!
-
-
-The LLM will still need to read the new text, but that process is much faster than determining the probabilities for the next token.
+Instead of choosing each of the ~16 tokens, we only need to choose between the ~4 interesting tokens! The LLM will still need to read the new text, but that process is much faster than generating new tokens.
 
 ## Beyond REGEX
 
-REGEX is great for simple constraints, but it is both tedious to write and limited to simple patterns. There are some structures you just can't express with REGEX. For example, you can't use REGEX to validate any recursive structures, including the general version of JSON itself!
+REGEX is great for simple constraints, but it is both tedious to write and limited to simple patterns. There are also some structures you just can't express with REGEX. For example, you can't use REGEX to validate any recursive structures, including the general version of JSON itself!
 
 
 Let's take a look at two alternative approaches to validating text: Deriving parsers automatically and writing custom validators.
@@ -219,13 +217,15 @@ async fn main() {
 }
 ```
 
+The output is very similar to the regex version of the parser, but it is much simpler to create. It is also easier to define more strict constraints like limiting the age to a specific range:
+
 ```inject-dioxus
 DerivingParsers {}
 ```
 
 ### Creating Custom Parsers
 
-You can create your own parser for more control over what the model generates. Unlike regex, your parser can parse languages that [require context like html](https://github.com/ealmloff/html-parser).
+If you need even more control, you can write a custom parser for your format. Unlike regex, your parser can parse languages that [require context like html](https://github.com/ealmloff/html-parser).
 
 
 Regular languages are limited to patterns parsable with a set number of states. Recursive structures like HTML require an unbounded stack to keep track of the current depth of the HTML. In Kalosm, you can implement a custom parser to parse any language with an arbitrary number of states.
@@ -257,6 +257,8 @@ Because parsing runs in native rust code, you can parse even complex languages l
 HtmlStructuredGenerationAcceleratedVisualization {}
 ```
 
+The format the LLM generates can influence generation quality significantly. Depending on what structures the model is trained on, it may perform much better generating HTML than describing HTML with a JSON object.
+
 ## Sampler Aware Structured Generation
 
 We are currently running the parser for every one of the 128,000 tokens every time we add a new token to the sequence. That wasn't an issue for REGEX where each new token is only a lookup away, but it can be slow for more complex parsers.
@@ -277,7 +279,7 @@ Instead of parsing every token, we can skip parsing tokens once we find once we 
 
 ## Conclusion
 
-Structured generation gives you fine-grained control of generation while accelerating generation speed. More consistent outputs make it possible to use LLMs with typed APIs or guide LLMs along a longer multi-step process. I hope you found the visualizations useful. I would love to hear what use cases you have for structured generation.
+Structured generation gives you fine-grained control of generation while accelerating generation speed. More consistent outputs make it possible to use LLMs with typed APIs or guide LLMs along a longer multi-step process. I hope you found the visualizations useful and I would love to hear what use cases you have for structured generation.
 
 
-If you need a complex structured generation parser, try [Kalosm](https://floneum.com/kalosm). You can write your parsers in Rust which means they run extremely fast. For parsers that can run up to a quarter million times per token, slow is not an option. Or join the [discord](https://discord.gg/dQdmhuB8q5) to discuss this article.
+If you need a complex structured generation parser, try [Kalosm](https://floneum.com/kalosm). You can write your parsers in Rust which means they run extremely fast. Feel free to join the [discord](https://discord.gg/dQdmhuB8q5) to discuss this article.

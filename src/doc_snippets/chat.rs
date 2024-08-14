@@ -11,12 +11,12 @@ async fn main() {
         .build();
     // ANCHOR_END: create_chat_wrapper
 
-    // ANCHOR: streaming_text
+    // ANCHOR: conversation_loop
     loop {
         chat.add_message(prompt_input("\n> ").unwrap())
             .to_std_out()
             .await
             .unwrap();
     }
-    // ANCHOR_END: streaming_text
+    // ANCHOR_END: conversation_loop
 }

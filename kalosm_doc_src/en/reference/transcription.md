@@ -10,9 +10,17 @@ First, we need to create a transcription model. A transcription model is a machi
 {{#include src/doc_snippets/transcription.rs:create_model}}
 ```
 
+> Bonus: Download progress
+> 
+> If you need to update progress while you are downloading the model, you can use the whisper builder with the `build_with_loading_handler` method.
+> 
+> ```rust
+> {{#include src/doc_snippets/transcription.rs:create_model_with_loading_handler}}
+> ```
+
 ## Recording Audio
 
-Next, we need to record some audio from our environment. We can use the `MicInput` struct with the `record_until` method to record audio from our microphone until a certain point in time:
+Next, we need to record some audio from our environment. We can use the `MicInput` struct with the `stream` method to stream audio from our microphone:
 
 ```rust
 {{#include src/doc_snippets/transcription.rs:record_audio}}

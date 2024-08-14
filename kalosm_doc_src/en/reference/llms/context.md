@@ -10,6 +10,14 @@ First, we need to create an embedding model. An embedding model is a machine lea
 {{#include src/doc_snippets/embeddings.rs:create_embedding_model}}
 ```
 
+> Bonus: Download progress
+> 
+> If you need to update progress while you are downloading the model, you can use the bert builder with the `build_with_loading_handler` method.
+> 
+> ```rust
+> {{#include src/doc_snippets/embeddings.rs:create__embedding_model_with_loading_handler}}
+> ```
+
 ## Creating Embeddings
 
 Once we have created an embedding model, we can use it to create embeddings. Kalosm provides a `Bert` struct that can be used to create embeddings.
