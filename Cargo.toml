@@ -7,11 +7,11 @@ authors = ["Evan Almloff"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-dioxus = { git = "https://github.com/ealmloff/dioxus", branch = "new-with-index", features = ["static-generation", "router"] }
-syntect-html = { git = "https://github.com/ealmloff/include_mdbook", branch = "bump-dioxus" }
-mdbook-shared = { git = "https://github.com/ealmloff/include_mdbook", branch = "bump-dioxus" }
-use-mdbook = { git = "https://github.com/ealmloff/include_mdbook", branch = "bump-dioxus" }
-dioxus-search = { git = "https://github.com/dioxuslabs/dioxus-search", branch = "next" }
+dioxus = { git = "https://github.com/dioxuslabs/dioxus", features = ["static-generation", "router"] }
+syntect-html = { git = "https://github.com/dioxuslabs/include_mdbook" }
+mdbook-shared = { git = "https://github.com/dioxuslabs/include_mdbook" }
+use-mdbook = { git = "https://github.com/dioxuslabs/include_mdbook" }
+dioxus-search = { git = "https://github.com/dioxuslabs/dioxus-search" }
 tokenizers = { version = "0.19.1", default-features = false }
 tracing = "0.1.40"
 regex-automata = { version = "0.4.7", features = ["dfa-search", "dfa-build"], default-features = false }
@@ -64,40 +64,22 @@ postcard = { version = "1.0.4", features = ["use-std"] }
 serde = { version = "1.0.164", features = ["derive"] }
 
 [patch.crates-io]
-dioxus = { git = "https://github.com/ealmloff/dioxus", branch = "new-with-index" }
-dioxus-lib = { git = "https://github.com/ealmloff/dioxus", branch = "new-with-index" }
-dioxus-core = { git = "https://github.com/ealmloff/dioxus", branch = "new-with-index" }
-dioxus-core-macro = { git = "https://github.com/ealmloff/dioxus", branch = "new-with-index" }
-dioxus-signals = { git = "https://github.com/ealmloff/dioxus", branch = "new-with-index" }
-dioxus-html = { git = "https://github.com/ealmloff/dioxus", branch = "new-with-index" }
-dioxus-cli-config = { git = "https://github.com/ealmloff/dioxus", branch = "new-with-index" }
-dioxus-router = { git = "https://github.com/ealmloff/dioxus", branch = "new-with-index" }
-dioxus-router-macro = { git = "https://github.com/ealmloff/dioxus", branch = "new-with-index" }
-dioxus-rsx = { git = "https://github.com/ealmloff/dioxus", branch = "new-with-index" }
+dioxus = { git = "https://github.com/dioxuslabs/dioxus" }
+dioxus-lib = { git = "https://github.com/dioxuslabs/dioxus" }
+dioxus-core = { git = "https://github.com/dioxuslabs/dioxus" }
+dioxus-core-macro = { git = "https://github.com/dioxuslabs/dioxus" }
+dioxus-signals = { git = "https://github.com/dioxuslabs/dioxus" }
+dioxus-html = { git = "https://github.com/dioxuslabs/dioxus" }
+dioxus-cli-config = { git = "https://github.com/dioxuslabs/dioxus" }
+dioxus-router = { git = "https://github.com/dioxuslabs/dioxus" }
+dioxus-router-macro = { git = "https://github.com/dioxuslabs/dioxus" }
+dioxus-rsx = { git = "https://github.com/dioxuslabs/dioxus" }
 
-dioxus-web = { git = "https://github.com/ealmloff/dioxus", branch = "new-with-index" }
-dioxus-ssr = { git = "https://github.com/ealmloff/dioxus", branch = "new-with-index" }
-dioxus-desktop = { git = "https://github.com/ealmloff/dioxus", branch = "new-with-index" }
-dioxus-liveview = { git = "https://github.com/ealmloff/dioxus", branch = "new-with-index" }
-dioxus-fullstack = { git = "https://github.com/ealmloff/dioxus", branch = "new-with-index" }
-
-[patch.'https://github.com/dioxuslabs/dioxus']
-dioxus = { git = "https://github.com/ealmloff/dioxus", branch = "new-with-index" }
-dioxus-lib = { git = "https://github.com/ealmloff/dioxus", branch = "new-with-index" }
-dioxus-core = { git = "https://github.com/ealmloff/dioxus", branch = "new-with-index" }
-dioxus-core-macro = { git = "https://github.com/ealmloff/dioxus", branch = "new-with-index" }
-dioxus-signals = { git = "https://github.com/ealmloff/dioxus", branch = "new-with-index" }
-dioxus-html = { git = "https://github.com/ealmloff/dioxus", branch = "new-with-index" }
-dioxus-cli-config = { git = "https://github.com/ealmloff/dioxus", branch = "new-with-index" }
-dioxus-router = { git = "https://github.com/ealmloff/dioxus", branch = "new-with-index" }
-dioxus-router-macro = { git = "https://github.com/ealmloff/dioxus", branch = "new-with-index" }
-dioxus-rsx = { git = "https://github.com/ealmloff/dioxus", branch = "new-with-index" }
-
-dioxus-web = { git = "https://github.com/ealmloff/dioxus", branch = "new-with-index" }
-dioxus-ssr = { git = "https://github.com/ealmloff/dioxus", branch = "new-with-index" }
-dioxus-desktop = { git = "https://github.com/ealmloff/dioxus", branch = "new-with-index" }
-dioxus-liveview = { git = "https://github.com/ealmloff/dioxus", branch = "new-with-index" }
-dioxus-fullstack = { git = "https://github.com/ealmloff/dioxus", branch = "new-with-index" }
+dioxus-web = { git = "https://github.com/dioxuslabs/dioxus" }
+dioxus-ssr = { git = "https://github.com/dioxuslabs/dioxus" }
+dioxus-desktop = { git = "https://github.com/dioxuslabs/dioxus" }
+dioxus-liveview = { git = "https://github.com/dioxuslabs/dioxus" }
+dioxus-fullstack = { git = "https://github.com/dioxuslabs/dioxus" }
 
 [profile.release]
 lto = true
