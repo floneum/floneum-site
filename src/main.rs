@@ -104,10 +104,7 @@ fn main() {
         std::env::remove_var("CARGO");
 
         LaunchBuilder::new()
-            .with_cfg(
-                dioxus::static_site_generation::Config::new()
-                    .github_pages()
-            )
+            .with_cfg(dioxus::static_site_generation::Config::new().github_pages())
             .launch(app);
         println!("prebuilt");
 

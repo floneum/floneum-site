@@ -20,6 +20,10 @@ async fn main() {
         .then(LiteralParser::from("\n"));
     // ANCHOR_END: create_parser
 
+    // ANCHOR: regex_parser
+    let regex = RegexParser::new(r#"((Alaska|Delaware|Florida|Georgia|Hawaii), ){5}\n"#).unwrap();
+    // ANCHOR_END: regex_parser
+
     // ANCHOR: derive_parser
     #[derive(Clone, Debug, Parse, Schema)]
     struct Character {
@@ -36,8 +40,7 @@ async fn main() {
     )
     .build();
 
-    let mut stream = task
-        .run("Generate a character that is a wizard", &llm);
+    let mut stream = task.run("Generate a character that is a wizard", &llm);
     stream.to_std_out().await.unwrap();
 
     println!("Result: {:?}", stream.await.unwrap());
