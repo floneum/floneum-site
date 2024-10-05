@@ -150,7 +150,7 @@ fn main() {
 fn app() -> Element {
     rsx! {
         head::Link { rel: "stylesheet", href: asset!("./public/output.css") }
-        head::Link { rel: "stylesheet", href: asset!("https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.1.0/github-markdown-light.min.css") }
+        head::Link { rel: "stylesheet", href: "https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.1.0/github-markdown-light.min.css" }
         head::Link { rel: "icon", href: asset!("./public/assets/Icon.png"), type: "image/png" }
         Router::<Route> {}
     }

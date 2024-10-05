@@ -3,8 +3,8 @@ mod first {
     use kalosm::language::*;
 
     #[tokio::main]
-    async fn main() {
-        let _model = Llama::new_chat();
+    async fn main() -> Result<(), Box<dyn std::error::Error>> {
+        let model = Llama::new_chat().await?;
     }
     // ANCHOR_END: first
 }
@@ -13,8 +13,8 @@ mod second {
     use kalosm::language::*;
 
     #[tokio::main]
-    async fn main() {
-        let model = Llama::new_chat().await.unwrap();
+    async fn main() -> Result<(), Box<dyn std::error::Error>> {
+        let model = Llama::new_chat().await?;
 
         // New code
         let mut chat = Chat::builder(model)
@@ -22,10 +22,7 @@ mod second {
             .build();
 
         loop {
-            chat.add_message(prompt_input("\n> ").unwrap())
-                .to_std_out()
-                .await
-                .unwrap();
+            chat.add_message(prompt_input("\n> ")?).to_std_out().await?;
         }
     }
     // ANCHOR_END: second
