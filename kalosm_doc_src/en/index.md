@@ -4,10 +4,11 @@ Kalosm is a library with dead simple interfaces for local, language, audio, and 
 
 ## Quick Start
 
-- Add the Kalosm library
+- Add the Kalosm and Tokio libraries
 
 ```bash
-cargo add kalosm
+cargo add kalosm --features language # Enable the metal or cuda feature if you have a supported accelerator
+cargo add tokio --features full
 ```
 
 - Initialize a Kalosm model
