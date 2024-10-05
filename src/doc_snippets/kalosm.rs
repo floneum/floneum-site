@@ -13,8 +13,8 @@ mod second {
     use kalosm::language::*;
 
     #[tokio::main]
-    async fn main() {
-        let model = Llama::new_chat().await.unwrap();
+    async fn main() -> anyhow::Result<()> {
+        let model = Llama::new_chat().await?;
 
         // New code
         let mut chat = Chat::builder(model)
@@ -22,10 +22,8 @@ mod second {
             .build();
 
         loop {
-            chat.add_message(prompt_input("\n> ").unwrap())
-                .to_std_out()
-                .await
-                .unwrap();
+            let message = prompt_input("\n> ")?;
+            chat.add_message(message).to_std_out().await?;
         }
     }
     // ANCHOR_END: second

@@ -4,10 +4,12 @@ Kalosm is a library with dead simple interfaces for local, language, audio, and 
 
 ## Quick Start
 
-- Add the Kalosm library
+- Add the Kalosm, Anyhow and Tokio libraries
 
 ```bash
-cargo add kalosm
+cargo add kalosm --features language
+cargo add anyhow
+cargo add tokio --features macros,rt-multi-thread
 ```
 
 - Initialize a Kalosm model
