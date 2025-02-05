@@ -77,7 +77,7 @@ opt-level = 3
 opt-level = 3
 
 [features]
-default = ["check_docs"]
+default = []
 web = ["dioxus/web", "gloo-timers", "gloo-net", "getrandom/js", "tokenizers/unstable_wasm"]
 server = ["tokio", "dioxus/server", "axum", "tokenizers/default"]
 prebuild = ["server", "fs_extra"]
