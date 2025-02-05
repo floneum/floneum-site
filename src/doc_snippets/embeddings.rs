@@ -1,5 +1,3 @@
-use kalosm::vision::ModelLoadingProgress;
-
 #[tokio::main]
 async fn main() -> Result<(), anyhow::Error> {
     {
@@ -11,14 +9,13 @@ async fn main() -> Result<(), anyhow::Error> {
 
         // ANCHOR: create__embedding_model_with_loading_handler
         let bert = Bert::builder()
-            .build_with_loading_handler(|progress| match progress {
+            .build_with_loading_handler(|progress| match &progress {
                 ModelLoadingProgress::Downloading {
                     source,
-                    start_time,
-                    progress,
+                    progress: file_loading_progress,
                 } => {
-                    let progress = (progress * 100.0) as u32;
-                    let elapsed = start_time.elapsed().as_secs_f32();
+                    let elapsed = file_loading_progress.start_time.elapsed().as_secs_f32();
+                    let progress = (progress.progress() * 100.0) as u32;
                     println!("Downloading file {source} {progress}% ({elapsed}s)");
                 }
                 ModelLoadingProgress::Loading { progress } => {
@@ -42,7 +39,7 @@ async fn main() -> Result<(), anyhow::Error> {
 
         // Create database connection
         let db =
-            surrealdb::Surreal::new::<surrealdb::engine::local::RocksDb>("./db/temp.db").await?;
+            surrealdb::Surreal::new::<surrealdb::engine::local::SurrealKv>("./db/temp.db").await?;
 
         // Select a specific namespace / database
         db.use_ns("test").use_db("test").await?;
@@ -80,7 +77,8 @@ async fn main() -> Result<(), anyhow::Error> {
             println!(
                 "vector: {:?}",
                 document_table
-                    .select_nearest(user_question_embedding, 5)
+                    .search(user_question_embedding)
+                    .with_results(5)
                     .await?
             );
         }

@@ -1,4 +1,4 @@
-use crate::docs::LAZY_BOOK;
+use crate::router_floneum::LAZY_BOOK;
 
 use crate::*;
 use mdbook_shared::SummaryItem;

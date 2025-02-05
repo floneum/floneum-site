@@ -13,10 +13,9 @@ async fn main() {
     // ANCHOR_END: create_model
 
     // ANCHOR: synchronous_text
-    let text = model
-        .generate_text("The capital of France is")
+    let text = model("The capital of France is")
         // Set any options you need
-        .with_max_length(300)
+        .with_sampler(GenerationParameters::default().with_max_length(1000))
         // Once you are done, call `await` to get the generated text
         .await
         .unwrap();
@@ -24,13 +23,9 @@ async fn main() {
     // ANCHOR_END: synchronous_text
 
     // ANCHOR: streaming_text
-    let mut text_stream = model
-        .stream_text("The capital of France is")
+    let mut text_stream = model("The capital of France is")
         // Set any options you need
-        .with_max_length(1000)
-        // Call `await` to get a stream of text tokens
-        .await
-        .unwrap();
+        .with_sampler(GenerationParameters::default().with_max_length(1000));
 
     // Pipe the generated text to stdout or read individual tokens with the `next` method from the stream ext trait
     text_stream.to_std_out().await.unwrap();

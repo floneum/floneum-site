@@ -535,7 +535,7 @@ fn LoadTokenizer(children: Element) -> Element {
 
 fn LoadingIndicator() -> Element {
     rsx! {
-        head::Link { rel: "stylesheet", href: asset!("./public/assets/loading.css") }
+        document::Link { rel: "stylesheet", href: asset!("./public/assets/loading.css") }
         div {
             class: "w-full flex flex-row justify-center items-center",
             div {

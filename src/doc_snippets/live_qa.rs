@@ -14,7 +14,7 @@ async fn main() -> Result<(), anyhow::Error> {
 
     // ANCHOR: create_context_db
     // Create database connection
-    let db = surrealdb::Surreal::new::<surrealdb::engine::local::RocksDb>("./db/temp.db").await?;
+    let db = surrealdb::Surreal::new::<surrealdb::engine::local::SurrealKv>("./db/temp.db").await?;
 
     // Select a specific namespace / database
     db.use_ns("test").use_db("test").await?;
@@ -39,8 +39,7 @@ async fn main() -> Result<(), anyhow::Error> {
                     loop {
                         let _input = MicInput::default()
                             .record_until(Instant::now() + recording_time)
-                            .await
-                            .unwrap();
+                            .await;
                     }
                 })
         });
@@ -58,16 +57,13 @@ async fn main() -> Result<(), anyhow::Error> {
                     loop {
                         let input = MicInput::default()
                             .record_until(Instant::now() + recording_time)
-                            .await
-                            .unwrap();
+                            .await;
 
-                        if let Ok(mut transcribed) = model.transcribe(input) {
-                            while let Some(transcribed) = transcribed.next().await {
-                                if transcribed.probability_of_no_speech() < 0.90 {
-                                    let document =
-                                        transcribed.text().into_document().await.unwrap();
-                                    document_table.insert(document).await.unwrap();
-                                }
+                        let mut stream = model.transcribe(input);
+                        while let Some(transcribed) = stream.next().await {
+                            if transcribed.probability_of_no_speech() < 0.90 {
+                                let document = transcribed.text().into_document().await.unwrap();
+                                document_table.insert(document).await.unwrap();
                             }
                         }
                     }
@@ -78,7 +74,7 @@ async fn main() -> Result<(), anyhow::Error> {
 
     // ANCHOR: create_chat
     let model = Llama::new_chat().await?;
-    let mut chat = Chat::builder(model).with_system_prompt("The assistant help answer questions based on the context given by the user. The model knows that the information the user gives it is always true.").build();
+    let mut chat = model.chat().with_system_prompt("The assistant help answer questions based on the context given by the user. The model knows that the information the user gives it is always true.");
     // ANCHOR_END: create_chat
 
     // ANCHOR: rag
@@ -88,7 +84,8 @@ async fn main() -> Result<(), anyhow::Error> {
 
         // Search for relevant context in the document engine
         let context = document_table
-            .select_nearest(&user_question, 5)
+            .search(&user_question)
+            .with_results(5)
             .await?
             .into_iter()
             .map(|document| {

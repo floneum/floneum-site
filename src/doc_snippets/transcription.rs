@@ -9,14 +9,13 @@ async fn main() -> Result<(), anyhow::Error> {
 
     // ANCHOR: create_model_with_loading_handler
     let model = Whisper::builder()
-        .build_with_loading_handler(|progress| match progress {
+        .build_with_loading_handler(|progress| match &progress {
             ModelLoadingProgress::Downloading {
                 source,
-                start_time,
-                progress,
+                progress: file_loading_progress,
             } => {
-                let progress = (progress * 100.0) as u32;
-                let elapsed = start_time.elapsed().as_secs_f32();
+                let progress = (progress.progress() * 100.0) as u32;
+                let elapsed = file_loading_progress.start_time.elapsed().as_secs_f32();
                 println!("Downloading file {source} {progress}% ({elapsed}s)");
             }
             ModelLoadingProgress::Loading { progress } => {
@@ -30,7 +29,7 @@ async fn main() -> Result<(), anyhow::Error> {
     // ANCHOR: record_audio
     // Stream audio from the microphone
     let mic = MicInput::default();
-    let stream = mic.stream()?;
+    let stream = mic.stream();
     // ANCHOR_END: record_audio
 
     // ANCHOR: transcribe

@@ -22,4 +22,4 @@ Before you get started using Floneum, make sure to [download it from the release
 
 - If you are looking to develop plugins for Floneum, you can read the [Developer Documentation](./developer/index.md)
 
-- If you are interested in contributing to Floneum, you can read the [Contributing Documentation](./contributing/index.md)
+- If you are interested in contributing to Floneum, you can read the [Contributing Documentation](./contributor/index.md)

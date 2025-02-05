@@ -1,4 +1,4 @@
-use crate::kalosm_docs::LAZY_BOOK;
+use crate::router::LAZY_BOOK;
 
 use crate::*;
 use mdbook_shared::SummaryItem;

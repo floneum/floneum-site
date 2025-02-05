@@ -1,6 +1,6 @@
 use dioxus::prelude::*;
 
-use crate::{docs::BookRoute, plugin::PluginsList, Route};
+use crate::{plugin::PluginsList, router_floneum::BookRoute, Route};
 
 #[component]
 pub(crate) fn Home() -> Element {
@@ -102,7 +102,7 @@ fn CallToAction() -> Element {
             Link {
                 class: "text-xl md:text-5xl font-bold p-4 m-12 text-center w-1/2 md:w-1/3 rounded-lg bg-[#AACDCF] hover:border-2 border-[#283549]",
                 to: Route::Docs {
-                    child: BookRoute::UserIndex {},
+                    child: BookRoute::UserIndex {section: Default::default(),},
                 },
                 "Guide"
             }
@@ -110,7 +110,7 @@ fn CallToAction() -> Element {
             Link {
                 class: "text-xl md:text-5xl font-bold p-4 m-12 text-center w-1/2 md:w-1/3 rounded-lg bg-[#AACDCF] hover:border-2 border-[#283549]",
                 to: Route::Docs {
-                    child: BookRoute::DeveloperIndex {},
+                    child: BookRoute::DeveloperIndex {section: Default::default(),},
                 },
                 "Build Your First Plugin"
             }

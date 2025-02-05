@@ -9,9 +9,7 @@ fn main() {
     // ANCHOR: create_settings
     let x = image.width() / 2;
     let y = image.height() / 2;
-    let settings = SegmentAnythingInferenceSettings::new(image)
-        .unwrap()
-        .add_goal_point(x, y);
+    let settings = SegmentAnythingInferenceSettings::new(image).add_goal_point(x, y);
     // ANCHOR_END: create_settings
     // ANCHOR: run_model
     let images = model.segment_from_points(settings).unwrap();

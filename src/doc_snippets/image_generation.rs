@@ -11,7 +11,7 @@ async fn main() {
     .with_denoiser_steps(2);
     // ANCHOR_END: create_settings
     // ANCHOR: run_model
-    let mut images = model.run(settings).unwrap();
+    let mut images = model.run(settings);
     let mut index = 0;
     while let Some(img) = images.next().await {
         img.as_ref().save(&format!("{}.png", index)).unwrap();

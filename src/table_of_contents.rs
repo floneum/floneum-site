@@ -2,7 +2,7 @@ use dioxus::prelude::*;
 
 #[derive(Props, Clone, PartialEq)]
 pub struct TableOfContentsProps {
-    sections: Vec<use_mdbook::mdbook_shared::Section>,
+    sections: Vec<mdbook_shared::Section>,
 }
 
 pub fn TableOfContents(TableOfContentsProps { sections }: TableOfContentsProps) -> Element {

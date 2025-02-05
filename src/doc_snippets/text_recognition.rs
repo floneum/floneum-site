@@ -9,7 +9,7 @@ async fn main() {
     // ANCHOR_END: load_image
     // ANCHOR: recognize_text
     let text = model
-        .recognize_text(OcrInferenceSettings::new(image).unwrap())
+        .recognize_text(OcrInferenceSettings::new(image))
         .unwrap();
 
     println!("{}", text);

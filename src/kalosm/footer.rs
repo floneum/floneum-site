@@ -7,13 +7,17 @@ pub fn Footer() -> Element {
         (
             "Docs",
             Route::KalosmDocs {
-                child: KalosmBookRoute::Index {},
+                child: KalosmBookRoute::Index {
+                    section: Default::default(),
+                },
             },
         ),
         (
             "Blog",
             Route::Blog {
-                child: BlogRoute::Index {},
+                child: BlogRoute::Index {
+                    section: Default::default(),
+                },
             },
         ),
     ];

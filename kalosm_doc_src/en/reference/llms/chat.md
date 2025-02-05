@@ -8,13 +8,13 @@ Before we explore the code, ensure that you have the required dependencies. The 
 
 ```toml
 [dependencies]
-kalosm = { version = "0.3", features = ["language"] }
+kalosm = { version = "0.4", features = ["language"] }
 tokio = { version = "1", features = ["full"] }
 ```
 
 ## Creating a Chat Language Model
 
-Kalosm supports several chat variants of language models with the builder method introduced in [llms](../index.md) chapter. If you want a good default chat model, Kalosm also provides the `new_chat` method.
+Kalosm supports several chat variants of language models with the builder method introduced in [llms](./index.md) chapter. If you want a good default chat model, Kalosm also provides the `new_chat` method.
 
 ```rust
 {{#include src/doc_snippets/chat.rs:create_chat_model}}

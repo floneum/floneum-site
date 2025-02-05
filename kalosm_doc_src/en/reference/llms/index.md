@@ -34,4 +34,4 @@ Just like the synchronous method, you can specify additional configurations, suc
 
 This chapter demonstrated both synchronous and streaming approaches to text generation using Kalosm in Rust. The synchronous method is straightforward and suitable for smaller text generation tasks, while the streaming method efficiently handles larger amounts of generated text. Experiment with different prompts, configurations, and data sources to customize the generated text to your needs. Explore the Kalosm documentation for additional features and options available in the framework. Happy text generation with Kalosm!
 
-If you need even more control over the text generation process, check out the next chapter on the Kalosm API: [structured generation](./structured_generation.md)
+If you need even more control over the text generation process, check out the next chapter on the Kalosm API: [structured generation](./structured_generation/index.md)
