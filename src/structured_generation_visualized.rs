@@ -503,7 +503,7 @@ fn LoadTokenizer(children: Element) -> Element {
         *TOKENIZER_LOADING.write() = true;
         spawn(async move {
             let run = || async move {
-                let resp = gloo_net::http::Request::get(asset!("./public/assets/tokenizer.json"))
+                let resp = gloo_net::http::Request::get(&asset!("./public/assets/tokenizer.json").to_string())
                     .send()
                     .await?;
                 let bytes = resp.binary().await?;

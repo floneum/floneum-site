@@ -1515,6 +1515,19 @@ dependencies = [
 ]
 
 [[package]]
+name = "cssparser"
+version = "0.34.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b7c66d1cd8ed61bf80b38432613a7a2f09401ab8d0501110655f8b341484a3e3"
+dependencies = [
+ "cssparser-macros",
+ "dtoa-short",
+ "itoa 1.0.14",
+ "phf 0.11.3",
+ "smallvec",
+]
+
+[[package]]
 name = "cssparser-macros"
 version = "0.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2258,7 +2271,7 @@ dependencies = [
 [[package]]
 name = "dioxus-search"
 version = "0.1.0"
-source = "git+https://github.com/dioxuslabs/dioxus-search#17e05f9972ea2c052cf7e0fe42faa7b46a7f49a4"
+source = "git+https://github.com/dioxuslabs/docsite#05738832971a19b227e9f4d1f6aff063701779c5"
 dependencies = [
  "bytes",
  "dioxus-router",
@@ -2271,13 +2284,13 @@ dependencies = [
  "slab",
  "stork-lib",
  "toml 0.7.8",
- "yazi 0.1.6",
+ "yazi",
 ]
 
 [[package]]
 name = "dioxus-search-macro"
 version = "0.1.0"
-source = "git+https://github.com/dioxuslabs/dioxus-search#17e05f9972ea2c052cf7e0fe42faa7b46a7f49a4"
+source = "git+https://github.com/dioxuslabs/docsite#05738832971a19b227e9f4d1f6aff063701779c5"
 dependencies = [
  "quote",
  "syn 2.0.98",
@@ -2286,19 +2299,19 @@ dependencies = [
 [[package]]
 name = "dioxus-search-shared"
 version = "0.1.0"
-source = "git+https://github.com/dioxuslabs/dioxus-search#17e05f9972ea2c052cf7e0fe42faa7b46a7f49a4"
+source = "git+https://github.com/dioxuslabs/docsite#05738832971a19b227e9f4d1f6aff063701779c5"
 dependencies = [
  "bytes",
  "dioxus-router",
  "getrandom 0.2.15",
  "log",
- "scraper 0.17.1",
+ "scraper 0.22.0",
  "serde",
  "serde_json",
  "slab",
  "stork-lib",
- "toml 0.7.8",
- "yazi 0.1.6",
+ "toml 0.8.20",
+ "yazi",
 ]
 
 [[package]]
@@ -2542,6 +2555,12 @@ name = "ego-tree"
 version = "0.6.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "12a0bb14ac04a9fcf170d0bbbef949b44cc492f4452bd20c095636956f653642"
+
+[[package]]
+name = "ego-tree"
+version = "0.10.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b2972feb8dffe7bc8c5463b1dacda1b0dfbed3710e50f977d965429692d74cd8"
 
 [[package]]
 name = "either"
@@ -2799,7 +2818,6 @@ dependencies = [
  "dioxus-search",
  "floneum_rust",
  "floneumite",
- "fs_extra",
  "futures-util-preview",
  "getrandom 0.2.15",
  "gloo-net 0.5.0",
@@ -2935,12 +2953,6 @@ checksum = "8fc799a66fc39c6d56fa3bdc8afc1fd7efa8ebff71f4ff091596faffb96c84fa"
 dependencies = [
  "yaml-rust",
 ]
-
-[[package]]
-name = "fs_extra"
-version = "1.3.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "42703706b716c37f96a77aea830392ad231f44c9e9a67872fa5548707e11b11c"
 
 [[package]]
 name = "fst"
@@ -3815,20 +3827,6 @@ dependencies = [
 
 [[package]]
 name = "html5ever"
-version = "0.26.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "bea68cab48b8459f17cf1c944c67ddc572d272d9f2b274140f223ecb1da4a3b7"
-dependencies = [
- "log",
- "mac",
- "markup5ever 0.11.0",
- "proc-macro2",
- "quote",
- "syn 1.0.109",
-]
-
-[[package]]
-name = "html5ever"
 version = "0.27.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c13771afe0e6e846f1e67d038d4cb29998a6779f93c809212e4e9c32efd244d4"
@@ -3839,6 +3837,18 @@ dependencies = [
  "proc-macro2",
  "quote",
  "syn 2.0.98",
+]
+
+[[package]]
+name = "html5ever"
+version = "0.29.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3b7410cae13cbc75623c98ac4cbfd1f0bedddf3227afc24f370cf0f50a44a11c"
+dependencies = [
+ "log",
+ "mac",
+ "markup5ever 0.14.1",
+ "match_token",
 ]
 
 [[package]]
@@ -4528,7 +4538,7 @@ dependencies = [
  "async-trait",
  "candle-core",
  "comfy-table",
- "ego-tree",
+ "ego-tree 0.6.3",
  "futures-util",
  "hdrhistogram",
  "heed",
@@ -4581,7 +4591,7 @@ dependencies = [
  "convert_case 0.6.0",
  "dashmap",
  "docx-rs",
- "ego-tree",
+ "ego-tree 0.6.3",
  "futures-util",
  "half 2.4.1",
  "headless_chrome",
@@ -5124,13 +5134,13 @@ dependencies = [
 
 [[package]]
 name = "markup5ever"
-version = "0.11.0"
+version = "0.12.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7a2629bb1404f3d34c2e921f21fd34ba00b206124c81f65c50b43b6aaefeb016"
+checksum = "16ce3abbeba692c8b8441d036ef91aea6df8da2c6b6e21c7e14d3c18e526be45"
 dependencies = [
  "log",
- "phf 0.10.1",
- "phf_codegen 0.10.0",
+ "phf 0.11.3",
+ "phf_codegen 0.11.3",
  "string_cache",
  "string_cache_codegen",
  "tendril",
@@ -5138,9 +5148,9 @@ dependencies = [
 
 [[package]]
 name = "markup5ever"
-version = "0.12.1"
+version = "0.14.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "16ce3abbeba692c8b8441d036ef91aea6df8da2c6b6e21c7e14d3c18e526be45"
+checksum = "c7a7213d12e1864c0f002f52c2923d4556935a43dec5e71355c2760e0f6e7a18"
 dependencies = [
  "log",
  "phf 0.11.3",
@@ -5160,6 +5170,17 @@ dependencies = [
  "markup5ever 0.10.1",
  "tendril",
  "xml5ever",
+]
+
+[[package]]
+name = "match_token"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "88a9689d8d44bf9964484516275f5cd4c9b59457a6940c1d5d0ecbb94510a36b"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 2.0.98",
 ]
 
 [[package]]
@@ -5209,7 +5230,7 @@ checksum = "490cc448043f947bae3cbee9c203358d62dbee0db12107a74be5c30ccfd09771"
 [[package]]
 name = "mdbook-gen"
 version = "0.0.0"
-source = "git+https://github.com/DioxusLabs/docsite#2d1b0946b9238983600d385bfbf5b8ae29dc392a"
+source = "git+https://github.com/dioxuslabs/docsite#2d1b0946b9238983600d385bfbf5b8ae29dc392a"
 dependencies = [
  "anyhow",
  "convert_case 0.6.0",
@@ -5232,7 +5253,7 @@ dependencies = [
 [[package]]
 name = "mdbook-macro"
 version = "0.1.0"
-source = "git+https://github.com/DioxusLabs/docsite#2d1b0946b9238983600d385bfbf5b8ae29dc392a"
+source = "git+https://github.com/dioxuslabs/docsite#2d1b0946b9238983600d385bfbf5b8ae29dc392a"
 dependencies = [
  "anyhow",
  "convert_case 0.6.0",
@@ -5253,7 +5274,7 @@ dependencies = [
 [[package]]
 name = "mdbook-shared"
 version = "0.1.0"
-source = "git+https://github.com/DioxusLabs/docsite#2d1b0946b9238983600d385bfbf5b8ae29dc392a"
+source = "git+https://github.com/dioxuslabs/docsite#2d1b0946b9238983600d385bfbf5b8ae29dc392a"
 dependencies = [
  "anyhow",
  "bytes",
@@ -7639,34 +7660,32 @@ checksum = "94143f37725109f92c262ed2cf5e59bce7498c01bcc1502d7b9afe439a4e9f49"
 
 [[package]]
 name = "scraper"
-version = "0.17.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c95a930e03325234c18c7071fd2b60118307e025d6fff3e12745ffbf63a3d29c"
-dependencies = [
- "ahash 0.8.11",
- "cssparser 0.31.2",
- "ego-tree",
- "getopts",
- "html5ever 0.26.0",
- "once_cell",
- "selectors 0.25.0",
- "smallvec",
- "tendril",
-]
-
-[[package]]
-name = "scraper"
 version = "0.19.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "761fb705fdf625482d2ed91d3f0559dcfeab2798fe2771c69560a774865d0802"
 dependencies = [
  "ahash 0.8.11",
  "cssparser 0.31.2",
- "ego-tree",
+ "ego-tree 0.6.3",
  "getopts",
  "html5ever 0.27.0",
  "once_cell",
  "selectors 0.25.0",
+ "tendril",
+]
+
+[[package]]
+name = "scraper"
+version = "0.22.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "cc3d051b884f40e309de6c149734eab57aa8cc1347992710dc80bcc1c2194c15"
+dependencies = [
+ "cssparser 0.34.0",
+ "ego-tree 0.10.0",
+ "getopts",
+ "html5ever 0.29.1",
+ "precomputed-hash",
+ "selectors 0.26.0",
  "tendril",
 ]
 
@@ -7780,6 +7799,25 @@ dependencies = [
  "phf_codegen 0.10.0",
  "precomputed-hash",
  "servo_arc 0.3.0",
+ "smallvec",
+]
+
+[[package]]
+name = "selectors"
+version = "0.26.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "fd568a4c9bb598e291a08244a5c1f5a8a6650bee243b5b0f8dbb3d9cc1d87fe8"
+dependencies = [
+ "bitflags 2.8.0",
+ "cssparser 0.34.0",
+ "derive_more",
+ "fxhash",
+ "log",
+ "new_debug_unreachable",
+ "phf 0.11.3",
+ "phf_codegen 0.11.3",
+ "precomputed-hash",
+ "servo_arc 0.4.0",
  "smallvec",
 ]
 
@@ -8054,6 +8092,15 @@ name = "servo_arc"
 version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d036d71a959e00c77a63538b90a6c2390969f9772b096ea837205c6bd0491a44"
+dependencies = [
+ "stable_deref_trait",
+]
+
+[[package]]
+name = "servo_arc"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ae65c4249478a2647db249fb43e23cec56a2c8974a427e7bd8cb5a1d0964921a"
 dependencies = [
  "stable_deref_trait",
 ]
@@ -8807,7 +8854,7 @@ dependencies = [
 [[package]]
 name = "syntect-html"
 version = "0.1.0"
-source = "git+https://github.com/DioxusLabs/docsite#2d1b0946b9238983600d385bfbf5b8ae29dc392a"
+source = "git+https://github.com/dioxuslabs/docsite#2d1b0946b9238983600d385bfbf5b8ae29dc392a"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -9321,6 +9368,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "toml"
+version = "0.8.20"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "cd87a5cdd6ffab733b2f74bc4fd7ee5fff6634124999ac278c35fc78c6120148"
+dependencies = [
+ "serde",
+ "serde_spanned",
+ "toml_datetime",
+ "toml_edit 0.22.23",
+]
+
+[[package]]
 name = "toml_datetime"
 version = "0.6.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -9349,6 +9408,8 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "02a8b472d1a3d7c18e2d61a489aee3453fd9031c33e4f55bd533f4a7adca1bee"
 dependencies = [
  "indexmap 2.7.1",
+ "serde",
+ "serde_spanned",
  "toml_datetime",
  "winnow 0.7.1",
 ]
@@ -9799,7 +9860,7 @@ checksum = "daf8dba3b7eb870caf1ddeed7bc9d2a049f3cfdfae7cb521b087cc33ae4c49da"
 [[package]]
 name = "use-mdbook"
 version = "0.1.0"
-source = "git+https://github.com/DioxusLabs/docsite#2d1b0946b9238983600d385bfbf5b8ae29dc392a"
+source = "git+https://github.com/dioxuslabs/docsite#2d1b0946b9238983600d385bfbf5b8ae29dc392a"
 dependencies = [
  "lazy_static",
  "mdbook-macro",
@@ -9808,7 +9869,7 @@ dependencies = [
  "postcard",
  "serde",
  "serde_json",
- "yazi 0.2.1",
+ "yazi",
 ]
 
 [[package]]
@@ -10941,12 +11002,6 @@ checksum = "56c1936c4cc7a1c9ab21a1ebb602eb942ba868cbd44a99cb7cdc5892335e1c85"
 dependencies = [
  "linked-hash-map",
 ]
-
-[[package]]
-name = "yazi"
-version = "0.1.6"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c94451ac9513335b5e23d7a8a2b61a7102398b8cca5160829d313e84c9d98be1"
 
 [[package]]
 name = "yazi"

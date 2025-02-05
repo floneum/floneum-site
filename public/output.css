@@ -982,6 +982,10 @@ select {
   margin-bottom: 5rem;
 }
 
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
 .ml-10 {
   margin-left: 2.5rem;
 }
@@ -1030,6 +1034,10 @@ select {
   display: block;
 }
 
+.inline {
+  display: inline;
+}
+
 .flex {
   display: flex;
 }
@@ -1044,6 +1052,10 @@ select {
 
 .grid {
   display: grid;
+}
+
+.contents {
+  display: contents;
 }
 
 .hidden {
@@ -1351,6 +1363,10 @@ select {
   justify-items: center;
 }
 
+.gap-1 {
+  gap: 0.25rem;
+}
+
 .gap-4 {
   gap: 1rem;
 }
@@ -1448,6 +1464,10 @@ select {
   overflow-x: hidden;
 }
 
+.overflow-x-scroll {
+  overflow-x: scroll;
+}
+
 .truncate {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1525,6 +1545,11 @@ select {
   border-color: rgb(0 0 0 / var(--tw-border-opacity));
 }
 
+.border-gray-300 {
+  --tw-border-opacity: 1;
+  border-color: rgb(209 213 219 / var(--tw-border-opacity));
+}
+
 .border-gray-600\/10 {
   border-color: rgb(75 85 99 / 0.1);
 }
@@ -1544,6 +1569,11 @@ select {
 
 .border-r-white\/10 {
   border-right-color: rgb(255 255 255 / 0.1);
+}
+
+.bg-\[\#0d0d0d\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(13 13 13 / var(--tw-bg-opacity));
 }
 
 .bg-\[\#283549\] {
@@ -2027,6 +2057,11 @@ select {
   color: rgb(34 197 94 / var(--tw-text-opacity));
 }
 
+.text-green-600 {
+  --tw-text-opacity: 1;
+  color: rgb(22 163 74 / var(--tw-text-opacity));
+}
+
 .text-indigo-600 {
   --tw-text-opacity: 1;
   color: rgb(79 70 229 / var(--tw-text-opacity));
@@ -2176,14 +2211,6 @@ select {
           backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
 }
 
-.transition {
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
-
 .transition-all {
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -2295,6 +2322,11 @@ select {
 .hover\:bg-indigo-500:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(99 102 241 / var(--tw-bg-opacity));
+}
+
+.hover\:text-blue-600:hover {
+  --tw-text-opacity: 1;
+  color: rgb(37 99 235 / var(--tw-text-opacity));
 }
 
 .hover\:text-gray-500:hover {
@@ -2760,5 +2792,10 @@ select {
 @media (prefers-color-scheme: dark) {
   .dark\:block {
     display: block;
+  }
+
+  .dark\:border-gray-700 {
+    --tw-border-opacity: 1;
+    border-color: rgb(55 65 81 / var(--tw-border-opacity));
   }
 }
