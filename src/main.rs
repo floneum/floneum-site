@@ -72,18 +72,8 @@ pub(crate) use crate::structured_generation_visualized::{
 };
 
 fn main() {
-    #[cfg(feature = "web")]
-    {
-        wasm_logger::init(wasm_logger::Config::new(log::Level::Info));
-        std::panic::set_hook(Box::new(console_error_panic_hook::hook));
-    }
-
     #[cfg(feature = "prebuild")]
     {
-        simple_logger::SimpleLogger::new()
-            .with_level(log::LevelFilter::Warn)
-            .init()
-            .unwrap();
         if std::env::args().any(|arg| arg == "--search") {
             dioxus_search::SearchIndex::<Route>::create(
                 "search",
