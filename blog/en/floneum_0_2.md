@@ -29,7 +29,7 @@ video {
     autoplay: true,
     muted: true,
     source {
-        src: "/assets/headless_browser.mp4",
+        src: asset!("/public/assets/headless_browser.mp4"),
         r#type: "video/mp4"
     }
 }
@@ -49,7 +49,7 @@ div {
         autoplay: true,
         muted: true,
         source {
-            src: "/assets/save_cloud.mp4",
+            src: asset!("/public/assets/save_cloud.mp4"),
             r#type: "video/mp4"
         }
     }
@@ -60,7 +60,7 @@ div {
         autoplay: true,
         muted: true,
         source {
-            src: "/assets/load_cloud.mp4",
+            src: asset!("/public/assets/load_cloud.mp4"),
             r#type: "video/mp4"
         }
     }
@@ -130,7 +130,7 @@ video {
     autoplay: true,
     muted: true,
     source {
-        src: "/assets/headless_browsing_example.mp4",
+        src: asset!("/public/assets/headless_browsing_example.mp4"),
         r#type: "video/mp4"
     }
 }
