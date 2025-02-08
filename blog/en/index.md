@@ -1,5 +1,7 @@
 # Posts
 
+[Kalosm 0.4](./kalosm_0_4.md) 
+
 [Kalosm 0.3](./kalosm_0_3.md)
 
 [Structured Generation Visualized](./structured_generation_visualized.md)
