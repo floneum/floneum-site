@@ -22,7 +22,7 @@ fn Demo() -> Element {
                 }
                 div { class: "m-4",
                     img {
-                        src: asset!("/public/assets/demo-img.png"),
+                        src: asset!("/public/assets/demo-img.png", ImageAssetOptions::new().with_webp()),
                         alt: "Demo question answering workflow"
                     }
                 }
