@@ -15,7 +15,7 @@ First, we need to create an embedding model. An embedding model is a machine lea
 > If you need to update progress while you are downloading the model, you can use the bert builder with the `build_with_loading_handler` method.
 > 
 > ```rust
-> {{#include src/doc_snippets/embeddings.rs:create__embedding_model_with_loading_handler}}
+> {{#include src/doc_snippets/embeddings.rs:create_embedding_model_with_loading_handler}}
 > ```
 
 ## Creating Embeddings

@@ -7,7 +7,7 @@ async fn main() -> Result<(), anyhow::Error> {
         let bert = Bert::new().await?;
         // ANCHOR_END: create_embedding_model
 
-        // ANCHOR: create__embedding_model_with_loading_handler
+        // ANCHOR: create_embedding_model_with_loading_handler
         let bert = Bert::builder()
             .build_with_loading_handler(|progress| match &progress {
                 ModelLoadingProgress::Downloading {
@@ -24,7 +24,7 @@ async fn main() -> Result<(), anyhow::Error> {
                 }
             })
             .await?;
-        // ANCHOR_END: create__embedding_model_with_loading_handler
+        // ANCHOR_END: create_embedding_model_with_loading_handler
 
         // ANCHOR: create_embeddings
         let text = "Hello, world!";

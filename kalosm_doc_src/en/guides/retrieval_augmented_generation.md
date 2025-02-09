@@ -60,4 +60,4 @@ Finally, we can implement the main chat loop that asks the user for input, searc
 
 ## Conclusion
 
-Retrieval-augmented generation in Kalosm makes it possible for language models to generate responses based on up-to-date information from the real world. This guide has shown you how to implement retrieval-augmented generation using the Kalosm library. For more information, the reference documentation documents more details about: [Whisper](../reference/transcription.md), [DocumentTable](../reference/llms/context.md), and [Chat](../reference/llms/chat.md).
+Retrieval-augmented generation in Kalosm makes it possible for language models to generate responses based on up-to-date information from the real world. This guide has shown you how to implement retrieval-augmented generation using the Kalosm library. For more information, the reference documentation documents more details about: [Whisper](../reference/transcription.md), [DocumentTable](../reference/llms/context.md), and [LLMS](../reference/llms/index.md).

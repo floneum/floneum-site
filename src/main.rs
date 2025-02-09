@@ -181,7 +181,7 @@ fn CodeBlock(contents: String, name: Option<String>) -> Element {
                 right: "0",
                 class: "flex flex-row items-center gap-1",
                 class: if copied() { "text-green-600" } else { "hover:text-blue-600" },
-                "onclick": "navigator.clipboard.writeText(this.parentNode.parentNode.lastChild.innerText);",
+                "onclick": "navigator.clipboard.writeText(this.parentNode.lastChild.innerText);",
                 onclick: move |_| copied.set(true),
                 if copied() {
                     "Copied!"
