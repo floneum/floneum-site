@@ -1,24 +1,20 @@
-#[derive(serde::Serialize, serde::Deserialize, PartialEq, Debug, Clone)]
-pub struct PluginInfo {
-    name: String,
-    description: String,
-}
+use std::{env::current_dir, path::PathBuf};
 
-#[tokio::main]
-async fn main() {
-    // let index = floneumite::FloneumPackageIndex::load().await;
-    // let packages: Vec<_> = index
-    //     .entries()
-    //     .iter()
-    //     .map(|plugin| {
-    //         let metadata = plugin.meta().unwrap();
-    //         PluginInfo {
-    //             name: metadata.name.clone(),
-    //             description: metadata.description.clone(),
-    //         }
-    //     })
-    //     .collect();
+fn main() {
+    let manifest_dir = PathBuf::from(std::env::var("CARGO_MANIFEST_DIR").unwrap());
+    for (path, router) in [
+        ("./kalosm_doc_src", "router.rs"),
+        ("./blog", "router_blog.rs"),
+        ("./doc_src", "router_floneum.rs"),
+    ] {
+        let mdbook_dir = manifest_dir.join(path).canonicalize().unwrap();
+        println!("cargo:rerun-if-changed={}", mdbook_dir.display());
+        let out_dir = current_dir().unwrap().join("src");
 
-    // let bytes = postcard::to_stdvec(&packages).unwrap();
-    // std::fs::write("plugins.bin", bytes).unwrap();
+        let mut out = mdbook_gen::generate_router_build_script(mdbook_dir);
+        out.push_str("\n");
+        out.push_str("use super::*;\n");
+
+        std::fs::write(out_dir.join(router), out).unwrap();
+    }
 }

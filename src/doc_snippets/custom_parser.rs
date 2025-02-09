@@ -22,11 +22,11 @@ async fn main() {
 
     // ANCHOR: streaming_text
     let llm = Llama::phi_3().await.unwrap();
-    let task = Task::builder("You generate realistic JSON")
-        .with_constraints(validator)
-        .build();
+    let task = llm
+        .task("You generate realistic JSON")
+        .with_constraints(validator);
 
-    let mut stream = task.run("Generate a list of states", &llm);
+    let mut stream = task("Generate a list of states");
     stream.to_std_out().await.unwrap();
 
     println!("Result: {:?}", stream.await.unwrap());

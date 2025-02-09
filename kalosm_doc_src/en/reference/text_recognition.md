@@ -25,12 +25,12 @@ Kalosm's `vision` module provides functionality for text recognition in images. 
 Next, we need to load an image that contains text. The `image` crate provides the [open](https://docs.rs/image/latest/image/fn.open.html) method to load an image from a file path, or the [Reader](https://docs.rs/image/latest/image/io/struct.Reader.html) for more advanced loading options.
 
 ```rust
-{{#include src/doc_snippets/text_recognition.rs:create_model}}
+{{#include src/doc_snippets/text_recognition.rs:load_image}}
 ```
 
 Replace the file path with the location of your image. This loaded image will be processed for text recognition.
 
-## Text Recognition
+## Recognizing Text
 
 Finally, we can use the `recognize_text` method to extract text information from the image. The `recognize_text` method takes an `OcrInferenceSettings` struct as input. This struct contains the image to be processed, as well as other settings that can be used to customize the OCR process.
 

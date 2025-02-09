@@ -1,12 +1,14 @@
 mod first {
-    // ANCHOR: first
     use kalosm::language::*;
 
     #[tokio::main]
     async fn main() -> Result<(), Box<dyn std::error::Error>> {
+        // ANCHOR: first
         let model = Llama::new_chat().await?;
+        // ANCHOR_END: first
+
+        Ok(())
     }
-    // ANCHOR_END: first
 }
 mod second {
     // ANCHOR: second
@@ -17,12 +19,12 @@ mod second {
         let model = Llama::new_chat().await?;
 
         // New code
-        let mut chat = Chat::builder(model)
-            .with_system_prompt("The assistant will act like a pirate")
-            .build();
+        let mut chat = model
+            .chat()
+            .with_system_prompt("The assistant will act like a pirate");
 
         loop {
-            chat.add_message(prompt_input("\n> ")?).to_std_out().await?;
+            chat(&prompt_input("\n> ")?).to_std_out().await?;
         }
     }
     // ANCHOR_END: second

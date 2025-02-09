@@ -1,4 +1,4 @@
-use crate::kalosm_docs::LAZY_BOOK;
+use crate::router::LAZY_BOOK;
 
 use crate::*;
 use mdbook_shared::SummaryItem;
@@ -80,7 +80,15 @@ fn SidebarChapter(link: &'static SummaryItem<KalosmBookRoute>) -> Element {
     // then we want to show the dropdown for /docs/0.4/en/learn
     let show_dropdown = list_toggle() || book_url.starts_with(&*url.to_string());
     let show_chevron = !link.nested_items.is_empty();
-    let shevron: &str = if show_chevron { "> " } else { "" };
+    let shevron: &str = if show_chevron {
+        if show_dropdown {
+            "| "
+        } else {
+            "> "
+        }
+    } else {
+        ""
+    };
 
     rsx! {
         li { class: "pt-1",

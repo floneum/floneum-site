@@ -1,6 +1,7 @@
-use crate::shortcut;
+use wasm_bindgen::JsCast;
 use dioxus::{html::input_data::keyboard_types::Key, prelude::*};
 use dioxus_search::SearchResult;
+use wasm_bindgen::prelude::Closure;
 
 use crate::{Link, Route};
 
@@ -162,10 +163,23 @@ pub fn SearchResultView(result: SearchResult<Route>) -> Element {
 }
 
 pub fn Search() -> Element {
-    shortcut::use_shortcut(Key::Character("/".to_string()), Modifiers::CONTROL, {
-        move || {
+    use_effect(|| {
+        let callback = Callback::new(|_| {
             *SEARCH_ACTIVE.write() = true;
-        }
+        });
+        let cb: Closure<dyn FnMut(web_sys::Event)> =
+            wasm_bindgen::closure::Closure::new(move |evt: web_sys::Event| {
+                let evt: web_sys::KeyboardEvent = evt.dyn_into().unwrap();
+                if evt.code() == "Slash" && evt.ctrl_key() {
+                    callback(());
+                }
+            });
+        let window = web_sys::window().unwrap();
+        let document = window.document().unwrap();
+        document
+            .add_event_listener_with_callback("keydown", cb.as_ref().unchecked_ref())
+            .unwrap();
+        cb.forget();
     });
 
     rsx! {

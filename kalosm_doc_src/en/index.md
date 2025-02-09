@@ -7,7 +7,8 @@ Kalosm is a library with dead simple interfaces for local, language, audio, and 
 - Add the Kalosm and Tokio libraries
 
 ```bash
-cargo add kalosm --features language # Enable the metal or cuda feature if you have a supported accelerator
+# Enable the metal or cuda feature if you have a supported accelerator
+cargo add kalosm --features language
 cargo add tokio --features full
 ```
 

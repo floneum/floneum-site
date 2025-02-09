@@ -15,14 +15,14 @@ pub fn Hero() -> Element {
                                 div { class: "mt-24 sm:mt-32 lg:mt-16",
                                     Link {
                                         to: Route::Blog {
-                                            child: BlogRoute::StructuredGenerationVisualized {},
+                                            child: BlogRoute::Kalosm04 {section: Default::default(),},
                                         },
                                         class: "inline-flex space-x-6",
                                         span { class: "rounded-full bg-indigo-600/10 px-3 py-1 text-sm font-semibold leading-6 text-indigo-600 ring-1 ring-inset ring-indigo-600/10",
                                             "What's new"
                                         }
                                         span { class: "inline-flex items-center space-x-2 text-sm font-medium leading-6 text-gray-600",
-                                            span { "Structured Generation Visualized" }
+                                            span { "Kalosm 0.4" }
                                             svg {
                                                 "fill": "currentColor",
                                                 "arifa-hidden": "true",
@@ -49,7 +49,7 @@ pub fn Hero() -> Element {
                                 div { class: "mt-10 flex items-center gap-x-6",
                                     Link {
                                         to: Route::KalosmDocs {
-                                            child: KalosmBookRoute::Index {},
+                                            child: KalosmBookRoute::Index {section: Default::default(),},
                                         },
                                         class: "rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600",
                                         "Documentation"

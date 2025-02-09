@@ -36,7 +36,7 @@ If you don't care about the output of the parser, but you want the LLM to adhere
 
 ## Generating Text
 
-Once you have defined a parser, you can generate text that adheres to the constraints defined by the parser. The `stream_structured_text` function takes a prompt and a parser and returns a stream of text that adheres to the constraints defined by the parser along with the results once generation is finished. The following example shows how to generate text using the parser defined above:
+Once you have defined a parser, you can generate text that adheres to the constraints defined by the parser. You can call `with_constraints` on a text stream or chat stream to force the model to adhere to the constraints defined by the parser:
 
 ```rust
 {{#include src/doc_snippets/structured.rs:streaming_text}}

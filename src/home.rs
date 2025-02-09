@@ -1,6 +1,6 @@
 use dioxus::prelude::*;
 
-use crate::{docs::BookRoute, plugin::PluginsList, Route};
+use crate::{plugin::PluginsList, router_floneum::BookRoute, Route};
 
 #[component]
 pub(crate) fn Home() -> Element {
@@ -22,7 +22,7 @@ fn Demo() -> Element {
                 }
                 div { class: "m-4",
                     img {
-                        src: "/assets/demo-img.png",
+                        src: asset!("/public/assets/demo-img.png", ImageAssetOptions::new().with_webp()),
                         alt: "Demo question answering workflow"
                     }
                 }
@@ -44,7 +44,7 @@ fn Plugins() -> Element {
                 div { class: "bg-[#AACDCF] w-[50vw] h-[25vw] flex flex-col justify-center items-center  overflow-clip",
                     img {
                         class: "w-60",
-                        src: "/assets/plugins.png",
+                        src: asset!("/public/assets/plugins.png"),
                         alt: "Plugins can access LLMs, Embeddings, and Embedding Databases"
                     }
                 }
@@ -62,22 +62,22 @@ fn Plugins() -> Element {
                     div { class: "grid grid-cols-1 md:grid-cols-2 gap-4 justify-items-center items-center",
                         img {
                             class: "w-28",
-                            src: "/assets/rust_logo.svg",
+                            src: asset!("/public/assets/rust_logo.svg"),
                             alt: "Rust Logo"
                         }
                         img {
                             class: "w-28",
-                            src: "/assets/c_logo.png",
+                            src: asset!("/public/assets/c_logo.png"),
                             alt: "C Logo"
                         }
                         img {
                             class: "w-28",
-                            src: "/assets/java_logo.png",
+                            src: asset!("/public/assets/java_logo.png"),
                             alt: "Java Logo"
                         }
                         img {
                             class: "w-28",
-                            src: "/assets/go_logo.png",
+                            src: asset!("/public/assets/go_logo.png"),
                             alt: "Go Logo"
                         }
                     }
@@ -102,7 +102,7 @@ fn CallToAction() -> Element {
             Link {
                 class: "text-xl md:text-5xl font-bold p-4 m-12 text-center w-1/2 md:w-1/3 rounded-lg bg-[#AACDCF] hover:border-2 border-[#283549]",
                 to: Route::Docs {
-                    child: BookRoute::UserIndex {},
+                    child: BookRoute::UserIndex {section: Default::default(),},
                 },
                 "Guide"
             }
@@ -110,7 +110,7 @@ fn CallToAction() -> Element {
             Link {
                 class: "text-xl md:text-5xl font-bold p-4 m-12 text-center w-1/2 md:w-1/3 rounded-lg bg-[#AACDCF] hover:border-2 border-[#283549]",
                 to: Route::Docs {
-                    child: BookRoute::DeveloperIndex {},
+                    child: BookRoute::DeveloperIndex {section: Default::default(),},
                 },
                 "Build Your First Plugin"
             }

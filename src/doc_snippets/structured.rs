@@ -35,14 +35,14 @@ async fn main() {
 
     // ANCHOR: streaming_text
     let llm = Llama::phi_3().await.unwrap();
-    let task = Task::builder_for::<Character>(
-        "You generate realistic characters for a procedurally generated game.",
-    )
-    .build();
+    let task = llm
+        .task("You generate realistic characters for a procedurally generated game.")
+        .typed();
 
-    let mut stream = task.run("Generate a character that is a wizard", &llm);
+    let mut stream = task("Generate a character that is a wizard");
     stream.to_std_out().await.unwrap();
 
-    println!("Result: {:?}", stream.await.unwrap());
+    let character: Character = stream.await.unwrap();
+    println!("Result: {:?}", character);
     // ANCHOR_END: streaming_text
 }

@@ -13,7 +13,7 @@ The simplest way to define constraints for structured generation is to use a der
 {{#include src/doc_snippets/structured.rs:derive_parser}}
 ```
 
-> If you need more control over the structure the LLM generates, you can define a [custom parser](./custom_parser.md).
+> If you need more control over the structure the LLM generates, you can define a [custom parser](./custom_parsers.md).
 
 ## Generating Text
 

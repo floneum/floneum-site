@@ -26,7 +26,9 @@ pub fn Header() -> Element {
         (
             "Docs",
             Route::KalosmDocs {
-                child: KalosmBookRoute::Index {},
+                child: KalosmBookRoute::Index {
+                    section: Default::default(),
+                },
             },
         ),
     ];

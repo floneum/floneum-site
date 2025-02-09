@@ -26,7 +26,9 @@ pub fn Header() -> Element {
         (
             "Docs",
             Route::Docs {
-                child: BookRoute::Index {},
+                child: BookRoute::Index {
+                    section: Default::default(),
+                },
             },
         ),
     ];

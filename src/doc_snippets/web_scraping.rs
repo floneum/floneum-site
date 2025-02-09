@@ -12,8 +12,7 @@ async fn main() {
                     as std::pin::Pin<Box<dyn std::future::Future<Output = CrawlFeedback>>>
             },
         )
-        .await
-        .unwrap();
+        .await;
         // ANCHOR_END: create_crawler
     }
     {
@@ -40,8 +39,7 @@ async fn main() {
                     as std::pin::Pin<Box<dyn std::future::Future<Output = CrawlFeedback>>>
             },
         )
-        .await
-        .unwrap();
+        .await;
         // ANCHOR_END: read_article
     }
 }

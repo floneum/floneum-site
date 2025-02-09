@@ -4,3 +4,6 @@
 /node_modules
 /.dioxus
 /docs/floneum-site
+/src/router.rs
+/src/router_blog.rs
+/src/router_floneum.rs

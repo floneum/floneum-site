@@ -50,7 +50,7 @@ fn Content() -> Element {
     let title = &page.page().title;
 
     rsx! {
-        Title { "{title} - Floneum Blog" }
+        document::Title { "{title} - Floneum Blog" }
         section { class: "body-font overflow-hidden mx-auto container pt-12 pb-12 md:w-2/3",
             div { class: "-my-8",
                 div { class: "w-full mb-20 flex-wrap list-none rounded-md",
