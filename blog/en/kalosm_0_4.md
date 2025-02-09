@@ -9,8 +9,6 @@ In this release, we’re excited to announce:
 - **Single-file model loading** that consolidates model weights, tokenizer, and chat template metadata into one GGUF file
 - **Improved whisper transcription** with word-level timestamps using dynamic time warping
 
-In the sections below, we’ll walk you through these improvements with code examples and practical insights.
-
 ---
 
 ## Simplified LLM API
